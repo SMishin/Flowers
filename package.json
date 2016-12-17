@@ -1,0 +1,30 @@
+{
+  "name": "flowers",
+  "version": "1.0.0",
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  },
+  "scripts": {
+    "build-ca": "npm run build-ca-js & npm run build-ca-css",
+    "build-ca-js": "babel ./src/client-area/app -d ./out/client-area/app --source-maps --plugins transform-es2015-modules-systemjs",
+    "build-ca-css": "sass --no-cache --update ./src/client-area/app:./out/client-area/app"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-loader": "^6.2.10",
+    "babel-plugin-transform-es2015-modules-systemjs": "^6.19.0",
+    "babel-preset-es2015": "*",
+    "babel-preset-es2016": "*",
+    "express": "^4.14.0",
+    "html-loader": "^0.4.4",
+    "node-sass": "^3.13.0",
+    "systemjs": "0.19.41",
+    "systemjs-plugin-text": "0.0.9",
+    "uglify-js": "^2.7.4",
+    "webpack": "^1.14.0",
+    "yargs": "3.31.0"
+  }
+}
