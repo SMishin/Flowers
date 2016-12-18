@@ -1,6 +1,6 @@
 'use strict';
 
-var fs = require("fs"),
+const fs = require("fs"),
     sass = require('node-sass'),
     autoprefixer = require('autoprefixer'),
     postcss = require('postcss')

@@ -4,7 +4,7 @@ var express = require('express'),
     ;
 var app = express();
 
-var root = path.resolveURL(__dirname,'../');
+var root = path.resolve(__dirname,'../');
 
 app.get('*.css', fileHandler(root, require('./handlers/css')));
 
