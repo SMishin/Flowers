@@ -12,37 +12,11 @@ $(document).ready(function () {
         window.scrollTo(0, 1);
     }
     blockHover();
-    if (typeof quickView !== 'undefined' && quickView) {
-        quick_view();
-    }
     dropDown();
     sitemapAccordion();
     counter();
     testimonialsSlider();
-    if (typeof page_name != 'undefined' && !in_array(page_name, ['index', 'product'])) {
-       // bindGrid();
-        $(document).on('change', '.selectProductSort', function (e) {
-            if (typeof request != 'undefined' && request) {
-                var requestSortProducts = request;
-            }
-            var splitData = $(this).val().split(':');
-            var url = '';
-            if (typeof requestSortProducts != 'undefined' && requestSortProducts) {
-                url += requestSortProducts;
-                if (typeof splitData[0] !== 'undefined' && splitData[0]) {
-                    url += (requestSortProducts.indexOf('?') < 0 ? '?' : '&') + 'orderby=' + splitData[0] + (splitData[1] ? '&orderway=' + splitData[1] : '');
-                    if (typeof splitData[1] !== 'undefined' && splitData[1]) {
-                        url += '&orderway=' + splitData[1];
-                    }
-                }
-                document.location.href = url;
-            }
-        });
-        $(document).on('change', 'select[name="n"]', function () {
-            $(this.form).submit();
-        });
 
-    }
     $(document).on('change', 'select[name="manufacturer_list"], select[name="supplier_list"]', function () {
         if (this.value != '') {
             location.href = this.value;
@@ -142,124 +116,7 @@ function blockHover(status) {
         }
     });
 }
-function quick_view() {
-    $(document).on('click', '.quick-view:visible, .quick-view-mobile:visible', function (e) {
-        e.preventDefault();
-        var url = $(this).attr('data-href');
-        if (!url && url == 'undefined') {
-            var url = this.rel;
-        }
-        var anchor = '';
-        if (url.indexOf('#') != -1) {
-            anchor = url.substring(url.indexOf('#'), url.length);
-            url = url.substring(0, url.indexOf('#'));
-        }
-        if (url.indexOf('?') != -1) {
-            url += '&';
-        } else {
-            url += '?';
-        }
-        if (!!$.prototype.fancybox) {
-            $.fancybox({
-                'padding': 0,
-                'width': 900,
-                'height': 500,
-                'type': 'iframe',
-                'href': url + 'content_only=1' + anchor
-            });
-        }
-    });
-}
 
-if (nbItemsPerLine != 'undefined' && nbItemsPerLineTablet != 'undefined') {
-    var nbItemsPerLine = nbItemsPerLine;
-    var nbItemsPerLineTablet = nbItemsPerLineTablet
-} else {
-    var nbItemsPerLine = '';
-    var nbItemsPerLineTablet = '';
-}
-function display(view) {
-    if (view == 'list') {
-        $('ul.product_list').removeClass('grid').addClass('list row');
-        $('.product_list > li').removeClass('col-xs-12 col-sm-' + 12 / nbItemsPerLineTablet + ' col-md-' + 12 / nbItemsPerLine).addClass('col-xs-12');
-        var columns = 2;
-        if ($('body').hasClass('three-columns')) {
-            columns = 3;
-        }
-        $('.product_list > li').each(function (index, element) {
-            var html = '';
-            html = '<div class="product-container"><div class="row">';
-            if (columns == 3) {
-                html += '<div class="left-block col-xs-4 col-xs-5 col-sm-12">' + $(element).find('.left-block').html() + '</div>';
-                html += '<div class="center-block col-xs-4 col-xs-7 col-sm-12">';
-            } else {
-                html += '<div class="left-block col-xs-4 col-xs-5 col-md-4">' + $(element).find('.left-block').html() + '</div>';
-                html += '<div class="center-block col-xs-4 col-xs-7 col-md-8">';
-            }
-            html += '<div class="product-flags">' + $(element).find('.product-flags').html() + '</div>';
-            html += '<h5 itemprop="name">' + $(element).find('h5').html() + '</h5>';
-            var hookReviews = $(element).find('.hook-reviews');
-            if (hookReviews.length) {
-                html += hookReviews.clone().wrap('<div>').parent().html();
-            }
-            var price = $(element).find('.content_price').html();
-            if (price != null) {
-                html += '<div class="content_price">' + price + '</div>';
-            }
-            html += '<p class="product-desc">' + $(element).find('.product-desc').html() + '</p>';
-            var colorList = $(element).find('.color-list-container').html();
-            if (colorList != null) {
-                html += '<div class="color-list-container">' + colorList + '</div>';
-            }
-            var availability = $(element).find('.availability').html();
-            if (availability != null) {
-                html += '<span class="availability">' + availability + '</span>';
-            }
-            html += '</div>';
-            html += '</div></div>';
-            $(element).html(html);
-        });
-        $('.display').find('li#list').addClass('selected');
-        $('.display').find('li#grid').removeAttr('class');
-        listTabsAnimate('ul.product_list>li');
-        $.totalStorage('display', 'list');
-    } else {
-        $('ul.product_list').removeClass('list').addClass('grid row');
-        $('.product_list > li').removeClass('col-xs-12').addClass('col-xs-12 col-sm-' + 12 / nbItemsPerLineTablet + ' col-md-' + 12 / nbItemsPerLine);
-        $('.product_list > li').each(function (index, element) {
-            var html = '';
-            html += '<div class="product-container">';
-            html += '<div class="left-block">' + $(element).find('.left-block').html() + '</div>';
-            html += '<div class="right-block">';
-            html += '<div class="product-flags">' + $(element).find('.product-flags').html() + '</div>';
-            html += '<h5 itemprop="name">' + $(element).find('h5').html() + '</h5>';
-            var hookReviews = $(element).find('.hook-reviews');
-            if (hookReviews.length) {
-                html += hookReviews.clone().wrap('<div>').parent().html();
-            }
-            html += '<p itemprop="description" class="product-desc">' + $(element).find('.product-desc').html() + '</p>';
-            var price = $(element).find('.content_price').html();
-            if (price != null) {
-                html += '<div class="content_price">' + price + '</div>';
-            }
-            var colorList = $(element).find('.color-list-container').html();
-            if (colorList != null) {
-                html += '<div class="color-list-container">' + colorList + '</div>';
-            }
-            var availability = $(element).find('.availability').html();
-            if (availability != null) {
-                html += '<span class="availability">' + availability + '</span>';
-            }
-            html += '</div>';
-            html += '</div>';
-            $(element).html(html);
-        });
-        $('.display').find('li#grid').addClass('selected');
-        $('.display').find('li#list').removeAttr('class');
-        listTabsAnimate('ul.product_list>li');
-        $.totalStorage('display', 'grid');
-    }
-}
 function dropDown() {
     elementClick = '#header .current';
     elementSlide = 'ul.toogle_content';

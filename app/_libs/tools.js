@@ -39,41 +39,7 @@ function ps_round_half_up(value, precision) {
         val = Math.floor(val);
     return val / mul;
 }
-function ps_round(value, places) {
-    if (typeof(roundMode) === 'undefined')
-        roundMode = 2;
-    if (typeof(places) === 'undefined')
-        places = 2;
-    var method = roundMode;
-    if (method === 0)
-        return ceilf(value, places); else if (method === 1)
-        return floorf(value, places); else if (method === 2)
-        return ps_round_half_up(value, places); else if (method == 3 || method == 4 || method == 5) {
-        var precision_places = 14 - Math.floor(ps_log10(Math.abs(value)));
-        var f1 = Math.pow(10, Math.abs(places));
-        if (precision_places > places && precision_places - places < 15) {
-            var f2 = Math.pow(10, Math.abs(precision_places));
-            if (precision_places >= 0)
-                tmp_value = value * f2; else
-                tmp_value = value / f2;
-            tmp_value = ps_round_helper(tmp_value, roundMode);
-            f2 = Math.pow(10, Math.abs(places - precision_places));
-            tmp_value /= f2;
-        }
-        else {
-            if (places >= 0)
-                tmp_value = value * f1; else
-                tmp_value = value / f1;
-            if (Math.abs(tmp_value) >= 1e15)
-                return value;
-        }
-        tmp_value = ps_round_helper(tmp_value, roundMode);
-        if (places > 0)
-            tmp_value = tmp_value / f1; else
-            tmp_value = tmp_value * f1;
-        return tmp_value;
-    }
-}
+
 function autoUrl(name, dest) {
     var loc;
     var id_list;
