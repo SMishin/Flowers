@@ -3,7 +3,7 @@ var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userA
 var isiPad = /iPad/i.test(navigator.userAgent);
 $(document).ready(function () {
     controller = new ScrollMagic();
-    highdpiInit();
+   // highdpiInit();
     responsiveResize();
     $(window).resize(responsiveResize);
     if (navigator.userAgent.match(/Android/i)) {
@@ -20,7 +20,7 @@ $(document).ready(function () {
     counter();
     testimonialsSlider();
     if (typeof page_name != 'undefined' && !in_array(page_name, ['index', 'product'])) {
-        bindGrid();
+       // bindGrid();
         $(document).on('change', '.selectProductSort', function (e) {
             if (typeof request != 'undefined' && request) {
                 var requestSortProducts = request;
@@ -88,22 +88,7 @@ $(document).ready(function () {
         }
     });
 });
-function highdpiInit() {
-    if (typeof highDPI === 'undefined') {
-        return;
-    }
-    if (highDPI && $('.replace-2x').css('font-size') == '1px') {
-        var els = $('img.replace-2x').get();
-        for (var i = 0; i < els.length; i++) {
-            src = els[i].src;
-            extension = src.substr((src.lastIndexOf('.') + 1));
-            src = src.replace('.' + extension, '2x.' + extension);
-            var img = new Image();
-            img.src = src;
-            img.height != 0 ? els[i].src = src : els[i].src = els[i].src;
-        }
-    }
-}
+
 function scrollCompensate() {
     var inner = document.createElement('p');
     inner.style.width = '100%';
@@ -185,34 +170,7 @@ function quick_view() {
         }
     });
 }
-function bindGrid() {
-    var storage = false;
-    if (typeof(getStorageAvailable) !== 'undefined') {
-        storage = getStorageAvailable();
-    }
-    if (!storage) {
-        return;
-    }
-    var view = $.totalStorage('display');
-    if (!view && (typeof displayList != 'undefined') && displayList) {
-        view = 'list';
-    }
-    if (view && view != 'grid') {
-        display(view);
-    } else {
-        $('.display').find('li#grid').addClass('selected');
-    }
-    if ($('body#category').hasClass('three-columns')) {
-        display('list');
-        $('ul.display').addClass('hidden');
-    }
-    $(document).on('click', '#grid, #list', function (e) {
-        e.preventDefault();
-        if (!$(this).hasClass('selected')) {
-            display($(this).attr('id'));
-        }
-    });
-}
+
 if (nbItemsPerLine != 'undefined' && nbItemsPerLineTablet != 'undefined') {
     var nbItemsPerLine = nbItemsPerLine;
     var nbItemsPerLineTablet = nbItemsPerLineTablet
