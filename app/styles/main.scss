@@ -9327,6 +9327,8 @@ body:not(#index) .footer-container #footer {
   bottom: 10px;
   left: 18%;
   z-index: 4;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .footer-container #footer .bottom-footer a {
@@ -9843,7 +9845,7 @@ input[type=checkbox]:checked + .label label:after {
   background-color: white;
 }
 
-sup, .required {
+.required {
   color: #f13340;
 }
 
@@ -13187,3 +13189,8 @@ fieldset.customerprivacy label {
     display: none !important;
   }
 }
+
+@import "./htmlcontent_home";
+@import "./themeconfigurator/css/hooks";
+@import "./tmcategoryproducts";
+@import "./tmhtmlcontent/css/hooks";
