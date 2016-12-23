@@ -9145,12 +9145,13 @@ header .row > .container {
 }
 
 header .row #header_logo {
-  padding: 0 15px;
+  padding-top: 30px;
+  padding-left: 15px;
+  padding-right: 15px;
   text-align: center;
-}
-
-header .row #header_logo > a {
-  display: inline-block;
+  > a {
+    display: inline-block;
+  }
 }
 
 @media (max-width: 767px) {
