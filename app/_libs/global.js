@@ -209,8 +209,6 @@ function listTabsAnimate(element) {
 }
 $(window).load(function () {
     listTabsAnimate('ul.product_list:not(".tab-pane")>li');
-    listBlocksAnimate('#homefeatured', '#homefeatured li', nbItemsPerLine, -300, true);
-    listBlocksAnimate('#homepage-blog', '#homepage-blog li', nbItemsPerLine, -300, true);
 });
 function sitemapAccordion() {
     $('#sitemap #center_column ul.tree > li > ul').addClass('accordion_content').parent().find('> a').wrap('<p class="page-subheading accordion_current"></p>');
