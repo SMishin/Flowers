@@ -7,9 +7,10 @@
     ]
   },
   "scripts": {
-    "build-ca": "npm run build-ca-js & npm run build-ca-css",
-    "build-ca-js": "babel ./src/client-area/app -d ./out/client-area/app --source-maps --plugins transform-es2015-modules-systemjs",
-    "build-ca-css": "sass --no-cache --update ./src/client-area/app:./out/client-area/app"
+    "prebuild-css": "mkdirp dist/app/styles",
+    "build-css": "sass app/styles/main.scss:dist/app/styles/main.css",
+    "copy": "cp -R app/_libs dist/app/_libs && cp -R app/fonts dist/app/fonts && cp index.html ./dist",
+    "build": "npm run build-css && npm run copy"
   },
   "dependencies": {},
   "devDependencies": {
@@ -21,6 +22,7 @@
     "babel-preset-es2016": "*",
     "express": "^4.14.0",
     "html-loader": "^0.4.4",
+    "mkdirp": "^0.5.1",
     "node-sass": "^3.13.0",
     "postcss": "^5.2.6",
     "systemjs": "0.19.41",
