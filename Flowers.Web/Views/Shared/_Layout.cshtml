@@ -1,0 +1,78 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>
+		С Любовью
+	</title>
+
+	<meta name="viewport" content="width=device-width, minimum-scale=0.25, maximum-scale=1.0, initial-scale=1.0" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+
+	<link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+		  rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="/static/app/styles/main.css" media="all" />
+
+	<script src="/static/app/_libs/jquery-1.11.0.min.js"></script>
+	<script src="/static/app/_libs/global.js"></script>
+	<script src="/static/app/_libs/16-jquery.scrollmagic.min.js"></script>
+
+</head>
+<body id="index" class="index hide-left-column hide-right-column lang_en  one-column">
+
+	<div id="page">
+		<div class="header-container">
+			<header id="header">
+				<div>
+					<div class="container">
+						<div class="row">
+							<div id="header_logo">
+								<a href="/" title="Pink Flora">
+									<img class="logo img-responsive"
+										 src="/static/app/img/logo1.png"
+										 alt="Pink Flora" />
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</header>
+		</div>
+
+		<div class="columns-container">
+			@RenderBody();
+		</div>
+
+	</div>
+	<div class="footer-container">
+		<footer id="footer" class="container">
+			<div class="row">
+
+
+				<div class="clearfix"></div>
+
+				<div id="tmhtmlcontent_footer">
+					<ul class="tmhtmlcontent-footer">
+						<li class="tmhtmlcontent-item-1 ">
+							<img src="/static/app/img/logo11.png"
+								 class="item-img img-responsive" title="" alt="" />
+						</li>
+					</ul>
+					<div class="bottom-footer">
+
+						<a class="_blank" href="/">
+							© 2016 - С любовью
+						</a>
+
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+
+
+	@RenderSection("Scripts", required: false)
+</body>
+</html>

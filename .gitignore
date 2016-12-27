@@ -4,3 +4,14 @@ server/iisnode
 .sass-cache
 dist/
 .vs/
+Flowers/bin/
+Flowers/obj/
+packages/
+*.dacpac
+Flowers.DB/bin
+Flowers.DB/obj
+*.jfm
+*.dbmdl
+Flowers.Web/bin/
+Flowers.Web/obj/
+Flowers.Web/static/server/iisnode/
