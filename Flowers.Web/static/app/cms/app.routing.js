@@ -1,5 +1,6 @@
 import {RouterModule} from '@angular/router';
-import ProductsComponent from './products/index'
+import ProductListComponent from './products/list'
+import ProductComponent from './products/product'
 
 const appRoutes = [
 	{
@@ -12,7 +13,12 @@ const appRoutes = [
 			},
 			{
 				path: 'products',
-				component: ProductsComponent,
+				component: ProductListComponent,
+				useAsDefault: true
+			},
+			{
+				path: 'product/:id',
+				component: ProductComponent,
 				useAsDefault: true
 			}
 		]

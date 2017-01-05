@@ -6,7 +6,8 @@ import {routing} from './app.routing';
 
 //import HttpClient from 'core/http-client';
 import AppComponent from './app.component';
-import ProductsComponent from './products/index.js';
+import ProductListComponent from './products/list.js';
+import ProductComponent from './products/product'
 
 @NgModule({
     imports: [
@@ -17,7 +18,8 @@ import ProductsComponent from './products/index.js';
     ],
     declarations: [
         AppComponent,
-	    ProductsComponent
+	    ProductListComponent,
+	    ProductComponent
     ],
     providers: [
 

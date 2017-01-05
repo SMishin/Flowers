@@ -1,0 +1,20 @@
+<h1>Товары</h1>
+
+<div class="card-deck" *ngFor="let group of data;">
+    <div class="card" *ngFor="let item of group;">
+        <img class="card-img-top" [src]="item.imageUrl" alt="Card image cap">
+        <div class="card-block">
+            <h4 class="card-title">
+                {{ item.name }}
+            </h4>
+            <p class="card-text">
+                {{ item.summary }}
+            </p>
+            <p class="card-text">
+                <small class="text-muted">
+                    {{ item.price }}
+                </small>
+            </p>
+        </div>
+    </div>
+</div>

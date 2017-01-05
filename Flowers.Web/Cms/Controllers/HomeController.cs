@@ -6,7 +6,7 @@ namespace Flowers.Web.Cms.Controllers
 	[RouteArea("Cms", AreaPrefix = "_cms")]
 	public class HomeController : Controller
 	{
-		[Route("{url?}")]
+		[Route("{*url?}")]
 		public ActionResult Index()
 		{
 			return View();

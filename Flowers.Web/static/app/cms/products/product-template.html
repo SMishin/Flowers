@@ -1,0 +1,32 @@
+<div class="container">
+    <form #form="ngForm"
+          (ngSubmit)="form.valid && onSubmit()">
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-6">
+                <img [src]="model.imageUrl" [alt]="model.name" />
+            </div>
+            <div class="col-xs-12 col-sm-6">
+
+                <fieldset>
+                    <div class="form-group">
+                        <label for="name">
+                            Название
+                        </label>
+                        <input type="text"
+                               id="name"
+                               name="name"
+                               [(ngModel)]="model.name"
+                               class="form-control"
+                               placeholder="название">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                </fieldset>
+
+            </div>
+        </div>
+
+    </form>
+</div>
+
