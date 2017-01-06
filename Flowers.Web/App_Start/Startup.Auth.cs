@@ -1,17 +1,14 @@
 ﻿using System;
+using Flowers.Models;
+using Flowers.Providers;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.DataProtection;
-using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
-using Flowers.Models;
-using Flowers.Providers;
 
-namespace Flowers
+namespace Flowers.Web
 {
 	public partial class Startup
 	{

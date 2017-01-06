@@ -1,0 +1,14 @@
+
+<div class="drop-zone"
+     [ngClass]="{'file-upload__section_with-files':_files.length > 0}"
+     drop-zone=""
+     (onFileDropped)="onFileDropped($event)"
+     file-browser=""
+     (onFileSelected)="onFileDropped($event)"
+     [dragOverClass]="'dragover'"
+     >
+    <i class="font-icon font-icon-cloud-upload-2"></i>
+    <div class="drop-zone-caption">
+        Перетащите файлы сюда
+    </div>
+</div>

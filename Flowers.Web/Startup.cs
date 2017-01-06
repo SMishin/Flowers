@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Flowers.Web;
 using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(Flowers.Startup))]
+[assembly: OwinStartup(typeof(Startup))]
 
-namespace Flowers
+namespace Flowers.Web
 {
 	public partial class Startup
 	{

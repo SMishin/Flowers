@@ -1,6 +1,5 @@
 import 'whatwg-fetch';
 import merge from './merge';
-import {AuthenticationStorage} from './security/authentication-storage';
 
 class HttpClient {
 	constructor() {
@@ -63,15 +62,11 @@ function addMethods(methods, withData) {
 		function createDefaultRequestOptions(config) {
 			config = config || {};
 
-			var options = {
+			let options = {
 				mode: 'cors',
 				method: method,
 				headers: {}
 			};
-
-			if (config.includeAuthHeader !== false) {
-				options.headers['Authorization'] = 'Bearer ' + AuthenticationStorage.getToken();
-			}
 
 			return merge(options, config);
 

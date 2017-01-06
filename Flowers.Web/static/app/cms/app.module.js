@@ -4,10 +4,14 @@ import { FormsModule, ReactiveFormsModule}   from '@angular/forms';
 
 import {routing} from './app.routing';
 
-//import HttpClient from 'core/http-client';
+import HttpClient from './core/http-client';
 import AppComponent from './app.component';
 import ProductListComponent from './products/list.js';
 import ProductComponent from './products/product'
+import UploadImagesComponent from './products/product-images/index'
+import ImageUploaderComponent from './products/product-images/image-uploader/index'
+import DropZoneDirective from './products/product-images/drop-zone/index'
+import FileBrowserDirective from './products/product-images/file-browser/index'
 
 @NgModule({
     imports: [
@@ -19,10 +23,14 @@ import ProductComponent from './products/product'
     declarations: [
         AppComponent,
 	    ProductListComponent,
-	    ProductComponent
+	    ProductComponent,
+	    UploadImagesComponent,
+	    ImageUploaderComponent,
+	    DropZoneDirective,
+	    FileBrowserDirective
     ],
     providers: [
-
+	    HttpClient
     ],
     bootstrap: [AppComponent]
 })

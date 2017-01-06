@@ -15,3 +15,7 @@ Flowers.DB/obj
 Flowers.Web/bin/
 Flowers.Web/obj/
 Flowers.Web/static/server/iisnode/
+Flowers.Api/bin/
+Flowers.Api/obj/
+Flowers.BL/bin/
+Flowers.BL/obj/

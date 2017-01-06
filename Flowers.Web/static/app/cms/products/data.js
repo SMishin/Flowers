@@ -1,6 +1,7 @@
 export default [
 	{
 		id: 1,
+		type : -1,
 		name: 'asdasd',
 		summary: 'sfsdf',
 		price: '123',
@@ -8,6 +9,7 @@ export default [
 	},
 	{
 		id: 2,
+		type : -1,
 		name: 'asdasd',
 		summary: 'sfsdf',
 		price: '123',
@@ -15,6 +17,7 @@ export default [
 	},
 	{
 		id: 3,
+		type : -1,
 		name: 'asdasd',
 		summary: 'sfsdf',
 		price: '123',
@@ -22,6 +25,7 @@ export default [
 	},
 	{
 		id: 4,
+		type : -1,
 		name: 'asdasd',
 		summary: 'sfsdf',
 		price: '123',
@@ -29,6 +33,7 @@ export default [
 	},
 	{
 		id: 5,
+		type : -1,
 		name: 'asdasd',
 		summary: 'sfsdf',
 		price: '123',
@@ -36,6 +41,7 @@ export default [
 	},
 	{
 		id: 6,
+		type : -1,
 		name: 'asdasd',
 		summary: 'sfsdf',
 		price: '123',
