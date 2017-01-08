@@ -1,8 +1,25 @@
 <h1>Товары</h1>
 
-<div class="card-deck" *ngFor="let group of data;">
-    <div class="card" *ngFor="let item of group;">
-        <img class="card-img-top" [src]="item.imageUrl" alt="Card image cap">
+<div class="row">
+    <div class="col">
+        <a routerLink="../product">
+            Добавить
+        </a>
+    </div>
+</div>
+
+<div class="product-list card-deck" *ngFor="let group of data;">
+    <div class="card"
+         *ngFor="let item of group;"
+         (click)="onItemClick(item.id)">
+
+        <img *ngIf="item.imageUrl"
+             [src]="item.imageUrl"
+             [alt]="item.name"/>
+
+        <img *ngIf="!item.imageUrl"
+             src="/static/app/img/no_photo.jpg"/>
+
         <div class="card-block">
             <h4 class="card-title">
                 {{ item.name }}

@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
-import data from './data';
+import {Router, ActivatedRoute} from '@angular/router';
+import ProductsService from './products-service';
 import template from './list-template.html'
 
 @Component({
@@ -7,25 +8,39 @@ import template from './list-template.html'
 	providers: []
 })
 class ProductListComponent {
-	constructor() {
 
+	constructor(router, route, productsService) {
+
+		this._router = router;
+		this._route = route;
+		this._productsService = productsService;
 
 		this.data = [];
-		let group = [];
-		for (let i = 0; i < data.length; i++) {
-			group.push(data[i]);
 
-			if ((i + 1) % 3 === 0) {
-				this.data.push(group);
-				group = [];
-			}
-		}
+		this._productsService.get()
+			.then(data => {
 
-		console.log(this.data);
+				let group = [];
+				for (let i = 0; i < data.length; i++) {
+					group.push(data[i]);
+
+					if ((i + 1) % 3 === 0) {
+						this.data.push(group);
+						group = [];
+					}
+				}
+
+				console.log(this.data);
+
+			});
 	}
 
 	ngOnInit() {
 
+	}
+
+	onItemClick(id) {
+		this._router.navigate(['../product', id], {relativeTo: this._route});
 	}
 
 	ngOnDestroy() {
@@ -33,6 +48,10 @@ class ProductListComponent {
 
 }
 
-ProductListComponent.parameters = [];
+ProductListComponent.parameters = [
+	Router,
+	ActivatedRoute,
+	ProductsService
+];
 
 export default ProductListComponent;

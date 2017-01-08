@@ -42,7 +42,8 @@ function _checkFile(file) {
 @Component({
 	selector: 'image-uploader',
 	template: template,
-	providers: [FileService]
+	providers: [FileService],
+	inputs: ['productId']
 })
 class ImageUploaderComponent {
 	constructor(fileService) {
@@ -75,13 +76,13 @@ class ImageUploaderComponent {
 		//refactor this
 		file.id = '_temp';
 		this._files.push(file);
-		this._fileService.upload(fd)
+		this._fileService.upload(this.productId, fd)
 			.then(res => {
 				let fileId = res;
 				file.uploaded = true;
 				file.id = fileId;
 			})
-			.catch((res)=> {
+			.catch((res) => {
 				console.log(res);
 				console.log('file too large: ' + size);
 				this._deleteFile(file.id);

@@ -1,30 +1,33 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import data from './data';
+import ProductsService from './products-service';
 import template from './product-template.html'
-
-function findItem(id) {
-	for (let i = 0; i < data.length; i++) {
-		if (data[i].id === id) {
-			return data[i];
-		}
-	}
-}
 
 @Component({
 	template: template,
 	providers: []
 })
 class ProductComponent {
-	constructor(route) {
+	constructor(route, productsService) {
+		this._productsService = productsService;
+		this.model = {};
 
 		this.sub = route.params.subscribe(params => {
-			this.model = findItem(+params['id']);
+			let id = params['id'];
+
+			if (id) {
+				this._productsService.get(+id)
+					.then(data => {
+						this.model = data;
+					})
+			}
+
 		});
 	}
 
-	onSubmit(){
-
+	onSubmit() {
+		console.log(this.model);
+		this._productsService.save(this.model);
 	}
 
 	ngOnInit() {
@@ -38,7 +41,8 @@ class ProductComponent {
 }
 
 ProductComponent.parameters = [
-	ActivatedRoute
+	ActivatedRoute,
+	ProductsService
 ];
 
 export default ProductComponent;

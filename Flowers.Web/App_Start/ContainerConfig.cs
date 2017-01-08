@@ -1,6 +1,11 @@
 ﻿using System;
+using System.Reflection;
 using Autofac;
 using Autofac.Integration.Mvc;
+using Autofac.Integration.WebApi;
+using Flowers.BL.Products;
+using Flowers.DAL;
+using Flowers.DAL.Products;
 
 namespace Flowers.Web
 {
@@ -27,6 +32,9 @@ namespace Flowers.Web
 
 		public static ContainerBuilder RegisterTypes(this ContainerBuilder builder)
 		{
+			builder.RegisterType<ProductReadOnlyStore>().As<IProductReadOnlyStore>();
+			builder.RegisterType<ProductStore>().As<IProductStore>();
+			builder.RegisterType<ProductManager>().As<IProductManager>();
 			return builder;
 		}
 
@@ -38,7 +46,7 @@ namespace Flowers.Web
 
 		private static ContainerBuilder RegisterWebApiControllers(this ContainerBuilder builder)
 		{
-			//builder.RegisterApiControllers(Assembly.GetAssembly(typeof(WebApiConfig)));
+			builder.RegisterApiControllers(Assembly.GetAssembly(typeof(Api.Config.Config)));
 			//builder.RegisterApiControllers(Assembly.GetAssembly(typeof(I18n.WebApi.WebApiConfig)));
 
 			return builder;

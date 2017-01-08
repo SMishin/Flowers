@@ -13,6 +13,8 @@ import ImageUploaderComponent from './products/product-images/image-uploader/ind
 import DropZoneDirective from './products/product-images/drop-zone/index'
 import FileBrowserDirective from './products/product-images/file-browser/index'
 
+import ProductsService from './products/products-service';
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -30,7 +32,8 @@ import FileBrowserDirective from './products/product-images/file-browser/index'
 	    FileBrowserDirective
     ],
     providers: [
-	    HttpClient
+	    HttpClient,
+	    ProductsService
     ],
     bootstrap: [AppComponent]
 })

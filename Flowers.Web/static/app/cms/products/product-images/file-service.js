@@ -5,7 +5,7 @@ import HttpClient from '../../core/http-client';
 class FileService {
 	constructor(http) {
 		this._http = http;
-		this._url = '/products';
+		this._url = '/api/products';
 	}
 
 	upload(id, data, options) {

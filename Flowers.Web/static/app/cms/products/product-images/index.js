@@ -7,6 +7,7 @@ import template from './template.html'
 @Component({
 	selector: 'product-images',
 	template: template,
+	inputs: ['productId']
 	//providers: [DocumentsService]
 })
 class UploadImagesComponent {

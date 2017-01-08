@@ -2,8 +2,6 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 using Autofac.Integration.Mvc;
-using Flowers.Api;
-using Flowers.Api.Config;
 
 namespace Flowers.Web
 {
@@ -12,7 +10,7 @@ namespace Flowers.Web
 		protected void Application_Start()
 		{
 			ViewEngineConfig.Configure();
-			Config.Register(ContainerConfig.Container);
+			WebApiConfig.Register(ContainerConfig.Container);
 
 			DependencyResolver.SetResolver(new AutofacDependencyResolver(ContainerConfig.Container));
 

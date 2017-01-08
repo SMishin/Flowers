@@ -8,12 +8,10 @@ namespace Flowers.Api.Config
 {
 	public class Config
 	{
-		public static void Register(IContainer container)
+		public static void Register(HttpConfiguration config, IContainer container)
 		{
-			var config = new HttpConfiguration
-			{
-				DependencyResolver = new AutofacWebApiDependencyResolver(container.BeginLifetimeScope())
-			};
+			config.DependencyResolver = new AutofacWebApiDependencyResolver(container.BeginLifetimeScope());
+
 
 			JsonConfiguration.Configure(config.Formatters.JsonFormatter.SerializerSettings);
 			config.Formatters

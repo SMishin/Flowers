@@ -17,9 +17,12 @@ const appRoutes = [
 				useAsDefault: true
 			},
 			{
+				path: 'product',
+				component: ProductComponent
+			},
+			{
 				path: 'product/:id',
-				component: ProductComponent,
-				useAsDefault: true
+				component: ProductComponent
 			}
 		]
 	},
