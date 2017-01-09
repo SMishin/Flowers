@@ -2,21 +2,7 @@
     <form #form="ngForm"
           (ngSubmit)="onSubmit()">
 
-        <div class="row">
-            <div class="col-xs-12 col-sm-6">
-
-                <img *ngIf="model.imageUrl"
-                     [src]="model.imageUrl"
-                     [alt]="model.name"/>
-
-                <img *ngIf="!model.imageUrl"
-                     src="/static/app/img/no_photo.jpg"/>
-
-            </div>
-            <div class="col-xs-12 col-sm-6">
-                <product-images [productId]="model.id"></product-images>
-            </div>
-        </div>
+        <product-images [productId]="model.id"></product-images>
         <div class="row">
             <div class="col-xs-12 col-sm-6">
                 <fieldset>

@@ -30,6 +30,10 @@ class ProductListComponent {
 					}
 				}
 
+				if (group.length !== 0) {
+					this.data.push(group);
+				}
+
 				console.log(this.data);
 
 			});

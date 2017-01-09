@@ -4,8 +4,7 @@
 	@Name			nvarchar(500),
 	@Summary		nvarchar(1000) null,
 	@Description	nvarchar(max) null, 
-	@Price			money null,
-	@ImageUrl		NVARCHAR(MAX) NULL
+	@Price			money null
  
 AS
 	if(exists (select null from [Products] where [Id] =  @Id))
@@ -14,13 +13,12 @@ AS
 			[Name] = @Name,
 			[Summary] = @Summary,
 			[Description] = @Description,
-			[Price] = @Price,
-			[ImageUrl]= @ImageUrl
+			[Price] = @Price
 		
 		where [Id] =  @Id
 	else
 		begin
 			insert into [Products]
-			values(@Type, @Name, @Summary, @Description, @Price, @ImageUrl)	
+			values(@Type, @Name, @Summary, @Description, @Price)	
 		end
 RETURN 0

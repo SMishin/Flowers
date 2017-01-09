@@ -18,5 +18,13 @@ namespace Flowers.DAL.Products
 				await conntection.ExecuteAsync("SaveProduct", product, commandType: CommandType.StoredProcedure);
 			}
 		}
+
+		public async Task AddImageAsync(int id, string imgUrl)
+		{
+			using (var conntection = await SqlConnectionHelper.CreateConnection())
+			{
+				await conntection.ExecuteAsync("SaveProductImage", new { ProductId = id, Url = imgUrl }, commandType: CommandType.StoredProcedure);
+			}
+		}
 	}
 }

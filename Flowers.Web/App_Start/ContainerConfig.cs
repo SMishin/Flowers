@@ -4,7 +4,6 @@ using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
 using Flowers.BL.Products;
-using Flowers.DAL;
 using Flowers.DAL.Products;
 
 namespace Flowers.Web
@@ -34,7 +33,8 @@ namespace Flowers.Web
 		{
 			builder.RegisterType<ProductReadOnlyStore>().As<IProductReadOnlyStore>();
 			builder.RegisterType<ProductStore>().As<IProductStore>();
-			builder.RegisterType<ProductManager>().As<IProductManager>();
+			builder.RegisterType<ProductManager>().As<IProductManager>()
+				.WithParameter("imagesRootPath", System.Web.HttpContext.Current.Server.MapPath(AppSettings.Get("product-images-root-path")));
 			return builder;
 		}
 

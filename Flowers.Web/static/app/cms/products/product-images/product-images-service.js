@@ -2,10 +2,14 @@ import {Injectable} from '@angular/core';
 import HttpClient from '../../core/http-client';
 
 @Injectable()
-class FileService {
+class ProductImagesService {
 	constructor(http) {
 		this._http = http;
-		this._url = '/api/products';
+		this._url = '/api/product';
+	}
+
+	get(id){
+		return this._http.get(this._url + '/' + id + '/images');
 	}
 
 	upload(id, data, options) {
@@ -17,8 +21,8 @@ class FileService {
 	}
 }
 
-FileService.parameters = [
+ProductImagesService.parameters = [
 	HttpClient
 ];
 
-export default FileService;
+export default ProductImagesService;

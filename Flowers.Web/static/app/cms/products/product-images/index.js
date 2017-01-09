@@ -1,25 +1,25 @@
 import {Component} from '@angular/core';
 import appSettings from '../../core/app-settings';
-//import DocumentsService from './images-uploader/store';
-import HttpClient from '../../core/http-client';
+import ProductImagesService from './product-images-service';
 import template from './template.html'
 
 @Component({
 	selector: 'product-images',
 	template: template,
-	inputs: ['productId']
-	//providers: [DocumentsService]
+	inputs: ['productId'],
+	providers: [ProductImagesService]
 })
 class UploadImagesComponent {
-	constructor(httpClient, documentsService) {
-		this._httpClient = httpClient;
-		//this._documentsService = documentsService;
-		this._docs = [];
+	constructor(productImagesService) {
+		this._productImagesService = productImagesService;
+		this._images = [];
 	}
 
 	ngOnInit() {
-		this._updateImages();
-		//this._documentsService.addListener(this._updateImages, this);
+		this._productImagesService.get(this.productId)
+			.then((data) => {
+				this._images = data;
+			});
 	}
 
 	_updateImages() {
@@ -71,8 +71,7 @@ class UploadImagesComponent {
 }
 
 UploadImagesComponent.parameters = [
-	HttpClient
-	//DocumentsService
+	ProductImagesService
 ];
 
 export default UploadImagesComponent;

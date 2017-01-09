@@ -10,7 +10,9 @@ import template from './product-template.html'
 class ProductComponent {
 	constructor(route, productsService) {
 		this._productsService = productsService;
-		this.model = {};
+		this.model = {
+			id : route.params.value.id
+		};
 
 		this.sub = route.params.subscribe(params => {
 			let id = params['id'];

@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
-import FileService from '../file-service';
+import ProductImagesService from '../product-images-service';
 import template from './template.html'
 
-let types = ['image/jpeg', 'image/png', 'image/tiff', 'application/pdf'];
+let types = ['image/jpeg', 'image/png'];
 
 function _checkFileType(file) {
 
@@ -42,12 +42,11 @@ function _checkFile(file) {
 @Component({
 	selector: 'image-uploader',
 	template: template,
-	providers: [FileService],
 	inputs: ['productId']
 })
 class ImageUploaderComponent {
-	constructor(fileService) {
-		this._fileService = fileService;
+	constructor(productImagesService) {
+		this._productImagesService = productImagesService;
 		this._files = [];
 	}
 
@@ -76,7 +75,7 @@ class ImageUploaderComponent {
 		//refactor this
 		file.id = '_temp';
 		this._files.push(file);
-		this._fileService.upload(this.productId, fd)
+		this._productImagesService.upload(this.productId, fd)
 			.then(res => {
 				let fileId = res;
 				file.uploaded = true;
@@ -92,7 +91,7 @@ class ImageUploaderComponent {
 	onDeleteClick(event, item) {
 		event.stopPropagation();
 		let id = item.id;
-		this._fileService.remove(id)
+		this._productImagesService.remove(id)
 			.then(res => {
 				this._deleteFile(id);
 				//this._documentsService.remove(id);
@@ -112,7 +111,7 @@ class ImageUploaderComponent {
 }
 
 ImageUploaderComponent.parameters = [
-	FileService
+	ProductImagesService
 ];
 
 export default ImageUploaderComponent;

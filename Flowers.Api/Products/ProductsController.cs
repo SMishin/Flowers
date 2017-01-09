@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -50,10 +51,18 @@ namespace Flowers.Api.Products
 		}
 
 
+		[HttpGet]
+		[Route("product/{id:int}/images")]
+		public async Task<IHttpActionResult> SaveImage(int id)
+		{
+			ProductImage[] data = await _productReadOnlyStore.GetImagesAsync(id);
+			return Ok(data);
+		}
+
 		[HttpPut]
-		[Route("product/{id}/image")]
+		[Route("product/{id:int}/image")]
 		[Route("product/image")]
-		public async Task<IHttpActionResult> SaveImage(Guid? id, HttpRequestMessage request)
+		public async Task<IHttpActionResult> SaveImage(int? id, HttpRequestMessage request)
 		{
 			if (!request.Content.IsMimeMultipartContent())
 			{
@@ -66,9 +75,11 @@ namespace Flowers.Api.Products
 				throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
 			}
 
-			//translationFilesManager.UploadFile(data.Files[data.Files.Keys.First()].Content, data.Fields["path"].Value);
+			var file = data.Files[data.Files.Keys.First()];
 
-			return Ok(id);
+			var imgUrl = await _productManager.UploadImage(file.Content, file.ContentType, id);
+
+			return Ok(imgUrl);
 		}
 	}
 }

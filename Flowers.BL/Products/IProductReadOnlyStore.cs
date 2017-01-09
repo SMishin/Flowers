@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace Flowers.BL.Products
 {
@@ -6,5 +7,6 @@ namespace Flowers.BL.Products
 	{
 		Task<Product[]> GetAsync();
 		Task<Product> GetAsync(int id);
+		Task<ProductImage[]> GetImagesAsync(int id);
 	}
 }

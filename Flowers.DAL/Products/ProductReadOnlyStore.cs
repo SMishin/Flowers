@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
 using Flowers.BL.Products;
@@ -31,6 +32,14 @@ namespace Flowers.DAL.Products
 			using (var conntection = await SqlConnectionHelper.CreateConnection())
 			{
 				return (await conntection.QueryAsync<Product>("select * from dbo.[Products] where Id = @Id", new { Id = id })).FirstOrDefault();
+			}
+		}
+
+		public async Task<ProductImage[]> GetImagesAsync(int id)
+		{
+			using (var conntection = await SqlConnectionHelper.CreateConnection())
+			{
+				return (await conntection.QueryAsync<ProductImage>("select * from dbo.[ProductImages] where ProductId = @Id", new { Id = id })).ToArray();
 			}
 		}
 	}
