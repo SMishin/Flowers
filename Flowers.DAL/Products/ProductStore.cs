@@ -15,7 +15,16 @@ namespace Flowers.DAL.Products
 		{
 			using (var conntection = await SqlConnectionHelper.CreateConnection())
 			{
-				await conntection.ExecuteAsync("SaveProduct", product, commandType: CommandType.StoredProcedure);
+				await conntection.ExecuteAsync("SaveProduct", new
+				{
+					product.Id,
+					product.Name,
+					product.Price,
+					product.Summary,
+					product.Type,
+					product.Description
+					
+				}, commandType: CommandType.StoredProcedure);
 			}
 		}
 

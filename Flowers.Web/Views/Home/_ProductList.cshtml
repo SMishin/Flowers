@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Flowers.BL.Products.Product>
+
+@if (Model.Any())
+{
+	<section id="block-category-1_14" class="block category-block">
+		<h4 class="title_block">
+			<a href="/@Model.First().Type.ToString().ToLower()">
+				@Model.First().Type.ToString()
+			</a>
+		</h4>
+
+		<ul class="product_list grid row">
+
+			@foreach (var item in Model)
+			{
+				<li class="ajax_block_product col-xs-12 col-sm-4 col-md-3">
+					<div class="product-container"
+					     itemscope=""
+					     itemtype="https://schema.org/Product">
+						<div class="left-block">
+							<div class="product-image-container">
+								<a class="product_img_link"
+								   href="/@Model.First().Type.ToString().ToLower()/@item.Id"
+								   title="@item.Name"
+								   itemprop="url">
+									<img class="replace-2x img-responsive"
+									     src="@(!string.IsNullOrEmpty(item.ImageUrl) ? item.ImageUrl : "/static/app/img/no_photo.jpg")"
+									     alt="@item.Name"
+									     title="@item.Name"
+									     itemprop="image">
+								</a>
+
+								@*<a class="sale-box" href="https://ld-prestashop.template-help.com/prestashop_58383/index.php?id_product=8&amp;controller=product&amp;id_lang=1">
+									<span class="sale-label">Sale!</span>
+								</a>*@
+							</div>
+						</div>
+						<div class="right-block">
+							<h5 itemprop="name">
+								<a class="product-name"
+								   href="https://ld-prestashop.template-help.com/prestashop_58383/index.php?id_product=8&amp;controller=product&amp;id_lang=1"
+								   title="@item.Name"
+								   itemprop="url">
+									<span class="grid-name">
+									@item.Name
+								</span>
+								</a>
+							</h5>
+							<div class="content_price">
+								<span class="price product-price product-price-new">
+								@item.Price.ToString("C")
+							</span>
+								@*<span class="old-price product-price">
+									$20.00
+								</span>*@
+								@*<span class="price-percent-reduction">-20%</span>*@
+							</div>
+							<span class="availability">
+							<span class="label-success">
+								In Stock
+							</span>
+						</span>
+						</div>
+					</div>
+				</li>
+			}
+
+
+		</ul>
+	</section>
+}

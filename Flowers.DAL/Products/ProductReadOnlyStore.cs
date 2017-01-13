@@ -35,6 +35,20 @@ namespace Flowers.DAL.Products
 			}
 		}
 
+		public async Task<Product[]> GetWithMainImageAsync(ProductType productType)
+		{
+			using (var conntection = await SqlConnectionHelper.CreateConnection())
+			{
+				return (await conntection.QueryAsync<Product>("SelectProductsWithMainImage",
+				new
+				{
+					ProductType = productType
+				},
+				commandType: System.Data.CommandType.StoredProcedure)).ToArray();
+			}
+		}
+
+
 		public async Task<ProductImage[]> GetImagesAsync(int id)
 		{
 			using (var conntection = await SqlConnectionHelper.CreateConnection())
