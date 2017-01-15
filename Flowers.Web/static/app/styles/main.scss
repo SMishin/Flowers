@@ -3772,28 +3772,6 @@ tbody.collapse.in {
   color: #444444;
 }
 
-.breadcrumb {
-  padding: 8px 15px;
-  margin-bottom: 20px;
-  list-style: none;
-  background-color: whitesmoke;
-  border-radius: 0;
-}
-
-.breadcrumb > li {
-  display: inline-block;
-}
-
-.breadcrumb > li + li:before {
-  content: "/\00a0";
-  padding: 0 5px;
-  color: #cccccc;
-}
-
-.breadcrumb > .active {
-  color: #777777;
-}
-
 .pagination {
   display: inline-block;
   padding-left: 0;
@@ -13194,5 +13172,7 @@ fieldset.customerprivacy label {
 @import "./themeconfigurator/css/hooks";
 @import "./tmcategoryproducts";
 @import "./tmhtmlcontent/css/hooks";
+@import "blocklayered";
 @import "product_list";
+@import "product";
 @import "map";

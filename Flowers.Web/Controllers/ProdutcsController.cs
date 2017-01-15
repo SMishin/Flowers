@@ -1,20 +1,31 @@
-﻿using System.Web.Mvc;
+﻿using System.Threading.Tasks;
+using Flowers.BL.Products;
+using System.Web.Mvc;
+using Flowers.BL.Products.ProductType;
 
 namespace Flowers.Web.Controllers
 {
 	public class ProdutcsController : Controller
 	{
-		// GET: Produtcs
-		[Route("{type}")]
-		public ActionResult Index(string type)
+		private readonly IProductReadOnlyStore _productReadOnlyStore;
+
+		public ProdutcsController(IProductReadOnlyStore productReadOnlyStore)
 		{
-			return View();
+			_productReadOnlyStore = productReadOnlyStore;
+		}
+
+		[Route("{type}")]
+		public async Task<ActionResult> Index(string type)
+		{
+			var data = await _productReadOnlyStore.GetWithMainImageAsync(ProductTypeHelper.FromString(type));
+			return View(data);
 		}
 
 		[Route("{type}/{id:int}")]
-		public ActionResult Index(int id)
+		public async Task<ActionResult> Index(int id)
 		{
-			return View("Details");
+			var data = await _productReadOnlyStore.GetAsync(id);
+			return View("Details", data);
 		}
 	}
 }

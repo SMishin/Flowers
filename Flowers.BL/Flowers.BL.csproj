@@ -46,7 +46,8 @@
     <Compile Include="Products\Product.cs" />
     <Compile Include="Products\ProductImage.cs" />
     <Compile Include="Products\ProductManager.cs" />
-    <Compile Include="Products\ProductType.cs" />
+    <Compile Include="Products\ProductType\ProductType.cs" />
+    <Compile Include="Products\ProductType\ProductTypeHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
