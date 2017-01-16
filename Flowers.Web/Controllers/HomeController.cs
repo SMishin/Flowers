@@ -18,8 +18,8 @@ namespace Flowers.Web.Controllers
 
 		public async Task<ActionResult> Index()
 		{
-			var flowers = _productReadOnlyStore.GetWithMainImageAsync(ProductType.Flowers);
-			var toys = _productReadOnlyStore.GetWithMainImageAsync(ProductType.Toys);
+			var flowers = _productReadOnlyStore.GetWithMainImageAsync(ProductType.Flowers, 0, 12);
+			var toys = _productReadOnlyStore.GetWithMainImageAsync(ProductType.Toys, 0, 12);
 
 			await Task.WhenAll(flowers, toys);
 

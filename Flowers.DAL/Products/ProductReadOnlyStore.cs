@@ -36,14 +36,16 @@ namespace Flowers.DAL.Products
 			}
 		}
 
-		public async Task<Product[]> GetWithMainImageAsync(ProductType productType)
+		public async Task<Product[]> GetWithMainImageAsync(ProductType productType, int skip, int take)
 		{
 			using (var conntection = await SqlConnectionHelper.CreateConnection())
 			{
 				return (await conntection.QueryAsync<Product>("SelectProductsWithMainImage",
 				new
 				{
-					ProductType = productType
+					ProductType = productType,
+					Skip = skip,
+					Take = take
 				},
 				commandType: System.Data.CommandType.StoredProcedure)).ToArray();
 			}
@@ -55,6 +57,14 @@ namespace Flowers.DAL.Products
 			using (var conntection = await SqlConnectionHelper.CreateConnection())
 			{
 				return (await conntection.QueryAsync<ProductImage>("select * from dbo.[ProductImages] where ProductId = @Id", new { Id = id })).ToArray();
+			}
+		}
+
+		public async Task<int> CountAsync(ProductType productType)
+		{
+			using (var conntection = await SqlConnectionHelper.CreateConnection())
+			{
+				return (await conntection.QueryAsync<int>("select count(*) from dbo.[Products] where [Type] = @ProductType", new { ProductType = productType })).First();
 			}
 		}
 	}

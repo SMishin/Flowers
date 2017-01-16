@@ -1,4 +1,4 @@
-﻿@model Flowers.BL.Products.Product[]
+﻿@model Flowers.Web.Models.Products.ProdutcsIndexViewModel
 
 <div class="columns-container">
 	<div id="columns" class="container">
@@ -8,7 +8,7 @@
 					<div id="center_column" class="center_column col-xs-12 col-sm-9 accordionBox">
 						<h1 class="page-heading product-listing">
 							<span class="cat-name">
-								Flower gallery 
+								Flower gallery
 							</span>
 							<span class="heading-counter">
 								There are 20 products.
@@ -22,189 +22,144 @@
 
 
 						@{
-							Html.RenderPartial("_List", Model);
+							Html.RenderPartial("_List", Model.Products);
 						}
 
 
+						@if (Model.Count > Model.Products.Length)
+						{
+							<div class="content_sortPagiBar">
+								<div class="bottom-pagination-content clearfix">
 
-						<div class="content_sortPagiBar">
-							<div class="bottom-pagination-content clearfix">
+									<div id="pagination_bottom" class="pagination clearfix">
+										<ul class="pagination">
+											<li id="pagination_previous_bottom" class="disabled pagination_previous">
+												<span>
+													<i class="fa fa-chevron-left"></i>
+													<b>Назад</b>
+												</span>
+											</li>
 
-								<div id="pagination_bottom" class="pagination clearfix">
-									<ul class="pagination">
-										<li id="pagination_previous_bottom" class="disabled pagination_previous">
-											<span>
-												<i class="fa fa-chevron-left"></i>
-												<b>Previous</b>
-											</span>
-										</li>
-										<li class="active current">
-											<span>
-												<span>1</span>
-											</span>
-										</li>
-										<li>
-											<a href="https://ld-prestashop.template-help.com/prestashop_58383/index.php?id_category=14&amp;controller=category&amp;id_lang=1#/page-2">
-												<span>2</span>
-											</a>
-										</li>
-										<li>
-											<a href="https://ld-prestashop.template-help.com/prestashop_58383/index.php?id_category=14&amp;controller=category&amp;id_lang=1#/page-3">
-												<span>3</span>
-											</a>
-										</li>
-										<li>
-											<a href="https://ld-prestashop.template-help.com/prestashop_58383/index.php?id_category=14&amp;controller=category&amp;id_lang=1#/page-4">
-												<span>4</span>
-											</a>
-										</li>
-										<li id="pagination_next_bottom" class="pagination_next">
-											<a href="https://ld-prestashop.template-help.com/prestashop_58383/index.php?id_category=14&amp;controller=category&amp;id_lang=1#/page-2">
-												<b>Next</b> <i class="fa fa-chevron-right"></i>
-											</a>
-										</li>
-									</ul>
+											@{
+												int pageCount = 5;
+												int from = Model.Page - 2 < 0 ? 1 : Model.Page - 2;
+												int to = from + pageCount;
+
+												if (to > Model.Count / 10)
+												{
+													to = Model.Count / 10;
+													if (Model.Count % 10 != 0)
+													{
+														to++;
+													}
+												}
+
+												for (var i = from; i <= to; i++)
+												{
+													if (i == Model.Page)
+													{
+														<li class="active current">
+															<span>
+																<span>
+																	@i
+																</span>
+															</span>
+														</li>
+													}
+													else
+													{
+														<li>
+															<a href="/@Model.Products[0].Type.ToString().ToLower()?page=@i">
+																<span>
+																	@i
+																</span>
+															</a>
+														</li>
+													}
+												}
+
+											}
+
+
+											<li id="pagination_next_bottom" class="pagination_next">
+												<a href="https://ld-prestashop.template-help.com/prestashop_58383/index.php?id_category=14&amp;controller=category&amp;id_lang=1#/page-2">
+													<b>Вперед</b>
+													<i class="fa fa-chevron-right"></i>
+												</a>
+											</li>
+										</ul>
+									</div>
+									<div class="product-count">
+										@((Model.Page - 1) * Model.Products.Length + 1) - @(Model.Page * Model.Products.Length) из @Model.Count
+									</div>
+
 								</div>
-								<div class="product-count">
-									Showing 1 - 6 of 20 items
-								</div>
-
 							</div>
-						</div>
+						}
 					</div>
 					<div id="left_column" class="column col-xs-12 col-sm-3">
 						<section id="layered_block_left" class="block">
-							<h4 class="title_block">Catalog</h4>
+							<h4 class="title_block">
+								Каталог
+							</h4>
 							<div class="block_content">
 								<form action="#" id="layered_form">
 									<div>
-										<div class="layered_filter">
-											<div class="layered_subtitle_heading">
-												<span class="layered_subtitle">Availability</span>
-											</div>
-											<ul id="ul_layered_quantity_0" class="col-lg-12 layered_filter_ul">
-												<li class="nomargin hiddable col-lg-12">
-													<input type="checkbox" class="checkbox" name="layered_quantity_0" id="layered_quantity_0" value="0">
-													<label for="layered_quantity_0">
-														<a href="https://ld-prestashop.template-help.com/prestashop_58383/index.php?id_category=14&amp;controller=category&amp;id_lang=1#availability-not_available" data-rel="nofollow">
-															<strong>Not available</strong>
-															<span>1</span>
-														</a>
-													</label>
-												</li>
-												<li class="nomargin hiddable col-lg-12">
-													<input type="checkbox" class="checkbox" name="layered_quantity_1" id="layered_quantity_1" value="1">
-													<label for="layered_quantity_1">
-														<a href="https://ld-prestashop.template-help.com/prestashop_58383/index.php?id_category=14&amp;controller=category&amp;id_lang=1#availability-in_stock" data-rel="nofollow">
-															<strong>In stock</strong>
-															<span>19</span>
-														</a>
-													</label>
-												</li>
-											</ul>
-										</div>
+										@*<div class="layered_filter">
+												<div class="layered_subtitle_heading">
+													<span class="layered_subtitle">Availability</span>
+												</div>
+												<ul id="ul_layered_quantity_0" class="col-lg-12 layered_filter_ul">
+													<li class="nomargin hiddable col-lg-12">
+														<input type="checkbox" class="checkbox" name="layered_quantity_0" id="layered_quantity_0" value="0">
+														<label for="layered_quantity_0">
+															<a href="https://ld-prestashop.template-help.com/prestashop_58383/index.php?id_category=14&amp;controller=category&amp;id_lang=1#availability-not_available" data-rel="nofollow">
+																<strong>Not available</strong>
+																<span>1</span>
+															</a>
+														</label>
+													</li>
+													<li class="nomargin hiddable col-lg-12">
+														<input type="checkbox" class="checkbox" name="layered_quantity_1" id="layered_quantity_1" value="1">
+														<label for="layered_quantity_1">
+															<a href="https://ld-prestashop.template-help.com/prestashop_58383/index.php?id_category=14&amp;controller=category&amp;id_lang=1#availability-in_stock" data-rel="nofollow">
+																<strong>In stock</strong>
+																<span>19</span>
+															</a>
+														</label>
+													</li>
+												</ul>
+											</div>*@
 
 										<div class="layered_filter">
-											<div class="layered_subtitle_heading">
-												<span class="layered_subtitle">Manufacturer</span>
-											</div>
+											@*<div class="layered_subtitle_heading">
+													<span class="layered_subtitle">Manufacturer</span>
+												</div>*@
 											<ul id="ul_layered_manufacturer_0" class="col-lg-12 layered_filter_ul">
 												<li class="nomargin hiddable col-lg-12">
-													<input type="checkbox" class="checkbox" name="layered_manufacturer_4" id="layered_manufacturer_4" value="4">
+
 													<label for="layered_manufacturer_4">
-														<a href="https://ld-prestashop.template-help.com/prestashop_58383/index.php?id_category=14&amp;controller=category&amp;id_lang=1#manufacturer-1_800_flowers" data-rel="nofollow">
-															<strong>1-800-flowers</strong>
-															<span>2</span>
+														<a href="/flowers">
+															<strong>
+																Цветы
+															</strong>
 														</a>
 													</label>
 												</li>
 												<li class="nomargin hiddable col-lg-12">
-													<input type="checkbox" class="checkbox" name="layered_manufacturer_7" id="layered_manufacturer_7" value="7">
-													<label for="layered_manufacturer_7">
-														<a href="https://ld-prestashop.template-help.com/prestashop_58383/index.php?id_category=14&amp;controller=category&amp;id_lang=1#manufacturer-appleyard" data-rel="nofollow">
-															<strong>Appleyard </strong>
-															<span>2</span>
+
+													<label for="layered_manufacturer_4">
+														<a href="/toys">
+															<strong>
+																Игрушки
+															</strong>
 														</a>
 													</label>
 												</li>
-												<li class="nomargin hiddable col-lg-12">
-													<input type="checkbox" class="checkbox" name="layered_manufacturer_6" id="layered_manufacturer_6" value="6">
-													<label for="layered_manufacturer_6">
-														<a href="https://ld-prestashop.template-help.com/prestashop_58383/index.php?id_category=14&amp;controller=category&amp;id_lang=1#manufacturer-fromyouflowers" data-rel="nofollow">
-															<strong>fromyouflowers</strong>
-															<span>2</span>
-														</a>
-													</label>
-												</li>
-												<li class="nomargin hiddable col-lg-12">
-													<input type="checkbox" class="checkbox" name="layered_manufacturer_9" id="layered_manufacturer_9" value="9">
-													<label for="layered_manufacturer_9">
-														<a href="https://ld-prestashop.template-help.com/prestashop_58383/index.php?id_category=14&amp;controller=category&amp;id_lang=1#manufacturer-gabriela_wakeham" data-rel="nofollow">
-															<strong>Gabriela Wakeham</strong>
-															<span>2</span>
-														</a>
-													</label>
-												</li>
-												<li class="nomargin hiddable col-lg-12">
-													<input type="checkbox" class="checkbox" name="layered_manufacturer_3" id="layered_manufacturer_3" value="3">
-													<label for="layered_manufacturer_3">
-														<a href="https://ld-prestashop.template-help.com/prestashop_58383/index.php?id_category=14&amp;controller=category&amp;id_lang=1#manufacturer-interflora" data-rel="nofollow">
-															<strong>Interflora</strong>
-															<span>2</span>
-														</a>
-													</label>
-												</li>
-												<li class="nomargin hiddable col-lg-12">
-													<input type="checkbox" class="checkbox" name="layered_manufacturer_11" id="layered_manufacturer_11" value="11">
-													<label for="layered_manufacturer_11">
-														<a href="https://ld-prestashop.template-help.com/prestashop_58383/index.php?id_category=14&amp;controller=category&amp;id_lang=1#manufacturer-organic_blooms" data-rel="nofollow">
-															<strong>Organic Blooms</strong>
-															<span>2</span>
-														</a>
-													</label>
-												</li>
-												<li class="nomargin hiddable col-lg-12">
-													<input type="checkbox" class="checkbox" name="layered_manufacturer_8" id="layered_manufacturer_8" value="8">
-													<label for="layered_manufacturer_8">
-														<a href="https://ld-prestashop.template-help.com/prestashop_58383/index.php?id_category=14&amp;controller=category&amp;id_lang=1#manufacturer-pro_flowers" data-rel="nofollow">
-															<strong>Pro Flowers</strong>
-															<span>2</span>
-														</a>
-													</label>
-												</li>
-												<li class="nomargin hiddable col-lg-12">
-													<input type="checkbox" class="checkbox" name="layered_manufacturer_5" id="layered_manufacturer_5" value="5">
-													<label for="layered_manufacturer_5">
-														<a href="https://ld-prestashop.template-help.com/prestashop_58383/index.php?id_category=14&amp;controller=category&amp;id_lang=1#manufacturer-serenataflowers" data-rel="nofollow">
-															<strong>serenataflowers</strong>
-															<span>2</span>
-														</a>
-													</label>
-												</li>
-												<li class="nomargin hiddable col-lg-12">
-													<input type="checkbox" class="checkbox" name="layered_manufacturer_10" id="layered_manufacturer_10" value="10">
-													<label for="layered_manufacturer_10">
-														<a href="https://ld-prestashop.template-help.com/prestashop_58383/index.php?id_category=14&amp;controller=category&amp;id_lang=1#manufacturer-sydney_flowers" data-rel="nofollow">
-															<strong>Sydney Flowers</strong>
-															<span>2</span>
-														</a>
-													</label>
-												</li>
-												<li class="nomargin hiddable col-lg-12">
-													<input type="checkbox" class="checkbox" name="layered_manufacturer_2" id="layered_manufacturer_2" value="2">
-													<label for="layered_manufacturer_2">
-														<a href="https://ld-prestashop.template-help.com/prestashop_58383/index.php?id_category=14&amp;controller=category&amp;id_lang=1#manufacturer-teleflora" data-rel="nofollow">
-															<strong>Teleflora</strong>
-															<span>2</span>
-														</a>
-													</label>
-												</li>
+
 											</ul>
 										</div>
-
-
 									</div>
-									<input type="hidden" name="id_category_layered" value="14">
 								</form>
 							</div>
 						</section>
