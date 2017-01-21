@@ -9,7 +9,7 @@
   "scripts": {
     "prebuild-css": "mkdirp dist/app/styles",
     "build-css": "sass app/styles/main.scss:dist/app/styles/main.css",
-    "copy": "cp -R app/_libs dist/app/_libs && cp -R app/fonts dist/app/fonts && cp -R app/img dist/app/img && cp index.html ./dist",
+    "copy": "cp -R app/_libs dist/app/_libs && cp -R app/fonts dist/app/fonts && cp -R app/img dist/app/img && cp *.html ./dist",
     "build": "npm run build-css && npm run copy"
   },
   "dependencies": {},
