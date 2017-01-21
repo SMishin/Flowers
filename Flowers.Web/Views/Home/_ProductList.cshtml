@@ -1,11 +1,12 @@
-﻿@model IEnumerable<Flowers.BL.Products.Product>
+﻿@using Flowers.BL.Products.ProductType
+@model IEnumerable<Flowers.BL.Products.Product>
 
 @if (Model.Any())
 {
 	<section id="block-category-1_14" class="block category-block">
 		<h4 class="title_block">
 			<a href="/@Model.First().Type.ToString().ToLower()">
-				@Model.First().Type.ToString()
+				@Model.First().Type.ToFriendlyString()
 			</a>
 		</h4>
 
@@ -55,11 +56,11 @@
 								</span>*@
 								@*<span class="price-percent-reduction">-20%</span>*@
 							</div>
-							<span class="availability">
-							<span class="label-success">
-								In Stock
-							</span>
-						</span>
+							@*<span class="availability">
+								<span class="label-success">
+									In Stock
+								</span>
+							</span>*@
 						</div>
 					</div>
 				</li>

@@ -1,4 +1,5 @@
-﻿@model Flowers.Web.Models.Products.ProdutcsIndexViewModel
+﻿@using Flowers.BL.Products.ProductType
+@model Flowers.Web.Models.Products.ProdutcsIndexViewModel
 
 <div class="columns-container">
 	<div id="columns" class="container">
@@ -8,11 +9,35 @@
 					<div id="center_column" class="center_column col-xs-12 col-sm-9 accordionBox">
 						<h1 class="page-heading product-listing">
 							<span class="cat-name">
-								Flower gallery
+								@Model.Products[0].Type.ToFriendlyString()
 							</span>
 							<span class="heading-counter">
-								There are 20 products.
+								Всего @Model.Count
+								@{
+									var lastNumber = Model.Count % 10;
+
+									if (lastNumber == 1)
+									{
+										<text>
+											наименование
+										</text>
+									}
+									else if (lastNumber < 5)
+									{
+										<text>
+											наименования
+										</text>
+									}
+									else if (lastNumber >= 5)
+									{
+										<text>
+											наименований
+										</text>
+									}
+
+								}
 							</span>
+
 						</h1>
 
 						@*@{
@@ -95,7 +120,7 @@
 
 								</div>
 							</div>
-						}
+												}
 					</div>
 					<div id="left_column" class="column col-xs-12 col-sm-3">
 						<section id="layered_block_left" class="block">
