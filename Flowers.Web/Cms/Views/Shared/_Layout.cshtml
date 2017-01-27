@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<base href="/">
+	<meta charset="utf-8" />
+	<title>@ViewBag.Title - My ASP.NET Application</title>
+	<link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/static/node_modules/bootstrap/dist/css/bootstrap-flex.css" media="all" />
+
+	@RenderSection("head")
+
+</head>
+<body>
+
+	@RenderBody()
+
+	@{
+		Html.RenderPartial("_App.Settings");
+	}
+
+	@RenderSection("scripts")
+</body>
+</html>

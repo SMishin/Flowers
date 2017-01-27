@@ -1,0 +1,96 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-6">
+
+        <ul class="image-list">
+            <li *ngFor="let item of _images">
+                <img [src]="item.url"/>
+            </li>
+        </ul>
+
+
+
+        <!--<img *ngIf="!model.imageUrl"-->
+             <!--src="/static/app/img/no_photo.jpg"/>-->
+
+    </div>
+    <div class="col-xs-12 col-sm-6">
+
+        <form class="box-typical box-typical-upload" tabindex="0"
+              (submit)="onSubmit($event)">
+            <div class="box-typical-upload-in">
+                <image-uploader [productId]="productId"></image-uploader>
+                <!--<h6 class="uploading-list-title">Uploading</h6>-->
+                <!--<ul class="uploading-list">-->
+                <!--<li class="uploading-list-item">-->
+                <!--<div class="uploading-list-item-wrapper">-->
+                <!--<div class="uploading-list-item-name">-->
+                <!--<i class="font-icon font-icon-cam-photo"></i>-->
+                <!--photo.png-->
+                <!--</div>-->
+                <!--<div class="uploading-list-item-size">7,5 mb</div>-->
+                <!--<button type="button" class="uploading-list-item-close">-->
+                <!--<i class="font-icon-close-2"></i>-->
+                <!--</button>-->
+                <!--</div>-->
+                <!--<progress class="progress" value="25" max="100">-->
+                <!--<div class="progress">-->
+                <!--<span class="progress-bar" style="width: 25%;">25%</span>-->
+                <!--</div>-->
+                <!--</progress>-->
+                <!--<div class="uploading-list-item-progress">37% done</div>-->
+                <!--<div class="uploading-list-item-speed">90KB/sec</div>-->
+                <!--</li>-->
+                <!--<li class="uploading-list-item">-->
+                <!--<div class="uploading-list-item-wrapper">-->
+                <!--<div class="uploading-list-item-name">-->
+                <!--<i class="font-icon font-icon-page"></i>-->
+                <!--task.doc-->
+                <!--</div>-->
+                <!--<div class="uploading-list-item-size">7,5 mb</div>-->
+                <!--<button type="button" class="uploading-list-item-close">-->
+                <!--<i class="font-icon-close-2"></i>-->
+                <!--</button>-->
+                <!--</div>-->
+                <!--<progress class="progress" value="50" max="100">-->
+                <!--<div class="progress">-->
+                <!--<span class="progress-bar" style="width: 50%;">50%</span>-->
+                <!--</div>-->
+                <!--</progress>-->
+                <!--<div class="uploading-list-item-progress">37% done</div>-->
+                <!--<div class="uploading-list-item-speed">90KB/sec</div>-->
+                <!--</li>-->
+                <!--<li class="uploading-list-item">-->
+                <!--<div class="uploading-list-item-wrapper">-->
+                <!--<div class="uploading-list-item-name">-->
+                <!--<i class="font-icon font-icon-cam-photo"></i>-->
+                <!--dashboard.png-->
+                <!--</div>-->
+                <!--<div class="uploading-list-item-size">7,5 mb</div>-->
+                <!--<button type="button" class="uploading-list-item-close">-->
+                <!--<i class="font-icon-close-2"></i>-->
+                <!--</button>-->
+                <!--</div>-->
+                <!--<progress class="progress" value="100" max="100">-->
+                <!--<div class="progress">-->
+                <!--<span class="progress-bar" style="width: 100%;">100%</span>-->
+                <!--</div>-->
+                <!--</progress>-->
+                <!--<div class="uploading-list-item-progress">Completed</div>-->
+                <!--<div class="uploading-list-item-speed">90KB/sec</div>-->
+                <!--</li>-->
+                <!--</ul>-->
+            </div>
+
+            <button type="submit"
+                    class="button"
+                    [disabled]="!_docs || _docs.length == 0"
+            >
+                Загрузить
+            </button>
+        </form>
+    </div>
+</div>
+
+
+
+

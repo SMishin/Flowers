@@ -1,0 +1,115 @@
+
+.image-list{
+  img{
+    width: 200px;
+  }
+}
+
+.box-typical-upload {
+  height: 314px;
+  overflow-y: scroll;
+
+  .box-typical-upload-in {
+    padding: 10px;
+  }
+
+  .drop-zone {
+    width: auto;
+    height: auto;
+    border: 2px dashed #adb7be;
+    text-align: center;
+    margin-bottom: 1rem;
+    padding: 25px 0 1rem;
+
+    &.dragover {
+      border-color: #4cae4c;
+    }
+
+    .font-icon {
+      line-height: 60px;
+      color: #919fa9;
+      font-size: 2.75rem;
+    }
+
+    .font-icon-cloud-upload-2:before {
+      content: "\2a";
+    }
+
+  }
+
+  .uploading-list-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .uploading-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    .uploading-list-item:first-child {
+      border-top: none;
+    }
+
+    .uploading-list-item {
+      zoom: 1;
+      padding: .9rem 0;
+      border-top: solid 1px #d8e2e7;
+    }
+    .uploading-list-item-wrapper {
+      position: relative;
+      padding: 0 20px 0 0;
+      margin: 0 0 6px;
+    }
+
+    .uploading-list-item-name,
+    .uploading-list-item-size {
+      display: inline-block;
+      vertical-align: top;
+      white-space: nowrap;
+      line-height: 1.2em;
+    }
+
+    .uploading-list-item-name {
+      padding-right: 15px;
+      overflow: hidden;
+      max-width: 100%;
+      text-overflow: ellipsis;
+    }
+
+    .uploading-list-item-size {
+      color: #919fa9;
+    }
+
+    .uploading-list-item-close {
+      border: none;
+      background: 0 0;
+      color: #dbe4ea;
+      font-size: .75rem;
+      position: absolute;
+      right: 0;
+      top: 2px;
+      cursor: pointer;
+
+      .font-icon-close-2:before {
+        content: "\4f";
+      }
+    }
+
+    .progress {
+      margin-bottom: .4rem;
+      background-color: #f6f8fa;
+      height: 5px;
+      -webkit-border-radius: 0;
+      border-radius: 0;
+      color: #00a8ff;
+    }
+
+    .progress[value],
+    .uploading-list-item-close:hover {
+      color: #00a8ff;
+    }
+
+  }
+}

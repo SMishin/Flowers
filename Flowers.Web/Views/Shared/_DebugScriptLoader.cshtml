@@ -1,0 +1,14 @@
+﻿@model IEnumerable<string>
+
+
+@using Flowers.Web.Core
+
+@{
+	if (Model != null)
+	{
+		foreach (var item in Model)
+		{
+			<script src="@item?ver=@(Html.GetStaticVersion())"></script>
+		}
+	}
+}
