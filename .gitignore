@@ -20,3 +20,5 @@ Flowers.Api/obj/
 Flowers.BL/bin/
 Flowers.BL/obj/
 Flowers.DAL/bin
+Flowers.DAL/obj/
+Flowers.Web/static/npm-debug.log*
