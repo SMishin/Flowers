@@ -4,6 +4,14 @@
   display: table;
   table-layout: fixed;
   width: 100%;
+
+  .htmlcontent-item-2 {
+    @media (max-width: 320px) {
+     .title{
+       font-size: 22pt;
+     }
+    }
+  }
 }
 
 @media (min-width: 768px) {
@@ -47,6 +55,7 @@
 
 #htmlcontent_top ul > li > div > .cnt h3 + p, #htmlcontent_top ul > li > div > .cnt h4 + p {
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 #htmlcontent_top ul > li > div > .cnt h3 {

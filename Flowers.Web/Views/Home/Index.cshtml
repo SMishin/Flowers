@@ -21,7 +21,10 @@
 						<div class="item-html">
 							<div class="cnt">
 								<h3 class="color-primary">
-									Салон цветов <br /> «С Любовью»
+									<span class="title">
+										Салон цветов <br /> «С Любовью»
+									</span>
+
 								</h3>
 								<p>
 									ул. Юбилейная, д. 28, корп. 1 (у дороги, отдельный вход)
@@ -50,16 +53,16 @@
 <div class="home-column">
 	<div class="container">
 
-		@*@{ 
-			Html.RenderPartial("_ProductList", Model[ProductType.Flowers]);
-			Html.RenderPartial("_ProductList", Model[ProductType.Toys]);
-		}*@
+		@*@{
+				Html.RenderPartial("_ProductList", Model[ProductType.Flowers]);
+				Html.RenderPartial("_ProductList", Model[ProductType.Toys]);
+			}*@
 
 
 		<div class="map">
 
 			<script type="text/javascript" charset="utf-8" async
-					src="https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=y2A7hT9Iv1Vs6wSTalPOrSJmHR3PPc5T&amp;width=1170&amp;height=350&amp;lang=ru_RU&amp;sourceType=constructor&amp;scroll=true"></script>
+					src="https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=y2A7hT9Iv1Vs6wSTalPOrSJmHR3PPc5T&amp;width=100%&amp;height=350&amp;lang=ru_RU&amp;sourceType=constructor&amp;scroll=true"></script>
 		</div>
 
 
