@@ -1,4 +1,4 @@
-class Cart {
+class CartStore {
 
 	constructor() {
 		console.log('Cart constructor');
@@ -12,4 +12,4 @@ class Cart {
 
 }
 
-export default new Cart();
+export default new CartStore();
