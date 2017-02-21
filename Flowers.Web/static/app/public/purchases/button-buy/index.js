@@ -1,6 +1,6 @@
 import React from 'react'
 import template from './template.jsx'
-import cartStore from '../cart-store'
+import CartStore from '../cart-store'
 
 class ButtonBuy extends React.Component {
 
@@ -10,7 +10,7 @@ class ButtonBuy extends React.Component {
 	}
 
 	click() {
-		cartStore.add(this.props.itemId)
+		CartStore.add(this.props.itemId)
 	}
 
 	render() {

@@ -1,15 +1,26 @@
 import React from 'react'
 import template from './template.jsx'
+import CartStore from '../cart-store';
 
 class Cart extends React.Component {
 
 	constructor() {
 		super();
-		this.click = this.click.bind(this);
+		this.listener = this.listener.bind(this);
+		this.unsubscribe = CartStore.subscribe(this.listener);
+		this.state = {
+			items: CartStore.getState()
+		};
 	}
 
-	click() {
-		cart.add(this.props.itemId)
+	listener() {
+		this.setState({
+			items: CartStore.getState()
+		});
+	}
+
+	componentWillUnmount() {
+		this.unsubscribe();
 	}
 
 	render() {

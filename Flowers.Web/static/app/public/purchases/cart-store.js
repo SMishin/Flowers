@@ -1,15 +1,8 @@
-class CartStore {
+import createStore from '../createStore';
 
-	constructor() {
-		console.log('Cart constructor');
-		this.items = [];
-	}
-
-	add(id) {
-		this.items.indexOf(id) === -1 && this.items.push(id);
-		console.log(this.items);
-	}
-
+function add(prevState, id, updateStore) {
+	prevState.push(id);
+	updateStore(prevState);
 }
 
-export default new CartStore();
+export default createStore([], [add]);
