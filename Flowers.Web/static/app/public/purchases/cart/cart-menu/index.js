@@ -1,8 +1,8 @@
 import React from 'react'
 import template from './template.jsx'
-import CartStore from '../cart-store';
+import CartStore from '../../cart-store';
 
-class Cart extends React.Component {
+class CartMenu extends React.Component {
 
 	constructor() {
 		super();
@@ -28,4 +28,4 @@ class Cart extends React.Component {
 	}
 }
 
-export default Cart;
+export default CartMenu;

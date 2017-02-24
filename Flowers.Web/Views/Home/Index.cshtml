@@ -124,19 +124,3 @@
 
 
 </div>
-
-@section scripts{
-
-<script src="/static/node_modules/systemjs/dist/system.src.js"></script>
-<script src="/static/app/public/systemjs.config.js"></script>
-
-<script>
-
-		(function () {
-			System.import('app/app')
-				.then(null, console.error.bind(console));
-		}())
-
-</script>
-	
-}

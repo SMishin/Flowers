@@ -2,10 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import  ButtonBuy from './purchases/button-buy/index'
-import  Cart from './purchases/cart/index'
+import  CartMenu from './purchases/cart/cart-menu/index'
+import  CartSummary from './purchases/cart/cart-summary/index';
 
 function renderBuyButtons() {
-	let elems = document.querySelectorAll('.buy'),
+	let elems = document.querySelectorAll('.add_to_cart_button_container'),
 		i = elems.length
 		;
 
@@ -15,10 +16,22 @@ function renderBuyButtons() {
 	}
 }
 
-function renderCart() {
-	ReactDOM.render(<Cart />,
+function renderCartMenu() {
+	ReactDOM.render(<CartMenu />,
 		document.querySelector('.shopping_cart_contaner'));
 }
 
-renderCart();
+function renderCartSummary() {
+	let elem = document.getElementById('order-detail-content');
+
+	if (elem) {
+		ReactDOM.render(<CartSummary />, elem
+		);
+	}
+
+}
+
+
+renderCartMenu();
+renderCartSummary();
 renderBuyButtons();

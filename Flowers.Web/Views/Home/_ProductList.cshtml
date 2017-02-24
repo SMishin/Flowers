@@ -1,6 +1,6 @@
 ﻿@using System.Linq
 @using Flowers.BL.Products.ProductType
-@model System.Collections.Generic.IEnumerable<Flowers.BL.Products.Product>
+@model IEnumerable<Flowers.BL.Products.Product>
 
 @if (Model.Any())
 {
@@ -17,8 +17,8 @@
 			{
 				<li class="ajax_block_product col-xs-12 col-sm-4 col-md-3">
 					<div class="product-container"
-					     itemscope=""
-					     itemtype="https://schema.org/Product">
+						 itemscope=""
+						 itemtype="https://schema.org/Product">
 						<div class="left-block">
 							<div class="product-image-container">
 								<a class="product_img_link"
@@ -26,15 +26,19 @@
 								   title="@item.Name"
 								   itemprop="url">
 									<img class="replace-2x img-responsive"
-									     src="@(!string.IsNullOrEmpty(item.ImageUrl) ? item.ImageUrl : "/static/app/img/no_photo.jpg")"
-									     alt="@item.Name"
-									     title="@item.Name"
-									     itemprop="image">
+										 src="@(!string.IsNullOrEmpty(item.ImageUrl) ? item.ImageUrl : "/static/app/img/no_photo.jpg")"
+										 alt="@item.Name"
+										 title="@item.Name"
+										 itemprop="image">
 								</a>
+								<div class="buttons-wrap">
+									<div class="button-container add_to_cart_button_container" item-id="@item.Id">
+									</div>
+								</div>
 
 								@*<a class="sale-box" href="https://ld-prestashop.template-help.com/prestashop_58383/index.php?id_product=8&amp;controller=product&amp;id_lang=1">
-									<span class="sale-label">Sale!</span>
-								</a>*@
+										<span class="sale-label">Sale!</span>
+									</a>*@
 							</div>
 						</div>
 						<div class="right-block">
@@ -44,24 +48,24 @@
 								   title="@item.Name"
 								   itemprop="url">
 									<span class="grid-name">
-									@item.Name
-								</span>
+										@item.Name
+									</span>
 								</a>
 							</h5>
 							<div class="content_price">
 								<span class="price product-price product-price-new">
-								@item.Price.ToString("C")
-							</span>
+									@item.Price.ToString("C")
+								</span>
 								@*<span class="old-price product-price">
-									$20.00
-								</span>*@
+										$20.00
+									</span>*@
 								@*<span class="price-percent-reduction">-20%</span>*@
 							</div>
 							@*<span class="availability">
-								<span class="label-success">
-									In Stock
-								</span>
-							</span>*@
+									<span class="label-success">
+										In Stock
+									</span>
+								</span>*@
 						</div>
 					</div>
 				</li>

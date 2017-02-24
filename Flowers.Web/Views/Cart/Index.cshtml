@@ -1,0 +1,68 @@
+﻿
+@{
+	ViewBag.Title = "Корзина";
+}
+
+<div id="columns" class="container">
+
+	<div class="row">
+		<div class="large-left col-sm-12">
+			<div class="row">
+				<div id="center_column" class="center_column col-xs-12 col-sm-12 accordionBox">
+					<h1 id="cart_title" class="page-heading">
+						Корзина
+						@*<span class="heading-counter">
+								Your shopping cart contains:
+								<span id="summary_products_quantity">1 product</span>
+							</span>*@
+					</h1>
+
+					<ul class="step clearfix" id="order_step">
+						<li class="step_current  first">
+							<span>
+								<em>01.</em> Список товаров
+							</span>
+						</li>
+						@*<li class="step_todo second">
+								<span><em>02.</em> Sign in</span>
+							</li>*@
+						<li class="step_todo four">
+							<span>
+								<em>04.</em> Доставка
+							</span>
+						</li>
+						<li class="step_todo third">
+							<span>
+								<em>03.</em> Адрес доставки
+							</span>
+						</li>
+						<li id="step_end" class="step_todo last">
+							<span>
+								<em>05.</em> Оплата
+							</span>
+						</li>
+					</ul>
+
+					<div id="order-detail-content" class="table_block table-responsive">
+						
+					</div>
+					<div id="HOOK_SHOPPING_CART"></div>
+					<p class="cart_navigation clearfix">
+						<a href="https://ld-prestashop.template-help.com/prestashop_58383/index.php?controller=order&amp;step=1" class="btn btn-default standard-checkout btn-md icon-right" title="Proceed to checkout" style="">
+							<span>
+								Proceed to checkout
+							</span>
+						</a>
+						<a href="https://ld-prestashop.template-help.com/prestashop_58383/" class="btn btn-default btn-md icon-left" title="Continue shopping">
+							<span>Continue shopping</span>
+						</a>
+					</p>
+					<div class="clear"></div>
+					<div class="cart_navigation_extra">
+						<div id="HOOK_SHOPPING_CART_EXTRA"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -6,6 +6,7 @@ using Flowers.Web.Models.Products;
 
 namespace Flowers.Web.Controllers
 {
+	[RoutePrefix("products")]
 	public class ProdutcsController : Controller
 	{
 		private int _pageSize = 10;

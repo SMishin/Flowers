@@ -266,11 +266,13 @@ ul.product_list.grid > li .product-container .right-block {
 @media (min-width: 1200px) {
   ul.product_list.grid > li .product-container .buttons-wrap {
     position: absolute;
-    top: 61%;
+    top: 50%;
     left: 0;
     right: 0;
   }
-  ul.product_list.grid > li .product-container .buttons-wrap .button-container, ul.product_list.grid > li .product-container .buttons-wrap .wishlist, ul.product_list.grid > li .product-container .buttons-wrap .compare {
+  ul.product_list.grid > li .product-container .buttons-wrap .button-container,
+  ul.product_list.grid > li .product-container .buttons-wrap .wishlist,
+  ul.product_list.grid > li .product-container .buttons-wrap .compare {
     -moz-transform: translate(0, 20px);
     -ms-transform: translate(0, 20px);
     -o-transform: translate(0, 20px);
@@ -292,6 +294,37 @@ ul.product_list.grid > li .product-container .buttons-wrap .button-container {
   -o-transition: 0.4s;
   -webkit-transition: 0.4s;
   transition: 0.4s;
+
+  .add_to_cart_button{
+    cursor: pointer;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+
+    &:before{
+      font-size: 30px;
+      line-height: 54px;
+      height: 54px;
+      width: 54px;
+      color: white;
+      text-align: center;
+      background: #d47887;
+      -moz-border-radius: 50%;
+      -webkit-border-radius: 50%;
+      border-radius: 50%;
+      -moz-transition: 0.5s;
+      -o-transition: 0.5s;
+      -webkit-transition: 0.5s;
+      transition: 0.5s;
+
+      font-family: "fl-bigmug-line";
+      content: "\e0a2";
+      display: inline-block;
+      font-weight: normal;
+
+    }
+  }
 }
 
 ul.product_list.grid > li .product-container .buttons-wrap .wishlist {
