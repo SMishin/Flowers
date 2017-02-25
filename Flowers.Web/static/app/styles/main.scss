@@ -11255,6 +11255,7 @@ div.selector select {
 ul.step {
   margin-bottom: 30px;
   overflow: hidden;
+  display: flex;
 }
 
 @media (min-width: 480px) {
@@ -11266,9 +11267,7 @@ ul.step {
 }
 
 ul.step li {
-  float: left;
-  width: 25%;
-  text-align: left;
+
   border: 1px solid;
   border-top-color: #ce6576;
   border-bottom-color: #ce6576;
@@ -11287,7 +11286,7 @@ ul.step li {
 ul.step li a,
 ul.step li span, ul.step li.step_current span, ul.step li.step_current_end span {
   display: block;
-  padding: 13px 10px 14px 13px;
+  padding: 13px 25px 14px 13px;
   color: #141414;
   font-size: 17px;
   line-height: 21px;
@@ -11675,15 +11674,23 @@ ul.step a:hover:after {
   vertical-align: middle;
 }
 
-.cart_delete a.cart_quantity_delete,
-a.price_discount_delete {
-  font-size: 23px;
-  color: #141414;
-}
+.cart_delete {
 
-.cart_delete a.cart_quantity_delete:hover,
-a.price_discount_delete:hover {
-  color: #d47887;
+  .cart_quantity_delete,
+  .price_discount_delete {
+    font-size: 23px;
+    color: #141414;
+  }
+
+  .cart_quantity_delete:hover,
+  .price_discount_delete:hover {
+    color: #d47887;
+  }
+
+  .cart_quantity_delete {
+    cursor: pointer;
+  }
+
 }
 
 #cart_summary {
@@ -13103,6 +13110,7 @@ fieldset.customerprivacy label {
     display: none !important;
   }
 }
+
 @import "tmmegamenu";
 @import "./blockcart";
 @import "./htmlcontent_home";

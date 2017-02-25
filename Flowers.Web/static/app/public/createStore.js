@@ -11,7 +11,7 @@ export default function createStore(preloadedState, actions) {
 	}
 
 	function getState() {
-		return currentState
+		return JSON.parse(JSON.stringify(currentState));
 	}
 
 	function subscribe(listener) {

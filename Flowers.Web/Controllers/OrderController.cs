@@ -3,10 +3,10 @@ using Flowers.BL.Products;
 
 namespace Flowers.Web.Controllers
 {
-	
-	public class CartController : Controller
+	[RoutePrefix("order")]
+	public class OrderController : Controller
 	{
-		public CartController(IProductReadOnlyStore productReadOnlyStore)
+		public OrderController(IProductReadOnlyStore productReadOnlyStore)
 		{
 		}
 

@@ -29,7 +29,7 @@ module.exports = function (filePath, res, next) {
 
     }
 
-    fs.readFile(filePath, "binary", function (err, file) {
+    fs.readFile(filePath, "utf-8", function (err, file) {
 
         if (err) {
             res.writeHead(500, {"Content-Type": "text/plain"});
@@ -49,7 +49,7 @@ module.exports = function (filePath, res, next) {
             {
                 'Content-Type': 'application/javascript'
             });
-        res.write(code, "binary");
+        res.write(code, "utf-8");
         res.end();
     });
 

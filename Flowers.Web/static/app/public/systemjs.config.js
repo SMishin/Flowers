@@ -21,24 +21,14 @@
 				format: 'register',
 				defaultExtension: 'js'
 			},
-			core: {
-				format: 'register',
-				defaultExtension: 'js'
-			},
-			common: {
-				format: 'register',
-				defaultExtension: 'js'
-			},
 			node_modules: {
 				defaultExtension: 'js'
 			}
 		},
 		map: {
-
-			app: appUrl,
+			"whatwg-fetch": 'npm:whatwg-fetch/fetch',
 			"react": 'npm:react/dist/react',
 			"react-dom": 'npm:react-dom/dist/react-dom',
-
 		}
 	});
 
