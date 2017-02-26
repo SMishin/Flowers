@@ -10,7 +10,7 @@ namespace Flowers.Web.Controllers
 		{
 		}
 
-		[Route("cart")]
+		[Route("{step}")]
 		public ActionResult Index()
 		{
 			return View();

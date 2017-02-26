@@ -107,7 +107,7 @@ class CartSummary extends React.Component {
 	}
 
 	componentWillUnmount() {
-
+		this.unsubscribe();
 	}
 
 	render() {

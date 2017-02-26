@@ -29,6 +29,7 @@
 			"whatwg-fetch": 'npm:whatwg-fetch/fetch',
 			"react": 'npm:react/dist/react',
 			"react-dom": 'npm:react-dom/dist/react-dom',
+			"react-router": 'npm:react-router/umd/ReactRouter',
 		}
 	});
 
