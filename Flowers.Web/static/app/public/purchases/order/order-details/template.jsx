@@ -3,17 +3,15 @@ import React from 'react'
 export default function template() {
 	return <div>
 		<div className="box">
-			<h1 className="page-subheading">
+			<h1>
 				Информация о получателе и адресе доставки
 			</h1>
-			<p className="info-title">
-				To add a new address, please fill out the form below.
-			</p>
 			<p className="required">
 				<sup>*</sup>
 				Обязаьельные поля
 			</p>
-			<form className="std">
+			<form className="std"
+			      onSubmit={this.checkout}>
 				<div className="required form-group">
 					<label htmlFor="firstName">
 						Имя
@@ -23,7 +21,7 @@ export default function template() {
 					       type="text"
 					       name="firstName"
 					       id="firstName"
-					       value={this.state.model.firstName}
+					       value={this.state.firstName}
 					       onChange={this.handleInputChange}/>
 				</div>
 				<div className="form-group">
@@ -33,7 +31,7 @@ export default function template() {
 					<input className="validate form-control"
 					       type="text" id="lastName"
 					       name="lastName"
-					       value={this.state.model.lastName}
+					       value={this.state.lastName}
 					       onChange={this.handleInputChange}/>
 				</div>
 				<div className="form-group">
@@ -44,7 +42,7 @@ export default function template() {
 					       type="text"
 					       id="middleName"
 					       name="middleName"
-					       value={this.state.model.middleName}
+					       value={this.state.middleName}
 					       onChange={this.handleInputChange}/>
 				</div>
 
@@ -55,7 +53,7 @@ export default function template() {
 					</label>
 					<input className="is_required validate form-control"
 					       type="text" id="address" name="address"
-					       value={this.state.model.address}
+					       value={this.state.address}
 					       onChange={this.handleInputChange}/>
 				</div>
 
@@ -67,7 +65,7 @@ export default function template() {
 					</label>
 					<input className="validate form-control"
 					       type="tel" id="mobilePhone" name="mobilePhone"
-					       value={this.state.model.mobilePhone}
+					       value={this.state.mobilePhone}
 					       onChange={this.handleInputChange}/>
 				</div>
 
@@ -78,12 +76,13 @@ export default function template() {
 					</label>
 					<input className="is_required validate form-control"
 					       type="text" id="email" name="email"
-					       value={this.state.model.email}
+					       value={this.state.email}
 					       onChange={this.handleInputChange}/>
 				</div>
 
 				<p className="submit2">
 					<button type="submit" name="submitAddress"
+
 					        className="btn btn-default btn-md icon-right">
 								<span>
 								Оформить
