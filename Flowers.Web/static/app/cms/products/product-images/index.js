@@ -1,16 +1,17 @@
 import {Component} from '@angular/core';
 import appSettings from '../../core/app-settings';
+import {ActivatedRoute} from '@angular/router';
 import ProductImagesService from './product-images-service';
 import template from './template.html'
 
 @Component({
 	selector: 'product-images',
 	template: template,
-	inputs: ['productId'],
 	providers: [ProductImagesService]
 })
-class UploadImagesComponent {
-	constructor(productImagesService) {
+class ProductImagesComponent {
+	constructor(route, productImagesService) {
+		this.productId = route.parent.params.value.id;
 		this._productImagesService = productImagesService;
 		this._images = [];
 	}
@@ -70,8 +71,9 @@ class UploadImagesComponent {
 	}
 }
 
-UploadImagesComponent.parameters = [
+ProductImagesComponent.parameters = [
+	ActivatedRoute,
 	ProductImagesService
 ];
 
-export default UploadImagesComponent;
+export default ProductImagesComponent;

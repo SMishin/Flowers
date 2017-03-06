@@ -1,6 +1,25 @@
 import {RouterModule} from '@angular/router';
 import ProductListComponent from './products/list'
 import ProductComponent from './products/product'
+import ProductImagesComponent from './products/product-images/index'
+import ProductInfoComponent from './products/product-info/index'
+
+const productChildrenRoutes =
+	[
+		{
+			path: '',
+			redirectTo: 'info',
+			pathMatch: 'full'
+		},
+		{
+			path: 'info',
+			component: ProductInfoComponent
+		},
+		{
+			path: 'images',
+			component: ProductImagesComponent
+		}
+	];
 
 const appRoutes = [
 	{
@@ -17,13 +36,15 @@ const appRoutes = [
 				useAsDefault: true
 			},
 			{
-				path: 'product',
-				component: ProductComponent
+				path: 'product/:id',
+				component: ProductComponent,
+				children: productChildrenRoutes
 			},
 			{
-				path: 'product/:id',
-				component: ProductComponent
-			}
+				path: 'product',
+				component: ProductComponent,
+				children: productChildrenRoutes
+			},
 		]
 	},
 	{

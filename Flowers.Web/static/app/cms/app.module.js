@@ -8,6 +8,7 @@ import HttpClient from './core/http-client';
 import AppComponent from './app.component';
 import ProductListComponent from './products/list.js';
 import ProductComponent from './products/product'
+import ProductInfoComponent from './products/product-info/index'
 import UploadImagesComponent from './products/product-images/index'
 import ImageUploaderComponent from './products/product-images/image-uploader/index'
 import DropZoneDirective from './products/product-images/drop-zone/index'
@@ -26,6 +27,7 @@ import ProductsService from './products/products-service';
         AppComponent,
 	    ProductListComponent,
 	    ProductComponent,
+	    ProductInfoComponent,
 	    UploadImagesComponent,
 	    ImageUploaderComponent,
 	    DropZoneDirective,
