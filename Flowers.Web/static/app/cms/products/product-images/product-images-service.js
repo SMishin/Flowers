@@ -17,7 +17,7 @@ class ProductImagesService {
 	}
 
 	remove(id, options) {
-		return this._http.delete(this._url + '?id=' + id, options);
+		return this._http.delete(this._url + '/image?id=' + id, options);
 	}
 }
 

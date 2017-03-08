@@ -46,7 +46,7 @@ class DropZoneDirective {
 		this._el.classList.remove(this._dragOverClass);
 		e.stopPropagation();
 		e.preventDefault();
-		this.onFileDropped.emit(e.dataTransfer.files[0]);
+		this.onFileDropped.emit(e.dataTransfer.files);
 	}
 }
 

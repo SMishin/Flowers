@@ -52,11 +52,19 @@ namespace Flowers.DAL.Products
 		}
 
 
-		public async Task<ProductImage[]> GetImagesAsync(int id)
+		public async Task<ProductImage[]> GetImagesAsync(int productId)
 		{
 			using (var conntection = await SqlConnectionHelper.CreateConnection())
 			{
-				return (await conntection.QueryAsync<ProductImage>("select * from dbo.[ProductImages] where ProductId = @Id", new { Id = id })).ToArray();
+				return (await conntection.QueryAsync<ProductImage>("select * from dbo.[ProductImages] where ProductId = @Id", new { Id = productId })).ToArray();
+			}
+		}
+
+		public async Task<ProductImage> GetImageAsync(int id)
+		{
+			using (var conntection = await SqlConnectionHelper.CreateConnection())
+			{
+				return (await conntection.QueryAsync<ProductImage>("select * from dbo.[ProductImages] where Id = @Id", new { Id = id })).FirstOrDefault();
 			}
 		}
 

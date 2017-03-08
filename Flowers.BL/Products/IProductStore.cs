@@ -2,9 +2,10 @@
 
 namespace Flowers.BL.Products
 {
-	public interface IProductStore: IProductReadOnlyStore
+	public interface IProductStore : IProductReadOnlyStore
 	{
 		Task SaveAsync(Product product);
-		Task AddImageAsync(int id, string imgUrl);
+		Task<int> AddImageAsync(int id, string imgUrl);
+		Task RemoveImageAsync(int id);
 	}
 }

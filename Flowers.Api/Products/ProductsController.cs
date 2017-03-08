@@ -12,19 +12,19 @@ namespace Flowers.Api.Products
 	public class ProductsController : ApiController
 	{
 		private readonly IProductManager _productManager;
-		private readonly IProductReadOnlyStore _productReadOnlyStore;
+		private readonly IProductReadOnlyStore _productStore;
 
-		public ProductsController(IProductManager productManager, IProductReadOnlyStore productReadOnlyStore)
+		public ProductsController(IProductManager productManager, IProductReadOnlyStore productStore)
 		{
 			_productManager = productManager;
-			_productReadOnlyStore = productReadOnlyStore;
+			_productStore = productStore;
 		}
 
 		[HttpGet]
 		[Route("products")]
 		public async Task<IHttpActionResult> Get()
 		{
-			var data = await _productReadOnlyStore.GetAsync();
+			var data = await _productStore.GetAsync();
 			return Ok(data);
 		}
 
@@ -32,7 +32,7 @@ namespace Flowers.Api.Products
 		[Route("product/{id:int}")]
 		public async Task<IHttpActionResult> Get(int id)
 		{
-			var data = await _productReadOnlyStore.GetAsync(id);
+			var data = await _productStore.GetAsync(id);
 			return Ok(data);
 		}
 
@@ -50,19 +50,18 @@ namespace Flowers.Api.Products
 			return Ok();
 		}
 
-
 		[HttpGet]
 		[Route("product/{id:int}/images")]
 		public async Task<IHttpActionResult> SaveImage(int id)
 		{
-			ProductImage[] data = await _productReadOnlyStore.GetImagesAsync(id);
+			ProductImage[] data = await _productStore.GetImagesAsync(id);
 			return Ok(data);
 		}
 
 		[HttpPut]
 		[Route("product/{id:int}/image")]
 		[Route("product/image")]
-		public async Task<IHttpActionResult> SaveImage(int? id, HttpRequestMessage request)
+		public async Task<IHttpActionResult> SaveImage(int id, HttpRequestMessage request)
 		{
 			if (!request.Content.IsMimeMultipartContent())
 			{
@@ -77,9 +76,17 @@ namespace Flowers.Api.Products
 
 			var file = data.Files[data.Files.Keys.First()];
 
-			var imgUrl = await _productManager.UploadImage(file.Content, file.ContentType, id);
+			var img = await _productManager.UploadImage(file.Content, file.ContentType, id);
 
-			return Ok(imgUrl);
+			return Ok(img);
+		}
+
+		[HttpDelete]
+		[Route("product/image")]
+		public async Task<IHttpActionResult> Remove(int id)
+		{
+			await _productManager.RemoveImageAsync(id);
+			return Ok();
 		}
 	}
 }

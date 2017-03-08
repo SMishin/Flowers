@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Flowers.BL.Products
@@ -25,16 +26,14 @@ namespace Flowers.BL.Products
 			return _productStore.SaveAsync(product);
 		}
 
-		public async Task<string> UploadImage(byte[] content, string contentType, int? id)
+		public async Task<ProductImage> UploadImage(byte[] content, string contentType, int productId)
 		{
 			if (!Directory.Exists(_imagesRootPath))
 			{
 				Directory.CreateDirectory(_imagesRootPath);
 			}
 
-			string dirPath = Path.Combine(_imagesRootPath,
-				id.HasValue ? id.ToString() : "_temp");
-
+			string dirPath = Path.Combine(_imagesRootPath, productId.ToString());
 
 			if (!Directory.Exists(dirPath))
 			{
@@ -47,13 +46,38 @@ namespace Flowers.BL.Products
 
 			var imgUrl = filePath.Replace(AppDomain.CurrentDomain.BaseDirectory, "").Replace("\\", "/");
 
-			if (id.HasValue)
+			var imageId = await _productStore.AddImageAsync(productId, imgUrl);
+
+			return new ProductImage
 			{
-				await _productStore.AddImageAsync(id.Value, imgUrl);
+				Id = imageId,
+				ProductId = productId,
+				Url = imgUrl
+			};
+		}
+
+		public async Task RemoveImageAsync(int id)
+		{
+			var pi = await _productStore.GetImageAsync(id);
+
+			if (!Directory.Exists(_imagesRootPath))
+			{
+				return;
 			}
 
-			//return Task.FromResult(filePath.Replace(_imagesRootPath, "").Replace("\\", "/"));
-			return imgUrl;
+			string dirPath = Path.Combine(_imagesRootPath, pi.ProductId.ToString());
+
+			if (!Directory.Exists(dirPath))
+			{
+				return;
+			}
+
+			var filePath = Path.Combine(dirPath, pi.Url.Replace('/', '\\'));
+			filePath = string.Join("\\", filePath.Split('\\').Distinct().ToArray());
+
+			File.Delete(filePath);
+			await _productStore.RemoveImageAsync(id);
+
 		}
 	}
 }
