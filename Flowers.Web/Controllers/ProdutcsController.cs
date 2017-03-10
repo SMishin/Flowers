@@ -17,6 +17,7 @@ namespace Flowers.Web.Controllers
 		}
 
 		[Route("{type}")]
+		[HttpGet]
 		public async Task<ActionResult> Index(string type, int page = 1)
 		{
 			var productType = ProductTypeHelper.FromString(type);
@@ -37,6 +38,7 @@ namespace Flowers.Web.Controllers
 		}
 
 		[Route("{type}/{id:int}")]
+		[HttpGet]
 		public async Task<ActionResult> Details(string type, int id)
 		{
 

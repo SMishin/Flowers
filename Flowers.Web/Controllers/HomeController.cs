@@ -15,6 +15,7 @@ namespace Flowers.Web.Controllers
 			_productReadOnlyStore = productReadOnlyStore;
 		}
 
+		[HttpGet]
 		public async Task<ActionResult> Index()
 		{
 			var flowers = _productReadOnlyStore.GetPublishedWithMainImageAsync(ProductType.Flowers, 0, 12);
