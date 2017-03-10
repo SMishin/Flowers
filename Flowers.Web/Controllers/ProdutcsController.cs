@@ -20,8 +20,8 @@ namespace Flowers.Web.Controllers
 		public async Task<ActionResult> Index(string type, int page = 1)
 		{
 			var productType = ProductTypeHelper.FromString(type);
-			var products = _productReadOnlyStore.GetWithMainImageAsync(productType, (page - 1) * _pageSize, page * _pageSize);
-			var count = _productReadOnlyStore.CountAsync(productType);
+			var products = _productReadOnlyStore.GetPublishedWithMainImageAsync(productType, (page - 1) * _pageSize, page * _pageSize);
+			var count = _productReadOnlyStore.CountPublishedAsync(productType);
 
 			await Task.WhenAll(products, count);
 
@@ -29,7 +29,8 @@ namespace Flowers.Web.Controllers
 			{
 				Products = products.Result,
 				Count = count.Result,
-				Page = page
+				Page = page,
+				ProductType = productType
 			};
 
 			return View(data);
@@ -41,7 +42,7 @@ namespace Flowers.Web.Controllers
 
 			var product = _productReadOnlyStore.GetAsync(id);
 			var images = _productReadOnlyStore.GetImagesAsync(id);
-			var otherProducts = _productReadOnlyStore.GetWithMainImageAsync(ProductTypeHelper.FromString(type), 0, 6);
+			var otherProducts = _productReadOnlyStore.GetPublishedWithMainImageAsync(ProductTypeHelper.FromString(type), 0, 6);
 
 			await Task.WhenAll(product, images, otherProducts);
 

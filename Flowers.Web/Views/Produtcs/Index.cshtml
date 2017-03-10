@@ -9,7 +9,7 @@
 					<div id="center_column" class="center_column col-xs-12 col-sm-9 accordionBox">
 						<h1 class="page-heading product-listing">
 							<span class="cat-name">
-								@Model.Products[0].Type.ToFriendlyString()
+								@Model.ProductType.ToFriendlyString()
 							</span>
 							<span class="heading-counter">
 								Всего @Model.Count
@@ -22,13 +22,13 @@
 											наименование
 										</text>
 									}
-									else if (lastNumber < 5)
+									else if (lastNumber > 1 && lastNumber < 5)
 									{
 										<text>
 											наименования
 										</text>
 									}
-									else if (lastNumber >= 5)
+									else if (lastNumber == 0 || lastNumber >= 5)
 									{
 										<text>
 											наименований
@@ -94,7 +94,7 @@
 													else
 													{
 														<li>
-															<a href="/@Model.Products[0].Type.ToString().ToLower()?page=@i">
+															<a href="/@Model.ProductType.ToString().ToLower()?page=@i">
 																<span>
 																	@i
 																</span>

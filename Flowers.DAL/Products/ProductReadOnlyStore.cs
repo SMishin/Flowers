@@ -36,11 +36,11 @@ namespace Flowers.DAL.Products
 			}
 		}
 
-		public async Task<Product[]> GetWithMainImageAsync(ProductType productType, int skip, int take)
+		public async Task<Product[]> GetPublishedWithMainImageAsync(ProductType productType, int skip, int take)
 		{
 			using (var conntection = await SqlConnectionHelper.CreateConnection())
 			{
-				return (await conntection.QueryAsync<Product>("SelectProductsWithMainImage",
+				return (await conntection.QueryAsync<Product>("SelectPublishedProductsWithMainImage",
 				new
 				{
 					ProductType = productType,
@@ -68,11 +68,11 @@ namespace Flowers.DAL.Products
 			}
 		}
 
-		public async Task<int> CountAsync(ProductType productType)
+		public async Task<int> CountPublishedAsync(ProductType productType)
 		{
 			using (var conntection = await SqlConnectionHelper.CreateConnection())
 			{
-				return (await conntection.QueryAsync<int>("select count(*) from dbo.[Products] where [Type] = @ProductType", new { ProductType = productType })).First();
+				return (await conntection.QueryAsync<int>("select count(*) from dbo.[Products] where [Type] = @ProductType and [Published] = 1", new { ProductType = productType })).First();
 			}
 		}
 	}

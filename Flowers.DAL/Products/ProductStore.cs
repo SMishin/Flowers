@@ -23,7 +23,8 @@ namespace Flowers.DAL.Products
 					product.Price,
 					product.Summary,
 					product.Type,
-					product.Description
+					product.Description,
+					product.Published
 
 				}, commandType: CommandType.StoredProcedure);
 			}
