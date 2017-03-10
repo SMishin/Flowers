@@ -10,7 +10,7 @@ class ProductComponent {
 	constructor(route, productsService) {
 		this._productsService = productsService;
 		this.model = {
-			id : route.firstChild.params.value.id
+			id : route.firstChild && route.firstChild.params.value.id
 		};
 	}
 

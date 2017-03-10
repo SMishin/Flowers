@@ -11,7 +11,7 @@ class ProductInfoComponent {
 	constructor(route, productsService) {
 		this._productsService = productsService;
 		this.model = {
-			id : route.parent.params.value.id
+			id : route.parent.params && route.parent.params.value.id
 		};
 
 		this.sub = route.parent.params.subscribe(params => {
@@ -27,8 +27,8 @@ class ProductInfoComponent {
 		});
 	}
 
-	onSubmit() {
-		console.log(this.model);
+	onSubmit(form) {
+		console.log(form);
 		this._productsService.save(this.model);
 	}
 

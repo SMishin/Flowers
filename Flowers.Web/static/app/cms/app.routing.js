@@ -1,5 +1,6 @@
 import {RouterModule} from '@angular/router';
 import ProductListComponent from './products/list'
+import NewProductComponent from './products/new-product/index'
 import ProductComponent from './products/product'
 import ProductImagesComponent from './products/product-images/index'
 import ProductInfoComponent from './products/product-info/index'
@@ -36,15 +37,14 @@ const appRoutes = [
 				useAsDefault: true
 			},
 			{
+				path: 'product/new',
+				component: NewProductComponent
+			},
+			{
 				path: 'product/:id',
 				component: ProductComponent,
 				children: productChildrenRoutes
-			},
-			{
-				path: 'product',
-				component: ProductComponent,
-				children: productChildrenRoutes
-			},
+			}
 		]
 	},
 	{

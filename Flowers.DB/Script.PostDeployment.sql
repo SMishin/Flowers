@@ -10,8 +10,8 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 
-if database_principal_id('flowersdb') is null
-	CREATE USER flowersdb FOR LOGIN flowersdb;
-	GO
+--if database_principal_id('flowersdb') is null
+--	CREATE USER flowersdb FOR LOGIN flowersdb;
+--	GO
 
-EXEC sp_addrolemember 'db_owner', 'flowersdb'  
+--EXEC sp_addrolemember 'db_owner', 'flowersdb'  

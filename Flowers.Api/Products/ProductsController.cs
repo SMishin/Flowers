@@ -38,23 +38,29 @@ namespace Flowers.Api.Products
 
 		[HttpPost]
 		[Route("product")]
-		[Authorize]
+		//[Authorize]
 		public async Task<IHttpActionResult> Save(Product product)
 		{
-
 			if (!ModelState.IsValid)
 			{
 				return BadRequest(ModelState);
 			}
 
-			await _productManager.SaveAsync(product);
-			return Ok();
+			return Ok(await _productManager.SaveAsync(product));
+		}
+
+		[HttpGet]
+		[Route("product/{id:int}/images")]
+		public async Task<IHttpActionResult> Images(int id)
+		{
+			ProductImage[] data = await _productStore.GetImagesAsync(id);
+			return Ok(data);
 		}
 
 		[HttpPut]
 		[Route("product/{id:int}/image")]
 		[Route("product/image")]
-		[Authorize]
+		//[Authorize]
 		public async Task<IHttpActionResult> SaveImage(int id, HttpRequestMessage request)
 		{
 			if (!request.Content.IsMimeMultipartContent())
@@ -77,7 +83,7 @@ namespace Flowers.Api.Products
 
 		[HttpDelete]
 		[Route("product/image")]
-		[Authorize]
+		//[Authorize]
 		public async Task<IHttpActionResult> Remove(int id)
 		{
 			await _productManager.RemoveImageAsync(id);

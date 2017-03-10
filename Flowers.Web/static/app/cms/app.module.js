@@ -7,8 +7,10 @@ import {routing} from './app.routing';
 import HttpClient from './core/http-client';
 import AppComponent from './app.component';
 import ProductListComponent from './products/list.js';
+import NewProductComponent from './products/new-product/index.js'
 import ProductComponent from './products/product'
 import ProductInfoComponent from './products/product-info/index'
+import ProductInfoEditFormComponent from './products/product-info/product-info-edit-form/index';
 import UploadImagesComponent from './products/product-images/index'
 
 import DropZoneDirective from './products/product-images/drop-zone/index'
@@ -26,8 +28,10 @@ import ProductsService from './products/products-service';
     declarations: [
         AppComponent,
 	    ProductListComponent,
+	    NewProductComponent,
 	    ProductComponent,
 	    ProductInfoComponent,
+	    ProductInfoEditFormComponent,
 	    UploadImagesComponent,
 	    DropZoneDirective,
 	    FileBrowserDirective

@@ -2,7 +2,7 @@
 
 namespace Flowers.Web.Cms.Controllers
 {
-	[Authorize]
+	//[Authorize]
 	[RouteArea("Cms", AreaPrefix = "_cms")]
 	public class HomeController : Controller
 	{

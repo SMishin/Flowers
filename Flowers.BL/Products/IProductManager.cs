@@ -5,7 +5,7 @@ namespace Flowers.BL.Products
 {
 	public interface IProductManager
 	{
-		Task SaveAsync(Product product);
+		Task<int> SaveAsync(Product product);
 		Task<ProductImage> UploadImage(byte[] content, string contentType, int productId);
 		Task RemoveImageAsync (int id);
 	}

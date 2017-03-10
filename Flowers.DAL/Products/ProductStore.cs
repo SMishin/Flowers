@@ -12,11 +12,11 @@ namespace Flowers.DAL.Products
 		{
 		}
 
-		public async Task SaveAsync(Product product)
+		public async Task<int> SaveAsync(Product product)
 		{
 			using (var conntection = await SqlConnectionHelper.CreateConnection())
 			{
-				await conntection.ExecuteAsync("SaveProduct", new
+				var result = (await conntection.QueryAsync<int>("SaveProduct", new
 				{
 					product.Id,
 					product.Name,
@@ -26,7 +26,9 @@ namespace Flowers.DAL.Products
 					product.Description,
 					product.Published
 
-				}, commandType: CommandType.StoredProcedure);
+				}, commandType: CommandType.StoredProcedure));
+
+				return result?.FirstOrDefault() ?? -1;
 			}
 		}
 

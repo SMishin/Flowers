@@ -21,7 +21,7 @@ namespace Flowers.BL.Products
 			_productStore = productStore;
 			_imagesRootPath = imagesRootPath;
 		}
-		public Task SaveAsync(Product product)
+		public Task<int> SaveAsync(Product product)
 		{
 			return _productStore.SaveAsync(product);
 		}
