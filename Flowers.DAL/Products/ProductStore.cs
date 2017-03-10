@@ -16,7 +16,7 @@ namespace Flowers.DAL.Products
 		{
 			using (var conntection = await SqlConnectionHelper.CreateConnection())
 			{
-				var result = (await conntection.QueryAsync<int>("SaveProduct", new
+				var result = await conntection.QueryAsync<int>("SaveProduct", new
 				{
 					product.Id,
 					product.Name,
@@ -26,7 +26,7 @@ namespace Flowers.DAL.Products
 					product.Description,
 					product.Published
 
-				}, commandType: CommandType.StoredProcedure));
+				}, commandType: CommandType.StoredProcedure);
 
 				return result?.FirstOrDefault() ?? -1;
 			}
@@ -39,6 +39,14 @@ namespace Flowers.DAL.Products
 				int imgId = (await conntection.QueryAsync<int>("SaveProductImage", new { ProductId = id, Url = imgUrl }, commandType: CommandType.StoredProcedure))
 					?.FirstOrDefault() ?? -1;
 				return imgId;
+			}
+		}
+
+		public async Task SetmMainImageAsync(int productId, int imageId)
+		{
+			using (var conntection = await SqlConnectionHelper.CreateConnection())
+			{
+				await conntection.ExecuteAsync("SetMainImage", new { ProductId = productId, ImageId = imageId }, commandType: CommandType.StoredProcedure);
 			}
 		}
 

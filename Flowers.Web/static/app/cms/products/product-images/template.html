@@ -17,9 +17,14 @@
                         <div class="gallery-hover-layout-in">
                             <div class="btn-group">
                                 <button type="button" class="btn"
+                                        (click)="onFavoriteClick($event, item.id)">
+                                    <i class="font-icon font-icon-star"></i>
+                                </button>
+                                <button type="button" class="btn"
                                 (click)="onDeleteClick($event, item.id)">
                                     <i class="font-icon font-icon-trash"></i>
                                 </button>
+
                             </div>
                         </div>
                     </div>

@@ -57,6 +57,15 @@ namespace Flowers.Api.Products
 			return Ok(data);
 		}
 
+
+		[HttpPost]
+		[Route("product/{productId:int}/image/main")]
+		public async Task<IHttpActionResult> Main(int productId, int imageId)
+		{
+			await _productManager.SetMainImageAsync(productId, imageId);
+			return Ok();
+		}
+
 		[HttpPut]
 		[Route("product/{id:int}/image")]
 		[Route("product/image")]

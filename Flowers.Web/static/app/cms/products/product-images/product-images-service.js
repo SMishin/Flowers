@@ -8,8 +8,12 @@ class ProductImagesService {
 		this._url = '/api/product';
 	}
 
-	get(id){
+	get(id) {
 		return this._http.get(this._url + '/' + id + '/images');
+	}
+
+	main(productId, id) {
+		return this._http.post(this._url + '/' + productId + '/image/main?imageId=' + id);
 	}
 
 	upload(id, data, options) {

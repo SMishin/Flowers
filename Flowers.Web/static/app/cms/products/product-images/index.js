@@ -102,12 +102,21 @@ class ProductImagesComponent {
 			return;
 		}
 
-		event.stopPropagation();
-
 		this._productImagesService.remove(id)
 			.then(res => {
 				this._deleteImage(id);
 				//this._documentsService.remove(id);
+			});
+
+	}
+
+	onFavoriteClick(event, id) {
+
+		event.stopPropagation();
+
+		this._productImagesService.main(this.productId, id)
+			.then(res => {
+
 			});
 
 	}

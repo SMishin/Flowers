@@ -6,6 +6,7 @@ namespace Flowers.BL.Products
 	{
 		Task<int> SaveAsync(Product product);
 		Task<int> AddImageAsync(int id, string imgUrl);
+		Task SetmMainImageAsync(int productId, int imageId);
 		Task RemoveImageAsync(int id);
 	}
 }

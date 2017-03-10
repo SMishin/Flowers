@@ -56,6 +56,11 @@ namespace Flowers.BL.Products
 			};
 		}
 
+		public Task SetMainImageAsync(int productId, int imageId)
+		{
+			return _productStore.SetmMainImageAsync(productId, imageId);
+		}
+
 		public async Task RemoveImageAsync(int id)
 		{
 			var pi = await _productStore.GetImageAsync(id);
