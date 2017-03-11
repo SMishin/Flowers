@@ -78,6 +78,7 @@
   <ItemGroup>
     <None Include="Flowers.DB.local.publish.xml" />
     <None Include="Flowers.DB.parking.test.publish.xml" />
+    <None Include="Flowers.DB.parking.prod.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />
