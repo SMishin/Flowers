@@ -67,7 +67,7 @@
 
 											@{
 												int pageCount = 5;
-												int from = Model.Page - 2 < 0 ? 1 : Model.Page - 2;
+												int from = Model.Page - 2 <= 0 ? 1 : Model.Page - 2;
 												int to = from + pageCount;
 
 												if (to > Model.Count / 10)
@@ -115,7 +115,7 @@
 										</ul>
 									</div>
 									<div class="product-count">
-										@((Model.Page - 1) * Model.Products.Length + 1) - @(Model.Page * Model.Products.Length) из @Model.Count
+										@(Model.Page * Model.Products.Length) из @Model.Count
 									</div>
 
 								</div>

@@ -8,7 +8,7 @@ namespace Flowers.Web.Controllers
 {
 	public class ProdutcsController : Controller
 	{
-		private int _pageSize = 10;
+		private int _pageSize = 6;
 		private readonly IProductReadOnlyStore _productReadOnlyStore;
 
 		public ProdutcsController(IProductReadOnlyStore productReadOnlyStore)

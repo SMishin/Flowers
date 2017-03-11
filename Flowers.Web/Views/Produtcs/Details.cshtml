@@ -72,21 +72,24 @@
 								<div id="productscategory_list" class="clearfix">
 									<div class="bx-wrapper">
 										<div class="bx-viewport">
-											<ul id="bxslider1" class="bxslider clearfix">
+											<ul class="product-list">
 
 												@foreach (var item in Model.OtherProducts)
 												{
 													var link = $"/{item.Type.ToString().ToLower()}/{item.Id}";
 													<li class="product-box item">
-														<a href="@link"
-														   class="lnk_img product-image"
-														   title="@item.Name">
-															
-															@{
-																Html.RenderPartial("_ProductImage", item);
-															}
+													
+															<a href="@link"
+															   class="lnk_img product-image"
+															   title="@item.Name">
 
-														</a>
+																@{			Html.RenderPartial("_ProductImage", item);
+																}
+
+															</a>
+
+														
+														
 														<h5 itemprop="name" class="product-name">
 															<a href="@link"
 															   title="@item.Name">
@@ -99,8 +102,7 @@
 																@item.Price.ToString("C")
 															</span>
 														</p>
-														<div class="clearfix" style="margin-top:5px">
-														</div>
+
 													</li>
 												}
 
