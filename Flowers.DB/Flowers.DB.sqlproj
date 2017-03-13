@@ -74,6 +74,8 @@
     <Build Include="dbo\Products\SaveProductImage.sql" />
     <Build Include="dbo\Products\SelectPublishedProductsWithMainImage.sql" />
     <Build Include="dbo\Products\SetMainImage.sql" />
+    <Build Include="dbo\Tables\Flowers.sql" />
+    <Build Include="dbo\Tables\FlowerFlowerVariants.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Flowers.DB.local.publish.xml" />

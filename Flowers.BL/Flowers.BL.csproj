@@ -40,6 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Products\Flowers\Flower.cs" />
+    <Compile Include="Products\Flowers\FlowerType.cs" />
+    <Compile Include="Products\Flowers\FlowerVariant.cs" />
     <Compile Include="Products\IProductManager.cs" />
     <Compile Include="Products\IProductReadOnlyStore.cs" />
     <Compile Include="Products\IProductStore.cs" />
@@ -50,6 +53,7 @@
     <Compile Include="Products\ProductType\ProductTypeHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
