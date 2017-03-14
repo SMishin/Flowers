@@ -11,6 +11,7 @@ import NewProductComponent from './products/new-product/index.js'
 import ProductComponent from './products/product'
 import ProductInfoComponent from './products/product-info/index'
 import ProductInfoEditFormComponent from './products/product-info/product-info-edit-form/index';
+import ProductPrices from './products/product-info/product-info-edit-form/prices/index';
 import UploadImagesComponent from './products/product-images/index'
 
 import DropZoneDirective from './products/product-images/drop-zone/index'
@@ -32,6 +33,7 @@ import ProductsService from './products/products-service';
 	    ProductComponent,
 	    ProductInfoComponent,
 	    ProductInfoEditFormComponent,
+	    ProductPrices,
 	    UploadImagesComponent,
 	    DropZoneDirective,
 	    FileBrowserDirective

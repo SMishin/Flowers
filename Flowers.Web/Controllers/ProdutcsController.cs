@@ -9,11 +9,11 @@ namespace Flowers.Web.Controllers
 	public class ProdutcsController : Controller
 	{
 		private int _pageSize = 6;
-		private readonly IProductReadOnlyStore _productReadOnlyStore;
+		private readonly IProductsReadOnlyStore _productsReadOnlyStore;
 
-		public ProdutcsController(IProductReadOnlyStore productReadOnlyStore)
+		public ProdutcsController(IProductsReadOnlyStore productsReadOnlyStore)
 		{
-			_productReadOnlyStore = productReadOnlyStore;
+			_productsReadOnlyStore = productsReadOnlyStore;
 		}
 
 		[Route("{type}")]
@@ -21,8 +21,8 @@ namespace Flowers.Web.Controllers
 		public async Task<ActionResult> Index(string type, int page = 1)
 		{
 			var productType = ProductTypeHelper.FromString(type);
-			var products = _productReadOnlyStore.GetPublishedWithMainImageAsync(productType, (page - 1) * _pageSize, page * _pageSize);
-			var count = _productReadOnlyStore.CountPublishedAsync(productType);
+			var products = _productsReadOnlyStore.GetPublishedWithMainImageAsync(productType, (page - 1) * _pageSize, page * _pageSize);
+			var count = _productsReadOnlyStore.CountPublishedAsync(productType);
 
 			await Task.WhenAll(products, count);
 
@@ -42,9 +42,9 @@ namespace Flowers.Web.Controllers
 		public async Task<ActionResult> Details(string type, int id)
 		{
 
-			var product = _productReadOnlyStore.GetAsync(id);
-			var images = _productReadOnlyStore.GetImagesAsync(id);
-			var otherProducts = _productReadOnlyStore.GetPublishedWithMainImageAsync(ProductTypeHelper.FromString(type), 0, 6);
+			var product = _productsReadOnlyStore.GetAsync(id);
+			var images = _productsReadOnlyStore.GetImagesAsync(id);
+			var otherProducts = _productsReadOnlyStore.GetPublishedWithMainImageAsync(ProductTypeHelper.FromString(type), 0, 6);
 
 			await Task.WhenAll(product, images, otherProducts);
 

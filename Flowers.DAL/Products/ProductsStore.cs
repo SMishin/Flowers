@@ -6,9 +6,9 @@ using Flowers.BL.Products;
 
 namespace Flowers.DAL.Products
 {
-	public class ProductStore : ProductReadOnlyStore, IProductStore
+	public class ProductsStore : ProductsReadOnlyStore, IProductsStore
 	{
-		public ProductStore() : base(new SqlConnectionHelper())
+		public ProductsStore() : base(new SqlConnectionHelper())
 		{
 		}
 
@@ -28,7 +28,7 @@ namespace Flowers.DAL.Products
 
 				}, commandType: CommandType.StoredProcedure);
 
-				return result?.FirstOrDefault() ?? -1;
+				return result.FirstOrDefault();
 			}
 		}
 

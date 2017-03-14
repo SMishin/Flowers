@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Flowers.BL.Products
 {
-	public interface IProductReadOnlyStore 
+	public interface IProductsReadOnlyStore 
 	{
 		Task<Product[]> GetAsync();
 		Task<Product> GetAsync(int id);

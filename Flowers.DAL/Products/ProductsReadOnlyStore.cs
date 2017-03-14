@@ -7,15 +7,15 @@ using Flowers.BL.Products.ProductType;
 
 namespace Flowers.DAL.Products
 {
-	public class ProductReadOnlyStore : IProductReadOnlyStore
+	public class ProductsReadOnlyStore : IProductsReadOnlyStore
 	{
 		protected readonly SqlConnectionHelper SqlConnectionHelper;
 
-		public ProductReadOnlyStore()
+		public ProductsReadOnlyStore()
 		{
 			SqlConnectionHelper = new SqlConnectionHelper();
 		}
-		protected ProductReadOnlyStore(SqlConnectionHelper sqlConnectionHelper)
+		protected ProductsReadOnlyStore(SqlConnectionHelper sqlConnectionHelper)
 		{
 			SqlConnectionHelper = sqlConnectionHelper;
 		}

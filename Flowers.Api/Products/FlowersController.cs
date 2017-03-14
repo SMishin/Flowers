@@ -1,0 +1,48 @@
+﻿using System.Threading.Tasks;
+using System.Web.Http;
+using Flowers.BL.Products.Flowers;
+
+namespace Flowers.Api.Products
+{
+	[RoutePrefix("api/products")]
+	public class FlowersController : ApiController
+	{
+		private readonly IFlowersManager _flowersManager;
+		private readonly IFlowersReadOnlyStore _flowersStore;
+
+		public FlowersController(IFlowersManager flowersManager, IFlowersReadOnlyStore flowersStore)
+		{
+			_flowersManager = flowersManager;
+			_flowersStore = flowersStore;
+		}
+
+		[HttpGet]
+		[Route("flowers")]
+		public async Task<IHttpActionResult> Get()
+		{
+			var data = await _flowersStore.GetAsync();
+			return Ok(data);
+		}
+
+		[HttpGet]
+		[Route("flower/{id:int}")]
+		public async Task<IHttpActionResult> Get(int id)
+		{
+			var data = await _flowersStore.GetAsync(id);
+			return Ok(data);
+		}
+
+		[HttpPost]
+		[Route("flower")]
+		//[Authorize]
+		public async Task<IHttpActionResult> Save(Flower flower)
+		{
+			if (!ModelState.IsValid)
+			{
+				return BadRequest(ModelState);
+			}
+
+			return Ok(await _flowersManager.SaveAsync(flower));
+		}
+	}
+}

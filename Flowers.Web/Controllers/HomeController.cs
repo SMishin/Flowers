@@ -8,18 +8,18 @@ namespace Flowers.Web.Controllers
 {
 	public class HomeController : Controller
 	{
-		private readonly IProductReadOnlyStore _productReadOnlyStore;
+		private readonly IProductsReadOnlyStore _productsReadOnlyStore;
 
-		public HomeController(IProductReadOnlyStore productReadOnlyStore)
+		public HomeController(IProductsReadOnlyStore productsReadOnlyStore)
 		{
-			_productReadOnlyStore = productReadOnlyStore;
+			_productsReadOnlyStore = productsReadOnlyStore;
 		}
 
 		[HttpGet]
 		public async Task<ActionResult> Index()
 		{
-			var flowers = _productReadOnlyStore.GetPublishedWithMainImageAsync(ProductType.Flowers, 0, 12);
-			//var toys = _productReadOnlyStore.GetPublishedWithMainImageAsync(ProductType.Toys, 0, 12);
+			var flowers = _productsReadOnlyStore.GetPublishedWithMainImageAsync(ProductType.Flowers, 0, 12);
+			//var toys = _productsReadOnlyStore.GetPublishedWithMainImageAsync(ProductType.Toys, 0, 12);
 
 			await Task.WhenAll(flowers); //, toys);
 

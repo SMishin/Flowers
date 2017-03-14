@@ -38,20 +38,26 @@
                     </select>
                 </div>
 
+                <fieldset>
+                    <product-prices
+                            (onChange)="productPricesChanged($event)"
+                            [(model)]="model.flowerVariants"></product-prices>
+                </fieldset>
 
-                <div class="form-group">
-                    <label for="name">
-                        Цена
-                    </label>
-                    <input type="number"
-                           id="price"
-                           step="1"
-                           min="0"
-                           name="price"
-                           [(ngModel)]="model.price"
-                           class="form-control"
-                           placeholder="Цена">
-                </div>
+
+                <!--<div class="form-group">-->
+                    <!--<label for="name">-->
+                        <!--Цена-->
+                    <!--</label>-->
+                    <!--<input type="number"-->
+                           <!--id="price"-->
+                           <!--step="1"-->
+                           <!--min="0"-->
+                           <!--name="price"-->
+                           <!--[(ngModel)]="model.price"-->
+                           <!--class="form-control"-->
+                           <!--placeholder="Цена">-->
+                <!--</div>-->
 
 
                 <div class="form-group">

@@ -60,6 +60,7 @@
     <Folder Include="dbo\Tables" />
     <Folder Include="dbo\" />
     <Folder Include="dbo\Products" />
+    <Folder Include="dbo\Products\Flowers" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\DeliveryTypes.sql" />
@@ -76,6 +77,10 @@
     <Build Include="dbo\Products\SetMainImage.sql" />
     <Build Include="dbo\Tables\Flowers.sql" />
     <Build Include="dbo\Tables\FlowerFlowerVariants.sql" />
+    <Build Include="dbo\Products\Flowers\SaveFlower.sql" />
+    <Build Include="dbo\Products\Flowers\SaveFlowerVariants.sql" />
+    <Build Include="dbo\Products\Flowers\FlowerPrices.sql" />
+    <Build Include="dbo\Products\Flowers\GetFlower.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Flowers.DB.local.publish.xml" />

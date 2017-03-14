@@ -4,7 +4,9 @@ using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
 using Flowers.BL.Products;
+using Flowers.BL.Products.Flowers;
 using Flowers.DAL.Products;
+using Flowers.DAL.Products.Flowers;
 
 namespace Flowers.Web
 {
@@ -31,9 +33,14 @@ namespace Flowers.Web
 
 		public static ContainerBuilder RegisterTypes(this ContainerBuilder builder)
 		{
-			builder.RegisterType<ProductReadOnlyStore>().As<IProductReadOnlyStore>();
-			builder.RegisterType<ProductStore>().As<IProductStore>();
-			builder.RegisterType<ProductManager>().As<IProductManager>()
+			builder.RegisterType<ProductsReadOnlyStore>().As<IProductsReadOnlyStore>();
+			builder.RegisterType<ProductsStore>().As<IProductsStore>();
+			builder.RegisterType<ProductsManager>().As<IProductsManager>();
+
+			builder.RegisterType<FlowersReadOnlyStore>().As<IFlowersReadOnlyStore>();
+			builder.RegisterType<FlowersStore>().As<IFlowersStore>();
+			builder.RegisterType<FlowersManager>().As<IFlowersManager>()
+
 				.WithParameter("imagesRootPath", System.Web.HttpContext.Current.Server.MapPath(AppSettings.Get("product-images-root-path")));
 			return builder;
 		}

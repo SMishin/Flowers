@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Flowers.BL.Products
 {
-	public class ProductManager : IProductManager
+	public class ProductsManager : IProductsManager
 	{
-		private readonly IProductStore _productStore;
+		private readonly IProductsStore _productsStore;
 		private readonly string _imagesRootPath;
 
 		private readonly Dictionary<string, string> _extensionLookup = new Dictionary<string, string>
@@ -16,14 +16,14 @@ namespace Flowers.BL.Products
 			{"image/jpeg", ".jpg"},
 		};
 
-		public ProductManager(IProductStore productStore, string imagesRootPath)
+		public ProductsManager(IProductsStore productsStore, string imagesRootPath)
 		{
-			_productStore = productStore;
+			_productsStore = productsStore;
 			_imagesRootPath = imagesRootPath;
 		}
 		public Task<int> SaveAsync(Product product)
 		{
-			return _productStore.SaveAsync(product);
+			return _productsStore.SaveAsync(product);
 		}
 
 		public async Task<ProductImage> UploadImage(byte[] content, string contentType, int productId)
@@ -46,7 +46,7 @@ namespace Flowers.BL.Products
 
 			var imgUrl = filePath.Replace(AppDomain.CurrentDomain.BaseDirectory, "").Replace("\\", "/");
 
-			var imageId = await _productStore.AddImageAsync(productId, imgUrl);
+			var imageId = await _productsStore.AddImageAsync(productId, imgUrl);
 
 			return new ProductImage
 			{
@@ -58,12 +58,12 @@ namespace Flowers.BL.Products
 
 		public Task SetMainImageAsync(int productId, int imageId)
 		{
-			return _productStore.SetmMainImageAsync(productId, imageId);
+			return _productsStore.SetmMainImageAsync(productId, imageId);
 		}
 
 		public async Task RemoveImageAsync(int id)
 		{
-			var pi = await _productStore.GetImageAsync(id);
+			var pi = await _productsStore.GetImageAsync(id);
 
 			if (!Directory.Exists(_imagesRootPath))
 			{
@@ -81,7 +81,7 @@ namespace Flowers.BL.Products
 			filePath = string.Join("\\", filePath.Split('\\').Distinct().ToArray());
 
 			File.Delete(filePath);
-			await _productStore.RemoveImageAsync(id);
+			await _productsStore.RemoveImageAsync(id);
 
 		}
 	}

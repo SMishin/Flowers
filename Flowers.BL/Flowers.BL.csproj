@@ -41,14 +41,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Products\Flowers\Flower.cs" />
+    <Compile Include="Products\Flowers\FlowersManager.cs" />
     <Compile Include="Products\Flowers\FlowerType.cs" />
     <Compile Include="Products\Flowers\FlowerVariant.cs" />
-    <Compile Include="Products\IProductManager.cs" />
-    <Compile Include="Products\IProductReadOnlyStore.cs" />
-    <Compile Include="Products\IProductStore.cs" />
+    <Compile Include="Products\Flowers\IFlowersManager.cs" />
+    <Compile Include="Products\Flowers\IFlowersReadOnlyStore.cs" />
+    <Compile Include="Products\Flowers\IFlowersStore.cs" />
+    <Compile Include="Products\IProductsManager.cs" />
+    <Compile Include="Products\IProductsReadOnlyStore.cs" />
+    <Compile Include="Products\IProductsStore.cs" />
     <Compile Include="Products\Product.cs" />
     <Compile Include="Products\ProductImage.cs" />
-    <Compile Include="Products\ProductManager.cs" />
+    <Compile Include="Products\ProductsManager.cs" />
     <Compile Include="Products\ProductType\ProductType.cs" />
     <Compile Include="Products\ProductType\ProductTypeHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

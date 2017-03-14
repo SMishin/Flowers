@@ -6,7 +6,7 @@ class ProductsService {
 
 	constructor(http) {
 		this._http = http;
-		this._url = '/api/product';
+		this._url = '/api/products/flower';
 	}
 
 	get(id) {

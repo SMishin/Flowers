@@ -11,20 +11,20 @@ namespace Flowers.Api.Products
 	[RoutePrefix("api")]
 	public class ProductsController : ApiController
 	{
-		private readonly IProductManager _productManager;
-		private readonly IProductReadOnlyStore _productStore;
+		private readonly IProductsManager _productsManager;
+		private readonly IProductsReadOnlyStore _productsStore;
 
-		public ProductsController(IProductManager productManager, IProductReadOnlyStore productStore)
+		public ProductsController(IProductsManager productsManager, IProductsReadOnlyStore productsStore)
 		{
-			_productManager = productManager;
-			_productStore = productStore;
+			_productsManager = productsManager;
+			_productsStore = productsStore;
 		}
 
 		[HttpGet]
 		[Route("products")]
 		public async Task<IHttpActionResult> Get()
 		{
-			var data = await _productStore.GetAsync();
+			var data = await _productsStore.GetAsync();
 			return Ok(data);
 		}
 
@@ -32,7 +32,7 @@ namespace Flowers.Api.Products
 		[Route("product/{id:int}")]
 		public async Task<IHttpActionResult> Get(int id)
 		{
-			var data = await _productStore.GetAsync(id);
+			var data = await _productsStore.GetAsync(id);
 			return Ok(data);
 		}
 
@@ -46,14 +46,14 @@ namespace Flowers.Api.Products
 				return BadRequest(ModelState);
 			}
 
-			return Ok(await _productManager.SaveAsync(product));
+			return Ok(await _productsManager.SaveAsync(product));
 		}
 
 		[HttpGet]
 		[Route("product/{id:int}/images")]
 		public async Task<IHttpActionResult> Images(int id)
 		{
-			ProductImage[] data = await _productStore.GetImagesAsync(id);
+			ProductImage[] data = await _productsStore.GetImagesAsync(id);
 			return Ok(data);
 		}
 
@@ -62,7 +62,7 @@ namespace Flowers.Api.Products
 		[Route("product/{productId:int}/image/main")]
 		public async Task<IHttpActionResult> Main(int productId, int imageId)
 		{
-			await _productManager.SetMainImageAsync(productId, imageId);
+			await _productsManager.SetMainImageAsync(productId, imageId);
 			return Ok();
 		}
 
@@ -85,7 +85,7 @@ namespace Flowers.Api.Products
 
 			var file = data.Files[data.Files.Keys.First()];
 
-			var img = await _productManager.UploadImage(file.Content, file.ContentType, id);
+			var img = await _productsManager.UploadImage(file.Content, file.ContentType, id);
 
 			return Ok(img);
 		}
@@ -95,7 +95,7 @@ namespace Flowers.Api.Products
 		//[Authorize]
 		public async Task<IHttpActionResult> Remove(int id)
 		{
-			await _productManager.RemoveImageAsync(id);
+			await _productsManager.RemoveImageAsync(id);
 			return Ok();
 		}
 	}
