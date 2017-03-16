@@ -92,7 +92,7 @@ namespace Flowers.Api.Products
 
 		[HttpDelete]
 		[Route("product/image")]
-		//[Authorize]
+	//	[Authorize]
 		public async Task<IHttpActionResult> Remove(int id)
 		{
 			await _productsManager.RemoveImageAsync(id);

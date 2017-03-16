@@ -1,6 +1,6 @@
 ﻿@using System.Linq
 @using Flowers.BL.Products.ProductType
-@model System.Collections.Generic.IEnumerable<Flowers.BL.Products.Product>
+@model IEnumerable<Flowers.BL.Products.Flowers.Flower>
 
 @if (Model.Any())
 {
@@ -50,7 +50,16 @@
 							</h5>
 							<div class="content_price">
 								<span class="price product-price product-price-new">
-								@item.Price.ToString("C")
+								@if (item.MinPrice > 0)
+								{
+									@item.MinPrice.ToString("C")
+								}
+								@if (item.MaxPrice > 0)
+								{
+									<text>
+										- @item.MaxPrice.ToString("C")
+									</text>
+								}
 							</span>
 								@*<span class="old-price product-price">
 									$20.00

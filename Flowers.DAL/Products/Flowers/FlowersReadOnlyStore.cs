@@ -39,8 +39,12 @@ namespace Flowers.DAL.Products.Flowers
 					",
 					new { Id = id });
 
-				var flower = multy.Read<Flower>().Single();
-				flower.FlowerVariants = multy.Read<FlowerVariant>();
+				var flower = multy.Read<Flower>().FirstOrDefault();
+
+				if (flower != null)
+				{
+					flower.FlowerVariants = multy.Read<FlowerVariant>();
+				}
 
 				return flower; 
 			}
@@ -50,10 +54,9 @@ namespace Flowers.DAL.Products.Flowers
 		{
 			using (var conntection = await SqlConnectionHelper.CreateConnection())
 			{
-				return (await conntection.QueryAsync<Flower>("SelectPublishedProductsWithMainImage",
+				return (await conntection.QueryAsync<Flower>("SelectPublishedFlowersWithMainImage",
 				new
 				{
-
 					Skip = skip,
 					Take = take
 				},

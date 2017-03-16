@@ -10,6 +10,8 @@ namespace Flowers.BL.Products.Flowers
 			FlowerVariants = new List<FlowerVariant>();
 		}
 		public FlowerType FlowerType { get; set; }
+		public decimal MinPrice { get; set; }
+		public decimal MaxPrice { get; set; }
 		public IEnumerable<FlowerVariant> FlowerVariants { get; set; }
 
 	}

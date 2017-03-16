@@ -81,6 +81,7 @@
     <Build Include="dbo\Products\Flowers\SaveFlowerVariants.sql" />
     <Build Include="dbo\Products\Flowers\FlowerPrices.sql" />
     <Build Include="dbo\Products\Flowers\GetFlower.sql" />
+    <Build Include="dbo\Products\Flowers\SelectPublishedFlowersWithMainImage.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Flowers.DB.local.publish.xml" />

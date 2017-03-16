@@ -29,6 +29,12 @@ namespace Flowers.Api.Products
 		public async Task<IHttpActionResult> Get(int id)
 		{
 			var data = await _flowersStore.GetAsync(id);
+
+			if (data == null)
+			{
+				return NotFound();
+			}
+
 			return Ok(data);
 		}
 

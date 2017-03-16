@@ -35,13 +35,14 @@ namespace Flowers.Web
 		{
 			builder.RegisterType<ProductsReadOnlyStore>().As<IProductsReadOnlyStore>();
 			builder.RegisterType<ProductsStore>().As<IProductsStore>();
-			builder.RegisterType<ProductsManager>().As<IProductsManager>();
+			builder.RegisterType<ProductsManager>().As<IProductsManager>()
+				.WithParameter("imagesRootPath", System.Web.HttpContext.Current.Server.MapPath(AppSettings.Get("product-images-root-path")));
 
 			builder.RegisterType<FlowersReadOnlyStore>().As<IFlowersReadOnlyStore>();
 			builder.RegisterType<FlowersStore>().As<IFlowersStore>();
 			builder.RegisterType<FlowersManager>().As<IFlowersManager>()
+			;
 
-				.WithParameter("imagesRootPath", System.Web.HttpContext.Current.Server.MapPath(AppSettings.Get("product-images-root-path")));
 			return builder;
 		}
 

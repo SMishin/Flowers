@@ -1,29 +1,29 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Flowers.BL.Products;
+using Flowers.BL.Products.Flowers;
 using Flowers.BL.Products.ProductType;
 
 namespace Flowers.Web.Controllers
 {
 	public class HomeController : Controller
 	{
-		private readonly IProductsReadOnlyStore _productsReadOnlyStore;
+		private readonly IFlowersReadOnlyStore _flowersReadOnlyStore;
 
-		public HomeController(IProductsReadOnlyStore productsReadOnlyStore)
+		public HomeController(IFlowersReadOnlyStore flowersReadOnlyStore)
 		{
-			_productsReadOnlyStore = productsReadOnlyStore;
+			_flowersReadOnlyStore = flowersReadOnlyStore;
 		}
 
 		[HttpGet]
 		public async Task<ActionResult> Index()
 		{
-			var flowers = _productsReadOnlyStore.GetPublishedWithMainImageAsync(ProductType.Flowers, 0, 12);
+			var flowers = _flowersReadOnlyStore.GetPublishedWithMainImageAsync(0, 12);
 			//var toys = _productsReadOnlyStore.GetPublishedWithMainImageAsync(ProductType.Toys, 0, 12);
 
 			await Task.WhenAll(flowers); //, toys);
 
-			var data = new Dictionary<ProductType, Product[]>
+			var data = new Dictionary<ProductType, Flower[]>
 			{
 				{ProductType.Flowers, flowers.Result},
 				//{ProductType.Toys, toys.Result}
