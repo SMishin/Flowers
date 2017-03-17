@@ -34,6 +34,11 @@ class ProductInfoComponent {
 	}
 
 	remove() {
+
+		if (!confirm('Удалить?')) {
+			return;
+		}
+
 		this._productsService
 			.remove(this.model.id)
 			.then(() => {

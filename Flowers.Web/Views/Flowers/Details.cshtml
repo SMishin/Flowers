@@ -52,8 +52,7 @@
 																@Model.Product.FlowerVariants.Min(t => t.Price).ToString("C")
 																-
 																@Model.Product.FlowerVariants.Max(t => t.Price).ToString("C")
-															</text>	
-														}
+															</text>		}
 													</span>
 												</p>
 											</div>
@@ -96,30 +95,34 @@
 												{
 													var link = $"/{item.Type.ToString().ToLower()}/{item.Id}";
 													<li class="product-box item">
+														<div class="product-container">
+															<div class="product-image">
+																<a href="@link"
+																   class="lnk_img product-image"
+																   title="@item.Name">
 
-														<a href="@link"
-														   class="lnk_img product-image"
-														   title="@item.Name">
+																	@{ Html.RenderPartial("_ProductImage", item); }
 
-															@{			Html.RenderPartial("_ProductImage", item);
-															}
+																</a>
+															</div>
+															<div class="product-info">
+																<h5 itemprop="name" class="product-name">
+																	<a href="@link"
+																	   title="@item.Name">
+																		@item.Name
+																	</a>
+																</h5>
+																<p class="price_display">
 
-														</a>
+																	<span class="price">
+																		@item.Price.ToString("C")
+																	</span>
+																</p>
+															</div>
 
 
 
-														<h5 itemprop="name" class="product-name">
-															<a href="@link"
-															   title="@item.Name">
-																@item.Name
-															</a>
-														</h5>
-														<p class="price_display">
-
-															<span class="price">
-																@item.Price.ToString("C")
-															</span>
-														</p>
+														</div>
 
 													</li>			}
 

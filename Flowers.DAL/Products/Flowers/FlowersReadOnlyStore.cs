@@ -24,7 +24,7 @@ namespace Flowers.DAL.Products.Flowers
 		{
 			using (var conntection = await SqlConnectionHelper.CreateConnection())
 			{
-				return (await conntection.QueryAsync<Flower>("select * from dbo.[Flowers]")).ToArray();
+				return (await conntection.QueryAsync<Flower>("SelectFlowersWithMainImage", commandType: System.Data.CommandType.StoredProcedure)).ToArray();
 			}
 		}
 

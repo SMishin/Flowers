@@ -10616,6 +10616,7 @@ ul.footer_links li + li {
 .product-list {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .product-box {
@@ -10628,7 +10629,9 @@ ul.footer_links li + li {
   margin-left: 20px;
 
   .product-image {
-    display: block;
+    display: flex;
+    height: 175px;
+    align-items: center;
     background: white;
     position: relative;
     margin-bottom: 11px;
