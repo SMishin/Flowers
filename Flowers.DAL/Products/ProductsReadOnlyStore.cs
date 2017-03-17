@@ -60,11 +60,11 @@ namespace Flowers.DAL.Products
 			}
 		}
 
-		public async Task<ProductImage> GetImageAsync(int id)
+		public async Task<ProductImage> GetImageAsync(int imageId)
 		{
 			using (var conntection = await SqlConnectionHelper.CreateConnection())
 			{
-				return (await conntection.QueryAsync<ProductImage>("select * from dbo.[ProductImages] where Id = @Id", new { Id = id })).FirstOrDefault();
+				return (await conntection.QueryAsync<ProductImage>("select * from dbo.[ProductImages] where Id = @Id", new { Id = imageId })).FirstOrDefault();
 			}
 		}
 

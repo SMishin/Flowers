@@ -26,6 +26,19 @@ namespace Flowers.BL.Products
 			return _productsStore.SaveAsync(product);
 		}
 
+		public async Task RemoveAsync(int id)
+		{
+			var images = await _productsStore.GetImagesAsync(id);
+
+			foreach (var item in images)
+			{
+				RemoveImageFile(item);
+			}
+
+			await _productsStore.RemoveImagesAsync(id);
+			await _productsStore.RemoveAsync(id);
+		}
+
 		public async Task<ProductImage> UploadImage(byte[] content, string contentType, int productId)
 		{
 			if (!Directory.Exists(_imagesRootPath))
@@ -61,10 +74,16 @@ namespace Flowers.BL.Products
 			return _productsStore.SetmMainImageAsync(productId, imageId);
 		}
 
-		public async Task RemoveImageAsync(int id)
+		public async Task RemoveImageAsync(int imageId)
 		{
-			var pi = await _productsStore.GetImageAsync(id);
+			var pi = await _productsStore.GetImageAsync(imageId);
+			RemoveImageFile(pi);
+			await _productsStore.RemoveImageAsync(imageId);
 
+		}
+
+		private void RemoveImageFile(ProductImage pi)
+		{
 			if (!Directory.Exists(_imagesRootPath))
 			{
 				return;
@@ -81,8 +100,11 @@ namespace Flowers.BL.Products
 			filePath = string.Join("\\", filePath.Split('\\').Distinct().ToArray());
 
 			File.Delete(filePath);
-			await _productsStore.RemoveImageAsync(id);
 
+			if (!Directory.EnumerateFiles(dirPath).Any())
+			{
+				Directory.Delete(dirPath);
+			}
 		}
 	}
 }

@@ -9,7 +9,7 @@ namespace Flowers.BL.Products
 		Task<Product> GetAsync(int id);
 		Task<Product[]> GetPublishedWithMainImageAsync(ProductType.ProductType productType, int skip, int take);
 		Task<ProductImage[]> GetImagesAsync(int productId);
-		Task<ProductImage> GetImageAsync(int id);
+		Task<ProductImage> GetImageAsync(int imageId);
 		Task<int> CountPublishedAsync(ProductType.ProductType productType);
 	}
 }

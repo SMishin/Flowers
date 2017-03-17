@@ -45,6 +45,18 @@ namespace Flowers.DAL.Products.Flowers
 			}
 		}
 
+		public async Task RemoveAsync(int id)
+		{
+			using (var conntection = await SqlConnectionHelper.CreateConnection())
+			{
+				await conntection.ExecuteAsync(@"
+						delete [dbo].[FlowerVariants] where FlowerId = @Id
+						delete [dbo].[Flowers] where Id = @Id
+					", 
+					new { Id = id });
+			}
+		}
+
 		private DataTable FlowerVariantsToDataTable(IEnumerable<FlowerVariant> flowerVariants)
 		{
 			var table = new DataTable();

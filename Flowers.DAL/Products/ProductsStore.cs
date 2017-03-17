@@ -50,11 +50,27 @@ namespace Flowers.DAL.Products
 			}
 		}
 
-		public async Task RemoveImageAsync(int id)
+		public async Task RemoveImageAsync(int imageId)
 		{
 			using (var conntection = await SqlConnectionHelper.CreateConnection())
 			{
-				await conntection.ExecuteAsync("delete dbo.[ProductImages] where Id = @Id", new { id });
+				await conntection.ExecuteAsync("delete dbo.[ProductImages] where Id = @Id", new { id = imageId });
+			}
+		}
+
+		public async Task RemoveImagesAsync(int productId)
+		{
+			using (var conntection = await SqlConnectionHelper.CreateConnection())
+			{
+				await conntection.ExecuteAsync("delete dbo.[ProductImages] where ProductId = @Id", new { id = productId });
+			}
+		}
+
+		public async Task RemoveAsync(int id)
+		{
+			using (var conntection = await SqlConnectionHelper.CreateConnection())
+			{
+				await conntection.ExecuteAsync("delete dbo.[Products] where Id = @Id", new { Id = id });
 			}
 		}
 	}

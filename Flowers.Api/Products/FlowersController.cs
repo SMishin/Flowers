@@ -50,5 +50,14 @@ namespace Flowers.Api.Products
 
 			return Ok(await _flowersManager.SaveAsync(flower));
 		}
+
+		[HttpDelete]
+		[Route("flower")]
+		//[Authorize]
+		public async Task<IHttpActionResult> Remove(int id)
+		{
+			await _flowersManager.RemoveAsync(id);
+			return Ok();
+		}
 	}
 }
