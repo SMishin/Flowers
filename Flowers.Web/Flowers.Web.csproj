@@ -191,6 +191,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MeViewModels.cs" />
     <Compile Include="Models\Flowers\FlowersDetailsViewModel.cs" />
+    <Compile Include="Models\PagingModel.cs" />
     <Compile Include="Models\Products\ProdutcsIndexViewModel.cs" />
     <Compile Include="Models\Products\ProdutcsDetailsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -315,6 +316,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Flowers\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Paging.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

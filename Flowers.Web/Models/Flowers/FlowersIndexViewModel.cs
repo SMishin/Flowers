@@ -4,8 +4,12 @@ namespace Flowers.Web.Models.Flowers
 {
 	public class FlowersIndexViewModel
 	{
-		public Flower[] Products { get; set; }
-		public int Count { get; set; }
-		public int Page { get; set; }
+		public FlowersIndexViewModel()
+		{
+			Flowes = new Flower[0];
+			Paging = new PagingModel();
+		}
+		public Flower[] Flowes { get; set; }
+		public PagingModel Paging { get; set; }
 	}
 }

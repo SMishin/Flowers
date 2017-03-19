@@ -4,7 +4,7 @@
 {
 
 
-	<ul class="product_list grid row">
+	<ul class="product_list grid row c-count-3">
 
 		@foreach (var item in Model)
 		{
@@ -15,7 +15,7 @@
 					<div class="left-block">
 						<div class="product-image-container">
 							<a class="product_img_link"
-							   href="/@Model.First().Type.ToString().ToLower()/@item.Id"
+							   href="/@item.Type.ToString().ToLower()/@item.Id"
 							   title="@item.Name"
 							   itemprop="url">
 								<img class="replace-2x img-responsive"
@@ -33,7 +33,7 @@
 					<div class="right-block">
 						<h5 itemprop="name">
 							<a class="product-name"
-							   href="https://ld-prestashop.template-help.com/prestashop_58383/index.php?id_product=8&amp;controller=product&amp;productId_lang=1"
+							   href="/@item.Type.ToString().ToLower()/@item.Id"
 							   title="@item.Name"
 							   itemprop="url">
 								<span class="grid-name">

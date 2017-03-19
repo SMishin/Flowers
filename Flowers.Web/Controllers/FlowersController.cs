@@ -4,7 +4,6 @@ using Flowers.BL.Products;
 using Flowers.BL.Products.Flowers;
 using Flowers.BL.Products.ProductType;
 using Flowers.Web.Models.Flowers;
-using Flowers.Web.Models.Products;
 
 namespace Flowers.Web.Controllers
 {
@@ -32,9 +31,15 @@ namespace Flowers.Web.Controllers
 
 			var data = new FlowersIndexViewModel
 			{
-				Products = products.Result,
-				Count = count.Result,
-				Page = page
+				Flowes = products.Result,
+				Paging = new Models.PagingModel
+				{
+					Count = count.Result,
+					Page = page,
+					PageSize = _pageSize,
+					ItemsCount = products.Result.Length
+				}
+
 			};
 
 			return View(data);

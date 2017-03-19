@@ -12,9 +12,9 @@
 								@ProductType.Flowers.ToFriendlyString()
 							</span>
 							<span class="heading-counter">
-								Всего @Model.Count
+								Всего @Model.Paging.Count
 								@{
-									var lastNumber = Model.Count % 10;
+									var lastNumber = Model.Paging.Count % 10;
 
 									if (lastNumber == 1)
 									{
@@ -47,80 +47,20 @@
 
 
 						@{
-							Html.RenderPartial("_List", Model.Products);
+							Html.RenderPartial("_List", Model.Flowes);
 						}
 
 
-						@if (Model.Count > Model.Products.Length)
+						@if (Model.Paging.Count > Model.Flowes.Length)
 						{
-							<div class="content_sortPagiBar">
-								<div class="bottom-pagination-content clearfix">
 
-									<div id="pagination_bottom" class="pagination clearfix">
-										<ul class="pagination">
-											<li id="pagination_previous_bottom" class="disabled pagination_previous">
-												<span>
-													<i class="fa fa-chevron-left"></i>
-													<b>Назад</b>
-												</span>
-											</li>
-
-											@{
-												int pageCount = 5;
-												int from = Model.Page - 2 <= 0 ? 1 : Model.Page - 2;
-												int to = from + pageCount;
-
-												if (to > Model.Count / 10)
-												{
-													to = Model.Count / 10;
-													if (Model.Count % 10 != 0)
-													{
-														to++;
-													}
-												}
-
-												for (var i = from; i <= to; i++)
-												{
-													if (i == Model.Page)
-													{
-														<li class="active current">
-															<span>
-																<span>
-																	@i
-																</span>
-															</span>
-														</li>
-													}
-													else
-													{
-														<li>
-															<a href="/@ProductType.Flowers.ToString().ToLower()?page=@i">
-																<span>
-																	@i
-																</span>
-															</a>
-														</li>
-													}
-												}
-
-											}
+							Html.RenderPartial("_Paging", Model.Paging, new ViewDataDictionary
+								{
+									{ "BaseUrl", ProductType.Flowers.ToString().ToLower()}
+								});
 
 
-											<li id="pagination_next_bottom" class="pagination_next">
-												<a href="https://ld-prestashop.template-help.com/prestashop_58383/index.php?id_category=14&amp;controller=category&amp;productId_lang=1#/page-2">
-													<b>Вперед</b>
-													<i class="fa fa-chevron-right"></i>
-												</a>
-											</li>
-										</ul>
-									</div>
-									<div class="product-count">
-										@(Model.Page * Model.Products.Length) из @Model.Count
-									</div>
-
-								</div>
-							</div>
-												}
+						}
 					</div>
 					<div id="left_column" class="column col-xs-12 col-sm-3">
 						<section id="layered_block_left" class="block">
@@ -173,14 +113,14 @@
 												</li>
 												@*<li class="nomargin hiddable col-lg-12">
 
-													<label for="layered_manufacturer_4">
-														<a href="/toys">
-															<strong>
-																Игрушки
-															</strong>
-														</a>
-													</label>
-												</li>*@
+														<label for="layered_manufacturer_4">
+															<a href="/toys">
+																<strong>
+																	Игрушки
+																</strong>
+															</a>
+														</label>
+													</li>*@
 
 											</ul>
 										</div>
