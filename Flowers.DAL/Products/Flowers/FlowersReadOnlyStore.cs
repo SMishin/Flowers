@@ -63,5 +63,18 @@ namespace Flowers.DAL.Products.Flowers
 				commandType: System.Data.CommandType.StoredProcedure)).ToArray();
 			}
 		}
+
+		public async Task<Flower[]> GetRandomPublishedWithMainImageAsync(int count)
+		{
+			using (var conntection = await SqlConnectionHelper.CreateConnection())
+			{
+				return (await conntection.QueryAsync<Flower>("SelectRandomPublishedFlowersWithMainImage",
+				new
+				{
+					Count = count
+				},
+				commandType: System.Data.CommandType.StoredProcedure)).ToArray();
+			}
+		}
 	}
 }

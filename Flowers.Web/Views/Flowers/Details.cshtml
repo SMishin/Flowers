@@ -115,7 +115,14 @@
 																<p class="price_display">
 
 																	<span class="price">
-																		@item.Price.ToString("C")
+																		@if (item.MinPrice > 0)
+																		{
+																			@item.MinPrice.ToString("C")			}
+																		@if (item.MaxPrice > 0)
+																		{
+																			<text>
+																				- @item.MaxPrice.ToString("C")
+																			</text>		}
 																	</span>
 																</p>
 															</div>

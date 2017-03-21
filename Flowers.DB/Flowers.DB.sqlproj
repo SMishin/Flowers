@@ -83,6 +83,7 @@
     <Build Include="dbo\Products\Flowers\GetFlower.sql" />
     <Build Include="dbo\Products\Flowers\SelectPublishedFlowersWithMainImage.sql" />
     <Build Include="dbo\Products\Flowers\SelectFlowersWithMainImage.sql" />
+    <Build Include="dbo\Products\Flowers\SelectRandomPublishedFlowersWithMainImage.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Flowers.DB.local.publish.xml" />

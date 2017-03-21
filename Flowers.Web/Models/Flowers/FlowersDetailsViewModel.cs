@@ -7,6 +7,6 @@ namespace Flowers.Web.Models.Flowers
 	{
 		public Flower Product { get; set; }
 		public ProductImage[] ProductImages { get; set; }
-		public Product[] OtherProducts{ get; set; }
+		public Flower[] OtherProducts{ get; set; }
 	}
 }
