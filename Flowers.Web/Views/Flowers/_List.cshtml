@@ -51,13 +51,12 @@
 							<span class="price product-price product-price-new">
 								@if (item.MinPrice > 0)
 								{
+									if (item.MaxPrice > 0)
+									{
+										<text>от</text>
+									}
+
 									@item.MinPrice.ToString("C")
-								}
-								@if (item.MaxPrice > 0)
-								{
-									<text>
-										- @item.MaxPrice.ToString("C")
-									</text>
 								}
 							</span>
 							@*<span class="old-price product-price">

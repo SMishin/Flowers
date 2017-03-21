@@ -117,12 +117,13 @@
 																	<span class="price">
 																		@if (item.MinPrice > 0)
 																		{
-																			@item.MinPrice.ToString("C")			}
-																		@if (item.MaxPrice > 0)
-																		{
-																			<text>
-																				- @item.MaxPrice.ToString("C")
-																			</text>		}
+																			if (item.MaxPrice > 0)
+																			{
+																				<text>от</text>		
+																			}
+
+																			@item.MinPrice.ToString("C")			
+																		}
 																	</span>
 																</p>
 															</div>

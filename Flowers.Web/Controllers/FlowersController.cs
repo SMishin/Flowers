@@ -52,7 +52,7 @@ namespace Flowers.Web.Controllers
 		{
 			var product = _flowersReadOnlyStore.GetAsync(id);
 			var images = _productsReadOnlyStore.GetImagesAsync(id);
-			var otherProducts = _flowersReadOnlyStore.GetRandomPublishedWithMainImageAsync(4);
+			var otherProducts = _flowersReadOnlyStore.GetRandomPublishedWithMainImageAsync(5);
 
 			await Task.WhenAll(product, images, otherProducts);
 
