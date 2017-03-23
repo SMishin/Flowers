@@ -75,7 +75,7 @@
 			</ul>
 		</div>
 		<div class="product-count">
-			@(Model.Page * Model.ItemsCount) из @Model.Count
+			@(Model.Page * Model.PageSize - (Model.PageSize - Model.ItemsCount)) из @Model.Count
 		</div>
 
 	</div>

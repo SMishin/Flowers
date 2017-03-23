@@ -24,7 +24,7 @@ namespace Flowers.Web.Controllers
 		[HttpGet]
 		public async Task<ActionResult> Index(int page = 1)
 		{
-			var products = _flowersReadOnlyStore.GetPublishedWithMainImageAsync((page - 1) * _pageSize, page * _pageSize);
+			var products = _flowersReadOnlyStore.GetPublishedWithMainImageAsync((page - 1) * _pageSize, _pageSize);
 			var count = _productsReadOnlyStore.CountPublishedAsync(ProductType.Flowers);
 
 			await Task.WhenAll(products, count);
