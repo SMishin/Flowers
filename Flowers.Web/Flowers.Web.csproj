@@ -275,13 +275,13 @@
       <Project>{c127f684-36fa-4901-bd1f-d3a8904497b0}</Project>
       <Name>Flowers.Api</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Flowers.BL\Flowers.BL.csproj">
-      <Project>{A65A1312-2529-4FC6-A1AC-F3E0C3157BE1}</Project>
-      <Name>Flowers.BL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Flowers.DAL\Flowers.DAL.csproj">
+    <ProjectReference Include="..\Flowers.Data\Flowers.Data.csproj">
       <Project>{28A8831F-E35D-4CDB-AF96-7A5B9CF4BF3C}</Project>
-      <Name>Flowers.DAL</Name>
+      <Name>Flowers.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Flowers\Flowers.csproj">
+      <Project>{A65A1312-2529-4FC6-A1AC-F3E0C3157BE1}</Project>
+      <Name>Flowers</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

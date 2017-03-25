@@ -1,9 +1,0 @@
-C:\Users\Mishi\projects\Flowers\Flowers.DAL\bin\Debug\Flowers.DAL.dll
-C:\Users\Mishi\projects\Flowers\Flowers.DAL\bin\Debug\Flowers.DAL.pdb
-C:\Users\Mishi\projects\Flowers\Flowers.DAL\bin\Debug\Dapper.dll
-C:\Users\Mishi\projects\Flowers\Flowers.DAL\bin\Debug\Flowers.BL.dll
-C:\Users\Mishi\projects\Flowers\Flowers.DAL\bin\Debug\Flowers.BL.pdb
-C:\Users\Mishi\projects\Flowers\Flowers.DAL\bin\Debug\Dapper.xml
-C:\Users\Mishi\projects\Flowers\Flowers.DAL\obj\Debug\Flowers.DAL.csprojResolveAssemblyReference.cache
-C:\Users\Mishi\projects\Flowers\Flowers.DAL\obj\Debug\Flowers.DAL.dll
-C:\Users\Mishi\projects\Flowers\Flowers.DAL\obj\Debug\Flowers.DAL.pdb

@@ -91,9 +91,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Flowers.BL\Flowers.BL.csproj">
+    <ProjectReference Include="..\Flowers\Flowers.csproj">
       <Project>{A65A1312-2529-4FC6-A1AC-F3E0C3157BE1}</Project>
-      <Name>Flowers.BL</Name>
+      <Name>Flowers</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

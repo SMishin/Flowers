@@ -1,13 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
-using Flowers.BL.Products;
 using Flowers.BL.Products.Flowers;
 
 namespace Flowers.DAL.Products.Flowers
 {
-	public class FlowersReadOnlyStore : IFlowersReadOnlyStore
+    public class FlowersReadOnlyStore : IFlowersReadOnlyStore
 	{
 		protected readonly SqlConnectionHelper SqlConnectionHelper;
 

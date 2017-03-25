@@ -1,4 +1,4 @@
-﻿namespace Flowers.BL.Products
+﻿namespace Flowers.BL.Products.Flowers
 {
 	public enum FlowerType
 	{
