@@ -2,7 +2,8 @@
 using System.Web.Mvc;
 using Flowers.BL.Products;
 using Flowers.BL.Products.Flowers;
-using Flowers.BL.Products.ProductType;
+using Flowers.Products.Flowers;
+using Flowers.Products.ProductType;
 using Flowers.Web.Models.Flowers;
 
 namespace Flowers.Web.Controllers
@@ -31,7 +32,7 @@ namespace Flowers.Web.Controllers
 
 			var data = new FlowersIndexViewModel
 			{
-				Flowes = products.Result,
+				Flowers = products.Result,
 				Paging = new Models.PagingModel
 				{
 					Count = count.Result,

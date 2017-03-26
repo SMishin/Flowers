@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Flowers.BL.Products.ProductType
+namespace Flowers.Products.ProductType
 {
 	public enum ProductType
 	{
@@ -17,6 +17,7 @@ namespace Flowers.BL.Products.ProductType
 			{ProductType.Toys,"Игрушки"},
 			{ProductType.Undefined,"Undefined"}
 		};
+
 		public static string ToFriendlyString(this ProductType me)
 		{
 			return Values[me];

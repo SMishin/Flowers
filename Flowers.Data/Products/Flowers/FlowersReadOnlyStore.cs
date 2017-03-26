@@ -2,8 +2,10 @@
 using System.Threading.Tasks;
 using Dapper;
 using Flowers.BL.Products.Flowers;
+using Flowers.DAL;
+using Flowers.Products.Flowers;
 
-namespace Flowers.DAL.Products.Flowers
+namespace Flowers.Data.Products.Flowers
 {
     public class FlowersReadOnlyStore : IFlowersReadOnlyStore
 	{

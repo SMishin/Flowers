@@ -1,4 +1,5 @@
 ﻿using Flowers.BL.Products.Flowers;
+using Flowers.Products.Flowers;
 
 namespace Flowers.Web.Models.Flowers
 {
@@ -6,10 +7,10 @@ namespace Flowers.Web.Models.Flowers
 	{
 		public FlowersIndexViewModel()
 		{
-			Flowes = new Flower[0];
+			Flowers = new Flower[0];
 			Paging = new PagingModel();
 		}
-		public Flower[] Flowes { get; set; }
+		public Flower[] Flowers { get; set; }
 		public PagingModel Paging { get; set; }
 	}
 }

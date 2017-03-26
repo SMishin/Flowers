@@ -1,8 +1,8 @@
-namespace Flowers.BL.Products.ProductType
+namespace Flowers.Products.ProductType
 {
 	public static class ProductTypeHelper
 	{
-		public static ProductType FromString(string value)
+		public static global::Flowers.Products.ProductType.ProductType FromString(string value)
 		{
 			switch (value)
 			{
@@ -12,11 +12,11 @@ namespace Flowers.BL.Products.ProductType
 					}
 				case "toys":
 					{
-						return ProductType.Toys;
+						return global::Flowers.Products.ProductType.ProductType.Toys;
 					}
 				default:
 					{
-						return ProductType.Undefined;
+						return global::Flowers.Products.ProductType.ProductType.Undefined;
 					}
 			}
 		}

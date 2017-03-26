@@ -1,10 +1,11 @@
 ﻿using System.Threading.Tasks;
 
-namespace Flowers.BL.Products.Flowers
+namespace Flowers.Products.Flowers
 {
 	public interface IFlowersManager
 	{
-		Task<int> SaveAsync(Flower product);
+        Task<Flower[]> GetPublishedWithMainImageAsync(int page = 1);
+        Task<int> SaveAsync(Flower product);
 		Task RemoveAsync(int id);
 	}
 }

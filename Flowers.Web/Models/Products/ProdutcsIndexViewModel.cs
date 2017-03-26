@@ -1,5 +1,5 @@
 ﻿using Flowers.BL.Products;
-using Flowers.BL.Products.ProductType;
+using Flowers.Products.ProductType;
 
 namespace Flowers.Web.Models.Products
 {

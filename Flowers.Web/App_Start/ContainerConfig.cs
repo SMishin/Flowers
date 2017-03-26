@@ -5,8 +5,10 @@ using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
 using Flowers.BL.Products;
 using Flowers.BL.Products.Flowers;
+using Flowers.Data.Products.Flowers;
 using Flowers.DAL.Products;
 using Flowers.DAL.Products.Flowers;
+using Flowers.Products.Flowers;
 
 namespace Flowers.Web
 {

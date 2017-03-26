@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Http;
-using Flowers.BL.Products.Flowers;
+using Flowers.Products.Flowers;
 
 namespace Flowers.Api.Products
 {
@@ -16,11 +16,19 @@ namespace Flowers.Api.Products
 			_flowersStore = flowersStore;
 		}
 
-		[HttpGet]
-		[Route("flowers")]
-		public async Task<IHttpActionResult> Get()
+        [HttpGet]
+        [Route("flowers")]
+        public async Task<IHttpActionResult> Get()
+        {
+            var data = await _flowersStore.GetAsync();
+            return Ok(data);
+        }
+
+        [HttpGet]
+		[Route("flowers/published")]
+		public async Task<IHttpActionResult> GetPublishedWithMainImageAsync(int page = 1)
 		{
-			var data = await _flowersStore.GetAsync();
+			var data = await _flowersManager.GetPublishedWithMainImageAsync(page);
 			return Ok(data);
 		}
 

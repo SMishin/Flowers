@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Flowers.BL.Products;
 using System.Web.Mvc;
-using Flowers.BL.Products.ProductType;
+using Flowers.Products.ProductType;
 using Flowers.Web.Models.Products;
 
 namespace Flowers.Web.Controllers

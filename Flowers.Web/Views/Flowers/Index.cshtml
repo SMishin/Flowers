@@ -1,131 +1,147 @@
-﻿@using Flowers.BL.Products.ProductType
+﻿@using Flowers.Api.Config
+@using Flowers.Products.Flowers
+@using Flowers.Products.ProductType
 @model Flowers.Web.Models.Flowers.FlowersIndexViewModel
 
 <div class="columns-container">
-	<div id="columns" class="container">
-		<div class="row">
-			<div class="large-left col-sm-12">
-				<div class="row">
-					<div id="center_column" class="center_column col-xs-12 col-sm-9 accordionBox">
-						<h1 class="page-heading product-listing">
-							<span class="cat-name">
-								@ProductType.Flowers.ToFriendlyString()
-							</span>
-							<span class="heading-counter">
-								Всего @Model.Paging.Count
-								@{
-									var lastNumber = Model.Paging.Count % 10;
+    <div id="columns" class="container">
+        <div class="row">
+            <div class="large-left col-sm-12">
+                <div class="row">
+                    <div id="center_column" class="center_column col-xs-12 col-sm-9 accordionBox">
+                        <h1 class="page-heading product-listing">
+                            <span class="cat-name">
+                                @ProductType.Flowers.ToFriendlyString()
+                            </span>
+                            <span class="heading-counter">
+                                Всего @Model.Paging.Count
+                                @{
+                                    var lastNumber = Model.Paging.Count % 10;
 
-									if (lastNumber == 1)
-									{
-										<text>
-											наименование
-										</text>
-									}
-									else if (lastNumber > 1 && lastNumber < 5)
-									{
-										<text>
-											наименования
-										</text>
-									}
-									else if (lastNumber == 0 || lastNumber >= 5)
-									{
-										<text>
-											наименований
-										</text>
-									}
+                                    if (lastNumber == 1)
+                                    {
+                                        <text>
+                                            наименование
+                                        </text>
+                                    }
+                                    else if (lastNumber > 1 && lastNumber < 5)
+                                    {
+                                        <text>
+                                            наименования
+                                        </text>
+                                    }
+                                    else if (lastNumber == 0 || lastNumber >= 5)
+                                    {
+                                        <text>
+                                            наименований
+                                        </text>
+                                    }
 
-								}
-							</span>
+                                }
+                            </span>
 
-						</h1>
+                        </h1>
 
-						@*@{
-								Html.RenderPartial("__ListFilter");
-							}*@
+                        <div id="product_list_container">
+                            @*@{
+                                    Html.RenderPartial("__ListFilter");
+                                }*@
 
+                            @{
+                                Html.RenderPartial("_List", Model.Flowers);
+                            }
+                        </div>
 
+                        @if (Model.Paging.Count > Model.Flowers.Length)
+                        {
 
-						@{
-							Html.RenderPartial("_List", Model.Flowes);
-						}
+                            Html.RenderPartial("_Paging", Model.Paging, new ViewDataDictionary
+                            {
+                                { "BaseUrl", ProductType.Flowers.ToString().ToLower()}
+                            });
 
+                        }
 
-						@if (Model.Paging.Count > Model.Flowes.Length)
-						{
+                    </div>
+                    <div id="left_column" class="column col-xs-12 col-sm-3">
+                        <section id="layered_block_left" class="block">
+                            <h4 class="title_block">
+                                Каталог
+                            </h4>
+                            <div class="block_content">
+                                <form action="#" id="layered_form">
+                                    <div class="layered_filter">
+                                        <ul id="ul_layered_manufacturer_0" class="col-lg-12 layered_filter_ul">
+                                            <li class="nomargin hiddable col-lg-12">
+                                                <a href="/flowers">
+                                                    <b>
+                                                        Цветы
+                                                    </b>
+                                                </a>
+                                                <ul id="ul_layered_quantity_0" class="col-lg-12 layered_filter_ul">
 
-							Html.RenderPartial("_Paging", Model.Paging, new ViewDataDictionary
-								{
-									{ "BaseUrl", ProductType.Flowers.ToString().ToLower()}
-								});
+                                                    <li class="nomargin hiddable col-lg-12">
+                                                        <input type="checkbox" class="checkbox" name="layered_quantity_0" id="layered_quantity_0" value="0">
+                                                        <label for="layered_quantity_0">
+                                                            <strong>
+                                                                @FlowerType.Rose.ToFriendlyString()
+                                                            </strong>
+                                                            @*<span>
+                                                                    count
+                                                                </span>*@
 
+                                                        </label>
+                                                    </li>
+                                                    <li class="nomargin hiddable col-lg-12">
+                                                        <input type="checkbox" class="checkbox" name="layered_quantity_1" id="layered_quantity_1" value="1">
+                                                        <label for="layered_quantity_1">
+                                                            <strong>
+                                                                @FlowerType.Chrysanthemum.ToFriendlyString()
+                                                            </strong>
+                                                            @*<span>
+                                                                    count
+                                                                </span>*@
 
-						}
-					</div>
-					<div id="left_column" class="column col-xs-12 col-sm-3">
-						<section id="layered_block_left" class="block">
-							<h4 class="title_block">
-								Каталог
-							</h4>
-							<div class="block_content">
-								<form action="#" id="layered_form">
-									<div class="layered_filter">
-										<ul id="ul_layered_manufacturer_0" class="col-lg-12 layered_filter_ul">
-											<li class="nomargin hiddable col-lg-12">
-												<a href="/flowers">
-													<b>
-														Цветы
-													</b>
-												</a>
-												<ul id="ul_layered_quantity_0" class="col-lg-12 layered_filter_ul">
-													
-													
+                                                        </label>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            @*<li class="nomargin hiddable col-lg-12">
 
+                                                    <label for="layered_manufacturer_4">
+                                                        <a href="/toys">
+                                                            <strong>
+                                                                Игрушки
+                                                            </strong>
+                                                        </a>
+                                                    </label>
+                                                </li>*@
 
-													<li class="nomargin hiddable col-lg-12">
-														<input type="checkbox" class="checkbox" name="layered_quantity_0" id="layered_quantity_0" value="0">
-														<label for="layered_quantity_0">
-															<a href="https://ld-prestashop.template-help.com/prestashop_58383/index.php?id_category=14&amp;controller=category&amp;productId_lang=1#availability-not_available" data-rel="nofollow">
-																<strong>
-																	Not available
-																</strong>
-																<span>
-																	1
-																</span>
-															</a>
-														</label>
-													</li>
-													<li class="nomargin hiddable col-lg-12">
-														<input type="checkbox" class="checkbox" name="layered_quantity_1" id="layered_quantity_1" value="1">
-														<label for="layered_quantity_1">
-															<a href="https://ld-prestashop.template-help.com/prestashop_58383/index.php?id_category=14&amp;controller=category&amp;productId_lang=1#availability-in_stock" data-rel="nofollow">
-																<strong>In stock</strong>
-																<span>19</span>
-															</a>
-														</label>
-													</li>
-												</ul>
-											</li>
-											@*<li class="nomargin hiddable col-lg-12">
+                                        </ul>
+                                    </div>
 
-													<label for="layered_manufacturer_4">
-														<a href="/toys">
-															<strong>
-																Игрушки
-															</strong>
-														</a>
-													</label>
-												</li>*@
-
-										</ul>
-									</div>
-
-								</form>
-							</div>
-						</section>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+@section scripts{
+    <script src="/static/node_modules/systemjs/dist/system.src.js"></script>
+    <script src="/static/app/public/systemjs.config.js"></script>
+
+    <script>
+
+        window.__INITIAL_STATE__ = JSON.parse('@Html.Raw(HttpUtility.JavaScriptStringEncode(Newtonsoft.Json.JsonConvert.SerializeObject(Model, JsonConfiguration.SerializerSettings)))');
+
+        (function() {
+            System.import('app/public/app')
+                .then(null, console.error.bind(console));
+        }());
+
+    </script>
+}
