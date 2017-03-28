@@ -1,7 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Flowers.BL.Products;
 
-namespace Flowers.BL.Products
+namespace Flowers.Products
 {
 	public interface IProductsReadOnlyStore 
 	{

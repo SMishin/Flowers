@@ -9,17 +9,20 @@ class Paging extends React.Component {
 		console.log(arguments);
 		this.state = {
 			model: props.route.model
-		}
+		};
+
+		this.unsubsctibe = store.subscribe(() => this.listener());
 	}
 
 	onClick(page) {
-
 		store.changePage(page);
+	}
 
-		this.setState((prevState, props) => {
-			let model = prevState.model;
-			model.page = page;
-			return model;
+	listener() {
+		let state = store.getState();
+
+		this.setState({
+			model: state.paging
 		});
 	}
 
@@ -28,6 +31,7 @@ class Paging extends React.Component {
 	}
 
 	componentWillUnmount() {
+		this.unsubsctibe();
 	}
 
 	render() {

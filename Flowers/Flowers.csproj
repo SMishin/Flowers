@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PageResult.cs" />
     <Compile Include="Products\Flowers\Flower.cs" />
     <Compile Include="Products\Flowers\FlowersManager.cs" />
     <Compile Include="Products\Flowers\FlowerType.cs" />

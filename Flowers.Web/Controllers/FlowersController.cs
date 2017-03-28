@@ -1,9 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Mvc;
-using Flowers.BL.Products;
-using Flowers.BL.Products.Flowers;
+using Flowers.Products;
 using Flowers.Products.Flowers;
-using Flowers.Products.ProductType;
 using Flowers.Web.Models.Flowers;
 
 namespace Flowers.Web.Controllers
@@ -11,39 +9,29 @@ namespace Flowers.Web.Controllers
 	//[RoutePrefix("flowers")]
 	public class FlowersController : Controller
 	{
-		private int _pageSize = 6;
 		private readonly IFlowersReadOnlyStore _flowersReadOnlyStore;
 		private readonly IProductsReadOnlyStore _productsReadOnlyStore;
+	    private readonly IFlowersManager _flowersManager;
 
-		public FlowersController(IFlowersReadOnlyStore flowersReadOnlyStore, IProductsReadOnlyStore productsReadOnlyStore)
+	    public FlowersController(IFlowersReadOnlyStore flowersReadOnlyStore, IProductsReadOnlyStore productsReadOnlyStore, IFlowersManager flowersManager)
 		{
 			_flowersReadOnlyStore = flowersReadOnlyStore;
 			_productsReadOnlyStore = productsReadOnlyStore;
+		    _flowersManager = flowersManager;
 		}
 
 
 		[HttpGet]
 		public async Task<ActionResult> Index(int page = 1)
 		{
-			var products = _flowersReadOnlyStore.GetPublishedWithMainImageAsync((page - 1) * _pageSize, _pageSize);
-			var count = _productsReadOnlyStore.CountPublishedAsync(ProductType.Flowers);
+		    var products = await _flowersManager.GetPublishedWithMainImageAsync(page);
 
-			await Task.WhenAll(products, count);
+		    if (products.Items.Length == 0)
+		    {
+		        return HttpNotFound();
+		    }
 
-			var data = new FlowersIndexViewModel
-			{
-				Flowers = products.Result,
-				Paging = new Models.PagingModel
-				{
-					Count = count.Result,
-					Page = page,
-					PageSize = _pageSize,
-					ItemsCount = products.Result.Length
-				}
-
-			};
-
-			return View(data);
+		    return View(products);
 		}
 
 

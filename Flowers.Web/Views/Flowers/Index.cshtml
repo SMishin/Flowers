@@ -1,7 +1,8 @@
 ﻿@using Flowers.Api.Config
 @using Flowers.Products.Flowers
 @using Flowers.Products.ProductType
-@model Flowers.Web.Models.Flowers.FlowersIndexViewModel
+@using Flowers.Web.Models
+@model PagedResult<Flower>
 
 <div class="columns-container">
     <div id="columns" class="container">
@@ -14,9 +15,9 @@
                                 @ProductType.Flowers.ToFriendlyString()
                             </span>
                             <span class="heading-counter">
-                                Всего @Model.Paging.Count
+                                Всего @Model.TotalCount
                                 @{
-                                    var lastNumber = Model.Paging.Count % 10;
+                                    var lastNumber = Model.Items.Length % 10;
 
                                     if (lastNumber == 1)
                                     {
@@ -47,15 +48,22 @@
                                     Html.RenderPartial("__ListFilter");
                                 }*@
 
-                            @{
-                                Html.RenderPartial("_List", Model.Flowers);
-                            }
+                            <div id="product_list_items_container">
+                                @{ Html.RenderPartial("_List", Model.Items); }
+                            </div>
+
                         </div>
 
-                        @if (Model.Paging.Count > Model.Flowers.Length)
+                        @if (Model.TotalCount > Model.Items.Length)
                         {
-
-                            Html.RenderPartial("_Paging", Model.Paging, new ViewDataDictionary
+                            Html.RenderPartial("_Paging", new PagingModel
+                            {
+                                TotalCount = Model.TotalCount,
+                                ItemsCount = Model.Items.Length,
+                                Page = Model.Page,
+                                PageSize = Model.PageSize
+                            }, 
+                            new ViewDataDictionary
                             {
                                 { "BaseUrl", ProductType.Flowers.ToString().ToLower()}
                             });

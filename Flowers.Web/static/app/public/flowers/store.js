@@ -6,24 +6,19 @@ let productsService = new ProductsService(new HttpClient());
 
 function changePage(prevState, newPage, updateStore) {
 
+	prevState.loading = true;
+	updateStore(prevState);
+
 	productsService.get(newPage).then(function (data) {
-
-		console.log(data);
-
-		prevState.preloaded = false;
 		prevState.flowers = data;
 		prevState.paging.page = newPage;
+		prevState.paging.itemsCount = data.length;
+		prevState.loading = false;
 
-		updateStore(prevState);
+		setTimeout(function () {
+			updateStore(prevState);
+		},150);
 	});
 }
 
-
-let state;
-if (window.__INITIAL_STATE__) {
-	state = window.__INITIAL_STATE__;
-	state.preloaded = true;
-} else {
-	state = {items: []};
-}
-export default createStore(state, [changePage]);
+export default createStore(window.__INITIAL_STATE__ || {items: []} , [changePage]);

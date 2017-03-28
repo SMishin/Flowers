@@ -47,8 +47,12 @@ export default function template() {
 		);
 	}
 
-	return <ul className="product_list grid row c-count-3">
-		{liItems}
-	</ul>
+	return <div id="product_list_items_container">
+		{this.state.loading && <div className="loader"></div>}
+		<ul className="product_list grid row c-count-3">
+			{liItems}
+		</ul>
+	</div>
+	;
 }
 

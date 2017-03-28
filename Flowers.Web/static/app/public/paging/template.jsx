@@ -7,7 +7,7 @@ export default function template() {
 		baseUrl = window.location.pathname
 		;
 
-	let pageCount = 5,
+	let pageCount = 3,
 		from = model.page - 2 <= 0 ? 1 : model.page - 2,
 		to = from + pageCount
 		;
@@ -74,8 +74,14 @@ export default function template() {
 		)
 	}
 
-	return <ul className="pagination">
-		{liItems}
-	</ul>
+	return <div className="pagination clearfix">
+
+		<ul className="pagination">
+			{liItems}
+		</ul>
+		<div className="product-count">
+			{model.page * model.pageSize - (model.pageSize - model.itemsCount)} из {model.count}
+		</div>
+	</div>
 }
 

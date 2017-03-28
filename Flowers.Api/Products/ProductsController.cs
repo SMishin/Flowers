@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Flowers.BL.Products;
+using Flowers.Products;
 
 namespace Flowers.Api.Products
 {

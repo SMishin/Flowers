@@ -7,7 +7,8 @@ class FlowerList extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			items: store.getState().flowers
+			items: store.getState().flowers,
+			loading: false
 		};
 
 		this.unsubsctibe = store.subscribe(() => this.listener());
@@ -15,8 +16,10 @@ class FlowerList extends React.Component {
 	}
 
 	listener() {
+		let state = store.getState();
 		this.setState({
-			items: store.getState().flowers
+			items: state.flowers,
+			loading : state.loading
 		});
 	}
 

@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Flowers.BL.Products;
 using System.Web.Mvc;
+using Flowers.Products;
 using Flowers.Products.ProductType;
 using Flowers.Web.Models.Products;
 

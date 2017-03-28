@@ -6,17 +6,9 @@ import FlowerList from './flowers/list/index'
 import flowerStore from './flowers/store';
 
 let flowerStoreState = flowerStore.getState();
-console.log(flowerStoreState);
-if (flowerStoreState.preloaded) {
-	let unsubscribe = flowerStore.subscribe(function () {
-		if (!flowerStore.getState().preloaded) {
-			unsubscribe();
-			ReactDOM.render(<FlowerList />,
-				document.getElementById('product_list_container'));
-		}
 
-	});
-}
+ReactDOM.render(<FlowerList />,
+	document.getElementById('product_list_container'));
 
 ReactDOM.render(
 	<Router history={browserHistory}>
