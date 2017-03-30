@@ -1,17 +1,57 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<title>500 Server Error</title>
-	<link rel="stylesheet" type="text/css" href="/static/out/errors/styles/error.css" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <title>500 Server Error</title>
+    <style>
+        #page {
+            font-size: 122%;
+            width: 720px;
+            margin: 144px auto 0 auto;
+            text-align: left;
+            line-height: 1.2;
+        }
+
+        #message {
+            padding-right: 400px;
+            min-height: 360px;
+            background: transparent url(/static/app/img/500.1.jpg) right top no-repeat;
+            background-position-x: 30%;
+        }
+
+        h1 {
+            font-size: 300%;
+            font-family: 'Trebuchet MS', Verdana, sans-serif;
+            color: #000;
+        }
+
+        #refresh {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    </style>
+
+
 </head>
-<body class="error">
-	<div class="error_blob">
-		<a href="/" class="logo"><img src="/static/out/errors/img/error_logo.png" alt="" /></a>
-		<img src="/static/out/errors/img/500/error_500.svg" alt="" />
-		<h1 class="bordered white">Internal Server Error</h1>
-		<p>We're experiencing an internal server problem.<br />Please try back later.</p>
-	</div>
+<body>
+    <div id="page">
+        <div id="message">
+            <h1>Внутренняя ошибка 500</h1>
+            <p>Попробуйте позже</p>
+            <p>
+                <span id="refresh">
+                    Обновить
+                </span>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('refresh').addEventListener('click',
+            function () {
+                window.location.reload();
+            });
+    </script>
 </body>
 </html>

@@ -35,6 +35,13 @@ namespace Flowers.Products.Flowers
 
             await Task.WhenAll(dataTask, countTask);
 
+            if (dataTask.Result.Length == 0)
+            {
+                page = countTask.Result / _pageSize + (countTask.Result % _pageSize > 0 ? 1 : 0);
+                dataTask = _flowersStore.GetPublishedWithMainImageAsync((page - 1) * _pageSize, _pageSize);
+                await dataTask;
+            }
+
             return new PagedResult<Flower>
             {
                 Items = dataTask.Result,

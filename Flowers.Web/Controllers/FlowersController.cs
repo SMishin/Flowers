@@ -25,12 +25,6 @@ namespace Flowers.Web.Controllers
 		public async Task<ActionResult> Index(int page = 1)
 		{
 		    var products = await _flowersManager.GetPublishedWithMainImageAsync(page);
-
-		    if (products.Items.Length == 0)
-		    {
-		        return HttpNotFound();
-		    }
-
 		    return View(products);
 		}
 

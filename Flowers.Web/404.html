@@ -1,18 +1,39 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-	<link rel="stylesheet" type="text/css" href="/static/out/errors/styles/error.css" />
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
     <title>404 Page Not Found</title>
+    <style>
+        #page {
+            font-size: 122%;
+            width: 720px;
+            margin: 144px auto 0 auto;
+            text-align: left;
+            line-height: 1.2;
+        }
+
+        #message {
+            padding-right: 400px;
+            min-height: 360px;
+            background: transparent url(/static/app/img/404.1.png) right top no-repeat;
+        }
+
+        h1 {
+            font-size: 300%;
+            font-family: 'Trebuchet MS', Verdana, sans-serif;
+            color: #000;
+        }
+
+    </style>
 </head>
-<body class="error">
-    <div class="error_blob">
-		<a href="/" class="logo"><img src="/static/out/errors/img/error_logo.png" alt="" /></a>
-        <img src="/static/out/errors/img//404/error_404.svg" />
-        <h1 class="bordered white">PAGE NOT FOUND</h1>
-        <p>Sorry, the page you requested was not found.<br/> Please verify the URL and try again.</p>
-        <a href="/" class="button filled">Back to main page</a>
+<body>
+    <div id="page">
+        <div id="message">
+            <h1>404</h1>
+            <p>Страница не найдена</p>
+            <p><a href="/">Начать с начала</a></p>
+        </div>
     </div>
 </body>
 </html>
