@@ -7,7 +7,7 @@ class FlowerList extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			items: store.getState().flowers,
+			items: store.getState().items,
 			loading: false
 		};
 
@@ -18,7 +18,7 @@ class FlowerList extends React.Component {
 	listener() {
 		let state = store.getState();
 		this.setState({
-			items: state.flowers,
+			items: state.items,
 			loading : state.loading
 		});
 	}

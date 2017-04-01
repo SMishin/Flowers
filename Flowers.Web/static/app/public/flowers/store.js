@@ -10,13 +10,8 @@ function changePage(prevState, newPage, updateStore) {
 	updateStore(prevState);
 
 	productsService.get(newPage).then(function (data) {
-		prevState.flowers = data;
-		prevState.paging.page = newPage;
-		prevState.paging.itemsCount = data.length;
-		prevState.loading = false;
-
 		setTimeout(function () {
-			updateStore(prevState);
+			updateStore(data);
 		},150);
 	});
 }

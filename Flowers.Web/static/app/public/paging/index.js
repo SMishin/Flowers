@@ -22,7 +22,7 @@ class Paging extends React.Component {
 		let state = store.getState();
 
 		this.setState({
-			model: state.paging
+			model: state
 		});
 	}
 

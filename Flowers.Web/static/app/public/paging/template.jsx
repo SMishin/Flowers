@@ -26,9 +26,9 @@ export default function template() {
 		)
 	}
 
-	if (to > model.count / model.pageSize) {
-		to = model.count / model.pageSize;
-		if (model.count % model.pageSize != 0) {
+	if (to > model.totalCount / model.pageSize) {
+		to = model.totalCount / model.pageSize;
+		if (model.totalCount % model.pageSize != 0) {
 			to++;
 		}
 	}
@@ -62,7 +62,7 @@ export default function template() {
 	}
 
 
-	if (model.page < model.count / model.pageSize) {
+	if (model.page < model.totalCount / model.pageSize) {
 		liItems.push(
 			<li key={model.page + pageCount + 1}
 			    id="pagination_next_bottom" className="pagination_next">
@@ -80,7 +80,7 @@ export default function template() {
 			{liItems}
 		</ul>
 		<div className="product-count">
-			{model.page * model.pageSize - (model.pageSize - model.itemsCount)} из {model.count}
+			{model.page * model.pageSize - (model.pageSize - model.items.length)} из {model.totalCount}
 		</div>
 	</div>
 }

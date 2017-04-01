@@ -10,11 +10,15 @@ let flowerStoreState = flowerStore.getState();
 ReactDOM.render(<FlowerList />,
 	document.getElementById('product_list_container'));
 
-ReactDOM.render(
-	<Router history={browserHistory}>
-		<Route path="/flowers" component={Paging} model={flowerStoreState.paging}>
-		</Route>
-	</Router>, document.getElementById('pagination_bottom'));
+let elem= document.getElementById('pagination_bottom');
+
+if(elem) {
+	ReactDOM.render(
+		<Router history={browserHistory}>
+			<Route path="/flowers" component={Paging} model={flowerStoreState}>
+			</Route>
+		</Router>, elem);
+}
 
 // ReactDOM.render(<Paging model={flowerStoreState.paging}/>,
 // 	document.getElementById('pagination_bottom'));
