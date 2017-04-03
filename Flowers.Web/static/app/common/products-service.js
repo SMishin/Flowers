@@ -7,13 +7,25 @@ class ProductsService {
 		this._url = '/api/products/flower';
 	}
 
-	get(page) {
+	get(filter) {
 
-		// if (id) {
-		// 	return this._http.get(this._url + '/' + id);
-		// }
+		if (filter.id) {
+			return this._http.get(this._url + '/' + id);
+		}
 
-		return this._http.get(this._url + 's/published?page=' + page);
+		let qString = '';
+
+		if (filter.types && filter.types.length > 0) {
+			qString += '?ft=' + filter.types.reduce(function (prev, current) {
+					return `${prev},${current}`;
+				})
+		}
+
+		if (filter.page) {
+			qString += `${qString === '' ? '?' : '&'}page=${filter.page}`;
+		}
+
+		return this._http.get(this._url + 's/published' + qString);
 	}
 
 	save(data, options) {

@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="PageResult.cs" />
     <Compile Include="Products\Flowers\Flower.cs" />
+    <Compile Include="Products\Flowers\FlowersFilter.cs" />
     <Compile Include="Products\Flowers\FlowersManager.cs" />
     <Compile Include="Products\Flowers\FlowerType.cs" />
     <Compile Include="Products\Flowers\FlowerVariant.cs" />

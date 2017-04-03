@@ -19,7 +19,7 @@ class Paging extends React.Component {
 	}
 
 	listener() {
-		let state = store.getState();
+		let state = store.getState().flowers;
 
 		this.setState({
 			model: state

@@ -4,16 +4,26 @@ import HttpClient from '../../core/http-client';
 
 let productsService = new ProductsService(new HttpClient());
 
-function changePage(prevState, newPage, updateStore) {
+function updateFilter(prevState, filter, updateStore) {
 
 	prevState.loading = true;
 	updateStore(prevState);
 
-	productsService.get(newPage).then(function (data) {
+	productsService.get(filter).then(function (data) {
+
 		setTimeout(function () {
-			updateStore(data);
-		},150);
+			updateStore({
+				flowers : data,
+				filter: filter,
+				loading:false
+			});
+		}, 150);
 	});
 }
 
-export default createStore(window.__INITIAL_STATE__ || {items: []} , [changePage]);
+function changePage(prevState, newPage, updateStore) {
+	prevState.filter.page = newPage;
+	return updateFilter(prevState, prevState.filter, updateStore);
+}
+
+export default createStore(window.__INITIAL_STATE__ || {}, [updateFilter, changePage]);

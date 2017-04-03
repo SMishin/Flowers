@@ -1,9 +1,10 @@
-﻿@using Flowers.Api.Config
+﻿@using System.Web.Mvc.Html
+@using Flowers.Api.Config
 @using Flowers.Products.Flowers
 @using Flowers.Products.ProductType
 @using Flowers.Web.Core
 @using Flowers.Web.Models
-@model PagedResult<Flower>
+@model Flowers.Web.Models.Flowers.FlowersIndexViewModel
 
 <div class="columns-container">
     <div id="columns" class="container">
@@ -16,9 +17,9 @@
                                 @ProductType.Flowers.ToFriendlyString()
                             </span>
                             <span class="heading-counter">
-                                Всего @Model.TotalCount
+                                Всего @Model.Flowers.TotalCount
                                 @{
-                                    var lastNumber = Model.Items.Length % 10;
+                                    var lastNumber = Model.Flowers.Items.Length % 10;
 
                                     if (lastNumber == 1)
                                     {
@@ -50,19 +51,19 @@
                                 }*@
 
                             <div id="product_list_items_container">
-                                @{ Html.RenderPartial("_List", Model.Items); }
+                                @{ Html.RenderPartial("_List", Model.Flowers.Items); }
                             </div>
 
                         </div>
 
-                        @if (Model.TotalCount > Model.Items.Length)
+                        @if (Model.Flowers.TotalCount > Model.Flowers.Items.Length)
                         {
                             Html.RenderPartial("_Paging", new PagingModel
                             {
-                                TotalCount = Model.TotalCount,
-                                ItemsCount = Model.Items.Length,
-                                Page = Model.Page,
-                                PageSize = Model.PageSize
+                                TotalCount = Model.Flowers.TotalCount,
+                                ItemsCount = Model.Flowers.Items.Length,
+                                Page = Model.Flowers.Page,
+                                PageSize = Model.Flowers.PageSize
                             },
                             new ViewDataDictionary
                             {
@@ -87,33 +88,38 @@
                                                         Цветы
                                                     </b>
                                                 </a>
-                                                @*<ul id="ul_layered_quantity_0" class="col-lg-12 layered_filter_ul">
+                                                <div id="flowers-filter">
+                                                    <ul class="col-lg-12 layered_filter_ul">
 
-                                                    <li class="nomargin hiddable col-lg-12">
-                                                        <input type="checkbox" class="checkbox" name="layered_quantity_0" id="layered_quantity_0" value="0">
-                                                        <label for="layered_quantity_0">
-                                                            <strong>
-                                                                @FlowerType.Rose.ToFriendlyString()
-                                                            </strong>
-                                                            @*<span>
-                                                                    count
-                                                                </span>
+                                                        <li class="nomargin hiddable col-lg-12">
+                                                            <input type="checkbox" class="checkbox" name="layered_quantity_0" id="layered_quantity_0" 
+                                                                   checked="@Model.Filter.Types.Contains(FlowerType.Rose)"
+                                                                   value="@FlowerType.Rose">
+                                                            <label for="layered_quantity_0">
+                                                                <strong>
+                                                                    @FlowerType.Rose.ToFriendlyString()
+                                                                </strong>
+                                                                @*<span>
+                                                                        count
+                                                                    </span>*@
 
-                                                        </label>
-                                                    </li>
-                                                    <li class="nomargin hiddable col-lg-12">
-                                                        <input type="checkbox" class="checkbox" name="layered_quantity_1" id="layered_quantity_1" value="1">
-                                                        <label for="layered_quantity_1">
-                                                            <strong>
-                                                                @FlowerType.Chrysanthemum.ToFriendlyString()
-                                                            </strong>
-                                                            @*<span>
-                                                                    count
-                                                                </span>
+                                                            </label>
+                                                        </li>
+                                                        <li class="nomargin hiddable col-lg-12">
+                                                            <input type="checkbox" class="checkbox" name="layered_quantity_1" id="layered_quantity_1" value="@FlowerType.Chrysanthemum">
+                                                            <label for="layered_quantity_1">
+                                                                <strong>
+                                                                    @FlowerType.Chrysanthemum.ToFriendlyString()
+                                                                </strong>
+                                                                @*<span>
+                                                                        count
+                                                                    </span>*@
 
-                                                        </label>
-                                                    </li>
-                                                </ul>*@
+                                                            </label>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
                                             </li>
                                             @*<li class="nomargin hiddable col-lg-12">
 
@@ -140,7 +146,7 @@
 </div>
 
 @section scripts{
-   
+
 
     <script>
         window.__INITIAL_STATE__ = JSON.parse('@Html.Raw(HttpUtility.JavaScriptStringEncode(Newtonsoft.Json.JsonConvert.SerializeObject(Model, JsonConfiguration.SerializerSettings)))');
