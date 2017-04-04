@@ -3,8 +3,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
 using Flowers.BL.Products;
+using Flowers.DAL;
+using Flowers.DAL.Products;
+using Flowers.Products;
 
-namespace Flowers.DAL.Products
+namespace Flowers.Data.Products
 {
 	public class ProductsStore : ProductsReadOnlyStore, IProductsStore
 	{
