@@ -1,4 +1,4 @@
-﻿using Flowers.BL.Products;
+﻿using Flowers.Products;
 using Flowers.Products.ProductType;
 
 namespace Flowers.Web.Models.Products

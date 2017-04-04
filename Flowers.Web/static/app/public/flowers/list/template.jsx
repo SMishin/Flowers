@@ -14,8 +14,8 @@ export default function template() {
 						<div className="left-block">
 							<div className="product-image-container">
 								<a className="product_img_link"
-								   href="/@item.Type.ToString().ToLower()/@item.Id"
-								   title="@item.Name">
+								   href={item.typeString + '/' + item.id}
+								   title={item.name}>
 									<img className="replace-2x img-responsive"
 									     src={item.imageUrl ? item.imageUrl : "/static/app/img/no_photo.jpg"}
 									     alt={item.name}
@@ -26,7 +26,7 @@ export default function template() {
 						<div className="right-block">
 							<h5 itemProp="name">
 								<a className="product-name"
-								   href={item.type.toString().toLowerCase() + '/' + item.Id}
+								   href={item.typeString + '/' + item.id}
 								   title={item.name}
 								   itemProp="url">
 								<span className="grid-name">
