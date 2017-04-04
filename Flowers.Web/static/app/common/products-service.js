@@ -16,7 +16,7 @@ class ProductsService {
 		let qString = '';
 
 		if (filter.types && filter.types.length > 0) {
-			qString += '?ft=' + filter.types.reduce(function (prev, current) {
+			qString += '?filter=' + filter.types.reduce(function (prev, current) {
 					return `${prev},${current}`;
 				})
 		}

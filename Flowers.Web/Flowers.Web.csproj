@@ -185,6 +185,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ModelBindes\FlowersFilterModelBinder.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Flowers\FlowersIndexViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />

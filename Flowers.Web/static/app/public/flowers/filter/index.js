@@ -2,6 +2,9 @@ import React from 'react'
 import template from './template.jsx'
 import store from '../store'
 
+import { browserHistory } from 'react-router'
+
+
 class FlowerFilter extends React.Component {
 
 	constructor() {
@@ -37,6 +40,18 @@ class FlowerFilter extends React.Component {
 	listener() {
 		let state = store.getState();
 		this.setState(state.filter);
+
+		let qString = '';
+
+		if (state.filter.types && state.filter.types.length > 0) {
+			qString += '?filter=' + state.filter.types.reduce(function (prev, current) {
+					return `${prev},${current}`;
+				})
+		}
+
+		browserHistory.push(window.location.pathname + qString);
+
+
 	}
 
 	componentWillUnmount() {

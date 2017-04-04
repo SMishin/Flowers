@@ -82,7 +82,8 @@
     <Compile Include="Models\HttpPostedData.cs" />
     <Compile Include="Models\HttpPostedField.cs" />
     <Compile Include="Models\HttpPostedFile.cs" />
-    <Compile Include="Products\FlowersController.cs" />
+    <Compile Include="Products\Flowers\FlowersController.cs" />
+    <Compile Include="Products\Flowers\FlowersFilterModelBinder.cs" />
     <Compile Include="Products\ProductsController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

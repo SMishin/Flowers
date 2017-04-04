@@ -106,7 +106,9 @@
                                                             </label>
                                                         </li>
                                                         <li class="nomargin hiddable col-lg-12">
-                                                            <input type="checkbox" class="checkbox" name="layered_quantity_1" id="layered_quantity_1" value="@FlowerType.Chrysanthemum">
+                                                            <input type="checkbox" class="checkbox" name="layered_quantity_1" id="layered_quantity_1" 
+                                                                    checked="@Model.Filter.Types.Contains(FlowerType.Chrysanthemum)"
+                                                                   value="@FlowerType.Chrysanthemum">
                                                             <label for="layered_quantity_1">
                                                                 <strong>
                                                                     @FlowerType.Chrysanthemum.ToFriendlyString()

@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using Flowers.Products;
 using Flowers.Products.Flowers;
+using Flowers.Web.ModelBindes;
 using Flowers.Web.Models.Flowers;
 
 namespace Flowers.Web.Controllers
@@ -29,13 +30,13 @@ namespace Flowers.Web.Controllers
         //}
 
         [HttpGet]
-        public async Task<ActionResult> Index(FlowersFilter filter, int page = 1)
+        public async Task<ActionResult> Index([ModelBinder(typeof(FlowersFilterModelBinder))] FlowersFilter filter, int page = 1)
         {
             var products = await _flowersManager.GetPublishedWithMainImageAsync(page);
             return View(new FlowersIndexViewModel
             {
                 Flowers = products,
-                Filter = filter
+                Filter = filter ?? new FlowersFilter()
             });
         }
 

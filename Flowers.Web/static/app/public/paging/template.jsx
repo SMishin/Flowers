@@ -1,10 +1,17 @@
 import React from 'react'
 import {Link} from 'react-router'
+
+function buildUrl(page) {
+	let baseUrl = window.location.pathname;
+	baseUrl += window.location.search ? window.location.search + '&' : '?';
+	baseUrl += 'page=' + page;
+	return baseUrl
+}
+
 export default function template() {
 
 	let model = this.state.model,
-		liItems = [],
-		baseUrl = window.location.pathname
+		liItems = []
 		;
 
 	let pageCount = 3,
@@ -17,7 +24,7 @@ export default function template() {
 			<li key={model.page - pageCount - 1}
 			    id="pagination_previous_bottom" className="pagination_previous">
 
-				<Link to={baseUrl + '?page=' + (model.page - 1)} onClick={() => this.onClick(model.page - 1)}>
+				<Link to={buildUrl(model.page - 1)} onClick={() => this.onClick(model.page - 1)}>
 					<i className="fa fa-chevron-left"></i>
 					<b>Назад</b>
 				</Link>
@@ -51,7 +58,7 @@ export default function template() {
 				<li
 					key={i}
 				>
-					<Link to={baseUrl + '?page=' + i} onClick={() => this.onClick(i)}>
+					<Link to={buildUrl(i)} onClick={() => this.onClick(i)}>
 									<span>
 										{i}
 									</span>
@@ -66,7 +73,7 @@ export default function template() {
 		liItems.push(
 			<li key={model.page + pageCount + 1}
 			    id="pagination_next_bottom" className="pagination_next">
-				<Link to={baseUrl + '?page=' + (model.page + 1)} onClick={() => this.onClick(model.page + 1)}>
+				<Link to={buildUrl(model.page + 1)} onClick={() => this.onClick(model.page + 1)}>
 					<b>Вперед</b>
 					<i className="fa fa-chevron-right"></i>
 				</Link>

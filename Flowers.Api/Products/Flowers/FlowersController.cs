@@ -1,5 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.ModelBinding;
+using Flowers.Api.Products.Flowers;
 using Flowers.Products.Flowers;
 
 namespace Flowers.Api.Products
@@ -26,7 +28,7 @@ namespace Flowers.Api.Products
 
         [HttpGet]
 		[Route("flowers/published")]
-		public async Task<IHttpActionResult> GetPublishedWithMainImageAsync(FlowersFilter filter, int page = 1)
+		public async Task<IHttpActionResult> GetPublishedWithMainImageAsync([ModelBinder(typeof(FlowersFilterModelBinder))] FlowersFilter filter, int page = 1)
 		{
 			var data = await _flowersManager.GetPublishedWithMainImageAsync(page);
 			return Ok(data);
