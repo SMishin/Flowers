@@ -1,4 +1,4 @@
-export default function createStore(preloadedState, actions) {
+export default function createStore(preloadedState, actions, cloneState) {
 
 	let currentState = preloadedState,
 		currentListeners = [],
@@ -11,7 +11,7 @@ export default function createStore(preloadedState, actions) {
 	}
 
 	function getState() {
-		return JSON.parse(JSON.stringify(currentState));
+		return cloneState && cloneState(currentState) || JSON.parse(JSON.stringify(currentState));
 	}
 
 	function subscribe(listener) {

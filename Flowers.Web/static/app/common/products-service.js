@@ -13,19 +13,7 @@ class ProductsService {
 			return this._http.get(this._url + '/' + id);
 		}
 
-		let qString = '';
-
-		if (filter.types && filter.types.length > 0) {
-			qString += '?filter=' + filter.types.reduce(function (prev, current) {
-					return `${prev},${current}`;
-				})
-		}
-
-		if (filter.page) {
-			qString += `${qString === '' ? '?' : '&'}page=${filter.page}`;
-		}
-
-		return this._http.get(this._url + 's/published' + qString);
+		return this._http.get(this._url + 's/published' + filter.toQueryString());
 	}
 
 	save(data, options) {

@@ -33,24 +33,17 @@ class FlowerFilter extends React.Component {
 			types.splice(index, 1);
 		}
 
-		store.updateFilter({types});
-		this.setState({types});
+		let filter = {types};
+
+		store.updateFilter(filter);
+		this.setState(filter);
 	}
 
 	listener() {
 		let state = store.getState();
 		this.setState(state.filter);
 
-		let qString = '';
-
-		if (state.filter.types && state.filter.types.length > 0) {
-			qString += '?filter=' + state.filter.types.reduce(function (prev, current) {
-					return `${prev},${current}`;
-				})
-		}
-
-		browserHistory.push(window.location.pathname + qString);
-
+		browserHistory.push(window.location.pathname + state.filter.toQueryString());
 
 	}
 

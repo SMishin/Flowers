@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom';
 import template from './template.jsx'
 import store from '../store'
 
@@ -21,6 +22,10 @@ class FlowerList extends React.Component {
 			items: state.flowers.items,
 			loading : state.loading
 		});
+	}
+
+	componentDidUpdate() {
+		ReactDOM.findDOMNode(this).scrollIntoView();
 	}
 
 	componentWillUnmount() {

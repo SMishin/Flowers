@@ -1,6 +1,7 @@
 import createStore from '../createStore';
 import ProductsService from '../../common/products-service';
 import HttpClient from '../../core/http-client';
+import FlowersFilter from './flowersFilter';
 
 let productsService = new ProductsService(new HttpClient());
 
@@ -9,13 +10,15 @@ function updateFilter(prevState, filter, updateStore) {
 	prevState.loading = true;
 	updateStore(prevState);
 
-	productsService.get(filter).then(function (data) {
+	let newFilter = new FlowersFilter(filter);
+
+	productsService.get(newFilter).then(function (data) {
 
 		setTimeout(function () {
 			updateStore({
-				flowers : data,
-				filter: filter,
-				loading:false
+				flowers: data,
+				filter: newFilter,
+				loading: false
 			});
 		}, 150);
 	});
@@ -26,4 +29,12 @@ function changePage(prevState, newPage, updateStore) {
 	return updateFilter(prevState, prevState.filter, updateStore);
 }
 
-export default createStore(window.__INITIAL_STATE__ || {}, [updateFilter, changePage]);
+window.__INITIAL_STATE__ && (window.__INITIAL_STATE__.filter = new FlowersFilter(window.__INITIAL_STATE__.filter));
+
+export default createStore(window.__INITIAL_STATE__ || {}, [updateFilter, changePage], function (source) {
+	return {
+		flowers: JSON.parse(JSON.stringify(source.flowers)),
+		filter: new FlowersFilter(source.filter),
+		loading: source.loading
+	}
+});

@@ -2,9 +2,23 @@ import React from 'react'
 import {Link} from 'react-router'
 
 function buildUrl(page) {
-	let baseUrl = window.location.pathname;
-	baseUrl += window.location.search ? window.location.search + '&' : '?';
-	baseUrl += 'page=' + page;
+	let baseUrl = window.location.pathname,
+		search = window.location.search,
+		pageSearch = 'page=' + page
+		;
+
+	if (!search) {
+		search = '?' + pageSearch;
+	}
+	else if (search.indexOf('page') !== -1) {
+		search = search.replace(/page=\d+/, pageSearch);
+	}
+	else {
+		search += '&' + pageSearch;
+	}
+
+	baseUrl += search;
+
 	return baseUrl
 }
 
