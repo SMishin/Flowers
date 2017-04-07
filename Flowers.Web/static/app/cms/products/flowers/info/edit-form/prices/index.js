@@ -2,13 +2,13 @@ import {EventEmitter, Component} from '@angular/core';
 import template from './template.html'
 
 @Component({
-	selector: 'product-prices',
+	selector: 'flower-prices',
 	template: template,
 	providers: [],
 	inputs: ['model'],
 	outputs: ['onChange']
 })
-class ProductPrices {
+class FlowerPrices {
 	constructor() {
 		this.onChange = new EventEmitter();
 		//this.model = [];
@@ -42,6 +42,6 @@ class ProductPrices {
 
 }
 
-ProductPrices.parameters = [];
+FlowerPrices.parameters = [];
 
-export default ProductPrices;
+export default FlowerPrices;

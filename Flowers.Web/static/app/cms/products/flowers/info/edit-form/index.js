@@ -2,13 +2,13 @@ import {EventEmitter, Component} from '@angular/core';
 import template from './template.html'
 
 @Component({
-	selector: 'product-info-edit-form',
+	selector: 'flower-info-edit-form',
 	template: template,
 	providers: [],
 	inputs: ['model'],
 	outputs: ['onChange']
 })
-class ProductInfoEditFormComponent {
+class FlowerInfoEditFormComponent {
 	constructor() {
 		this.onChange = new EventEmitter();
 		this.model = {
@@ -37,6 +37,6 @@ class ProductInfoEditFormComponent {
 
 }
 
-ProductInfoEditFormComponent.parameters = [];
+FlowerInfoEditFormComponent.parameters = [];
 
-export default ProductInfoEditFormComponent;
+export default FlowerInfoEditFormComponent;

@@ -1,9 +1,11 @@
 import {RouterModule} from '@angular/router';
-import ProductListComponent from './products/list'
-import NewProductComponent from './products/new-product/index'
-import ProductComponent from './products/product'
+import ProductListComponent from './products/list/index'
+import NewFlowerComponent from './products/flowers/new-flower/index'
+import ProductComponent from './products/item/index'
 import ProductImagesComponent from './products/product-images/index'
-import ProductInfoComponent from './products/product-info/index'
+import FlowerInfoComponent from './products/flowers/info/index'
+
+import FlowersDataResolver from './products/flowers/data-resolver';
 
 const productChildrenRoutes =
 	[
@@ -14,7 +16,7 @@ const productChildrenRoutes =
 		},
 		{
 			path: 'info',
-			component: ProductInfoComponent
+			component: FlowerInfoComponent
 		},
 		{
 			path: 'images',
@@ -28,20 +30,23 @@ const appRoutes = [
 		children: [
 			{
 				path: '',
-				redirectTo: 'products',
+				redirectTo: 'products/flowers',
 				pathMatch: 'full'
 			},
 			{
-				path: 'products',
+				path: 'products/flowers',
 				component: ProductListComponent,
-				useAsDefault: true
+				useAsDefault: true,
+				resolve: {
+					data: FlowersDataResolver
+				}
 			},
 			{
-				path: 'product/new',
-				component: NewProductComponent
+				path: 'products/flowers/new',
+				component: NewFlowerComponent
 			},
 			{
-				path: 'product/:id',
+				path: 'products/flowers/:id',
 				component: ProductComponent,
 				children: productChildrenRoutes
 			}

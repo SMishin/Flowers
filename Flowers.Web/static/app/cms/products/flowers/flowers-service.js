@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import HttpClient from '../core/http-client';
+import HttpClient from '../../core/http-client';
 
 @Injectable()
-class ProductsService {
+class FlowersService {
 
 	constructor(http) {
 		this._http = http;
@@ -27,8 +27,8 @@ class ProductsService {
 	}
 }
 
-ProductsService.parameters = [
+FlowersService.parameters = [
 	HttpClient
 ];
 
-export default ProductsService;
+export default FlowersService;

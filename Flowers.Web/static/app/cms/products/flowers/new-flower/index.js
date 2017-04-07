@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import ProductsService from './../products-service';
+import ProductsService from './../flowers-service';
 import {Router, ActivatedRoute} from '@angular/router';
 import template from './template.html'
 
@@ -7,16 +7,16 @@ import template from './template.html'
 	template: template,
 	providers: []
 })
-class NewProductComponent {
+class NewFlowerComponent {
 	constructor(productsService, router, route) {
-		this._productsService = productsService;
+		this._flowersService = productsService;
 		this._router = router;
 		this._route = route;
 	}
 
 	onSubmit(form) {
 		console.log(form);
-		this._productsService.save(form).then(res => {
+		this._flowersService.save(form).then(res => {
 			this._router.navigate(['../', res], {relativeTo: this._route})
 		});
 	}
@@ -29,10 +29,10 @@ class NewProductComponent {
 
 }
 
-NewProductComponent.parameters = [
+NewFlowerComponent.parameters = [
 	ProductsService,
 	Router,
 	ActivatedRoute
 ];
 
-export default NewProductComponent;
+export default NewFlowerComponent;

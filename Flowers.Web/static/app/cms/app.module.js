@@ -6,18 +6,20 @@ import {routing} from './app.routing';
 
 import HttpClient from './core/http-client';
 import AppComponent from './app.component';
-import ProductListComponent from './products/list.js';
-import NewProductComponent from './products/new-product/index.js'
-import ProductComponent from './products/product'
-import ProductInfoComponent from './products/product-info/index'
-import ProductInfoEditFormComponent from './products/product-info/product-info-edit-form/index';
-import ProductPrices from './products/product-info/product-info-edit-form/prices/index';
-import UploadImagesComponent from './products/product-images/index'
+import ProductListComponent from './products/list/index';
+import NewFlowerComponent from './products/flowers/new-flower/index.js'
+import ProductComponent from './products/item/index'
+import FlowerInfoComponent from './products/flowers/info/index'
+import FlowerInfoEditFormComponent from './products/flowers/info/edit-form/index';
+import FlowerPrices from './products/flowers/info/edit-form/prices/index';
 
+import UploadImagesComponent from './products/product-images/index'
 import DropZoneDirective from './products/product-images/drop-zone/index'
 import FileBrowserDirective from './products/product-images/file-browser/index'
 
-import ProductsService from './products/products-service';
+import FlowersService from './products/flowers/flowers-service';
+
+import FlowersDataResolver from './products/flowers/data-resolver';
 
 @NgModule({
     imports: [
@@ -29,18 +31,19 @@ import ProductsService from './products/products-service';
     declarations: [
         AppComponent,
 	    ProductListComponent,
-	    NewProductComponent,
+	    NewFlowerComponent,
 	    ProductComponent,
-	    ProductInfoComponent,
-	    ProductInfoEditFormComponent,
-	    ProductPrices,
+	    FlowerInfoComponent,
+	    FlowerInfoEditFormComponent,
+	    FlowerPrices,
 	    UploadImagesComponent,
 	    DropZoneDirective,
 	    FileBrowserDirective
     ],
     providers: [
 	    HttpClient,
-	    ProductsService
+	    FlowersService,
+	    FlowersDataResolver
     ],
     bootstrap: [AppComponent]
 })
