@@ -1,12 +1,12 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
 using Flowers.BL.Products;
+using Flowers.DAL;
 using Flowers.Products;
 using Flowers.Products.ProductType;
 
-namespace Flowers.DAL.Products
+namespace Flowers.Data.Products
 {
 	public class ProductsReadOnlyStore : IProductsReadOnlyStore
 	{

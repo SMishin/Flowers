@@ -6,5 +6,5 @@ namespace Flowers.Products.Flowers
 	{
 		Task<int> SaveAsync(Flower product);
 		Task RemoveAsync(int id);
-	}
+    }
 }

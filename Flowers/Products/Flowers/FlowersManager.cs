@@ -6,15 +6,13 @@ namespace Flowers.Products.Flowers
     {
         private readonly IProductsManager _productsManager;
         private readonly IFlowersStore _flowersStore;
-        private readonly IProductsReadOnlyStore _productsReadOnlyStore;
 
         private int _pageSize = 6;
 
-        public FlowersManager(IProductsManager productsManager, IFlowersStore flowersStore, IProductsReadOnlyStore productsReadOnlyStore)
+        public FlowersManager(IProductsManager productsManager, IFlowersStore flowersStore)
         {
             _productsManager = productsManager;
             _flowersStore = flowersStore;
-            _productsReadOnlyStore = productsReadOnlyStore;
         }
 
         public Task<int> SaveAsync(Flower flower)
@@ -28,18 +26,22 @@ namespace Flowers.Products.Flowers
             await _productsManager.RemoveAsync(id);
         }
 
-        public async Task<PagedResult<Flower>> GetPublishedWithMainImageAsync(int page = 1)
+        public async Task<PagedResult<Flower>> GetPublishedWithMainImageAsync(FlowersFilter filter, int page = 1)
         {
-            var dataTask = _flowersStore.GetPublishedWithMainImageAsync((page - 1) * _pageSize, _pageSize);
-            var countTask = _productsReadOnlyStore.CountPublishedAsync(ProductType.ProductType.Flowers);
+            var dataTask = _flowersStore.GetPublishedWithMainImageAsync(filter , (page - 1) * _pageSize, _pageSize);
+            var countTask = _flowersStore.CountPublishedAsync(filter);
 
             await Task.WhenAll(dataTask, countTask);
 
-            if (dataTask.Result.Length == 0)
+            if (dataTask.Result.Length == 0 && countTask.Result > 0)
             {
                 page = countTask.Result / _pageSize + (countTask.Result % _pageSize > 0 ? 1 : 0);
-                dataTask = _flowersStore.GetPublishedWithMainImageAsync((page - 1) * _pageSize, _pageSize);
+                dataTask = _flowersStore.GetPublishedWithMainImageAsync(filter, (page - 1) * _pageSize, _pageSize);
                 await dataTask;
+            }
+            else if(countTask.Result == 0)
+            {
+                page = 1;
             }
 
             return new PagedResult<Flower>

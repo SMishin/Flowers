@@ -61,6 +61,7 @@
     <Folder Include="dbo\" />
     <Folder Include="dbo\Products" />
     <Folder Include="dbo\Products\Flowers" />
+    <Folder Include="dbo\Types" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\DeliveryTypes.sql" />
@@ -84,6 +85,7 @@
     <Build Include="dbo\Products\Flowers\SelectPublishedFlowersWithMainImage.sql" />
     <Build Include="dbo\Products\Flowers\SelectFlowersWithMainImage.sql" />
     <Build Include="dbo\Products\Flowers\SelectRandomPublishedFlowersWithMainImage.sql" />
+    <Build Include="dbo\Types\IntArray.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Flowers.DB.local.publish.xml" />

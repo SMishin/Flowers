@@ -10,7 +10,7 @@ AS
 		left join [dbo].[ProductImages] pi on p.Id = pi.[ProductId] and pi.IsMain = 1
 		left join [dbo].[FlowerVariants] fv on fv.[FlowerId] = p.Id
 	where p.Type = 0 and p.Published = 1
-	group by p.Id,p.Type, p.name, p.Summary, p.Description, p.Published, p.Price, pi.[Url] 
+	group by p.Id,p.Type, p.Name, p.Summary, p.Description, p.Published, p.Price, pi.[Url] 
 	ORDER BY newid()
 
 RETURN 0
