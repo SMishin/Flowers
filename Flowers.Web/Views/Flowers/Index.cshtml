@@ -16,31 +16,33 @@
                             <span class="cat-name">
                                 @ProductType.Flowers.ToFriendlyString()
                             </span>
-                            <span class="heading-counter">
-                                Всего @Model.Flowers.TotalCount
-                                @{
-                                    var lastNumber = Model.Flowers.Items.Length % 10;
+                            <span id="items-counter" class="heading-counter">
+                                <span>
+                                    Всего @Model.Flowers.TotalCount
+                                    @{
+                                        var lastNumber = Model.Flowers.TotalCount % 10;
 
-                                    if (lastNumber == 1)
-                                    {
-                                        <text>
-                                            наименование
-                                        </text>
-                                    }
-                                    else if (lastNumber > 1 && lastNumber < 5)
-                                    {
-                                        <text>
-                                            наименования
-                                        </text>
-                                    }
-                                    else if (lastNumber == 0 || lastNumber >= 5)
-                                    {
-                                        <text>
-                                            наименований
-                                        </text>
-                                    }
+                                        if (lastNumber == 1)
+                                        {
+                                            <text>
+                                                наименование
+                                            </text>
+                                        }
+                                        else if (lastNumber > 1 && lastNumber < 5)
+                                        {
+                                            <text>
+                                                наименования
+                                            </text>
+                                        }
+                                        else if (lastNumber == 0 || lastNumber >= 5)
+                                        {
+                                            <text>
+                                                наименований
+                                            </text>
+                                        }
 
-                                }
+                                    }
+                                </span>
                             </span>
 
                         </h1>
