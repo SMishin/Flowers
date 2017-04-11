@@ -65,7 +65,7 @@
 												@foreach (var item in Model.Product.FlowerVariants)
 												{
 													<li>
-														@item.Size см - @item.Price.ToString("C")
+														@(item.Size.HasValue? item.Size.Value + "см" : "") - @item.Price.ToString("C")
 													</li>
 												}
 											</ul>

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Flowers.BL.Products.Flowers;
 
 namespace Flowers.Products.Flowers
 {

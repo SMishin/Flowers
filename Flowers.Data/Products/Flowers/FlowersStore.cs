@@ -3,7 +3,6 @@ using System.Data;
 using System.Threading.Tasks;
 using Dapper;
 using Flowers.BL.Products;
-using Flowers.BL.Products.Flowers;
 using Flowers.DAL;
 using Flowers.Products.Flowers;
 
