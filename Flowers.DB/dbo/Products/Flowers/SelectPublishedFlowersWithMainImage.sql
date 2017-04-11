@@ -8,7 +8,7 @@ AS
 		p.Name,
 		p.Summary,
 		p.Description,
-		f.Type
+		f.Type as FlowerType
 		,pi.Url as [ImageUrl]
 		,min(fv.Price) as MinPrice
 		,max(fv.Price) as MaxPrice
