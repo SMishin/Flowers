@@ -6,7 +6,17 @@ namespace Flowers.Products.Flowers
     {
         Undefined = -1,
         Rose = 0,
-        Chrysanthemum = 1
+        Chrysanthemum = 1,
+        Alstroemeria = 2,
+        Carnation = 3,
+        Iris = 4,
+        Hermini = 5,
+        Gerbera = 6,
+        Lily = 7,
+        Sunflower = 8,
+        Tulip = 9,
+        Freesia = 10,
+        Eustoma = 11
     }
 
     public static class ProductTypeExtensions
@@ -15,6 +25,16 @@ namespace Flowers.Products.Flowers
         {
             {FlowerType.Rose,"Розы"},
             {FlowerType.Chrysanthemum,"Хризантемы"},
+            {FlowerType.Alstroemeria,"Альстромерия"},
+            {FlowerType.Carnation,"Гвоздика"},
+            {FlowerType.Iris,"Ирис"},
+            {FlowerType.Hermini,"Гермини"},
+            {FlowerType.Gerbera,"Гербера"},
+            {FlowerType.Lily,"Лилия"},
+            {FlowerType.Sunflower,"Подсолнух"},
+            {FlowerType.Tulip,"Тюльпан"},
+            {FlowerType.Freesia,"Фрезия"},
+            {FlowerType.Eustoma,"Эустома"},
             {FlowerType.Undefined,"Undefined"}
         };
 

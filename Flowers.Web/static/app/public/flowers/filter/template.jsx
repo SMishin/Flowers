@@ -8,29 +8,29 @@ export default function template() {
 		return state.types.indexOf(type) !== -1;
 	}
 
+	let items = [];
+
+	for (let itemName in types) {
+
+		let item = types[itemName];
+
+		items.push(<li key={item.value} className="nomargin hiddable col-lg-12">
+			<input type="checkbox" className="checkbox"
+			       name={'type' + item.value}
+			       id={'type' + item.value}
+			       checked={isChecked(item.value)}
+			       onChange={this.filterOnChanged}
+			       value={item.value}/>
+			<label htmlFor={'type' + item.value}>
+				<strong>
+					{item.name}
+				</strong>
+			</label>
+		</li>);
+	}
+
 	return <ul className="col-lg-12 layered_filter_ul">
-		<li key={types.rose.value} className="nomargin hiddable col-lg-12">
-			<input type="checkbox" className="checkbox" name="type0" id="type0"
-			       checked={isChecked(types.rose.value)}
-			       onChange={this.filterOnChanged}
-			       value={types.rose.value}/>
-			<label htmlFor="type0">
-				<strong>
-					{types.rose.name}
-				</strong>
-			</label>
-		</li>
-		<li key={types.chrysanthemum.value} className="nomargin hiddable col-lg-12">
-			<input type="checkbox" className="checkbox" name="type1" id="type1"
-			       checked={isChecked(types.chrysanthemum.value)}
-			       onChange={this.filterOnChanged}
-			       value={types.chrysanthemum.value}/>
-			<label htmlFor="type1">
-				<strong>
-					{types.chrysanthemum.name}
-				</strong>
-			</label>
-		</li>
+		{items}
 	</ul>
 		;
 }
