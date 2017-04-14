@@ -47,12 +47,24 @@
 												<p class="our_price_display" itemprop="offers" itemscope="" itemtype="https://schema.org/Offer">
 													<span id="our_price_display" itemprop="price" content="16" class="new-price">
 														@if (Model.Product.FlowerVariants.Any())
-														{
-															<text>
-																@Model.Product.FlowerVariants.Min(t => t.Price).ToString("C")
-																-
-																@Model.Product.FlowerVariants.Max(t => t.Price).ToString("C")
-															</text>		}
+                                                        {
+                                                            var max = Model.Product.FlowerVariants.Max(t => t.Price);
+                                                            var min = Model.Product.FlowerVariants.Min(t => t.Price);
+
+                                                            if (max == min)
+                                                            {
+                                                                @min.ToString("C")
+                                                            }
+                                                            else
+                                                            {
+                                                                <text>
+                                                                    @min.ToString("C")
+                                                                    -
+                                                                    @max.ToString("C")
+                                                                </text>
+
+                                                            }
+                                                        }
 													</span>
 												</p>
 											</div>
@@ -62,7 +74,7 @@
 
 										<p>
 											<ul>
-												@foreach (var item in Model.Product.FlowerVariants)
+												@foreach (var item in Model.Product.FlowerVariants.OrderBy(t=> t.Size))
 												{
 													<li>
 														@(item.Size.HasValue? item.Size.Value + "см" : "") - @item.Price.ToString("C")
