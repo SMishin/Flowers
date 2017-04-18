@@ -25,3 +25,4 @@ Flowers.Web/static/npm-debug.log*
 Flowers.Web/products/
 Flowers.Data/bin
 Flowers.Data/obj
+*.user

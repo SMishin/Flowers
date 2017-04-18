@@ -9104,20 +9104,23 @@ body:not(#index) .footer-container #footer {
 
 .footer-container #footer {
   padding-top: 50px;
+
+  ul > li {
+    a {
+      color: #d47887;
+
+      &:hover {
+        color: #2d2d2d;
+      }
+    }
+  }
+
 }
 
 @media (max-width: 767px) {
   .footer-container #footer {
     padding-top: 20px;
   }
-}
-
-.footer-container #footer ul > li a {
-  color: #d47887;
-}
-
-.footer-container #footer ul > li a:hover {
-  color: #2d2d2d;
 }
 
 .footer-container #footer .row {
@@ -9215,23 +9218,6 @@ body:not(#index) .footer-container #footer {
   .footer-container #footer #social_block {
     clear: left;
   }
-}
-
-.footer-container #footer #block_contact_infos ul > li {
-  color: #bcbcbc;
-  line-height: 24px;
-}
-
-.footer-container #footer #block_contact_infos ul > li + li {
-  margin-top: 0;
-}
-
-.footer-container #footer #block_contact_infos ul > li a:hover {
-  color: #bcbcbc;
-}
-
-.footer-container #footer #block_contact_infos ul > li i {
-  display: none;
 }
 
 .footer-container #footer .bottom-footer {
@@ -10647,8 +10633,8 @@ ul.footer_links li + li {
       transition: 0.3s;
     }
   }
-  .product-name{
-    a{
+  .product-name {
+    a {
       font-size: 12pt;
     }
   }
@@ -13123,5 +13109,5 @@ fieldset.customerprivacy label {
 @import "blocklayered";
 @import "product_list";
 @import "product";
-@import "map";
+@import "contacts";
 @import "loader";

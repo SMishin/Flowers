@@ -17,7 +17,7 @@ namespace Flowers.Web.Controllers
 			_productsReadOnlyStore = productsReadOnlyStore;
 		}
 
-		[Route("{type}")]
+		//[Route("{type}")]
 		[HttpGet]
 		public async Task<ActionResult> Index(string type, int page = 1)
 		{
@@ -38,7 +38,7 @@ namespace Flowers.Web.Controllers
 			return View(data);
 		}
 
-		[Route("{type}/{id:int}")]
+		//[Route("{type}/{id:int}")]
 		[HttpGet]
 		public async Task<ActionResult> Details(string type, int id)
 		{
