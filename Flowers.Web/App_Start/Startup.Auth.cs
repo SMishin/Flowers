@@ -1,6 +1,6 @@
 ﻿using System;
-using Flowers.Models;
-using Flowers.Providers;
+using Flowers.Web.Models;
+using Flowers.Web.Providers;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;

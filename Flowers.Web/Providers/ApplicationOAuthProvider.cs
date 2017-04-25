@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.Owin.Security.OAuth;
 
-namespace Flowers.Providers
+namespace Flowers.Web.Providers
 {
 	public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
 	{

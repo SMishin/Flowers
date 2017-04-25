@@ -4,7 +4,6 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using Flowers.BL.Products;
 using Flowers.Products;
 
 namespace Flowers.Api.Products
@@ -39,7 +38,7 @@ namespace Flowers.Api.Products
 
 		[HttpPost]
 		[Route("product")]
-		//[Authorize]
+		[Authorize]
 		public async Task<IHttpActionResult> Save(Product product)
 		{
 			if (!ModelState.IsValid)
@@ -70,7 +69,7 @@ namespace Flowers.Api.Products
 		[HttpPut]
 		[Route("product/{id:int}/image")]
 		[Route("product/image")]
-		//[Authorize]
+		[Authorize]
 		public async Task<IHttpActionResult> SaveImage(int id, HttpRequestMessage request)
 		{
 			if (!request.Content.IsMimeMultipartContent())
@@ -93,7 +92,7 @@ namespace Flowers.Api.Products
 
 		[HttpDelete]
 		[Route("product/image")]
-		//[Authorize]
+		[Authorize]
 		public async Task<IHttpActionResult> Remove(int id)
 		{
 			await _productsManager.RemoveImageAsync(id);

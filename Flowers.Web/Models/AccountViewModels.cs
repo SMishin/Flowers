@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Flowers.Models
+namespace Flowers.Web.Models
 {
 	// Models returned by AccountController actions.
 	public class ExternalLoginConfirmationViewModel
@@ -59,7 +58,7 @@ namespace Flowers.Models
 		public string Email { get; set; }
 
 		[Required]
-		[DataType(DataType.Password)]
+		
 		[Display(Name = "Password")]
 		public string Password { get; set; }
 
@@ -75,12 +74,12 @@ namespace Flowers.Models
 		public string Email { get; set; }
 
 		[Required]
-		[StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-		[DataType(DataType.Password)]
+		//[StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+		
 		[Display(Name = "Password")]
 		public string Password { get; set; }
 
-		[DataType(DataType.Password)]
+		
 		[Display(Name = "Confirm password")]
 		[Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
 		public string ConfirmPassword { get; set; }
@@ -98,11 +97,11 @@ namespace Flowers.Models
 
 		[Required]
 		[StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-		[DataType(DataType.Password)]
+		
 		[Display(Name = "Password")]
 		public string Password { get; set; }
 
-		[DataType(DataType.Password)]
+		
 		[Display(Name = "Confirm password")]
 		[Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
 		public string ConfirmPassword { get; set; }

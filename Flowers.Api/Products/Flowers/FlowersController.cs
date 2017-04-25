@@ -49,7 +49,7 @@ namespace Flowers.Api.Products.Flowers
 
 		[HttpPost]
 		[Route("flower")]
-		//[Authorize]
+		[Authorize]
 		public async Task<IHttpActionResult> Save(Flower flower)
 		{
 			if (!ModelState.IsValid)
@@ -62,7 +62,7 @@ namespace Flowers.Api.Products.Flowers
 
 		[HttpDelete]
 		[Route("flower")]
-		//[Authorize]
+		[Authorize]
 		public async Task<IHttpActionResult> Remove(int id)
 		{
 			await _flowersManager.RemoveAsync(id);

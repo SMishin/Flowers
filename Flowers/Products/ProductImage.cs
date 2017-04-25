@@ -1,4 +1,4 @@
-﻿namespace Flowers.BL.Products
+﻿namespace Flowers.Products
 {
 	public class ProductImage
 	{

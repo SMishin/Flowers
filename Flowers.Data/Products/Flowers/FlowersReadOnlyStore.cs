@@ -4,7 +4,6 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
-using Flowers.DAL;
 using Flowers.Products.Flowers;
 
 namespace Flowers.Data.Products.Flowers
