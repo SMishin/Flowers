@@ -15,3 +15,6 @@ Post-Deployment Script Template
 --	GO
 
 --EXEC sp_addrolemember 'db_owner', 'flowersdb'  
+
+
+ :r .\dbo\Data\Users.sql	

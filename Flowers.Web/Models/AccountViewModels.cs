@@ -10,8 +10,6 @@ namespace Flowers.Web.Models
 		[Display(Name = "Email")]
 		public string Email { get; set; }
 
-		[Display(Name = "Hometown")]
-		public string Hometown { get; set; }
 	}
 
 	public class ExternalLoginListViewModel
@@ -69,8 +67,8 @@ namespace Flowers.Web.Models
 	public class RegisterViewModel
 	{
 		[Required]
-		[EmailAddress]
 		[Display(Name = "Email")]
+		[EmailAddress]
 		public string Email { get; set; }
 
 		[Required]
@@ -84,8 +82,6 @@ namespace Flowers.Web.Models
 		[Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
 		public string ConfirmPassword { get; set; }
 
-		[Display(Name = "Hometown")]
-		public string Hometown { get; set; }
 	}
 
 	public class ResetPasswordViewModel

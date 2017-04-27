@@ -62,6 +62,7 @@
     <Folder Include="dbo\Products" />
     <Folder Include="dbo\Products\Flowers" />
     <Folder Include="dbo\Types" />
+    <Folder Include="dbo\Data" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\DeliveryTypes.sql" />
@@ -86,11 +87,17 @@
     <Build Include="dbo\Products\Flowers\SelectFlowersWithMainImage.sql" />
     <Build Include="dbo\Products\Flowers\SelectRandomPublishedFlowersWithMainImage.sql" />
     <Build Include="dbo\Types\IntArray.sql" />
+    <Build Include="dbo\Tables\UserClaims.sql" />
+    <Build Include="dbo\Tables\Users.sql" />
+    <Build Include="dbo\Tables\UserLogins.sql" />
+    <Build Include="dbo\Tables\UserRoles.sql" />
+    <Build Include="dbo\Tables\Roles.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Flowers.DB.local.publish.xml" />
     <None Include="Flowers.DB.parking.test.publish.xml" />
     <None Include="Flowers.DB.parking.prod.publish.xml" />
+    <None Include="dbo\Data\Users.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />
