@@ -1,5 +1,16 @@
 $projectName = 'Flowers'
-$distPath = Convert-Path(Resolve-Path -path '..\_dist')#[IO.Path]::GetFullPath("..\_dist")
+$distPath = '..\_dist';
+
+If (-not(Test-Path $distPath ) -eq "True") {
+	New-Item $distPath -Type directory
+}
+
+$distPath = Convert-Path(Resolve-Path -path $distPath)
+
+If (-not(Test-Path $distPath) -eq "True") {
+	New-Item -Type directory -Path $distPath
+}
+
 
 If ((Test-Path $distPath\$projectName) -eq "True") {
 	Remove-Item -Path $distPath\$projectName -Recurse -Force
@@ -29,7 +40,8 @@ Push-Location
 	If ((Test-Path .\dist) -eq "True") {
 		Remove-Item .\dist -Force -Recurse
 	}
-
+	
+	npm i
 	npm run build
 	Copy-Item .\dist $distPath\$projectName\static -Recurse
 Pop-Location
