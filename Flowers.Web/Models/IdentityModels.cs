@@ -21,7 +21,7 @@ namespace Flowers.Web.Models
 	public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 	{
 		public ApplicationDbContext()
-			: base("DefaultConnection", throwIfV1Schema: false)
+			: base("Flowers.DB", throwIfV1Schema: false)
 		{
 			Database.SetInitializer<ApplicationDbContext>(null);
 		}
