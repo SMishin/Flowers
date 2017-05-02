@@ -16,11 +16,6 @@
 
     <link rel="stylesheet" href="/static/app/styles/main.css" media="all" />
 
-    <script defer src="/static/_libs/jquery-1.11.0.min.js"></script>
-    <script defer src="/static/_libs/19-TweenMax.min.js"></script>
-    <script defer src="/static/_libs/global.js"></script>
-    <script defer src="/static/_libs/16-jquery.scrollmagic.min.js"></script>
-
     @RenderSection("head", false)
 
 </head>
@@ -55,7 +50,8 @@
                                                    href="/delivery">
                                                     Доставка
                                                 </a>
-                                            </li><li class="top-level-menu-li tmmegamenu_item">
+                                            </li>
+                                            <li class="top-level-menu-li tmmegamenu_item">
                                                 <a class="it_10125401 top-level-menu-li-a tmmegamenu_item"
                                                    href="/contacts">
                                                     Контакты
@@ -109,11 +105,16 @@
         </footer>
     </div>
 
-    <script src="/static/node_modules/blankshield/blankshield.min.js"></script>
+    @*<script src="/static/node_modules/blankshield/blankshield.min.js"></script>
 
-    <script>
-        blankshield(document.querySelectorAll('a[target=_blank]'));
-    </script>
+        <script>
+            blankshield(document.querySelectorAll('a[target=_blank]'));
+        </script>*@
+
+    <script src="/static/_libs/jquery-1.11.0.min.js"></script>
+    <script defer src="/static/_libs/19-TweenMax.min.js"></script>
+    <script defer src="/static/_libs/global.js"></script>
+    <script defer src="/static/_libs/16-jquery.scrollmagic.min.js"></script>
 
     @RenderSection("Scripts", required: false)
 </body>

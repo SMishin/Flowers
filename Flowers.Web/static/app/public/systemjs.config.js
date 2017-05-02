@@ -1,7 +1,6 @@
 (function () {
 
-	let baseUrl = '/static',
-		appUrl = baseUrl + '/app/public'
+	let baseUrl = '/static'
 		;
 
 	SystemJS.config({
@@ -30,6 +29,7 @@
 			"react": 'npm:react/dist/react',
 			"react-dom": 'npm:react-dom/dist/react-dom',
 			"react-router": 'npm:react-router/umd/ReactRouter',
+			"blankshield": 'npm:blankshield/blankshield',
 		}
 	});
 
