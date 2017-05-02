@@ -4,10 +4,13 @@ const path = require('path'),
 //process.traceDeprecation = true
 
 module.exports = {
-	entry: './app/public/app.js',
+	entry: {
+		public: './app/public/app.js',
+		cms: './app/cms/main.js'
+	},
 	output: {
-		filename: 'app.js',
-		path: path.resolve(__dirname, 'dist/app/public')
+		filename: '[name]/app.js',
+		path: path.resolve(__dirname, 'dist/app/')
 	},
 	module: {
 		loaders: [
@@ -16,6 +19,10 @@ module.exports = {
 				exclude: /(node_modules|bower_components)/,
 				loader: 'babel-loader',
 				options: babelConfig
+			},
+			{
+				test: /\.html?$/,
+				loader: 'html-loader'
 			}
 		]
 	}

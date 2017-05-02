@@ -11,8 +11,8 @@
     ]
   },
   "scripts": {
-    "prebuild-css": "mkdirp dist/app/styles",
-    "build-css": "sass app/styles/main.scss:dist/app/styles/main.css",
+    "prebuild-css": "mkdirp dist/app/styles && mkdirp dist/app/cms/styles",
+    "build-css": "sass app/styles/main.scss:dist/app/styles/main.css && sass app/cms/styles/main.scss:dist/app/cms/styles/main.css",
     "copy": "cp -R _libs dist/_libs && cp -R app/fonts dist/app/fonts && cp -R app/img dist/app/img",
     "build": "npm run build-css && npm run copy && .\\node_modules\\.bin\\webpack"
   },
@@ -27,8 +27,9 @@
     "@angular/platform-browser-dynamic": "^4.0.1",
     "@angular/router": "^4.0.1",
     "blankshield": "^0.6.1",
-    "bootstrap": "^4.0.0-alpha.5",
+    "bootstrap": "^4.0.0-alpha.6",
     "core-js": "^2.4.1",
+    "html-loader": "^0.4.5",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-router": "^3.0.2",
