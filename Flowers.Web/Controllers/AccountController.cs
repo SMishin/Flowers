@@ -1,16 +1,14 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
+﻿using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Flowers.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Flowers.Models;
 
-namespace Flowers.Controllers
+namespace Flowers.Web.Controllers
 {
 	[Authorize]
 	public class AccountController : Controller
@@ -161,26 +159,28 @@ namespace Flowers.Controllers
 		[ValidateAntiForgeryToken]
 		public async Task<ActionResult> Register(RegisterViewModel model)
 		{
-			if (ModelState.IsValid)
-			{
-				var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Hometown = model.Hometown };
-				var result = await UserManager.CreateAsync(user, model.Password);
-				if (result.Succeeded)
-				{
-					await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+		    if (!ModelState.IsValid)
+		    {
+		        return View(model);
+		    }
 
-					// For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-					// Send an email with this link
-					// string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-					// var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-					// await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+		    var user = new ApplicationUser { UserName = model.Email, Email = model.Email};
+		    var result = await UserManager.CreateAsync(user, model.Password);
+		    if (result.Succeeded)
+		    {
+		        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
-					return RedirectToAction("Index", "Home");
-				}
-				AddErrors(result);
-			}
+		        // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+		        // Send an email with this link
+		        // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+		        // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+		        // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-			// If we got this far, something failed, redisplay form
+		        return RedirectToAction("Index", "Home");
+		    }
+		    AddErrors(result);
+
+		    // If we got this far, something failed, redisplay form
 			return View(model);
 		}
 
@@ -379,7 +379,7 @@ namespace Flowers.Controllers
 				{
 					return View("ExternalLoginFailure");
 				}
-				var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Hometown = model.Hometown };
+				var user = new ApplicationUser { UserName = model.Email, Email = model.Email};
 				var result = await UserManager.CreateAsync(user);
 				if (result.Succeeded)
 				{

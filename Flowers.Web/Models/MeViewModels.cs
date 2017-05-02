@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-namespace Flowers.Models
+﻿namespace Flowers.Web.Models
 {
 	// Models returned by MeController actions.
 	public class GetViewModel

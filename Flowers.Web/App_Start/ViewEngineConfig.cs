@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 
-namespace Flowers
+namespace Flowers.Web
 {
 	public class ViewEngineConfig
 	{
@@ -10,7 +10,7 @@ namespace Flowers
 			var locationFormats = new[]
 			{
 				"~/{2}/Views/{1}/{0}.cshtml",
-						"~/{2}/Views/Shared/{0}.cshtml"
+				"~/{2}/Views/Shared/{0}.cshtml"
 			};
 
 			var razorEngine = new RazorViewEngine();

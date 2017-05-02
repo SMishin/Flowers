@@ -49,6 +49,10 @@ const appRoutes = [
 				path: 'products/flowers/:id',
 				component: ProductComponent,
 				children: productChildrenRoutes
+			},
+			{
+				path: '**',
+				redirectTo: 'products/flowers'
 			}
 		]
 	},

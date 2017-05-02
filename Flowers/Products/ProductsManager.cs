@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Flowers.Products;
 
-namespace Flowers.BL.Products
+namespace Flowers.Products
 {
 	public class ProductsManager : IProductsManager
 	{

@@ -2,8 +2,7 @@
 using System.Data;
 using System.Threading.Tasks;
 using Dapper;
-using Flowers.BL.Products;
-using Flowers.DAL;
+using Flowers.Products;
 using Flowers.Products.Flowers;
 
 namespace Flowers.Data.Products.Flowers

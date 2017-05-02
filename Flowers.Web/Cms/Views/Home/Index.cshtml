@@ -6,7 +6,7 @@
 @section head{
 
 	@{
-		<link href="@Html.ResolvePath("/static/app/cms/styles/main.css")?v=@Html.GetStaticVersion()" rel="stylesheet" />
+		<link href="/static/app/cms/styles/main.css?v=@Html.GetStaticVersion()" rel="stylesheet" />
 	}
 }
 
@@ -24,10 +24,6 @@
 		{
 			Html.RenderPartial("_DebugScriptLoader", new[] {
 
-				"/static/node_modules/core-js/client/shim.min.js",
-				"/static/node_modules/zone.js/dist/zone.js",
-				"/static/node_modules/reflect-metadata/Reflect.js",
-
 				"/static/node_modules/systemjs/dist/system.src.js",
 				"/static/app/cms/systemjs.config.js"
 
@@ -42,7 +38,10 @@
 		}
 		else
 		{
-			Html.RenderPartial("_ReleaseScriptLoader", new[] { "/static/out/client-area/index.min.js" });
+			Html.RenderPartial("_ReleaseScriptLoader", new[]
+			{
+				"/static/app/cms/app.js"
+			});
 		}
 	}
 }

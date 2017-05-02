@@ -48,6 +48,9 @@
 			"whatwg-fetch": 'npm:whatwg-fetch/fetch',
 			"fastest-clone": 'npm:fastest-clone/index',
 			rxjs: baseUrl + '/node_modules/rxjs',
+			'core-js':'npm:core-js/client/shim.min',
+			'zone.js':'npm:zone.js/dist/zone',
+			'reflect-metadata':'npm:reflect-metadata/Reflect',
 
 		},
 		meta: {
