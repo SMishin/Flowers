@@ -10,13 +10,9 @@ namespace Flowers.Data.Products.Flowers
 {
     public class FlowersReadOnlyStore : IFlowersReadOnlyStore
     {
-        protected readonly SqlConnectionHelper SqlConnectionHelper;
+        protected readonly ISqlConnectionHelper SqlConnectionHelper;
 
-        public FlowersReadOnlyStore()
-        {
-            SqlConnectionHelper = new SqlConnectionHelper();
-        }
-        protected FlowersReadOnlyStore(SqlConnectionHelper sqlConnectionHelper)
+        protected FlowersReadOnlyStore(ISqlConnectionHelper sqlConnectionHelper)
         {
             SqlConnectionHelper = sqlConnectionHelper;
         }

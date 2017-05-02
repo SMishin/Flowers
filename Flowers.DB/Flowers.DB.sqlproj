@@ -92,6 +92,8 @@
     <Build Include="dbo\Tables\UserLogins.sql" />
     <Build Include="dbo\Tables\UserRoles.sql" />
     <Build Include="dbo\Tables\Roles.sql" />
+    <Build Include="dbo\Tables\Colors.sql" />
+    <Build Include="dbo\Tables\ProductsColors.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Flowers.DB.local.publish.xml" />

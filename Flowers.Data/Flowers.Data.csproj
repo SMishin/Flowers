@@ -45,6 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Colors\ColorsReadOnlyStore.cs" />
+    <Compile Include="Colors\ColorsStore.cs" />
+    <Compile Include="ISqlConnectionHelper.cs" />
     <Compile Include="Products\Flowers\FlowersReadOnlyStore.cs" />
     <Compile Include="Products\Flowers\FlowersStore.cs" />
     <Compile Include="Products\ProductsReadOnlyStore.cs" />
@@ -61,6 +64,7 @@
       <Name>Flowers</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
