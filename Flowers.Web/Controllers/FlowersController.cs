@@ -45,20 +45,20 @@ namespace Flowers.Web.Controllers
         [HttpGet]
         public async Task<ActionResult> Details(int id)
         {
-            var product = _flowersReadOnlyStore.GetAsync(id);
+            var flower = _flowersReadOnlyStore.GetAsync(id);
             var images = _productsReadOnlyStore.GetImagesAsync(id);
             var otherProducts = _flowersReadOnlyStore.GetRandomPublishedWithMainImageAsync(5);
 
-            await Task.WhenAll(product, images, otherProducts);
+            await Task.WhenAll(flower, images, otherProducts);
 
-            if (product.Result == null)
+            if (flower.Result == null)
             {
                 return HttpNotFound();
             }
 
             var data = new FlowersDetailsViewModel
             {
-                Product = product.Result,
+                Flower = flower.Result,
                 ProductImages = images.Result,
                 OtherProducts = otherProducts.Result
             };
