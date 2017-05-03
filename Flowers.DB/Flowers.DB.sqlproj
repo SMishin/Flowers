@@ -63,6 +63,7 @@
     <Folder Include="dbo\Products\Flowers" />
     <Folder Include="dbo\Types" />
     <Folder Include="dbo\Data" />
+    <Folder Include="dbo\Colors" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\DeliveryTypes.sql" />
@@ -94,6 +95,10 @@
     <Build Include="dbo\Tables\Roles.sql" />
     <Build Include="dbo\Tables\Colors.sql" />
     <Build Include="dbo\Tables\ProductsColors.sql" />
+    <Build Include="dbo\Colors\GetColor.sql" />
+    <Build Include="dbo\Colors\GetColors.sql" />
+    <Build Include="dbo\Colors\SaveColor.sql" />
+    <Build Include="dbo\Colors\RemoveColor.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Flowers.DB.local.publish.xml" />

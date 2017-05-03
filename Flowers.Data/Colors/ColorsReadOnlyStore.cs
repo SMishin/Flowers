@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Flowers.Colors;
+using Dapper;
 
 namespace Flowers.Data.Colors
 {
@@ -7,19 +9,26 @@ namespace Flowers.Data.Colors
 	{
 		protected readonly ISqlConnectionHelper SqlConnectionHelper;
 
-		protected ColorsReadOnlyStore(ISqlConnectionHelper sqlConnectionHelper)
+		public ColorsReadOnlyStore(ISqlConnectionHelper sqlConnectionHelper)
 		{
 			SqlConnectionHelper = sqlConnectionHelper;
 		}
 
-		public Task<Color[]> GetAsync()
+		public async Task<Color[]> GetAsync()
 		{
-			throw new System.NotImplementedException();
+			using (var conntection = await SqlConnectionHelper.CreateConnection())
+			{
+				return (await conntection.QueryAsync<Color>("GetColors", commandType: System.Data.CommandType.StoredProcedure)).ToArray();
+			}
 		}
 
-		public Task<Color> GetAsync(int id)
+		public async Task<Color> GetAsync(int id)
 		{
-			throw new System.NotImplementedException();
+			using (var conntection = await SqlConnectionHelper.CreateConnection())
+			{
+				return (await conntection.QueryAsync<Color>("GetColor", commandType: System.Data.CommandType.StoredProcedure)).SingleOrDefault();
+			}
 		}
 	}
+
 }

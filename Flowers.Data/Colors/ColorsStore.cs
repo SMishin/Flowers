@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Dapper;
 using Flowers.Colors;
 
 namespace Flowers.Data.Colors
@@ -11,12 +12,20 @@ namespace Flowers.Data.Colors
 
 		}
 
-		public Task<int> SaveAsync(Color product)
+		public async Task SaveAsync(Color product)
 		{
+			using (var conntection = await SqlConnectionHelper.CreateConnection())
+			{
+				await conntection.ExecuteAsync("SaveColor", product, commandType: System.Data.CommandType.StoredProcedure);
+			}
 		}
 
-		public Task RemoveAsync(int id)
+		public async Task RemoveAsync(string id)
 		{
+			using (var conntection = await SqlConnectionHelper.CreateConnection())
+			{
+				await conntection.ExecuteAsync("RemoveColor", new { Id = id }, commandType: System.Data.CommandType.StoredProcedure);
+			}
 		}
 	}
 }

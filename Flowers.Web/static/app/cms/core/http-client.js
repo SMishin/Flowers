@@ -65,6 +65,7 @@ function addMethods(methods, withData) {
 			let options = {
 				mode: 'cors',
 				method: method,
+				credentials: 'include',
 				headers: {}
 			};
 

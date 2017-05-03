@@ -5,7 +5,7 @@ namespace Flowers.Colors
 {
 	public interface IColorsManager
 	{
-		Task<int> SaveAsync(Product product);
-		Task RemoveAsync(int id);
+		Task SaveAsync(Color product);
+		Task RemoveAsync(string id);
 	}
 }

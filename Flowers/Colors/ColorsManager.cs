@@ -1,24 +1,23 @@
 ﻿using System.Threading.Tasks;
-using Flowers.Products;
 
 namespace Flowers.Colors
 {
 	public class ColorsManager : IColorsManager
 	{
-		private readonly IColorsStore colorsStore;
+		private readonly IColorsStore _colorsStore;
 
 		public ColorsManager(IColorsStore colorsStore)
 		{
-			this.colorsStore = colorsStore;
+			_colorsStore = colorsStore;
 		}
-		public Task<int> SaveAsync(Product product)
+		public Task SaveAsync(Color color)
 		{
-			return colorsStore.SaveAsync();
+			return _colorsStore.SaveAsync(color);
 		}
 
-		public Task RemoveAsync(int id)
+		public Task RemoveAsync(string id)
 		{
-			
+			return _colorsStore.RemoveAsync(id[0] != '#' ? '#' + id : id);
 		}
 	}
 }

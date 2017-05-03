@@ -12,10 +12,10 @@ namespace Flowers.Data.Products.Flowers
     {
         protected readonly ISqlConnectionHelper SqlConnectionHelper;
 
-        protected FlowersReadOnlyStore(ISqlConnectionHelper sqlConnectionHelper)
-        {
-            SqlConnectionHelper = sqlConnectionHelper;
-        }
+		public FlowersReadOnlyStore(ISqlConnectionHelper sqlConnectionHelper)
+		{
+			SqlConnectionHelper = sqlConnectionHelper;
+		}
 
         public async Task<Flower[]> GetAsync()
         {
