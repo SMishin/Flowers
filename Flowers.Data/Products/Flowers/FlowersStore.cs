@@ -9,39 +9,30 @@ namespace Flowers.Data.Products.Flowers
 {
 	public class FlowersStore : FlowersReadOnlyStore, IFlowersStore
 	{
-		private readonly IProductsStore _productsStore;
 
-		public FlowersStore(IProductsStore productsStore, ISqlConnectionHelper sqlConnectionHelper) : base(sqlConnectionHelper)
+		public FlowersStore(ISqlConnectionHelper sqlConnectionHelper) : base(sqlConnectionHelper)
 		{
-			_productsStore = productsStore;
+
 		}
 
-		public async Task<int> SaveAsync(Flower flower)
+		public async Task SaveAsync(Flower flower)
 		{
-			int id = await _productsStore.SaveAsync(flower);
-
-			if (id == 0)
-			{
-				id = flower.Id;
-			}
-
 			using (var conntection = await SqlConnectionHelper.CreateConnection())
 			{
 				await conntection.ExecuteAsync("SaveFlower", new
 				{
-					Id = id,
+					flower.Id,
 					Type = flower.FlowerType
 
 				}, commandType: CommandType.StoredProcedure);
 
 				await conntection.ExecuteAsync("SaveFlowerVariants", new
 				{
-					FlowerId = id,
+					FlowerId = flower.Id,
 					FlowerPrices = FlowerVariantsToDataTable(flower.FlowerVariants)
 
 				}, commandType: CommandType.StoredProcedure);
 
-				return id;
 			}
 		}
 
@@ -52,7 +43,7 @@ namespace Flowers.Data.Products.Flowers
 				await conntection.ExecuteAsync(@"
 						delete [dbo].[FlowerVariants] where FlowerId = @Id
 						delete [dbo].[Flowers] where Id = @Id
-					", 
+					",
 					new { Id = id });
 			}
 		}

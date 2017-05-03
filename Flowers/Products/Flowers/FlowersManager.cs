@@ -17,8 +17,19 @@ namespace Flowers.Products.Flowers
 
 		public async Task<int> SaveAsync(Flower flower)
 		{
-			await _productsManager.SetColorsAsync(flower.Id, flower.Colors);
-			return await _flowersStore.SaveAsync(flower);
+			var id = await _productsManager.SaveAsync(flower);
+
+			if (id == 0)
+			{
+				id = flower.Id;
+			}
+			else
+			{
+				flower.Id = id;
+			}
+
+			await Task.WhenAll(_flowersStore.SaveAsync(flower), _productsManager.SetColorsAsync(id, flower.Colors));
+			return id;
 		}
 
 		public async Task RemoveAsync(int id)
