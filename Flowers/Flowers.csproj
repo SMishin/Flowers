@@ -40,6 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Colors\ColorsManager.cs" />
+    <Compile Include="Colors\IColorsManager.cs" />
+    <Compile Include="Colors\IColorsStore.cs" />
+    <Compile Include="Colors\IColorsReadOnlyStore.cs" />
+    <Compile Include="Colors\Product.cs" />
     <Compile Include="PageResult.cs" />
     <Compile Include="Products\Flowers\Flower.cs" />
     <Compile Include="Products\Flowers\FlowersFilter.cs" />

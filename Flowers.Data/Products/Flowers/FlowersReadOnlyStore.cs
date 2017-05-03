@@ -10,16 +10,12 @@ namespace Flowers.Data.Products.Flowers
 {
     public class FlowersReadOnlyStore : IFlowersReadOnlyStore
     {
-        protected readonly SqlConnectionHelper SqlConnectionHelper;
+        protected readonly ISqlConnectionHelper SqlConnectionHelper;
 
-        public FlowersReadOnlyStore()
-        {
-            SqlConnectionHelper = new SqlConnectionHelper();
-        }
-        protected FlowersReadOnlyStore(SqlConnectionHelper sqlConnectionHelper)
-        {
-            SqlConnectionHelper = sqlConnectionHelper;
-        }
+		public FlowersReadOnlyStore(ISqlConnectionHelper sqlConnectionHelper)
+		{
+			SqlConnectionHelper = sqlConnectionHelper;
+		}
 
         public async Task<Flower[]> GetAsync()
         {
@@ -34,9 +30,10 @@ namespace Flowers.Data.Products.Flowers
             using (var conntection = await SqlConnectionHelper.CreateConnection())
             {
                 var multy = await conntection.QueryMultipleAsync(
-                    @"
+					@"
 					exec GetFlower @Id = @Id 
 					select * from [FlowerVariants] where FlowerId = @Id
+					select ColorId from [ProductsColors] where ProductId = @Id
 					",
                     new { Id = id });
 
@@ -45,6 +42,7 @@ namespace Flowers.Data.Products.Flowers
                 if (flower != null)
                 {
                     flower.FlowerVariants = multy.Read<FlowerVariant>();
+                    flower.Colors = multy.Read<string>().ToArray();
                 }
 
                 return flower;

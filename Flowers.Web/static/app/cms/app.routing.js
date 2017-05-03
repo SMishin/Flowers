@@ -4,8 +4,9 @@ import NewFlowerComponent from './products/flowers/new-flower/index'
 import ProductComponent from './products/item/index'
 import ProductImagesComponent from './products/product-images/index'
 import FlowerInfoComponent from './products/flowers/info/index'
-
 import FlowersDataResolver from './products/flowers/data-resolver';
+
+import ColorsComponent from './colors/index'
 
 const productChildrenRoutes =
 	[
@@ -49,6 +50,10 @@ const appRoutes = [
 				path: 'products/flowers/:id',
 				component: ProductComponent,
 				children: productChildrenRoutes
+			},
+			{
+				path: 'colors',
+				component: ColorsComponent
 			},
 			{
 				path: '**',

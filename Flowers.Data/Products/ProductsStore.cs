@@ -73,5 +73,31 @@ namespace Flowers.Data.Products
 				await conntection.ExecuteAsync("delete dbo.[Products] where Id = @Id", new { Id = id });
 			}
 		}
+
+		public async Task SetColorsAsync(int productId, string[] colorIds)
+		{
+			using (var conntection = await SqlConnectionHelper.CreateConnection())
+			{
+				await conntection.ExecuteAsync("SetProductsColors", new { ProductId = productId, Colors = ProductColorsToDataTable(colorIds) }, commandType: CommandType.StoredProcedure);
+			}
+		}
+
+		private DataTable ProductColorsToDataTable(string[] colorIds)
+		{
+			var table = new DataTable();
+			table.Columns.Add("Value", typeof(string));
+
+			if (colorIds == null)
+			{
+				return table;
+			}
+
+			foreach (var item in colorIds)
+			{
+				table.Rows.Add(item);
+			}
+
+			return table;
+		}
 	}
 }

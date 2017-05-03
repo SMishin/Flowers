@@ -11,7 +11,7 @@ namespace Flowers.Data.Products.Flowers
 	{
 		private readonly IProductsStore _productsStore;
 
-		public FlowersStore(IProductsStore productsStore) : base(new SqlConnectionHelper())
+		public FlowersStore(IProductsStore productsStore, ISqlConnectionHelper sqlConnectionHelper) : base(sqlConnectionHelper)
 		{
 			_productsStore = productsStore;
 		}

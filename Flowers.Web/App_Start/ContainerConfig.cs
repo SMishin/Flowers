@@ -3,6 +3,9 @@ using System.Reflection;
 using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
+using Flowers.Colors;
+using Flowers.Data;
+using Flowers.Data.Colors;
 using Flowers.Data.Products;
 using Flowers.Data.Products.Flowers;
 using Flowers.Products;
@@ -33,6 +36,8 @@ namespace Flowers.Web
 
 		public static ContainerBuilder RegisterTypes(this ContainerBuilder builder)
 		{
+			builder.RegisterType<SqlConnectionHelper>().As<ISqlConnectionHelper>();
+
 			builder.RegisterType<ProductsReadOnlyStore>().As<IProductsReadOnlyStore>();
 			builder.RegisterType<ProductsStore>().As<IProductsStore>();
 			builder.RegisterType<ProductsManager>().As<IProductsManager>()
@@ -40,8 +45,11 @@ namespace Flowers.Web
 
 			builder.RegisterType<FlowersReadOnlyStore>().As<IFlowersReadOnlyStore>();
 			builder.RegisterType<FlowersStore>().As<IFlowersStore>();
-			builder.RegisterType<FlowersManager>().As<IFlowersManager>()
-			;
+			builder.RegisterType<FlowersManager>().As<IFlowersManager>();
+
+			builder.RegisterType<ColorsReadOnlyStore>().As<IColorsReadOnlyStore>();
+			builder.RegisterType<ColorsStore>().As<IColorsStore>();
+			builder.RegisterType<ColorsManager>().As<IColorsManager>();
 
 			return builder;
 		}

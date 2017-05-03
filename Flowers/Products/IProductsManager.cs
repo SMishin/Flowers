@@ -9,5 +9,6 @@ namespace Flowers.Products
 		Task<ProductImage> UploadImage(byte[] content, string contentType, int productId);
 		Task SetMainImageAsync(int productId, int imageId);
 		Task RemoveImageAsync(int imageId);
+		Task SetColorsAsync(int productId, string[] colorIds);
 	}
 }

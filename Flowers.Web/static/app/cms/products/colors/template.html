@@ -1,0 +1,25 @@
+<h5>
+	все
+</h5>
+<ul class="color-list"
+    *ngIf="allColors.length > 0">
+
+	<li *ngFor="let item of allColors">
+		<input type="color" [value]="item.id" (click)="onSelect($event,item.id)"/>
+
+	</li>
+
+</ul>
+
+<h5>
+	выбранные
+</h5>
+<ul class="color-list"
+    *ngIf="model !== undefined && model.length > 0">
+
+	<li *ngFor="let item of model">
+		<input type="color" [value]="item" (click)="onRemove($event,item)"/>
+
+	</li>
+
+</ul>

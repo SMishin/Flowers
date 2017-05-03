@@ -12,7 +12,8 @@ class FlowerInfoEditFormComponent {
 	constructor() {
 		this.onChange = new EventEmitter();
 		this.model = {
-			flowerVariants: []
+			flowerVariants: [],
+			colors: []
 		};
 	}
 
@@ -20,6 +21,10 @@ class FlowerInfoEditFormComponent {
 		console.log(this.model);
 
 		this.onChange.emit(this.model);
+	}
+
+	productColorsChanged($event){
+		this.model.colors = $event;
 	}
 
 	productPricesChanged($event) {

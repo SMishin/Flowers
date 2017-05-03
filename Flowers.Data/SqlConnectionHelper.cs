@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace Flowers.Data
 {
-    public class SqlConnectionHelper
-    {
+    public class SqlConnectionHelper : ISqlConnectionHelper
+	{
         public async Task<SqlConnection> CreateConnection()
         {
             ConnectionStringSettings mySetting = ConfigurationManager.ConnectionStrings["Flowers.DB"];

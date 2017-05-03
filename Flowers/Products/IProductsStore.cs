@@ -10,5 +10,6 @@ namespace Flowers.Products
 		Task RemoveImageAsync(int imageId);
 		Task RemoveImagesAsync(int productId);
 		Task RemoveAsync(int id);
+		Task SetColorsAsync(int productId, string[] colorIds);
 	}
 }

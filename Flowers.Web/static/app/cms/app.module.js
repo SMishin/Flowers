@@ -7,6 +7,7 @@ import {routing} from './app.routing';
 import HttpClient from './core/http-client';
 import AppComponent from './app.component';
 import ProductListComponent from './products/list/index';
+import ProductColors from './products/colors/index';
 import NewFlowerComponent from './products/flowers/new-flower/index.js'
 import ProductComponent from './products/item/index'
 import FlowerInfoComponent from './products/flowers/info/index'
@@ -18,8 +19,10 @@ import DropZoneDirective from './products/product-images/drop-zone/index'
 import FileBrowserDirective from './products/product-images/file-browser/index'
 
 import FlowersService from './products/flowers/flowers-service';
-
 import FlowersDataResolver from './products/flowers/data-resolver';
+
+import ColorsComponent from './colors/index';
+import ColorsService from './colors/colors-service';
 
 @NgModule({
     imports: [
@@ -30,20 +33,27 @@ import FlowersDataResolver from './products/flowers/data-resolver';
     ],
     declarations: [
         AppComponent,
+
 	    ProductListComponent,
-	    NewFlowerComponent,
 	    ProductComponent,
+	    ProductColors,
+
+	    NewFlowerComponent,
 	    FlowerInfoComponent,
 	    FlowerInfoEditFormComponent,
 	    FlowerPrices,
+
 	    UploadImagesComponent,
 	    DropZoneDirective,
-	    FileBrowserDirective
+	    FileBrowserDirective,
+
+	    ColorsComponent
     ],
     providers: [
 	    HttpClient,
 	    FlowersService,
-	    FlowersDataResolver
+	    FlowersDataResolver,
+	    ColorsService
     ],
     bootstrap: [AppComponent]
 })

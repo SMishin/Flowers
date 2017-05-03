@@ -5,7 +5,7 @@ namespace Flowers.Web.Models.Flowers
 {
 	public class FlowersDetailsViewModel
 	{
-		public Flower Product { get; set; }
+		public Flower Flower { get; set; }
 		public ProductImage[] ProductImages { get; set; }
 		public Flower[] OtherProducts{ get; set; }
 	}
