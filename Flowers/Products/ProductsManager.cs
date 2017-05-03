@@ -106,5 +106,10 @@ namespace Flowers.Products
 				Directory.Delete(dirPath);
 			}
 		}
+
+		public Task SetColorsAsync(int productId, string[] colorIds)
+		{
+			return _productsStore.SetColorsAsync(productId, colorIds);
+		}
 	}
 }

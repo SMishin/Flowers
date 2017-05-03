@@ -7,6 +7,7 @@ import {routing} from './app.routing';
 import HttpClient from './core/http-client';
 import AppComponent from './app.component';
 import ProductListComponent from './products/list/index';
+import ProductColors from './products/colors/index';
 import NewFlowerComponent from './products/flowers/new-flower/index.js'
 import ProductComponent from './products/item/index'
 import FlowerInfoComponent from './products/flowers/info/index'
@@ -32,15 +33,20 @@ import ColorsService from './colors/colors-service';
     ],
     declarations: [
         AppComponent,
+
 	    ProductListComponent,
-	    NewFlowerComponent,
 	    ProductComponent,
+	    ProductColors,
+
+	    NewFlowerComponent,
 	    FlowerInfoComponent,
 	    FlowerInfoEditFormComponent,
 	    FlowerPrices,
+
 	    UploadImagesComponent,
 	    DropZoneDirective,
 	    FileBrowserDirective,
+
 	    ColorsComponent
     ],
     providers: [

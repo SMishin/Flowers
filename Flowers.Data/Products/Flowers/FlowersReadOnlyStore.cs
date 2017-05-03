@@ -30,9 +30,10 @@ namespace Flowers.Data.Products.Flowers
             using (var conntection = await SqlConnectionHelper.CreateConnection())
             {
                 var multy = await conntection.QueryMultipleAsync(
-                    @"
+					@"
 					exec GetFlower @Id = @Id 
 					select * from [FlowerVariants] where FlowerId = @Id
+					select ColorId from [ProductsColors] where ProductId = @Id
 					",
                     new { Id = id });
 
@@ -41,6 +42,7 @@ namespace Flowers.Data.Products.Flowers
                 if (flower != null)
                 {
                     flower.FlowerVariants = multy.Read<FlowerVariant>();
+                    flower.Colors = multy.Read<string>().ToArray();
                 }
 
                 return flower;

@@ -74,6 +74,9 @@
                             [(model)]="model.flowerVariants"></flower-prices>
                 </fieldset>
 
+                <product-colors  (onChange)="productColorsChanged($event)"
+                                 [(model)]="model.colors">
+                </product-colors>
 
                 <!--<div class="form-group">-->
                     <!--<label for="name">-->
