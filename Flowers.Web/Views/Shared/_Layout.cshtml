@@ -1,4 +1,4 @@
-﻿@using Flowers.Products.ProductType
+﻿@using Flowers.Products.ProductTypes
 <!DOCTYPE HTML>
 
 <html>
@@ -28,16 +28,22 @@
                     <div class="container">
                         <div class="row">
                             <div class="top_menu top-level tmmegamenu_item">
-                                <div class="stickUpTop" style="position: relative; top: 0px;">
+                                <div class="stickUpTop" style="position: relative; top: 0;">
                                     <div class="stickUpHolder container">
 
                                         <ul class="menu clearfix top-level-menu tmmegamenu_item sf-js-enabled sf-arrows">
-                                            <li class="top-level-menu-li tmmegamenu_item">
-                                                <a class="it_10125401 top-level-menu-li-a tmmegamenu_item"
-                                                   href="/@ProductType.Flowers.ToString().ToLower()">
-                                                    @ProductType.Flowers.ToFriendlyString()
-                                                </a>
-                                            </li>
+	                                        <li class="top-level-menu-li tmmegamenu_item">
+		                                        <a class="it_10125401 top-level-menu-li-a tmmegamenu_item"
+		                                           href="/@ProductType.Flowers.ToString().ToLower()">
+			                                        @ProductType.Flowers.ToFriendlyString()
+		                                        </a>
+	                                        </li>
+											<li class="top-level-menu-li tmmegamenu_item">
+												<a class="it_10125401 top-level-menu-li-a tmmegamenu_item"
+												   href="/@ProductType.Bouquets.ToString().ToLower()">
+													@ProductType.Bouquets.ToFriendlyString()
+												</a>
+											</li>
                                             @*<li class="top-level-menu-li tmmegamenu_item it_06201771">
                                                     <a class="it_06201771 top-level-menu-li-a tmmegamenu_item"
                                                        href="/@ProductType.Toys.ToString().ToLower()">

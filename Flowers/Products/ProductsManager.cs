@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Flowers.Products.ProductTypes;
 
 namespace Flowers.Products
 {
@@ -21,6 +22,19 @@ namespace Flowers.Products
 			_productsStore = productsStore;
 			_imagesRootPath = imagesRootPath;
 		}
+
+		public async Task<PagedResult<Product>> GetPublishedWithMainImageAsync(ProductType type, int page = 1)
+		{
+			PagedResultsFactory factory = new PagedResultsFactory();
+
+			var result = await factory.Create(
+				(skip, take) => _productsStore.GetPublishedWithMainImageAsync(type, skip, take),
+				() => _productsStore.CountPublishedAsync(type), 
+				page);
+
+			return result;
+		}
+
 		public Task<int> SaveAsync(Product product)
 		{
 			return _productsStore.SaveAsync(product);
@@ -111,5 +125,6 @@ namespace Flowers.Products
 		{
 			return _productsStore.SetColorsAsync(productId, colorIds);
 		}
+
 	}
 }

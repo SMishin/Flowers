@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import template from './list-template.html'
-
+import types from '../types';
 @Component({
 	template: template,
 	providers: []
@@ -12,17 +12,18 @@ class ProductListComponent {
 
 		this._router = router;
 		this._route = route;
-
+		this.types = types;
 		this.data = [];
-
 	}
 
 	ngOnInit() {
 		this.sub = this._route.data
 			.subscribe(rData => {
 				let group = [],
-					data = rData.data
-					;
+					data = rData.data.items
+				;
+				this.type = rData.data.type;
+
 				for (let i = 0; i < data.length; i++) {
 					group.push(data[i]);
 

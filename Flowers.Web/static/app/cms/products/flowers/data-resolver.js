@@ -1,5 +1,5 @@
 import {Injectable}             from '@angular/core';
-import FlowersService from './flowers-service';
+import FlowersService from '../../../common/flowers-service';
 
 @Injectable()
 class FlowersDataResolver {
@@ -10,7 +10,10 @@ class FlowersDataResolver {
 	resolve(activatedRouteSnapshot, routerStateSnapshot) {
 		return this.flowersService.get()
 			.then(data => {
-				return data;
+				return {
+					type: 0,
+					items: data
+				};
 			});
 	}
 }

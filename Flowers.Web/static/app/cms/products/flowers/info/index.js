@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import FlowersService from './../flowers-service';
+import FlowersService from '../../../../common/flowers-service';
 import template from './template.html'
 
 @Component({
@@ -9,7 +9,7 @@ import template from './template.html'
 })
 class FlowerInfoComponent {
 	constructor(route, router, productsService) {
-		this._flowersService = productsService;
+		this._productsService = productsService;
 		this._router = router;
 		this.model = {
 			id: route.parent.params && route.parent.params.value.id
@@ -19,7 +19,7 @@ class FlowerInfoComponent {
 			let id = params['id'];
 
 			if (id) {
-				this._flowersService.get(+id)
+				this._productsService.get(+id)
 					.then(data => {
 						this.model = data;
 					})
@@ -30,7 +30,7 @@ class FlowerInfoComponent {
 
 	onSubmit(form) {
 		console.log(form);
-		this._flowersService.save(this.model);
+		this._productsService.save(this.model);
 	}
 
 	remove() {
@@ -39,7 +39,7 @@ class FlowerInfoComponent {
 			return;
 		}
 
-		this._flowersService
+		this._productsService
 			.remove(this.model.id)
 			.then(() => {
 				this._router.navigate(['../_cms/products']);

@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Flowers.Products.Flowers;
-using Flowers.Products.ProductType;
+using Flowers.Products.ProductTypes;
 
 namespace Flowers.Web.Controllers
 {

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Flowers.Products.ProductTypes;
 
 namespace Flowers.Products.Flowers
 {
@@ -6,7 +7,7 @@ namespace Flowers.Products.Flowers
     {
         public Flower()
         {
-            base.Type = ProductType.ProductType.Flowers;
+            base.Type = ProductType.Flowers;
             FlowerVariants = new List<FlowerVariant>();
         }
         public FlowerType FlowerType { get; set; }

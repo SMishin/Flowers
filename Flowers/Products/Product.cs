@@ -1,4 +1,6 @@
-﻿namespace Flowers.Products
+﻿using Flowers.Products.ProductTypes;
+
+namespace Flowers.Products
 {
 	public class Product
 	{
@@ -7,7 +9,7 @@
 			Colors = new string[0];
 		}
 		public int Id { get; set; }
-		public ProductType.ProductType Type { get; set; }
+		public ProductType Type { get; set; }
 		public string TypeString => Type.ToString().ToLower();
 		public string Name { get; set; }
 		public string Summary { get; set; }

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import HttpClient from '../core/http-client';
+import HttpClient from '../../core/http-client';
 
 @Injectable()
 class ColorsService {

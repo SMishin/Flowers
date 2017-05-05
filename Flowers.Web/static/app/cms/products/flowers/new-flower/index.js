@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import ProductsService from './../flowers-service';
+import ProductsService from '../../../../common/flowers-service';
 import {Router, ActivatedRoute} from '@angular/router';
 import template from './template.html'
 
@@ -9,14 +9,14 @@ import template from './template.html'
 })
 class NewFlowerComponent {
 	constructor(productsService, router, route) {
-		this._flowersService = productsService;
+		this._productsService = productsService;
 		this._router = router;
 		this._route = route;
 	}
 
 	onSubmit(form) {
 		console.log(form);
-		this._flowersService.save(form).then(res => {
+		this._productsService.save(form).then(res => {
 			this._router.navigate(['../', res], {relativeTo: this._route})
 		});
 	}

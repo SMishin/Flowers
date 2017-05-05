@@ -1,4 +1,4 @@
-﻿@using Flowers.Products.ProductType
+﻿@using Flowers.Products.ProductTypes
 @model Flowers.Web.Models.Products.ProdutcsIndexViewModel
 
 <div class="columns-container">
@@ -47,7 +47,7 @@
 
 
 						@{
-							Html.RenderPartial("_List", Model.Products);
+							Html.RenderPartial(@"~\Views\Produtcs\_List.cshtml", Model.Products);
 						}
 
 
@@ -165,22 +165,22 @@
 
 													<label for="layered_manufacturer_4">
 														<a href="/flowers">
-															<strong>
-																Цветы
-															</strong>
+															<b>
+																@ProductType.Flowers.ToFriendlyString()
+															</b>
 														</a>
 													</label>
 												</li>
-												@*<li class="nomargin hiddable col-lg-12">
+												<li class="nomargin hiddable col-lg-12">
 
 													<label for="layered_manufacturer_4">
-														<a href="/toys">
-															<strong>
-																Игрушки
-															</strong>
+														<a href="/bouquets">
+															<b>
+																@ProductType.Bouquets.ToFriendlyString()
+															</b>
 														</a>
 													</label>
-												</li>*@
+												</li>
 
 											</ul>
 										</div>

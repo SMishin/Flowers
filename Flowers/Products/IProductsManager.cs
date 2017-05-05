@@ -1,9 +1,11 @@
 ﻿using System.Threading.Tasks;
+using Flowers.Products.ProductTypes;
 
 namespace Flowers.Products
 {
 	public interface IProductsManager
 	{
+		Task<PagedResult<Product>> GetPublishedWithMainImageAsync(ProductType type, int page = 1);
 		Task<int> SaveAsync(Product product);
 		Task RemoveAsync(int id);
 		Task<ProductImage> UploadImage(byte[] content, string contentType, int productId);

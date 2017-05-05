@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Dapper;
 using Flowers.Products;
-using Flowers.Products.ProductType;
+using Flowers.Products.ProductTypes;
 
 namespace Flowers.Data.Products
 {
@@ -24,6 +24,14 @@ namespace Flowers.Data.Products
 			using (var conntection = await SqlConnectionHelper.CreateConnection())
 			{
 				return (await conntection.QueryAsync<Product>("select * from dbo.[Products]")).ToArray();
+			}
+		}
+
+		public async Task<Product[]> GetAsync(ProductType type)
+		{
+			using (var conntection = await SqlConnectionHelper.CreateConnection())
+			{
+				return (await conntection.QueryAsync<Product>("select * from dbo.[Products] where [Type] = @type", new { Type = type })).ToArray();
 			}
 		}
 
@@ -74,5 +82,6 @@ namespace Flowers.Data.Products
 				return (await conntection.QueryAsync<int>("select count(*) from dbo.[Products] where [Type] = @ProductType and [Published] = 1", new { ProductType = productType })).First();
 			}
 		}
+
 	}
 }
