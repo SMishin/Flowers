@@ -11,4 +11,6 @@ export default   {
 	tulip: {name: "Тюльпан", value: 9},
 	freesia: {name: "Фрезия", value: 10},
 	eustoma: {name: "Эустома", value: 11},
+	peony: {name: "Пион", value: 12},
+	calla: {name: "Калла", value: 13},
 }

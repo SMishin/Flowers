@@ -16,7 +16,9 @@ namespace Flowers.Products.Flowers
         Sunflower = 8,
         Tulip = 9,
         Freesia = 10,
-        Eustoma = 11
+        Eustoma = 11,
+        Peony = 12,
+        Calla = 13
     }
 
     public static class ProductTypeExtensions
@@ -35,6 +37,8 @@ namespace Flowers.Products.Flowers
             {FlowerType.Tulip,"Тюльпан"},
             {FlowerType.Freesia,"Фрезия"},
             {FlowerType.Eustoma,"Эустома"},
+            {FlowerType.Peony,"Пион"},
+            {FlowerType.Calla,"Калла"},
             {FlowerType.Undefined,"Undefined"}
         };
 
