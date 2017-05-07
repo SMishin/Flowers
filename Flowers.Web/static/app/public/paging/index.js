@@ -8,7 +8,7 @@ class Paging extends React.Component {
 		super();
 		console.log(arguments);
 		this.state = {
-			model: props.route.model
+			model: props.model
 		};
 
 		this.unsubsctibe = store.subscribe(() => this.listener());
