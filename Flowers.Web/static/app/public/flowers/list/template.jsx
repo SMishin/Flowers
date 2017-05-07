@@ -1,4 +1,6 @@
 import React from 'react'
+import Paging from '../../paging/index';
+
 export default function template() {
 
 	let liItems = [];
@@ -54,6 +56,14 @@ export default function template() {
 		<ul className="product_list grid row c-count-3">
 			{liItems}
 		</ul>
+
+		{
+			this.state.flowers.totalCount > this.state.flowers.items.length && <div className="content_sortPagiBar">
+				<div id="pagination_bottom" className="bottom-pagination-content clearfix">
+					<Paging model={this.state.flowers}/>
+				</div>
+			</div>
+		}
 	</div>
 		;
 }

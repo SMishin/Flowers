@@ -51,27 +51,30 @@
 								Html.RenderPartial("__ListFilter");
 							}*@
 
-						<div id="product_list_items_container">
-							@{ Html.RenderPartial("_List", Model.Flowers.Items); }
-						</div>
+                            <div id="product_list_items_container">
+                                @{ Html.RenderPartial("_List", Model.Flowers.Items); }
 
-					</div>
+                                @if (Model.Flowers.TotalCount > Model.Flowers.Items.Length)
+                                {
+                                    Html.RenderPartial("_Paging", new PagingModel
+                                    {
+                                        TotalCount = Model.Flowers.TotalCount,
+                                        ItemsCount = Model.Flowers.Items.Length,
+                                        Page = Model.Flowers.Page,
+                                        PageSize = Model.Flowers.PageSize
+                                    },
+                                    new ViewDataDictionary
+                                    {
+                                    { "BaseUrl", ProductType.Flowers.ToString().ToLower()}
+                                    });
 
-					@if (Model.Flowers.TotalCount > Model.Flowers.Items.Length)
-					{
-						Html.RenderPartial("_Paging", new PagingModel
-						{
-							TotalCount = Model.Flowers.TotalCount,
-							ItemsCount = Model.Flowers.Items.Length,
-							Page = Model.Flowers.Page,
-							PageSize = Model.Flowers.PageSize
-						},
-						new ViewDataDictionary
-						{
-								{ "BaseUrl", ProductType.Flowers.ToString().ToLower()}
-						});
+                                }
+                            </div>
+                            
+                           
 
-					}
+                        </div>
+
 
 				</div>
 				<div id="left_column" class="column col-xs-12 col-sm-3">
