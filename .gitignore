@@ -26,3 +26,6 @@ Flowers.Web/products/
 Flowers.Data/bin
 Flowers.Data/obj
 *.user
+Flowers.Core-Web/bin/
+Flowers.Core-Web/obj/
+Flowers.Core-Web/wwwroot/server/iisnode/

@@ -1,0 +1,12 @@
+$font-url:'./fonts/';
+
+@font-face {
+  font-family: startui;
+  src:  url($font-url + 'startui/startui.eot');
+  src:  url($font-url + 'startui/startui.eot?#iefix') format("embedded-opentype"),
+  url($font-url + 'startui/startui.woff') format("woff"),
+  url($font-url + 'startui/startui.ttf') format("truetype"),
+  url($font-url + 'startui/startui.svg#startui') format("svg");
+  font-weight: 400;
+  font-style: normal
+}

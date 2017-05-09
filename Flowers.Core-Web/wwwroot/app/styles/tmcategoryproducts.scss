@@ -1,0 +1,12 @@
+.category-block .bx-viewport > ul {
+  margin: 0;
+}
+
+.category-block.block .title_block {
+  text-align: center;
+  padding-right: 0;
+}
+
+.category-block.block .title_block:after {
+  display: none;
+}

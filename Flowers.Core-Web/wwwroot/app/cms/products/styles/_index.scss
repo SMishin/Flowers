@@ -1,0 +1,12 @@
+@import "../product-images/styles/index";
+
+.product-list {
+  .card {
+    width: 150px;
+    cursor: pointer;
+
+    img{
+      width: 150px;
+    }
+  }
+}
