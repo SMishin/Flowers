@@ -52,8 +52,11 @@ namespace Flowers.CoreWeb
 
             services.AddMvc();
 
-            // Add application services.
-            services.AddTransient<IEmailSender, AuthMessageSender>();
+			services.AddNodeServices((opts) =>
+			{
+			});
+			// Add application services.
+			services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
 
             services.AddTransient<ISqlConnectionHelper, SqlConnectionHelper>(factory=> new SqlConnectionHelper(Configuration.GetConnectionString("Flowers.DB"))); 
@@ -79,7 +82,8 @@ namespace Flowers.CoreWeb
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
-                app.UseWebpackDevMiddleware(new Microsoft.AspNetCore.SpaServices.Webpack.WebpackDevMiddlewareOptions
+				app.UseMiddleware<NodeStaticMiddleware>();
+				app.UseWebpackDevMiddleware(new Microsoft.AspNetCore.SpaServices.Webpack.WebpackDevMiddlewareOptions
                 {
 					HotModuleReplacement = true,
 					ConfigFile = @"webpack.config.js",
@@ -93,7 +97,10 @@ namespace Flowers.CoreWeb
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseStaticFiles();
+	       
+
+
+			app.UseStaticFiles();
 
             app.UseIdentity();
 

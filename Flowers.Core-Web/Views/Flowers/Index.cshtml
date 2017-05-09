@@ -151,7 +151,7 @@
 
 	@*@if (Html.IsDebug())
 	{*@
-		@*<script src="/node_modules/systemjs/dist/system.src.js"></script>
+		<script src="/node_modules/systemjs/dist/system.src.js"></script>
 		<script src="/app/public/systemjs.config.js"></script>
 	<script>
 		(function () {
@@ -159,9 +159,9 @@
 				.then(null, console.error.bind(console));
 		}());
 
-	</script>*@
+	</script>
 
-		<script src="/dist/app/public/app.js"></script>
+		@*<script src="/dist/app/public/app.js"></script>*@
 	@*}
 	else
 	{
