@@ -1,15 +1,15 @@
 (function () {
 
-	let baseUrl = '/static',
-		appUrl = baseUrl + '/app/cms'
-		;
+	let baseUrl = '/',
+		appUrl = baseUrl + 'app/cms'
+	;
 
 	SystemJS.config({
 		baseURL: baseUrl,
 		defaultExtension: 'js',
 		paths: {
 			// paths serve as alias
-			'npm:': baseUrl + '/node_modules/'
+			'npm:': baseUrl + 'node_modules/'
 		},
 		packages: {
 			app: {
@@ -30,9 +30,9 @@
 		},
 		map: {
 			app: appUrl,
-			core: baseUrl + '/app/core',
-			common: baseUrl + '/app/common',
-			text: baseUrl + '/node_modules/systemjs-plugin-text/text',
+			core: baseUrl + 'app/core',
+			common: baseUrl + 'app/common',
+			text: 'npm:systemjs-plugin-text/text',
 			"@angular": 'npm:@angular',
 			"@angular/common": 'npm:@angular/common/bundles/common.umd',
 			"@angular/core": 'npm:@angular/core/bundles/core.umd',
@@ -47,10 +47,10 @@
 			'eventemitter3': 'npm:eventemitter3/index',
 			"whatwg-fetch": 'npm:whatwg-fetch/fetch',
 			"fastest-clone": 'npm:fastest-clone/index',
-			rxjs: baseUrl + '/node_modules/rxjs',
-			'core-js':'npm:core-js/client/shim.min',
-			'zone.js':'npm:zone.js/dist/zone',
-			'reflect-metadata':'npm:reflect-metadata/Reflect',
+			rxjs: 'npm:rxjs',
+			'core-js': 'npm:core-js/client/shim.min',
+			'zone.js': 'npm:zone.js/dist/zone',
+			'reflect-metadata': 'npm:reflect-metadata/Reflect',
 
 		},
 		meta: {

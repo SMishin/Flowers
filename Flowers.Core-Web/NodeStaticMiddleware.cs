@@ -35,7 +35,7 @@ namespace Flowers.CoreWeb
 
 		private string GetContentType(string requestUrl)
 		{
-			switch (System.Text.RegularExpressions.Regex.Match(requestUrl, @"\.(.*)$").Value)
+			switch (System.Text.RegularExpressions.Regex.Match(requestUrl, @"\.(jsx?|css*)$").Value)
 			{
 				case ".js":
 				case ".jsx":

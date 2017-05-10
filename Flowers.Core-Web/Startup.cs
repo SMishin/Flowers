@@ -1,8 +1,11 @@
 ﻿using System.IO;
+using Flowers.Colors;
+using Flowers.CoreWeb.Api.Config;
 using Flowers.CoreWeb.Data;
 using Flowers.CoreWeb.Models;
 using Flowers.CoreWeb.Services;
 using Flowers.Data;
+using Flowers.Data.Colors;
 using Flowers.Data.Products;
 using Flowers.Data.Products.Flowers;
 using Flowers.Products;
@@ -15,6 +18,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Serialization;
 
 namespace Flowers.CoreWeb
 {
@@ -48,13 +52,24 @@ namespace Flowers.CoreWeb
 				options.UseSqlServer(Configuration.GetConnectionString("Flowers.DB")));
 
 			services.AddIdentity<ApplicationUser, IdentityRole>()
-				.AddEntityFrameworkStores<ApplicationDbContext>()
-				.AddDefaultTokenProviders();
+					.AddEntityFrameworkStores<ApplicationDbContext>()
+					.AddDefaultTokenProviders();
 
-			services.AddMvc();
+			//System.Diagnostics.Debugger.Launch();
+
+			services.AddMvc()
+					.AddJsonOptions(options =>
+			        {
+				        options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();//JsonConfiguration.SerializerSettings.ContractResolver;
+						options.SerializerSettings.DateTimeZoneHandling = JsonConfiguration.SerializerSettings.DateTimeZoneHandling;
+						options.SerializerSettings.DefaultValueHandling = JsonConfiguration.SerializerSettings.DefaultValueHandling;
+						options.SerializerSettings.NullValueHandling = JsonConfiguration.SerializerSettings.NullValueHandling;
+						options.SerializerSettings.ReferenceLoopHandling = JsonConfiguration.SerializerSettings.ReferenceLoopHandling;
+						options.SerializerSettings.MissingMemberHandling = JsonConfiguration.SerializerSettings.MissingMemberHandling;
+
+					});
 
 			services.AddNodeServices();
-
 			// Add application services.
 			services.AddTransient<IEmailSender, AuthMessageSender>();
 			services.AddTransient<ISmsSender, AuthMessageSender>();
@@ -69,6 +84,10 @@ namespace Flowers.CoreWeb
 			services.AddTransient<IFlowersReadOnlyStore, FlowersReadOnlyStore>();
 			services.AddTransient<IFlowersManager, FlowersManager>();
 			services.AddTransient<IFlowersStore, FlowersStore>();
+
+			services.AddTransient<IColorsReadOnlyStore, ColorsReadOnlyStore>();
+			services.AddTransient<IColorsManager, ColorsManager>();
+			services.AddTransient<IColorsStore, ColorsStore>();
 
 		}
 

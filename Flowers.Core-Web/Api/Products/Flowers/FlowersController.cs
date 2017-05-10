@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
-using System.Web.Http;
 using Flowers.Products.Flowers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Flowers.CoreWeb.Api.Products.Flowers
@@ -50,7 +50,7 @@ namespace Flowers.CoreWeb.Api.Products.Flowers
         [Microsoft.AspNetCore.Mvc.HttpPost]
         [Microsoft.AspNetCore.Mvc.Route("flower")]
         [Authorize]
-        public async Task<IActionResult> Save(Flower flower)
+        public async Task<IActionResult> Save([FromBody]Flower flower)
         {
             if (!ModelState.IsValid)
             {
@@ -60,8 +60,8 @@ namespace Flowers.CoreWeb.Api.Products.Flowers
             return Ok(await _flowersManager.SaveAsync(flower));
         }
 
-        [Microsoft.AspNetCore.Mvc.HttpDelete]
-        [Microsoft.AspNetCore.Mvc.Route("flower")]
+        [HttpDelete]
+        [Route("flower")]
         [Authorize]
         public async Task<IActionResult> Remove(int id)
         {

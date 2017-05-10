@@ -19,9 +19,9 @@ function precess(callback, url) {
 
 }
 
-// precess(function (err, result) { 
-// 	console.log(result);
-// }, '/app/styles/main.css');
+precess(function (err, result) {
+	console.log(result);
+}, '/app/cms/app.module.js');
 
 module.exports = precess;
 

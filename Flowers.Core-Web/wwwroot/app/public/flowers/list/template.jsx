@@ -19,7 +19,7 @@ export default function template() {
 								   href={item.typeString + '/' + item.id}
 								   title={item.name}>
 									<img className="replace-2x img-responsive"
-									     src={item.imageUrl ? item.imageUrl : "/static/app/img/no_photo.jpg"}
+									     src={item.imageUrl ? item.imageUrl : "/app/img/no_photo.jpg"}
 									     alt={item.name}
 									     title={item.name}/>
 								</a>

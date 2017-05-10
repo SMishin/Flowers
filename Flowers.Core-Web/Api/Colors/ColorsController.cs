@@ -17,14 +17,16 @@ namespace Flowers.CoreWeb.Api.Colors
 			_colorsReadOnlyStore = colorsReadOnlyStore;
 		}
 
-		[HttpGet("/colors")]
+		[HttpGet]
+		[Route("colors")]
 		public async Task<IActionResult> Get()
 		{
 			var data = await _colorsReadOnlyStore.GetAsync();
 			return Ok(data);
 		}
 
-		[HttpGet("color/{id:int}")]
+		[HttpGet]
+		[Route("color/{id:int}")]
 		public async Task<ActionResult> Get(int id)
 		{
 			var data = await _colorsReadOnlyStore.GetAsync(id);
@@ -34,14 +36,14 @@ namespace Flowers.CoreWeb.Api.Colors
 		[HttpPost]
 		[Route("color")]
 		[Authorize]
-		public async Task<IActionResult> Save(Color product)
+		public async Task<IActionResult> Save([FromBody]Color color)
 		{
 			if (!ModelState.IsValid)
 			{
 				return BadRequest(ModelState);
 			}
 
-			await _colorsManager.SaveAsync(product);
+			await _colorsManager.SaveAsync(color);
 
 			return Ok();
 		}

@@ -19,34 +19,34 @@ namespace Flowers.CoreWeb.Api.Products
 			_productsStore = productsStore;
 		}
 
-		[System.Web.Http.HttpGet]
-		[System.Web.Http.Route("products")]
+		[HttpGet]
+		[Route("products")]
 		public async Task<ActionResult> Get(ProductType type, int page = 1)
 		{
 			var data = await _productsStore.GetAsync(type);
 			return Ok(data);
 		}
 
-		[System.Web.Http.HttpGet]
-		[System.Web.Http.Route("products/published")]
+		[HttpGet]
+		[Route("products/published")]
 		public async Task<IActionResult> GetPublishedWithMainImageAsync(ProductType type, int page = 1)
 		{
 			var data = await _productsManager.GetPublishedWithMainImageAsync(type, page);
 			return Ok(data);
 		}
 
-		[System.Web.Http.HttpGet]
-		[System.Web.Http.Route("product/{id:int}")]
+		[HttpGet]
+		[Route("product/{id:int}")]
 		public async Task<IActionResult> Get(int id)
 		{
 			var data = await _productsStore.GetAsync(id);
 			return Ok(data);
 		}
 
-		[System.Web.Http.HttpPost]
-		[System.Web.Http.Route("product")]
+		[HttpPost]
+		[Route("product")]
 		[Microsoft.AspNetCore.Authorization.Authorize]
-		public async Task<IActionResult> Save(Product product)
+		public async Task<IActionResult> Save([FromBody]Product product)
 		{
 			if (!ModelState.IsValid)
 			{
@@ -56,8 +56,8 @@ namespace Flowers.CoreWeb.Api.Products
 			return Ok(await _productsManager.SaveAsync(product));
 		}
 
-		[System.Web.Http.HttpGet]
-		[System.Web.Http.Route("product/{id:int}/images")]
+		[HttpGet]
+		[Route("product/{id:int}/images")]
 		public async Task<IActionResult> Images(int id)
 		{
 			ProductImage[] data = await _productsStore.GetImagesAsync(id);
@@ -65,17 +65,17 @@ namespace Flowers.CoreWeb.Api.Products
 		}
 
 
-		[System.Web.Http.HttpPost]
-		[System.Web.Http.Route("product/{productId:int}/image/main")]
+		[HttpPost]
+		[Route("product/{productId:int}/image/main")]
 		public async Task<IActionResult> Main(int productId, int imageId)
 		{
 			await _productsManager.SetMainImageAsync(productId, imageId);
 			return Ok();
 		}
 
-		[System.Web.Http.HttpPut]
-		[System.Web.Http.Route("product/{id:int}/image")]
-		[System.Web.Http.Route("product/image")]
+		[HttpPut]
+		[Route("product/{id:int}/image")]
+		[Route("product/image")]
 		[Microsoft.AspNetCore.Authorization.Authorize]
 		public async Task<IActionResult> SaveImage(int id, ICollection<IFormFile> files)
 		{
@@ -99,8 +99,8 @@ namespace Flowers.CoreWeb.Api.Products
 			return Ok();
 		}
 
-		[System.Web.Http.HttpDelete]
-		[System.Web.Http.Route("product")]
+		[HttpDelete]
+		[Route("product")]
 		[Microsoft.AspNetCore.Authorization.Authorize]
 		public async Task<IActionResult> Remove(int id)
 		{
@@ -108,8 +108,8 @@ namespace Flowers.CoreWeb.Api.Products
 			return Ok();
 		}
 
-		[System.Web.Http.HttpDelete]
-		[System.Web.Http.Route("product/image")]
+		[HttpDelete]
+		[Route("product/image")]
 		[Microsoft.AspNetCore.Authorization.Authorize]
 		public async Task<IActionResult> RemoveImage(int id)
 		{
