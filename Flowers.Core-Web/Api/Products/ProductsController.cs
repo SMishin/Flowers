@@ -79,12 +79,13 @@ namespace Flowers.CoreWeb.Api.Products
 		[Microsoft.AspNetCore.Authorization.Authorize]
 		public async Task<IActionResult> SaveImage(int id, ICollection<IFormFile> files)
 		{
+			///MultipartRequestHelper.
 			//if (!request.Content.IsMimeMultipartContent())
 			//{
 			//	throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
 			//}
 
-            
+
 			//var data = await Request.HttpContext.ParseMultipartAsync();
 			//if (!data.Files.ContainsKey("file"))
 			//{
