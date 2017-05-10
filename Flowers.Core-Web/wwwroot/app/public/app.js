@@ -7,7 +7,7 @@ import FlowerList from './flowers/list/index';
 import FlowerFilter from './flowers/filter/index';
 import flowerStore from './flowers/store';
 
-import '../styles/main.scss'
+//import '../styles/main.scss'
 
 blankshield(document.querySelectorAll('a[target=_blank]'));
 

@@ -1,0 +1,45 @@
+﻿<div class="content_sortPagiBar clearfix">
+	<div class="sortPagiBar clearfix">
+
+		<form id="productsSortForm"
+			  action="https://ld-prestashop.template-help.com/prestashop_58383/index.php?id_category=14&amp;controller=category&amp;productId_lang=1&amp;productId_lang=1"
+			  class="productsSortForm">
+			<div class="select selector1">
+				<label for="selectProductSort">Sort by</label>
+				<div class="selector" id="uniform-selectProductSort" style="width: 182px;">
+					<select id="selectProductSort" class="selectProductSort form-control">
+						<option value="position:asc" selected="selected">--</option>
+						<option value="price:asc">Price: Lowest first</option>
+						<option value="price:desc">Price: Highest first</option>
+						<option value="name:asc">Product Name: A to Z</option>
+						<option value="name:desc">Product Name: Z to A</option>
+						<option value="quantity:desc">In stock</option>
+						<option value="reference:asc">Reference: Lowest first</option>
+						<option value="reference:desc">Reference: Highest first</option>
+					</select>
+				</div>
+			</div>
+		</form>
+
+
+		<form action="https://ld-prestashop.template-help.com/prestashop_58383/index.php?id_category=14&amp;controller=category&amp;productId_lang=1" method="get" class="nbrItemPage">
+			<div class="clearfix selector1">
+				<label for="nb_item">
+					Show
+				</label>
+				<input type="hidden" name="id_lang" value="1">
+				<input type="hidden" name="id_category" value="14">
+				<input type="hidden" name="controller" value="category">
+				<div class="selector" id="uniform-nb_item" style="width: 70px;">
+					<select name="n" id="nb_item" class="form-control">
+						<option value="6" selected="selected">6</option>
+						<option value="12">12</option>
+						<option value="30">30</option>
+					</select>
+				</div>
+				<span>per page</span>
+			</div>
+		</form>
+
+	</div>
+</div>

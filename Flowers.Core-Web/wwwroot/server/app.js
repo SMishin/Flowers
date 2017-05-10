@@ -1,27 +1,27 @@
-var //express = require('express'),
-    path = require('path')
-    //fileHandler = require('./handleFile')
-    ;
-// var app = express();
-//
-// var root = path.resolve(__dirname,'../');
-//
-// app.get('*.css', fileHandler(root, require('./handlers/css')));
-// app.get(/.*.jsx?/, fileHandler(root, require('./handlers/js')));
-//
-// app.listen(process.env.PORT || 8888);
 
+let jsConvert = require('./handlers/js-convert'),
+	cssConverter = require('./handlers/css-convert'),
+	path = require('path')
+;
 
-let jsConvert = require('./handlers/js-convert');
-let root =  path.resolve(__dirname,'../');
+let root = path.resolve(__dirname, '../');
 
+function precess(callback, url) {
 
-function precess(callback, filePath) {
-	jsConvert(callback, (root + filePath).replace('/','\\'));
+	let filePath = path.resolve(root + url);
+
+	if (filePath.match(/.jsx?/)) {
+		jsConvert(callback, filePath);
+	}
+	else {
+		cssConverter(callback, filePath);
+	}
+
 }
-// precess(function () {
-//
-// },'/app/public/app.js');
+
+// precess(function (err, result) { 
+// 	console.log(result);
+// }, '/app/styles/main.css');
 
 module.exports = precess;
 

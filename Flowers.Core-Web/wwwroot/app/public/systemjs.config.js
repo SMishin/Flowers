@@ -13,7 +13,7 @@
 		},
 		paths: {
 			// paths serve as alias
-			'npm:': baseUrl + '/node_modules/'
+			'npm:': baseUrl + 'node_modules/'
 		},
 		packages: {
 			app: {

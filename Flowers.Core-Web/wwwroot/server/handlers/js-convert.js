@@ -3,7 +3,7 @@
 let fs = require("fs"),
 	babel = require("babel-core"),
 	path = require('path')
-	;
+;
 
 let babelOps = require('../../package.json').babel;
 babelOps.presets[0] = 'es2016';
@@ -26,27 +26,16 @@ module.exports = function (callback, filePath) {
 
 	console.log(filePath);
 
-	fs.readFile(filePath, "utf-8", function (err, file) {
-		if (err) {
-			callback(err);
-			return;
-		}
+	if (needTransform(filePath)) {
+		babel.transformFile(filePath, babelOps, function (err, result) {
+			callback(err, result.code)
+		});
+	}
+	else {
+		fs.readFile(filePath, "utf-8", function (err, file) {
+			callback(err, file);
+		});
+	}
 
-		var code = file;
-
-		if (needTransform(filePath)) {
-			//babelOps.sourceMaps = true;
-			code = babel.transform(file, babelOps).code;
-		}
-
-		callback(null, code);
-
-		// res.writeHead(200,
-		//     {
-		//         'Content-Type': 'application/javascript'
-		//     });
-		// res.write(code, "utf-8");
-		// res.end();
-	});
 
 };

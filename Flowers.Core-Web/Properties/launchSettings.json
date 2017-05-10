@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://flower.core.local/",
+      "applicationUrl": "http://localhost:60364",
       "sslPort": 0
     }
   },
