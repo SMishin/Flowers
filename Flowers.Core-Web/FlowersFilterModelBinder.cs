@@ -18,7 +18,7 @@ namespace Flowers.CoreWeb
 
             FlowersFilter result = new FlowersFilter(val.FirstValue?.Split(','));
 
-            bindingContext.Model = result;
+            bindingContext.Result = ModelBindingResult.Success(result);
             return Task.CompletedTask;
         }
     }

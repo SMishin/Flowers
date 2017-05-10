@@ -17,9 +17,6 @@ namespace Flowers.CoreWeb
 
 		public async Task Invoke(HttpContext context, INodeServices nodeServices)
 		{
-			//if (context.Request.Path.HasValue && context.Request.Path.Value.IndexOf(".js") != -1)
-			//{
-
 			var contentType = GetContentType(context.Request.Path.Value);
 
 			if (contentType == null)
@@ -34,10 +31,6 @@ namespace Flowers.CoreWeb
 			context.Response.Headers["Content-Type"] = contentType;
 			await context.Response.WriteAsync(result);
 
-			//}
-
-			// Call the next delegate/middleware in the pipeline
-			//await this._next(context);
 		}
 
 		private string GetContentType(string requestUrl)
