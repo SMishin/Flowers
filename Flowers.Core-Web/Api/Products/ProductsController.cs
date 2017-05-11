@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System.IO;
 using System.Threading.Tasks;
 using Flowers.Products;
 using Flowers.Products.ProductTypes;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Net.Http.Headers;
 
 namespace Flowers.CoreWeb.Api.Products
 {
+
 	[Route("api")]
 	public class ProductsController : Controller
 	{
@@ -77,27 +78,21 @@ namespace Flowers.CoreWeb.Api.Products
 		[Route("product/{id:int}/image")]
 		[Route("product/image")]
 		[Microsoft.AspNetCore.Authorization.Authorize]
-		public async Task<IActionResult> SaveImage(int id, ICollection<IFormFile> files)
+		public async Task<IActionResult> SaveImage(int id)
 		{
-			///MultipartRequestHelper.
-			//if (!request.Content.IsMimeMultipartContent())
-			//{
-			//	throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
-			//}
+			if (!MultipartRequestHelper.IsMultipartContentType(Request.ContentType))
+			{
+				return BadRequest($"Expected a multipart request, but got {Request.ContentType}");
+			}
 
+			var file = Request.Form.Files[0];
 
-			//var data = await Request.HttpContext.ParseMultipartAsync();
-			//if (!data.Files.ContainsKey("file"))
-			//{
-			//	throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
-			//}
-
-			//var file = data.Files[data.Files.Keys.First()];
-
-			//var img = await _productsManager.UploadImage(file.Content, file.ContentType, id);
-
-			//return Ok(img);
-			return Ok();
+			using (MemoryStream ms = new MemoryStream())
+			{
+				await file.CopyToAsync(ms);
+				var img = await _productsManager.UploadImage(ms, file.ContentType, id);
+				return Ok(img);
+			}
 		}
 
 		[HttpDelete]

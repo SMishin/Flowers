@@ -59,8 +59,8 @@ namespace Flowers.CoreWeb
 
 			services.AddMvc()
 					.AddJsonOptions(options =>
-			        {
-				        options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();//JsonConfiguration.SerializerSettings.ContractResolver;
+					{
+						options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();//JsonConfiguration.SerializerSettings.ContractResolver;
 						options.SerializerSettings.DateTimeZoneHandling = JsonConfiguration.SerializerSettings.DateTimeZoneHandling;
 						options.SerializerSettings.DefaultValueHandling = JsonConfiguration.SerializerSettings.DefaultValueHandling;
 						options.SerializerSettings.NullValueHandling = JsonConfiguration.SerializerSettings.NullValueHandling;
