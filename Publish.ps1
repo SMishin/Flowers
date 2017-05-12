@@ -17,25 +17,26 @@ If ((Test-Path $distPath\$projectName) -eq "True") {
 }
 
 Push-Location	
-	cd .\Flowers.Web
+	cd .\Flowers.Core-Web
 	
 	If ((Test-Path .\obj) -eq "True") {
 		Remove-Item .\obj -Force -Recurse
 	}
 	
-	msbuild $projectName.Web.csproj /p:DeployOnBuild=true /p:Configuration=Release /p:AutoParameterizationWebConfigConnectionStrings=false
+	msbuild "$projectName.Core-Web.csproj" /t:restore #restore packages
+	msbuild "$projectName.Core-Web.csproj" /p:DeployOnBuild=true /p:Configuration=Release /p:AutoParameterizationWebConfigConnectionStrings=false
 	
 	Push-Location	
-		cd .\obj\Release\Package
+		cd .\bin\Release\net462\win7-x86
 		Write '------Copying Package ---- ' 
-		Copy-Item .\PackageTmp $distPath -Recurse
+		Copy-Item .\Publish $distPath -Recurse
 			Write '------Rename Package ---- ' 
-		Rename-Item -Path $distPath\PackageTmp -NewName $projectName
+		Rename-Item -Path $distPath\Publish -NewName $projectName
 	Pop-Location
 Pop-Location
 
 Push-Location
-	cd .\Flowers.Web\static
+	cd .\Flowers.Core-Web\wwwroot
 	
 	If ((Test-Path .\dist) -eq "True") {
 		Remove-Item .\dist -Force -Recurse
@@ -43,5 +44,5 @@ Push-Location
 	
 	npm i
 	npm run build
-	Copy-Item .\dist $distPath\$projectName\static -Recurse
+	Copy-Item .\dist $distPath\$projectName\wwwroot -Recurse
 Pop-Location
