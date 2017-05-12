@@ -126,9 +126,9 @@ namespace Flowers.CoreWeb
 			}
 			else
 			{
-				app.UseExceptionHandler("/Home/Error");
+				app.UseExceptionHandler("/errors");
+				app.UseStatusCodePagesWithReExecute("/errors/{0}");
 			}
-
 
 			app.UseStaticFiles();
 

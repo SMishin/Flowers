@@ -1,0 +1,61 @@
+﻿@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+	<title>500 Server Error</title>
+	<style>
+		#page {
+			font-size: 122%;
+			width: 720px;
+			margin: 144px auto 0 auto;
+			text-align: left;
+			line-height: 1.2;
+		}
+
+		#message {
+			padding-right: 400px;
+			min-height: 360px;
+			background: transparent url(/app/img/500.1.jpg) right top no-repeat;
+			background-position-x: 30%;
+		}
+
+		h1 {
+			font-size: 300%;
+			font-family: 'Trebuchet MS', Verdana, sans-serif;
+			color: #000;
+		}
+
+		#refresh {
+			cursor: pointer;
+			text-decoration: underline;
+		}
+	</style>
+
+
+</head>
+<body>
+	<div id="page">
+		<div id="message">
+			<h1>Внутренняя ошибка 500</h1>
+			<p>Попробуйте позже</p>
+			<p>
+				<span id="refresh">
+					Обновить
+				</span>
+			</p>
+		</div>
+	</div>
+
+	<script>
+        document.getElementById('refresh').addEventListener('click',
+            function () {
+                window.location.reload();
+            });
+	</script>
+</body>
+</html>

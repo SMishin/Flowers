@@ -18,6 +18,7 @@ namespace Flowers.CoreWeb.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
+
             var flowers = _flowersReadOnlyStore.GetRandomPublishedWithMainImageAsync(12);
             //var toys = _productsReadOnlyStore.GetPublishedWithMainImageAsync(ProductType.Toys, 0, 12);
 

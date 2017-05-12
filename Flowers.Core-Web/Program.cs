@@ -13,7 +13,8 @@ namespace Flowers.CoreWeb
                 .UseIISIntegration()
                 .UseStartup<Startup>()
                 .UseApplicationInsights()
-                .Build();
+				//.UseEnvironment("Development")
+				.Build();
 
             host.Run();
         }
