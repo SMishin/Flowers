@@ -8,127 +8,132 @@ using Flowers.Products.Flowers;
 
 namespace Flowers.Data.Products.Flowers
 {
-    public class FlowersReadOnlyStore : IFlowersReadOnlyStore
-    {
-        protected readonly ISqlConnectionHelper SqlConnectionHelper;
+	public class FlowersReadOnlyStore : IFlowersReadOnlyStore
+	{
+		protected readonly ISqlConnectionHelper SqlConnectionHelper;
 
 		public FlowersReadOnlyStore(ISqlConnectionHelper sqlConnectionHelper)
 		{
 			SqlConnectionHelper = sqlConnectionHelper;
 		}
 
-        public async Task<Flower[]> GetAsync()
-        {
-            using (var conntection = await SqlConnectionHelper.CreateConnection())
-            {
-                return (await conntection.QueryAsync<Flower>("SelectFlowersWithMainImage", commandType: System.Data.CommandType.StoredProcedure)).ToArray();
-            }
-        }
+		public async Task<Flower[]> GetAsync()
+		{
+			using (var conntection = await SqlConnectionHelper.CreateConnection())
+			{
+				return (await conntection.QueryAsync<Flower>("SelectFlowersWithMainImage", commandType: System.Data.CommandType.StoredProcedure)).ToArray();
+			}
+		}
 
-        public async Task<Flower> GetAsync(int id)
-        {
-            using (var conntection = await SqlConnectionHelper.CreateConnection())
-            {
-                var multy = await conntection.QueryMultipleAsync(
+		public async Task<Flower> GetAsync(int id)
+		{
+			using (var conntection = await SqlConnectionHelper.CreateConnection())
+			{
+				var multy = await conntection.QueryMultipleAsync(
 					@"
 					exec GetFlower @Id = @Id 
 					select * from [FlowerVariants] where FlowerId = @Id
 					select ColorId from [ProductsColors] where ProductId = @Id
 					",
-                    new { Id = id });
+					new { Id = id });
 
-                var flower = multy.Read<Flower>().FirstOrDefault();
+				var flower = multy.Read<Flower>().FirstOrDefault();
 
-                if (flower != null)
-                {
-                    flower.FlowerVariants = multy.Read<FlowerVariant>();
-                    flower.Colors = multy.Read<string>().ToArray();
-                }
+				if (flower != null)
+				{
+					flower.FlowerVariants = multy.Read<FlowerVariant>();
+					flower.Colors = multy.Read<string>().ToArray();
+				}
 
-                return flower;
-            }
-        }
+				return flower;
+			}
+		}
 
-        public async Task<Flower[]> GetPublishedWithMainImageAsync(FlowersFilter filters, int skip, int take)
-        {
-            DataTable flowerTypess = GetflowerTypesFromFilter(filters);
+		public async Task<Flower[]> GetPublishedWithMainImageAsync(FlowersFilter filters, int skip, int take)
+		{
+			DataTable flowerTypess = GetflowerTypesFromFilter(filters);
 
-            using (var conntection = await SqlConnectionHelper.CreateConnection())
-            {
-                return (await conntection.QueryAsync<Flower>("SelectPublishedFlowersWithMainImage",
-                new
-                {
-                    Types = flowerTypess,
-                    Skip = skip,
-                    Take = take
-                },
-                commandType: CommandType.StoredProcedure)).ToArray();
-            }
-        }
+			using (var conntection = await SqlConnectionHelper.CreateConnection())
+			{
+				return (await conntection.QueryAsync<Flower>("SelectPublishedFlowersWithMainImage",
+				new
+				{
+					Types = flowerTypess,
+					Skip = skip,
+					Take = take
+				},
+				commandType: CommandType.StoredProcedure)).ToArray();
+			}
+		}
 
-        
 
-        public async Task<Flower[]> GetRandomPublishedWithMainImageAsync(int count)
-        {
-            using (var conntection = await SqlConnectionHelper.CreateConnection())
-            {
-                return (await conntection.QueryAsync<Flower>("SelectRandomPublishedFlowersWithMainImage",
-                new
-                {
-                    Count = count
-                },
-                commandType: CommandType.StoredProcedure)).ToArray();
-            }
-        }
 
-        public async Task<int> CountPublishedAsync(FlowersFilter filter)
-        {
-            FlowerType[] flowerTypess = (filter?.Types ?? Enum.GetValues(typeof(FlowerType)).Cast<FlowerType>()).ToArray();
+		public async Task<Flower[]> GetRandomPublishedWithMainImageAsync(int count)
+		{
+			using (var conntection = await SqlConnectionHelper.CreateConnection())
+			{
+				return (await conntection.QueryAsync<Flower>("SelectRandomPublishedFlowersWithMainImage",
+				new
+				{
+					Count = count
+				},
+				commandType: CommandType.StoredProcedure)).ToArray();
+			}
+		}
 
-            using (var conntection = await SqlConnectionHelper.CreateConnection())
-            {
-                return (await conntection.QueryAsync<int>(@"
-                    select 
+		public async Task<int> CountPublishedAsync(FlowersFilter filter)
+		{
+			FlowerType[] flowerTypess = filter.Types; //(filter?.Types ?? Enum.GetValues(typeof(FlowerType)).Cast<FlowerType>()).ToArray();
+
+			string query = @" select 
                         count(*) from dbo.[Flowers] f
                     join dbo.[Products] p on f.Id = p.Id
-                    where f.[Type] in @Types and p.[Published] = 1", 
-                    new { Types = flowerTypess }))
-                    .First();
-            }
-        }
+                    where p.[Published] = 1";
 
-        private DataTable GetflowerTypesFromFilter(FlowersFilter filters)
-        {
-            DataTable flowerTypes;
+			if (flowerTypess != null && flowerTypess.Length > 0)
+			{
+				query += " and f.[Type] in @Types";
+			}
 
-            if (filters?.Types == null || filters.Types.Length == 0)
-            {
-                flowerTypes = FlowerTypessToDataTable(Enum.GetValues(typeof(FlowerType)).Cast<FlowerType>());
-            }
-            else
-            {
-                flowerTypes = FlowerTypessToDataTable(filters?.Types);
-            }
+			using (var conntection = await SqlConnectionHelper.CreateConnection())
+			{
+				return (await conntection.QueryAsync<int>(query, new { Types = flowerTypess }))
+					.First();
+			}
+		}
 
-            return flowerTypes;
-        }
+		private DataTable GetflowerTypesFromFilter(FlowersFilter filters)
+		{
+			DataTable flowerTypes;
 
-        private DataTable FlowerTypessToDataTable(IEnumerable<FlowerType> flowerTypess)
-        {
-            var table = new DataTable();
-            table.Columns.Add("Id", typeof(int));
+			if (filters?.Types == null || filters.Types.Length == 0)
+			{
+				flowerTypes = FlowerTypessToDataTable(Enum.GetValues(typeof(FlowerType)).Cast<FlowerType>());
+			}
+			else
+			{
+				flowerTypes = FlowerTypessToDataTable(filters?.Types);
+			}
 
-            if (flowerTypess == null)
-            {
-                return table;
-            }
+			return flowerTypes;
+		}
 
-            foreach (var item in flowerTypess)
-            {
-                table.Rows.Add(item);
-            }
+		private DataTable FlowerTypessToDataTable(IEnumerable<FlowerType> flowerTypess)
+		{
+			var table = new DataTable();
+			table.Columns.Add("Id", typeof(int));
 
-            return table;
-        }
-    }
+			if (flowerTypess == null)
+			{
+				return table;
+			}
+
+			foreach (var item in flowerTypess)
+			{
+				table.Rows.Add(item);
+			}
+
+			return table;
+		}
+	}
 }

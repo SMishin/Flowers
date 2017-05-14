@@ -11,11 +11,7 @@ namespace Flowers.Products.Flowers
 
 		public FlowersFilter(string[] stringValues)
 		{
-
-			if (stringValues != null)
-			{
-				Types = stringValues.Select(t => (FlowerType)System.Convert.ToInt32(t)).ToArray();
-			}
+			Types = stringValues?.Select(t => (FlowerType) System.Convert.ToInt32(t)).ToArray() ?? new FlowerType[0];
 		}
 
 		public FlowersFilter(int[] values)

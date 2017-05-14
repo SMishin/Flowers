@@ -1,7 +1,10 @@
-﻿@using System.Web
+﻿@using System
+@using System.Web
+@using System.Linq
 
 @using Flowers.CoreWeb.Api.Config
 @using Flowers.CoreWeb.Models.Flowers
+@using Flowers.CoreWeb.Models
 @using Flowers.Products.Flowers
 @using Flowers.Products.ProductTypes
 @using Microsoft.AspNetCore.Mvc.ViewFeatures
@@ -26,19 +29,19 @@
 									if (lastNumber == 1)
 									{
 										<text>
-											наименование
+										наименование
 										</text>
 									}
 									else if (lastNumber > 1 && lastNumber < 5)
 									{
 										<text>
-											наименования
+										наименования
 										</text>
 									}
 									else if (lastNumber == 0 || lastNumber >= 5)
 									{
 										<text>
-											наименований
+										наименований
 										</text>
 									}
 
@@ -53,29 +56,29 @@
 								Html.RenderPartial("__ListFilter");
 							}*@
 
-                            <div id="product_list_items_container">
-                                @{ Html.RenderPartial("_List", Model.Flowers.Items); }
+						<div id="product_list_items_container">
+							@{ Html.RenderPartial("_List", Model.Flowers.Items); }
 
-                                @if (Model.Flowers.TotalCount > Model.Flowers.Items.Length)
-                                {
-                                    @Html.Partial("_Paging", new PagingModel
-                                    {
-                                        TotalCount = Model.Flowers.TotalCount,
-                                        ItemsCount = Model.Flowers.Items.Length,
-                                        Page = Model.Flowers.Page,
-                                        PageSize = Model.Flowers.PageSize
-                                    },
-                                    new ViewDataDictionary(this.ViewData)
-                                    {
-                                    { "BaseUrl", ProductType.Flowers.ToString().ToLower()}
-                                    })
+							@if (Model.Flowers.TotalCount > Model.Flowers.Items.Length)
+							{
+								@Html.Partial("_Paging", new PagingModel
+							   {
+								   TotalCount = Model.Flowers.TotalCount,
+								   ItemsCount = Model.Flowers.Items.Length,
+								   Page = Model.Flowers.Page,
+								   PageSize = Model.Flowers.PageSize
+							   },
+									new ViewDataDictionary(this.ViewData)
+									{
+									{ "BaseUrl", ProductType.Flowers.ToString().ToLower()}
+									})
 
-                                }
-                            </div>
-                            
-                           
+							}
+						</div>
 
-                        </div>
+
+
+					</div>
 
 
 				</div>
@@ -97,7 +100,8 @@
 											<div id="flowers-filter">
 												<ul class="col-lg-12 layered_filter_ul">
 
-													@{		foreach (var item in Enum.GetValues(typeof(FlowerType)).Cast<FlowerType>().Where(t => t != FlowerType.Undefined))
+													@{		
+														foreach (var item in Enum.GetValues(typeof(FlowerType)).Cast<FlowerType>().Where(t => t != FlowerType.Undefined))
 														{
 															<li class="nomargin hiddable col-lg-12">
 																<input type="checkbox" class="checkbox" name="layered_quantity_@item" id="layered_quantity_@item"
@@ -149,23 +153,23 @@
 		window.__INITIAL_STATE__ = JSON.parse('@Html.Raw(Json.Serialize(Model, JsonConfiguration.SerializerSettings))');
 	</script>
 
-	@*@if (Html.IsDebug())
-	{*@
+	<environment names="Development">
+		
 		<script src="/node_modules/systemjs/dist/system.src.js"></script>
 		<script src="/app/public/systemjs.config.js"></script>
-	<script>
-		(function () {
-			System.import('app/public/app')
-				.then(null, console.error.bind(console));
-		}());
+		<script>
+			(function() {
+				System.import('app/public/app')
+					.then(null, console.error.bind(console));
+			}());
 
-	</script>
+		</script>
 
-		@*<script src="/dist/app/public/app.js"></script>*@
-	@*}
-	else
-	{
+	</environment>
+
+	<environment names="Production">
 		<script src="/static/app/public/app.js"></script>
-	}*@
+	</environment>
+
 
 }
