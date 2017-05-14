@@ -19,5 +19,12 @@ namespace Flowers.CoreWeb.Controllers
 			return base.Index(ProductType.Bouquets, page);
 		}
 
+		[Route("{id:int}")]
+		[HttpGet]
+		public Task<IActionResult> Details(int id)
+		{
+			return base.Details(ProductType.Bouquets, id);
+		}
+
 	}
 }

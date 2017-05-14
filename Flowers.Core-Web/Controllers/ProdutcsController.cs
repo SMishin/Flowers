@@ -18,7 +18,7 @@ namespace Flowers.CoreWeb.Controllers
 
 		//[Route("{type}")]
 		[HttpGet]
-		public async Task<IActionResult> Index(ProductType type, int page = 1)
+		protected async Task<IActionResult> Index(ProductType type, int page = 1)
 		{
 			var products = _productsReadOnlyStore.GetPublishedWithMainImageAsync(type, (page - 1) * _pageSize, page * _pageSize);
 			var count = _productsReadOnlyStore.CountPublishedAsync(type);
@@ -33,12 +33,12 @@ namespace Flowers.CoreWeb.Controllers
 				ProductType = type
 			};
 
-			return View(@"~\Views\Produtcs\Index.cshtml", data);
+			return View(@"~/Views/Produtcs/Index.cshtml", data);
 		}
 
 		//[Route("{type}/{id:int}")]
 		[HttpGet]
-		public async Task<IActionResult> Details(ProductType type, int id)
+		protected async Task<IActionResult> Details(ProductType type, int id)
 		{
 			var product = _productsReadOnlyStore.GetAsync(id);
 			var images = _productsReadOnlyStore.GetImagesAsync(id);
