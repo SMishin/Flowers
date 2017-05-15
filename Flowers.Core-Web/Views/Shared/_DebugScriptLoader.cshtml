@@ -1,0 +1,12 @@
+﻿@model IEnumerable<string>
+
+@{
+	if (Model != null)
+	{
+		foreach (var item in Model)
+		{
+			@*<script src="@item?ver=@(Html.GetStaticVersion())"></script>*@
+			<script src="@item"></script>
+		}
+	}
+}

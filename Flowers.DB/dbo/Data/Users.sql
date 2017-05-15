@@ -14,7 +14,8 @@ begin
 			   ,[LockoutEndDateUtc]
 			   ,[LockoutEnabled]
 			   ,[AccessFailedCount]
-			   ,[UserName])
+			   ,[UserName]
+			   ,[NormalizedUserName])
 		 VALUES
 			   ('21302f78-721f-428d-bd9b-e26f7fcc3f79'
 			   ,'admin@admin.ru'
@@ -27,7 +28,8 @@ begin
 			   ,null
 			   ,1
 			   ,0
-			   ,'admin@admin.ru'
+			   ,'admin@admin.ru',
+			   'ADMIN@ADMIN.RU'
 			   )
 
 end

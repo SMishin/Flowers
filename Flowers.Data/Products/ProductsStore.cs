@@ -8,7 +8,7 @@ namespace Flowers.Data.Products
 {
 	public class ProductsStore : ProductsReadOnlyStore, IProductsStore
 	{
-		public ProductsStore() : base(new SqlConnectionHelper())
+		public ProductsStore(ISqlConnectionHelper sqlConnectionHelper) : base(sqlConnectionHelper)
 		{
 		}
 

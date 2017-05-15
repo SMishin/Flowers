@@ -1,0 +1,68 @@
+{
+  "name": "flowers",
+  "version": "1.0.0",
+  "babel": {
+    "presets": [
+      "es2015",
+      "react"
+    ],
+    "plugins": [
+      "transform-decorators-legacy"
+    ]
+  },
+  "scripts": {
+    "prebuild-css": "mkdirp dist/app/styles && mkdirp dist/app/cms/styles",
+    "build-css": "sass app/styles/main.scss:dist/app/styles/main.css && sass app/cms/styles/main.scss:dist/app/cms/styles/main.css",
+    "copy": "cp -R _libs dist/_libs && cp -R app/fonts dist/app/fonts && cp -R app/img dist/app/img && cp -R app/cms/styles/fonts dist/app/cms/styles/fonts",
+    "build": "npm run build-css && npm run copy && .\\node_modules\\.bin\\webpack"
+  },
+  "dependencies": {
+    "@angular/common": "^4.0.1",
+    "@angular/compiler": "^4.0.1",
+    "@angular/compiler-cli": "^4.0.1",
+    "@angular/core": "^4.0.1",
+    "@angular/forms": "^4.0.1",
+    "@angular/http": "^4.0.1",
+    "@angular/platform-browser": "^4.0.1",
+    "@angular/platform-browser-dynamic": "^4.0.1",
+    "@angular/router": "^4.0.1",
+    "blankshield": "^0.6.1",
+    "bootstrap": "^4.0.0-alpha.6",
+    "core-js": "^2.4.1",
+    "html-loader": "^0.4.5",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "react-router": "^3.0.2",
+    "reflect-metadata": "^0.1.8",
+    "rxjs": "5.0.1",
+    "whatwg-fetch": "^1.0.0",
+    "zone.js": "^0.7.4"
+  },
+  "devDependencies": {
+    "aspnet-webpack": "^1.0.29",
+    "autoprefixer": "^6.5.4",
+    "babel-cli": "^6.18.0",
+    "babel-loader": "^6.2.10",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-es2015-modules-systemjs": "^6.19.0",
+    "babel-preset-es2015": "*",
+    "babel-preset-es2016": "*",
+    "babel-preset-react": "^6.22.0",
+    "css-loader": "^0.28.1",
+    "express": "^4.14.0",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "file-loader": "^0.11.1",
+    "html-loader": "^0.4.4",
+    "mkdirp": "^0.5.1",
+    "node-sass": "^3.13.1",
+    "postcss": "^5.2.6",
+    "sass-loader": "^6.0.4",
+    "style-loader": "^0.17.0",
+    "systemjs": "0.19.41",
+    "systemjs-plugin-text": "0.0.9",
+    "uglify-js": "^2.7.4",
+    "webpack": "^2.3.2",
+    "webpack-hot-middleware": "^2.18.0",
+    "yargs": "3.31.0"
+  }
+}

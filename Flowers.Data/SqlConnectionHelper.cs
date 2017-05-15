@@ -1,22 +1,20 @@
-﻿using System;
-using System.Configuration;
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 using System.Threading.Tasks;
 
 namespace Flowers.Data
 {
     public class SqlConnectionHelper : ISqlConnectionHelper
 	{
+	    private readonly string _connectionString;
+
+	    public SqlConnectionHelper(string connectionString)
+	    {
+	        _connectionString = connectionString;
+	    }
+
         public async Task<SqlConnection> CreateConnection()
         {
-            ConnectionStringSettings mySetting = ConfigurationManager.ConnectionStrings["Flowers.DB"];
-
-			if (string.IsNullOrEmpty(mySetting?.ConnectionString))
-	        {
-		        throw new Exception("Fatal error: missing connecting string in web.config file");
-	        }
-
-	        var connection = new SqlConnection(mySetting.ConnectionString);
+	        var connection = new SqlConnection(_connectionString);
             await connection.OpenAsync();
             return connection;
         }
