@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Threading.Tasks;
 using Flowers.Colors;
 using Flowers.CoreWeb.Api.Config;
 using Flowers.CoreWeb.Data;
@@ -13,11 +16,13 @@ using Flowers.Products.Flowers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Serialization;
 
 namespace Flowers.CoreWeb
@@ -55,7 +60,7 @@ namespace Flowers.CoreWeb
 					.AddEntityFrameworkStores<ApplicationDbContext>()
 					.AddDefaultTokenProviders();
 
-			//System.Diagnostics.Debugger.Launch();
+			//System.Diagnostics.Debugger.Launch
 
 			services.AddMvc()
 					.AddJsonOptions(options =>
@@ -135,6 +140,15 @@ namespace Flowers.CoreWeb
 			app.UseIdentity();
 
 			// Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
+
+			app.UseRequestLocalization(new RequestLocalizationOptions
+			{
+				 RequestCultureProviders= new List<IRequestCultureProvider>
+				 {
+					 new CustomRequestCultureProvider(context => Task.FromResult(new ProviderCultureResult("ru-RU")))
+				 },
+				DefaultRequestCulture = new RequestCulture("ru-RU")
+			});
 
 			app.UseMvc(routes =>
 			{
