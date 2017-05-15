@@ -8,7 +8,8 @@ namespace Flowers.CoreWeb.Controllers
 	[Route("bouquets")]
 	public class BouquetsController : ProdutcsController
 	{
-		public BouquetsController(IProductsReadOnlyStore productsReadOnlyStore) : base(productsReadOnlyStore)
+		public BouquetsController(IProductsReadOnlyStore productsReadOnlyStore, IProductsManager productsManager) 
+			: base(productsReadOnlyStore, productsManager)
 		{
 		}
 

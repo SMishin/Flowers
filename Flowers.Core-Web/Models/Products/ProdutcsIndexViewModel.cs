@@ -5,10 +5,7 @@ namespace Flowers.CoreWeb.Models.Products
 {
 	public class ProdutcsIndexViewModel
 	{
-		public Product[] Products { get; set; }
-		public int Count { get; set; }
-		public int Page { get; set; }
-
+		public PagedResult<Product> Products { get; set; }
 		public ProductType ProductType { get; set; }
 	}
 }

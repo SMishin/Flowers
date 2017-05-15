@@ -1,6 +1,7 @@
 ﻿@using Flowers.CoreWeb.Models.Products
 @using Flowers.Products.ProductTypes
-@model Flowers.CoreWeb.Models.Products.ProdutcsIndexViewModel
+@using Microsoft.AspNetCore.Mvc.ViewFeatures
+@model ProdutcsIndexViewModel
 
 <div class="columns-container">
 	<div id="columns" class="container">
@@ -13,30 +14,11 @@
 								@Model.ProductType.ToFriendlyString()
 							</span>
 							<span class="heading-counter">
-								Всего @Model.Count
-								@{
-									var lastNumber = Model.Count % 10;
-
-									if (lastNumber == 1)
-									{
-										<text>
-											наименование
-										</text>
+								<span>
+									@{
+										Html.RenderPartial("_ItemsCount", Model.Products.TotalCount);
 									}
-									else if (lastNumber > 1 && lastNumber < 5)
-									{
-										<text>
-											наименования
-										</text>
-									}
-									else if (lastNumber == 0 || lastNumber >= 5)
-									{
-										<text>
-											наименований
-										</text>
-									}
-
-								}
+								</span>
 							</span>
 
 						</h1>
@@ -48,80 +30,21 @@
 
 
 						@{
-							Html.RenderPartial(@"~/Views/Produtcs/_List.cshtml", Model.Products);
+							Html.RenderPartial(@"~/Views/Produtcs/_List.cshtml", Model.Products.Items);
 						}
 
 
-						@if (Model.Count > Model.Products.Length)
+						@if (Model.Products.TotalCount > Model.Products.Items.Length)
 						{
-							<div class="content_sortPagiBar">
-								<div class="bottom-pagination-content clearfix">
+							@Html.Partial("_Paging", new PagingModel
+						   {
+							   TotalCount = Model.Products.TotalCount,
+							   ItemsCount = Model.Products.Items.Length,
+							   Page = Model.Products.Page,
+							   PageSize = Model.Products.PageSize
+						   }, new ViewDataDictionary(this.ViewData) { { "BaseUrl", ProductType.Bouquets.ToString().ToLower()} })
 
-									<div id="pagination_bottom" class="pagination clearfix">
-										<ul class="pagination">
-											<li id="pagination_previous_bottom" class="disabled pagination_previous">
-												<span>
-													<i class="fa fa-chevron-left"></i>
-													<b>Назад</b>
-												</span>
-											</li>
-
-											@{
-												int pageCount = 5;
-												int from = Model.Page - 2 <= 0 ? 1 : Model.Page - 2;
-												int to = from + pageCount;
-
-												if (to > Model.Count / 10)
-												{
-													to = Model.Count / 10;
-													if (Model.Count % 10 != 0)
-													{
-														to++;
-													}
-												}
-
-												for (var i = from; i <= to; i++)
-												{
-													if (i == Model.Page)
-													{
-														<li class="active current">
-															<span>
-																<span>
-																	@i
-																</span>
-															</span>
-														</li>
-													}
-													else
-													{
-														<li>
-															<a href="/@Model.ProductType.ToString().ToLower()?page=@i">
-																<span>
-																	@i
-																</span>
-															</a>
-														</li>
-													}
-												}
-
-											}
-
-
-											<li id="pagination_next_bottom" class="pagination_next">
-												<a href="https://ld-prestashop.template-help.com/prestashop_58383/index.php?id_category=14&amp;controller=category&amp;productId_lang=1#/page-2">
-													<b>Вперед</b>
-													<i class="fa fa-chevron-right"></i>
-												</a>
-											</li>
-										</ul>
-									</div>
-									<div class="product-count">
-										@(Model.Page * Model.Products.Length) из @Model.Count
-									</div>
-
-								</div>
-							</div>
-												}
+						}
 					</div>
 					<div id="left_column" class="column col-xs-12 col-sm-3">
 						<section id="layered_block_left" class="block">

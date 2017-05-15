@@ -8,19 +8,20 @@ namespace Flowers.CoreWeb.Controllers
 {
 	public class ProdutcsController : Controller
 	{
-		private int _pageSize = 6;
 		private readonly IProductsReadOnlyStore _productsReadOnlyStore;
+		private readonly IProductsManager _productsManager;
 
-		public ProdutcsController(IProductsReadOnlyStore productsReadOnlyStore)
+		public ProdutcsController(IProductsReadOnlyStore productsReadOnlyStore, IProductsManager productsManager)
 		{
 			_productsReadOnlyStore = productsReadOnlyStore;
+			_productsManager = productsManager;
 		}
 
 		//[Route("{type}")]
 		[HttpGet]
 		protected async Task<IActionResult> Index(ProductType type, int page = 1)
 		{
-			var products = _productsReadOnlyStore.GetPublishedWithMainImageAsync(type, (page - 1) * _pageSize, page * _pageSize);
+			var products = _productsManager.GetPublishedWithMainImageAsync(type, page);
 			var count = _productsReadOnlyStore.CountPublishedAsync(type);
 
 			await Task.WhenAll(products, count);
@@ -28,13 +29,12 @@ namespace Flowers.CoreWeb.Controllers
 			var data = new ProdutcsIndexViewModel
 			{
 				Products = products.Result,
-				Count = count.Result,
-				Page = page,
 				ProductType = type
 			};
 
 			return View(@"~/Views/Produtcs/Index.cshtml", data);
 		}
+		
 
 		//[Route("{type}/{id:int}")]
 		[HttpGet]
@@ -53,7 +53,7 @@ namespace Flowers.CoreWeb.Controllers
 				OtherProducts = otherProducts.Result
 			};
 
-			return View("Details", data);
+			return View(@"~/Views/Produtcs/Details.cshtml", data);
 		}
 	}
 }

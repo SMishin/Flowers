@@ -1,12 +1,9 @@
 ﻿@using Flowers.CoreWeb.Models.Products
 @model Flowers.CoreWeb.Models.Products.ProdutcsDetailsViewModel
-
 @section head {
 
-	<link href="/static/_libs/fotorama-4.6.4/fotorama.css" rel="stylesheet" />
-	<script src="/static/_libs/fotorama-4.6.4/fotorama.js"></script>
+	<link href="/_libs/fotorama-4.6.4/fotorama.css" rel="stylesheet" />
 
-	<script src="/static/_libs/product.js"></script>
 }
 
 <div class="columns-container">
@@ -45,7 +42,7 @@
 										<div class="content_prices clearfix">
 
 											<div class="all-price-info">
-												<p class="our_price_display" itemprop="offers" itemscope="" itemtype="https://schema.org/Offer">
+												<p class="our_price_display" itemprop="offers" itemscope="">
 													<span id="our_price_display" itemprop="price" content="16" class="new-price">
 														@Model.Product.Price.ToString("C")
 													</span>
@@ -53,6 +50,32 @@
 											</div>
 
 											<div class="clear"></div>
+										</div>
+
+										<div class="product_attributes clearfix">
+
+											<div id="attributes">
+												@if (Model.Product.Colors.Length > 0)
+												{
+													<fieldset class="attribute_fieldset">
+														<label class="attribute_label">
+															Цветовая гамма&nbsp;
+														</label>
+														<div class="attribute_list">
+															<ul id="color_to_pick_list">
+																@foreach (var item in Model.Product.Colors)
+																{
+																	<li>
+																		<span href="#" style="background: @item; opacity: 1;">
+																		</span>
+																	</li>		}
+															</ul>
+
+														</div>
+														<!-- end attribute_list -->
+													</fieldset>
+												}
+											</div>
 										</div>
 
 										<p>
@@ -79,34 +102,40 @@
 												{
 													var link = $"/{item.Type.ToString().ToLower()}/{item.Id}";
 													<li class="product-box item">
-													
-															<a href="@link"
-															   class="lnk_img product-image"
-															   title="@item.Name">
+														<div class="product-container">
+															<div class="product-image">
+																<a href="@link"
+																   class="lnk_img product-image"
+																   title="@item.Name">
 
-																@{			Html.RenderPartial("_ProductImage", item);
-																}
+																	@{ Html.RenderPartial("_ProductImage", item); }
 
-															</a>
+																</a>
+															</div>
+															<div class="product-info">
+																<h5 itemprop="name" class="product-name">
+																	<a href="@link"
+																	   title="@item.Name">
 
-														
-														
-														<h5 itemprop="name" class="product-name">
-															<a href="@link"
-															   title="@item.Name">
-																@item.Name
-															</a>
-														</h5>
-														<p class="price_display">
+																		@item.Name
+																	</a>
+																</h5>
+																<p class="price_display">
 
-															<span class="price">
-																@item.Price.ToString("C")
-															</span>
-														</p>
+																	<span class="price">
+
+																		@item.Price.ToString("C")
+
+																	</span>
+																</p>
+															</div>
+
+
+
+														</div>
 
 													</li>
 												}
-
 
 											</ul>
 										</div>
@@ -122,3 +151,9 @@
 		</div>
 	</div>
 </div>
+@section scripts{
+	<script src="/_libs/jquery-1.11.0.min.js"></script>
+	<script async src="/_libs/fotorama-4.6.4/fotorama.js"></script>
+
+	<script async src="/_libs/product.js"></script>
+}

@@ -1,10 +1,8 @@
-﻿@using System
-@using System.Web
+﻿
 @using System.Linq
 
 @using Flowers.CoreWeb.Api.Config
-@using Flowers.CoreWeb.Models.Flowers
-@using Flowers.CoreWeb.Models
+
 @using Flowers.Products.Flowers
 @using Flowers.Products.ProductTypes
 @using Microsoft.AspNetCore.Mvc.ViewFeatures
@@ -22,29 +20,8 @@
 						</span>
 						<span id="items-counter" class="heading-counter">
 							<span>
-								Всего @Model.Flowers.TotalCount
 								@{
-									var lastNumber = Model.Flowers.TotalCount % 10;
-
-									if (lastNumber == 1)
-									{
-										<text>
-										наименование
-										</text>
-									}
-									else if (lastNumber > 1 && lastNumber < 5)
-									{
-										<text>
-										наименования
-										</text>
-									}
-									else if (lastNumber == 0 || lastNumber >= 5)
-									{
-										<text>
-										наименований
-										</text>
-									}
-
+									Html.RenderPartial("_ItemsCount", Model.Flowers.TotalCount);
 								}
 							</span>
 						</span>
