@@ -1,6 +1,6 @@
 import React from 'react'
 import template from './template.jsx'
-import store from '../flowers/store';
+import store from '../products/store';
 
 class TotalCounter extends React.Component {
 
@@ -13,15 +13,11 @@ class TotalCounter extends React.Component {
 		this.unsubsctibe = store.subscribe(() => this.listener());
 	}
 
-	onClick(page) {
-		store.changePage(page);
-	}
-
 	listener() {
 		let state = store.getState();
 
 		this.setState({
-			totalCount: state.flowers.totalCount
+			totalCount: state.data.totalCount
 		});
 	}
 

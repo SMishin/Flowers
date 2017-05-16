@@ -7,9 +7,9 @@ export default function template() {
 
 	return <span>
         Всего {totalCount} {' '}
-		{lastNumber == 1 && 'наименование'}
+		{lastNumber === 1 && 'наименование'}
 		{lastNumber > 1 && lastNumber < 5 && 'наименования'}
-		{lastNumber == 0 || lastNumber >= 5 && 'наименований'}
+		{lastNumber === 0 || lastNumber >= 5 && 'наименований'}
 	</span>
 }
 

@@ -3,7 +3,7 @@ import HttpClient from '../core/http-client';
 class FlowersService {
 
 	constructor(http) {
-		this._http = http;
+		this._http = http || new HttpClient();
 		this._url = '/api/products/flower';
 	}
 

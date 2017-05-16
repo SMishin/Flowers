@@ -14,7 +14,7 @@ namespace Flowers.Products.Flowers
         public decimal MinPrice { get; set; }
         public decimal MaxPrice { get; set; }
 
-        public string FormatedPrice => MinPrice > 0 ? $"{(MaxPrice > 0 ? "от " : "")}{MinPrice:C}" : "";
+        public override string FormatedPrice => MinPrice > 0 ? $"{(MaxPrice > 0 ? "от " : "")}{MinPrice:C}" : "";
 
         public IEnumerable<FlowerVariant> FlowerVariants { get; set; }
 

@@ -1,11 +1,11 @@
-﻿using Flowers.Products;
+﻿using Flowers.CoreWeb.Models.Flowers;
+using Flowers.Products;
 using Flowers.Products.ProductTypes;
 
 namespace Flowers.CoreWeb.Models.Products
 {
-	public class ProdutcsIndexViewModel
+	public class ProdutcsIndexViewModel: ProductListMode<Product>
 	{
-		public PagedResult<Product> Products { get; set; }
 		public ProductType ProductType { get; set; }
 	}
 }

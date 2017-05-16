@@ -1,9 +1,10 @@
 import HttpClient from '../core/http-client';
 import ProductsFilter from './products-filter';
+
 class ProductsService {
 
 	constructor(http) {
-		this._http = http;
+		this._http = http || new HttpClient();
 		this._url = '/api/product';
 	}
 

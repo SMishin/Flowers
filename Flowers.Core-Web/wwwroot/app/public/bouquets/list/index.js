@@ -2,15 +2,15 @@ import React from 'react'
 import template from './template.jsx'
 import filterStore from '../../products/filter/store'
 import store from '../../products/store'
-import FlowersService from '../../../common/flowers-service';
+import ProductsService from '../../../common/products-service';
 
 import {browserHistory} from 'react-router'
 
-class FlowersList extends React.Component {
+class BouquetsList extends React.Component {
 
 	constructor() {
 		super();
-		this._flowersService = new FlowersService();
+		this._productsService = new ProductsService();
 
 		let state = store.getState();
 		this.state = {
@@ -27,7 +27,8 @@ class FlowersList extends React.Component {
 		store.fetchData(() => {
 			let state = filterStore.getState();
 			browserHistory.push(window.location.pathname + state.toQueryString());
-			return this._flowersService.getPublished(state);
+			state.
+			return this._productsService.getPublished(state);
 		});
 	}
 
@@ -54,4 +55,4 @@ class FlowersList extends React.Component {
 	}
 }
 
-export default FlowersList;
+export default BouquetsList;

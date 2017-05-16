@@ -1,0 +1,44 @@
+﻿@{
+	Layout = "_Layout";
+}
+
+@using Flowers.CoreWeb.Api.Config
+
+<div id="columns" class="container">
+	<div class="row">
+		<div class="large-left col-sm-12">
+			<div class="row">
+				@RenderBody()
+			</div>
+		</div>
+	</div>
+</div>
+
+@section scripts{
+
+
+	<script>
+		@*window.__INITIAL_STATE__ = JSON.parse('@Html.Raw(HttpUtility.JavaScriptStringEncode(Newtonsoft.Json.JsonConvert.SerializeObject(Model, JsonConfiguration.SerializerSettings)))');*@
+		window.__INITIAL_STATE__ = JSON.parse('@Html.Raw(Json.Serialize(Model, JsonConfiguration.SerializerSettings))');
+	</script>
+
+	<environment names="Development">
+
+		<script src="/node_modules/systemjs/dist/system.src.js"></script>
+		<script src="/app/public/systemjs.config.js"></script>
+		<script>
+			(function () {
+				System.import('app/public/app')
+					.then(null, console.error.bind(console));
+			}());
+
+		</script>
+
+	</environment>
+
+	<environment names="Production">
+		<script src="/app/public/app.js"></script>
+	</environment>
+
+
+}

@@ -19,5 +19,7 @@ namespace Flowers.Products
 		public bool Published { get; set; }
 		public string[] Colors { get; set; }
 
+		public virtual string FormatedPrice => Price.ToString("C");
+
 	}
 }

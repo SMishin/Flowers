@@ -1,12 +1,16 @@
-export default class FlowersFilter {
+export default class FlowersTypesFilter {
 	constructor(data) {
+
+		this.types = [];
 
 		if (data) {
 			for (let prop in data) {
 				this[prop] = data[prop];
 			}
 		}
+
 	}
+
 
 	toQueryString() {
 		let qString = '';

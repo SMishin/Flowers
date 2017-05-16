@@ -28,7 +28,7 @@ namespace Flowers.CoreWeb.Controllers
 
 			var data = new ProdutcsIndexViewModel
 			{
-				Products = products.Result,
+				Data = products.Result,
 				ProductType = type
 			};
 

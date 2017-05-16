@@ -1,18 +1,12 @@
 import React from 'react'
 import template from './template.jsx'
-import store from '../store'
+import store from '../../products/filter/store'
 
-import { browserHistory } from 'react-router'
-
-
-class FlowerFilter extends React.Component {
+class FlowerTypesFilter extends React.Component {
 
 	constructor() {
 		super();
-		this.state = store.getState().filter;
-
-		this.unsubsctibe = store.subscribe(() => this.listener());
-
+		this.state = store.getState();
 		this.filterOnChanged = this.filterOnChanged.bind(this);
 
 	}
@@ -35,16 +29,8 @@ class FlowerFilter extends React.Component {
 
 		let filter = {types};
 
-		store.updateFilter(filter);
+		store.updateFlowersTypes(filter);
 		this.setState(filter);
-	}
-
-	listener() {
-		let state = store.getState();
-		this.setState(state.filter);
-
-		browserHistory.push(window.location.pathname + state.filter.toQueryString());
-
 	}
 
 	componentWillUnmount() {
@@ -56,4 +42,4 @@ class FlowerFilter extends React.Component {
 	}
 }
 
-export default FlowerFilter;
+export default FlowerTypesFilter;

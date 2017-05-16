@@ -35,7 +35,7 @@ namespace Flowers.CoreWeb.Controllers
 			var products = await _flowersManager.GetPublishedWithMainImageAsync(filter, page);
 			return View(new FlowersIndexViewModel
 			{
-				Flowers = products,
+				Data = products,
 				Filter = filter ?? new FlowersFilter()
 			});
 		}
