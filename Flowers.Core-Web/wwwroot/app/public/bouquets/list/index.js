@@ -3,8 +3,7 @@ import template from './template.jsx'
 import filterStore from '../../products/filter/store'
 import store from '../../products/store'
 import ProductsService from '../../../common/products-service';
-
-import {browserHistory} from 'react-router'
+import ProductTypeFilter from '../../../common/filters/product-type';
 
 class BouquetsList extends React.Component {
 
@@ -25,9 +24,8 @@ class BouquetsList extends React.Component {
 
 	filterListener() {
 		store.fetchData(() => {
-			let state = filterStore.getState();
-			browserHistory.push(window.location.pathname + state.toQueryString());
-			state.
+			let state = filterStore.getState().clone();
+			state.applyFilter(ProductTypeFilter._name, new ProductTypeFilter({type: 1}));
 			return this._productsService.getPublished(state);
 		});
 	}

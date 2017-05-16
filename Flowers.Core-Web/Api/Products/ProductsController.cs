@@ -22,9 +22,9 @@ namespace Flowers.CoreWeb.Api.Products
 
 		[HttpGet]
 		[Route("products")]
-		public async Task<ActionResult> Get(ProductType type, int page = 1)
+		public async Task<ActionResult> Get(ProductType pt, int page = 1)
 		{
-			var data = await _productsStore.GetAsync(type);
+			var data = await _productsStore.GetAsync(pt);
 			return Ok(data);
 		}
 

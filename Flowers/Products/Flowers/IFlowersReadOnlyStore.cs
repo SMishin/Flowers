@@ -6,8 +6,8 @@ namespace Flowers.Products.Flowers
 	{
 		Task<Flower[]> GetAsync();
 		Task<Flower> GetAsync(int id);
-		Task<Flower[]> GetPublishedWithMainImageAsync(FlowersFilter filter, int skip, int take);
+		Task<Flower[]> GetPublishedWithMainImageAsync(FlowersTypesFilter filter, int skip, int take);
 		Task<Flower[]> GetRandomPublishedWithMainImageAsync(int count);
-        Task<int> CountPublishedAsync(FlowersFilter filter);
+        Task<int> CountPublishedAsync(FlowersTypesFilter filter);
     }
 }

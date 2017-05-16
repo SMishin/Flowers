@@ -1,5 +1,6 @@
 import React from 'react'
 import template from './template.jsx'
+import PageFilter from '../../../../common/filters/page';
 import store from '../../filter/store';
 
 class Paging extends React.Component {
@@ -10,8 +11,6 @@ class Paging extends React.Component {
 		this.state = {
 			model: props.model
 		};
-
-		//this.unsubsctibe = store.subscribe(() => this.listener());
 	}
 
 	componentWillReceiveProps(props) {
@@ -21,7 +20,7 @@ class Paging extends React.Component {
 	}
 
 	onClick(page) {
-		store.updatePage(page);
+		store.applyFilter({name: PageFilter._name, value: new PageFilter({page})});
 	}
 
 	componentDidMount() {
@@ -29,7 +28,7 @@ class Paging extends React.Component {
 	}
 
 	componentWillUnmount() {
-		this.unsubsctibe();
+
 	}
 
 	render() {

@@ -16,7 +16,7 @@ namespace Flowers.CoreWeb
                 throw new NullReferenceException();
             }
 
-            FlowersFilter result = new FlowersFilter(val.FirstValue?.Split(','));
+            FlowersTypesFilter result = new FlowersTypesFilter(val.FirstValue?.Split(','));
 
             bindingContext.Result = ModelBindingResult.Success(result);
             return Task.CompletedTask;

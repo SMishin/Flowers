@@ -1,5 +1,5 @@
 import HttpClient from '../core/http-client';
-import ProductsFilter from './products-filter';
+import ProductTypeFilter from './filters/product-type';
 
 class ProductsService {
 
@@ -14,7 +14,7 @@ class ProductsService {
 			return this._http.get(this._url + '/' + filter.id);
 		}
 
-		return this._http.get(this._url + 's/' + (filter instanceof ProductsFilter ? filter.toQueryString() : new ProductsFilter(filter).toQueryString()));
+		return this._http.get(this._url + 's/?' + (filter instanceof ProductTypeFilter ? filter.toQueryString() : new ProductTypeFilter(filter).toQueryString()));
 	}
 
 	getPublished(filter) {

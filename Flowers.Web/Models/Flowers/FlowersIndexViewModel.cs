@@ -7,10 +7,10 @@ namespace Flowers.Web.Models.Flowers
 		public FlowersIndexViewModel()
 		{
 			Flowers = new PagedResult<Flower>();
-		    Filter = new FlowersFilter();
+		    Filter = new FlowersTypesFilter();
 		}
 
 		public PagedResult<Flower> Flowers { get; set; }
-	    public FlowersFilter Filter { get; set; }
+	    public FlowersTypesFilter Filter { get; set; }
 	}
 }

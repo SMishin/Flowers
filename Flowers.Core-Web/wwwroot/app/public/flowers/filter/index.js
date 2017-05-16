@@ -1,12 +1,13 @@
-import React from 'react'
-import template from './template.jsx'
-import store from '../../products/filter/store'
+import React from 'react';
+import template from './template.jsx';
+import store from '../../products/filter/store';
+import FlowersTypesFilter from '../../../common/filters/flowers-types';
 
 class FlowerTypesFilter extends React.Component {
 
 	constructor() {
 		super();
-		this.state = store.getState();
+		this.state = store.getState().filters[FlowersTypesFilter._name];
 		this.filterOnChanged = this.filterOnChanged.bind(this);
 
 	}
@@ -17,9 +18,9 @@ class FlowerTypesFilter extends React.Component {
 		console.log(event.target.checked);
 
 		let types = this.state.types,
-			value = + event.target.value,
+			value = +event.target.value,
 			index = types.indexOf(value)
-			;
+		;
 
 		if (index === -1) {
 			types.push(value);
@@ -27,9 +28,9 @@ class FlowerTypesFilter extends React.Component {
 			types.splice(index, 1);
 		}
 
-		let filter = {types};
+		let filter = new FlowersTypesFilter({types});
 
-		store.updateFlowersTypes(filter);
+		store.applyFilter({name: FlowersTypesFilter._name, value: filter});
 		this.setState(filter);
 	}
 

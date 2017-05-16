@@ -31,13 +31,13 @@ namespace Flowers.Web.Controllers
 
         [HttpGet]
 		[Route("")]
-		public async Task<ActionResult> Index([ModelBinder(typeof(FlowersFilterModelBinder))] FlowersFilter filter, int page = 1)
+		public async Task<ActionResult> Index([ModelBinder(typeof(FlowersFilterModelBinder))] FlowersTypesFilter filter, int page = 1)
         {
             var products = await _flowersManager.GetPublishedWithMainImageAsync(filter, page);
             return View(new FlowersIndexViewModel
             {
                 Flowers = products,
-                Filter = filter ?? new FlowersFilter()
+                Filter = filter ?? new FlowersTypesFilter()
             });
         }
 

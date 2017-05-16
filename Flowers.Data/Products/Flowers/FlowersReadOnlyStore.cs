@@ -49,7 +49,7 @@ namespace Flowers.Data.Products.Flowers
 			}
 		}
 
-		public async Task<Flower[]> GetPublishedWithMainImageAsync(FlowersFilter filters, int skip, int take)
+		public async Task<Flower[]> GetPublishedWithMainImageAsync(FlowersTypesFilter filters, int skip, int take)
 		{
 			DataTable flowerTypess = GetflowerTypesFromFilter(filters);
 
@@ -81,7 +81,7 @@ namespace Flowers.Data.Products.Flowers
 			}
 		}
 
-		public async Task<int> CountPublishedAsync(FlowersFilter filter)
+		public async Task<int> CountPublishedAsync(FlowersTypesFilter filter)
 		{
 			FlowerType[] flowerTypess = filter.Types; //(filter?.Types ?? Enum.GetValues(typeof(FlowerType)).Cast<FlowerType>()).ToArray();
 
@@ -102,7 +102,7 @@ namespace Flowers.Data.Products.Flowers
 			}
 		}
 
-		private DataTable GetflowerTypesFromFilter(FlowersFilter filters)
+		private DataTable GetflowerTypesFromFilter(FlowersTypesFilter filters)
 		{
 			DataTable flowerTypes;
 

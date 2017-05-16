@@ -25,9 +25,9 @@ namespace Flowers.CoreWeb.Api.Products.Flowers
             return Ok(data);
         }
 
-        [Microsoft.AspNetCore.Mvc.HttpGet]
-        [Microsoft.AspNetCore.Mvc.Route("flowers/published")]
-        public async Task<IActionResult> GetPublishedWithMainImageAsync([ModelBinder(BinderType = typeof(FlowersFilterModelBinder), Name = "filter")] FlowersFilter filter, int page = 1)
+        [HttpGet]
+        [Route("flowers/published")]
+        public async Task<IActionResult> GetPublishedWithMainImageAsync([ModelBinder(BinderType = typeof(FlowersFilterModelBinder), Name = "ft")] FlowersTypesFilter filter, int page = 1)
         {
             var data = await _flowersManager.GetPublishedWithMainImageAsync(filter, page);
             return Ok(data);

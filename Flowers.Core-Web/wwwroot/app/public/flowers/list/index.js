@@ -4,8 +4,6 @@ import filterStore from '../../products/filter/store'
 import store from '../../products/store'
 import FlowersService from '../../../common/flowers-service';
 
-import {browserHistory} from 'react-router'
-
 class FlowersList extends React.Component {
 
 	constructor() {
@@ -26,7 +24,6 @@ class FlowersList extends React.Component {
 	filterListener() {
 		store.fetchData(() => {
 			let state = filterStore.getState();
-			browserHistory.push(window.location.pathname + state.toQueryString());
 			return this._flowersService.getPublished(state);
 		});
 	}

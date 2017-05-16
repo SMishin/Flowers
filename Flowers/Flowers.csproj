@@ -48,7 +48,7 @@
     <Compile Include="PageResult.cs" />
     <Compile Include="PagedResultsFactory.cs" />
     <Compile Include="Products\Flowers\Flower.cs" />
-    <Compile Include="Products\Flowers\FlowersFilter.cs" />
+    <Compile Include="Products\Flowers\FlowersTypesFilter.cs" />
     <Compile Include="Products\Flowers\FlowersManager.cs" />
     <Compile Include="Products\Flowers\FlowerType.cs" />
     <Compile Include="Products\Flowers\FlowerVariant.cs" />
