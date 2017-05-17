@@ -46,6 +46,10 @@ namespace Flowers.CoreWeb.Controllers
 
 			await Task.WhenAll(product, images, otherProducts);
 
+			if (product.Result == null)
+			{
+				return NotFound();
+			}
 			var data = new ProdutcsDetailsViewModel
 			{
 				Product = product.Result,
