@@ -9,7 +9,7 @@ namespace Flowers.Api.Products.Flowers
     {
         public bool BindModel(HttpActionContext actionContext, ModelBindingContext bindingContext)
         {
-            if (bindingContext.ModelType != typeof(FlowersFilter))
+            if (bindingContext.ModelType != typeof(FlowersTypesFilter))
             {
                 return false;
             }
@@ -21,7 +21,7 @@ namespace Flowers.Api.Products.Flowers
                 return false;
             }
 
-            FlowersFilter result = new FlowersFilter(val.AttemptedValue.Split(','));
+			FlowersTypesFilter result = new FlowersTypesFilter(val.AttemptedValue.Split(','));
 
             bindingContext.Model = result;
             return true;

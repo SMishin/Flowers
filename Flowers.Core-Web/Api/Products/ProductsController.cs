@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Flowers.Products;
 using Flowers.Products.ProductTypes;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Net.Http.Headers;
 
 namespace Flowers.CoreWeb.Api.Products
 {
@@ -30,9 +29,9 @@ namespace Flowers.CoreWeb.Api.Products
 
 		[HttpGet]
 		[Route("products/published")]
-		public async Task<IActionResult> GetPublishedWithMainImageAsync(ProductType type, int page = 1)
+		public async Task<IActionResult> GetPublishedWithMainImageAsync(ProductType pt, int page = 1)
 		{
-			var data = await _productsManager.GetPublishedWithMainImageAsync(type, page);
+			var data = await _productsManager.GetPublishedWithMainImageAsync(pt, page);
 			return Ok(data);
 		}
 

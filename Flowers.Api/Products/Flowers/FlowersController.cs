@@ -27,7 +27,7 @@ namespace Flowers.Api.Products.Flowers
 
         [HttpGet]
 		[Route("flowers/published")]
-		public async Task<IHttpActionResult> GetPublishedWithMainImageAsync([ModelBinder(typeof(FlowersFilterModelBinder))] FlowersFilter filter, int page = 1)
+		public async Task<IHttpActionResult> GetPublishedWithMainImageAsync([ModelBinder(typeof(FlowersFilterModelBinder))] FlowersTypesFilter filter, int page = 1)
 		{
 			var data = await _flowersManager.GetPublishedWithMainImageAsync(filter, page);
 			return Ok(data);

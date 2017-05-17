@@ -1,4 +1,14 @@
 import  Filter from '../../../common/filters/filter'
+import  PageFilter from '../../../common/filters/page';
+function concatQueryStrings(str1, str2) {
+
+	if (str2 !== '') {
+		str1 += (str1 === '' ? '?' : '&');
+		str1 += str2;
+	}
+
+	return str1;
+}
 
 export default class FilterSet extends Filter {
 	constructor(data) {
@@ -32,15 +42,20 @@ export default class FilterSet extends Filter {
 		}
 
 		let qString = '';
+		let pageFilter = '';
 
 		for (let fname in this.filters) {
 			let strFilter = this.filters[fname].toQueryString();
 
-			if (strFilter !== '') {
-				qString += (qString === '' ? '?' : '&');
-				qString += strFilter;
+			if (fname === PageFilter._name) {
+				pageFilter = strFilter;
+				continue;
 			}
+
+			qString = concatQueryStrings(qString, strFilter);
 		}
+
+		qString = concatQueryStrings(qString, pageFilter);
 
 		this._qString = qString;
 		return qString;
