@@ -35,7 +35,19 @@ namespace Flowers.Data.Products
 		{
 			using (var conntection = await SqlConnectionHelper.CreateConnection())
 			{
-				return (await conntection.QueryAsync<Product>("select * from dbo.[Products] where Id = @Id", new { Id = id })).FirstOrDefault();
+				var multy = await conntection.QueryMultipleAsync(@"
+					select * from dbo.[Products] where Id = @Id
+					select ColorId from [ProductsColors] where ProductId = @Id",
+					new { Id = id });
+
+				var product = multy.Read<Product>().FirstOrDefault();
+
+				if (product != null)
+				{
+					product.Colors = multy.Read<string>().ToArray();
+				}
+
+				return product;
 			}
 		}
 
