@@ -22,33 +22,32 @@
 		window.app = window.app || {};
 	</script>
 
-	@*@{
-		if (Html.IsDebug())
-		{*@
+	<environment names="Development">
 
-	@{ 
-		Html.RenderPartial("_DebugScriptLoader", new[]
-								   {
+		@{
+			Html.RenderPartial("_DebugScriptLoader", new[]
+			{
 
-		   "/node_modules/systemjs/dist/system.src.js",
-		   "/app/cms/systemjs.config.js"
+				"/node_modules/systemjs/dist/system.src.js",
+				"/app/cms/systemjs.config.js"
 
-	   });
-	}
+			});
+		}
 
-	<script>
-		(function () {
-			System.import('app/main')
-				.then(null, console.error.bind(console));
-		}())
-	</script>
+		<script>
+			(function () {
+				System.import('app/main')
+					.then(null, console.error.bind(console));
+			}())
+		</script>
+	</environment>
 
-	@*}
-		else
-		{
+	<environment names="Production">
+		@{
 			Html.RenderPartial("_ReleaseScriptLoader", new[]
 			{
-				"/static/app/cms/app.js"
+					"/app/cms/app.js"
 			});
-		}*@
+		};
+	</environment>
 }
