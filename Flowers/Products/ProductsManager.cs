@@ -36,9 +36,18 @@ namespace Flowers.Products
 			return result;
 		}
 
-		public Task<int> SaveAsync(Product product)
+		public async Task<int> SaveAsync(Product product)
 		{
-			return _productsStore.SaveAsync(product);
+			int id = await _productsStore.SaveAsync(product);
+
+			if (id == 0)
+			{
+				id = product.Id;
+			}
+
+			await SetColorsAsync(id, product.Colors);
+
+			return id;
 		}
 
 		public async Task RemoveAsync(int id)
