@@ -1,0 +1,12 @@
+﻿@model  Flowers.Products.ProductImage[]
+
+<div class="fotorama" data-nav="thumbs" data-allowfullscreen="true">
+
+	@foreach (var item in Model)
+	{
+		<img src="/@item.Url" alt="Flower @item.ProductId">
+	}
+
+</div>
+
+
