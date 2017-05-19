@@ -2,19 +2,15 @@
 using System.Threading.Tasks;
 using Dapper;
 using Flowers.Products;
-using Flowers.Products.ProductType;
+using Flowers.Products.ProductTypes;
 
 namespace Flowers.Data.Products
 {
 	public class ProductsReadOnlyStore : IProductsReadOnlyStore
 	{
-		protected readonly SqlConnectionHelper SqlConnectionHelper;
+		protected readonly ISqlConnectionHelper SqlConnectionHelper;
 
-		public ProductsReadOnlyStore()
-		{
-			SqlConnectionHelper = new SqlConnectionHelper();
-		}
-		protected ProductsReadOnlyStore(SqlConnectionHelper sqlConnectionHelper)
+		public ProductsReadOnlyStore(ISqlConnectionHelper sqlConnectionHelper)
 		{
 			SqlConnectionHelper = sqlConnectionHelper;
 		}
@@ -27,11 +23,31 @@ namespace Flowers.Data.Products
 			}
 		}
 
+		public async Task<Product[]> GetAsync(ProductType type)
+		{
+			using (var conntection = await SqlConnectionHelper.CreateConnection())
+			{
+				return (await conntection.QueryAsync<Product>("select * from dbo.[Products] where [Type] = @type", new { Type = type })).ToArray();
+			}
+		}
+
 		public async Task<Product> GetAsync(int id)
 		{
 			using (var conntection = await SqlConnectionHelper.CreateConnection())
 			{
-				return (await conntection.QueryAsync<Product>("select * from dbo.[Products] where Id = @Id", new { Id = id })).FirstOrDefault();
+				var multy = await conntection.QueryMultipleAsync(@"
+					select * from dbo.[Products] where Id = @Id
+					select ColorId from [ProductsColors] where ProductId = @Id",
+					new { Id = id });
+
+				var product = multy.Read<Product>().FirstOrDefault();
+
+				if (product != null)
+				{
+					product.Colors = multy.Read<string>().ToArray();
+				}
+
+				return product;
 			}
 		}
 
@@ -74,5 +90,6 @@ namespace Flowers.Data.Products
 				return (await conntection.QueryAsync<int>("select count(*) from dbo.[Products] where [Type] = @ProductType and [Published] = 1", new { ProductType = productType })).First();
 			}
 		}
+
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Flowers.Products.ProductTypes;
 
 namespace Flowers.Products.Flowers
 {
@@ -6,14 +7,14 @@ namespace Flowers.Products.Flowers
     {
         public Flower()
         {
-            base.Type = ProductType.ProductType.Flowers;
+            base.Type = ProductType.Flowers;
             FlowerVariants = new List<FlowerVariant>();
         }
         public FlowerType FlowerType { get; set; }
         public decimal MinPrice { get; set; }
         public decimal MaxPrice { get; set; }
 
-        public string FormatedPrice => MinPrice > 0 ? $"{(MaxPrice > 0 ? "от " : "")}{MinPrice:C}" : "";
+        public override string FormatedPrice => MinPrice > 0 ? $"{(MaxPrice > 0 ? "от " : "")}{MinPrice:C}" : "";
 
         public IEnumerable<FlowerVariant> FlowerVariants { get; set; }
 

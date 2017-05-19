@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Mvc;
 using Flowers.Products;
-using Flowers.Products.ProductType;
+using Flowers.Products.ProductTypes;
 using Flowers.Web.Models.Products;
 
 namespace Flowers.Web.Controllers
@@ -18,11 +18,10 @@ namespace Flowers.Web.Controllers
 
 		//[Route("{type}")]
 		[HttpGet]
-		public async Task<ActionResult> Index(string type, int page = 1)
+		public async Task<ActionResult> Index(ProductType type, int page = 1)
 		{
-			var productType = ProductTypeHelper.FromString(type);
-			var products = _productsReadOnlyStore.GetPublishedWithMainImageAsync(productType, (page - 1) * _pageSize, page * _pageSize);
-			var count = _productsReadOnlyStore.CountPublishedAsync(productType);
+			var products = _productsReadOnlyStore.GetPublishedWithMainImageAsync(type, (page - 1) * _pageSize, page * _pageSize);
+			var count = _productsReadOnlyStore.CountPublishedAsync(type);
 
 			await Task.WhenAll(products, count);
 
@@ -31,20 +30,19 @@ namespace Flowers.Web.Controllers
 				Products = products.Result,
 				Count = count.Result,
 				Page = page,
-				ProductType = productType
+				ProductType = type
 			};
 
-			return View(data);
+			return View(@"~\Views\Produtcs\Index.cshtml", data);
 		}
 
 		//[Route("{type}/{id:int}")]
 		[HttpGet]
-		public async Task<ActionResult> Details(string type, int id)
+		public async Task<ActionResult> Details(ProductType type, int id)
 		{
-
 			var product = _productsReadOnlyStore.GetAsync(id);
 			var images = _productsReadOnlyStore.GetImagesAsync(id);
-			var otherProducts = _productsReadOnlyStore.GetPublishedWithMainImageAsync(ProductTypeHelper.FromString(type), 0, 6);
+			var otherProducts = _productsReadOnlyStore.GetPublishedWithMainImageAsync(type, 0, 6);
 
 			await Task.WhenAll(product, images, otherProducts);
 

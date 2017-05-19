@@ -1,0 +1,126 @@
+﻿@using System
+@using Flowers.Products.ProductTypes
+<!DOCTYPE HTML>
+
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>
+		С Любовью
+	</title>
+
+	<meta name="viewport" content="width=device-wproductIdth, minimum-scale=0.25, maximum-scale=1.0, initial-scale=1.0" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+
+	<link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+		  rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="/app/styles/main.css" media="all" />
+
+	@RenderSection("head", false)
+
+</head>
+<body id="index" class="index hide-left-column hide-right-column lang_en  one-column">
+
+	<div id="page">
+		<div class="header-container">
+			<header id="header">
+				<div>
+					<div class="container">
+						<div class="row">
+							<div class="top_menu top-level tmmegamenu_item">
+								<div class="stickUpTop" style="position: relative; top: 0;">
+									<div class="stickUpHolder container">
+
+										<ul class="menu clearfix top-level-menu tmmegamenu_item sf-js-enabled sf-arrows">
+											<li class="top-level-menu-li tmmegamenu_item">
+												<a class="it_10125401 top-level-menu-li-a tmmegamenu_item"
+												   href="/@ProductType.Flowers.ToString().ToLower()">
+													@ProductType.Flowers.ToFriendlyString()
+												</a>
+											</li>
+											<li class="top-level-menu-li tmmegamenu_item">
+												<a class="it_10125401 top-level-menu-li-a tmmegamenu_item"
+												   href="/@ProductType.Bouquets.ToString().ToLower()">
+													@ProductType.Bouquets.ToFriendlyString()
+												</a>
+											</li>
+											@*<li class="top-level-menu-li tmmegamenu_item it_06201771">
+													<a class="it_06201771 top-level-menu-li-a tmmegamenu_item"
+													   href="/@ProductType.Toys.ToString().ToLower()">
+														@ProductType.Toys.ToFriendlyString()
+													</a>
+												</li>*@
+
+											<li class="top-level-menu-li tmmegamenu_item">
+												<a class="it_10125401 top-level-menu-li-a tmmegamenu_item"
+												   href="/delivery">
+													Доставка
+												</a>
+											</li>
+											<li class="top-level-menu-li tmmegamenu_item">
+												<a class="it_10125401 top-level-menu-li-a tmmegamenu_item"
+												   href="/contacts">
+													Контакты
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div><div class="pseudoStickyBlock" style="position: relative; display: block; height: 0px;"></div>
+							</div>
+							<div id="header_logo">
+								<a href="/" title="With Love">
+									<img class="logo img-responsive"
+										 width="130"
+										 src="/app/img/logo2.jpg"
+										 alt="With Love" />
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</header>
+		</div>
+
+		<div class="columns-container">
+			@RenderBody()
+		</div>
+
+	</div>
+	<div class="footer-container">
+		<footer id="footer" class="container">
+			<div class="row">
+
+
+				<div class="clearfix"></div>
+
+				<div id="tmhtmlcontent_footer">
+					<ul class="tmhtmlcontent-footer">
+						<li class="tmhtmlcontent-item-1 ">
+							<a href="/" title="With Love">
+								<img class="logo img-responsive"
+								     width="130"
+								     src="/app/img/logo2.jpg"
+								     alt="With Love" />
+							</a></li>
+						<li>
+							<a class="_blank" href="/">
+								© @DateTime.Now.Year - С любовью
+							</a>
+						</li>
+							
+					</ul>
+
+				</div>
+			</div>
+		</footer>
+	</div>
+
+	<script src="/_libs/jquery-1.11.0.min.js"></script>
+	<script defer src="/_libs/19-TweenMax.min.js"></script>
+	<script defer src="/_libs/global.js"></script>
+	<script defer src="/_libs/16-jquery.scrollmagic.min.js"></script>
+
+	@RenderSection("Scripts", required: false)
+</body>
+</html>

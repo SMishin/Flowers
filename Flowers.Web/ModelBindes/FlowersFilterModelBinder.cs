@@ -9,7 +9,7 @@ namespace Flowers.Web.ModelBindes
         public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
 
-            if (bindingContext.ModelType != typeof(FlowersFilter))
+            if (bindingContext.ModelType != typeof(FlowersTypesFilter))
             {
                 return null;
             }
@@ -21,7 +21,7 @@ namespace Flowers.Web.ModelBindes
                 return null;
             }
 
-            FlowersFilter result = new FlowersFilter(val.AttemptedValue.Split(','));
+            FlowersTypesFilter result = new FlowersTypesFilter(val.AttemptedValue.Split(','));
 
             return result;
         }

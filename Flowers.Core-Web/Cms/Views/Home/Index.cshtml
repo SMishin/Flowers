@@ -1,0 +1,53 @@
+﻿
+@{
+	ViewBag.Title = "_cms";
+}
+
+@section head{
+
+	@{
+		@*<link href="/static/app/cms/styles/main.css?v=@Html.GetStaticVersion()" rel="stylesheet" />*@
+		<link href="/app/cms/styles/main.css" rel="stylesheet" />
+	}
+}
+
+
+<cms class="layout">
+	<div class="loader"></div>
+</cms>
+
+@section scripts {
+
+	<script>
+		window.app = window.app || {};
+	</script>
+
+	<environment names="Development">
+
+		@{
+			Html.RenderPartial("_DebugScriptLoader", new[]
+			{
+
+				"/node_modules/systemjs/dist/system.src.js",
+				"/app/cms/systemjs.config.js"
+
+			});
+		}
+
+		<script>
+			(function () {
+				System.import('app/main')
+					.then(null, console.error.bind(console));
+			}())
+		</script>
+	</environment>
+
+	<environment names="Production">
+		@{
+			Html.RenderPartial("_ReleaseScriptLoader", new[]
+			{
+					"/app/cms/app.js"
+			});
+		};
+	</environment>
+}

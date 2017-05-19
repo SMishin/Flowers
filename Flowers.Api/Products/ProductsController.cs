@@ -1,10 +1,10 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Flowers.Products;
+using Flowers.Products.ProductTypes;
 
 namespace Flowers.Api.Products
 {
@@ -22,9 +22,17 @@ namespace Flowers.Api.Products
 
 		[HttpGet]
 		[Route("products")]
-		public async Task<IHttpActionResult> Get()
+		public async Task<IHttpActionResult> Get(ProductType type, int page = 1)
 		{
-			var data = await _productsStore.GetAsync();
+			var data = await _productsStore.GetAsync(type);
+			return Ok(data);
+		}
+
+		[HttpGet]
+		[Route("products/published")]
+		public async Task<IHttpActionResult> GetPublishedWithMainImageAsync(ProductType type, int page = 1)
+		{
+			var data = await _productsManager.GetPublishedWithMainImageAsync(type, page);
 			return Ok(data);
 		}
 
@@ -91,9 +99,18 @@ namespace Flowers.Api.Products
 		}
 
 		[HttpDelete]
-		[Route("product/image")]
+		[Route("product")]
 		[Authorize]
 		public async Task<IHttpActionResult> Remove(int id)
+		{
+			await _productsManager.RemoveAsync(id);
+			return Ok();
+		}
+
+		[HttpDelete]
+		[Route("product/image")]
+		[Authorize]
+		public async Task<IHttpActionResult> RemoveImage(int id)
 		{
 			await _productsManager.RemoveImageAsync(id);
 			return Ok();

@@ -1,0 +1,160 @@
+
+ul.image-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+
+  li {
+    padding: 7px;
+    height: 150px;
+    width: 150px;
+    position: relative;
+    border-radius: 5px;
+
+    img {
+      max-width: 150px;
+      border-radius: 5px;
+      max-height: 150px;
+    }
+
+    .gallery-hover-layout {
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      width: 101%;
+      height: 101%;
+      display: table;
+
+      .gallery-hover-layout-in {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+        background: rgba(0, 168, 255, .9);
+        padding: 10px;
+        color: #fff;
+        max-width: 100px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+
+        .btn {
+          border-radius: 3px;
+          border: 1px solid #00a8ff;
+          background: #00a8ff;
+          color: #fff;
+          font-weight: 600;
+        }
+
+      }
+
+    }
+
+    &:hover {
+      .gallery-hover-layout {
+        opacity: 0.9;
+      }
+    }
+  }
+}
+
+.box-typical-upload {
+
+  padding-top: 10px;
+  width: 100%;
+
+  .drop-zone {
+    width: auto;
+    height: auto;
+    border: 2px dashed #adb7be;
+    text-align: center;
+    margin-bottom: 1rem;
+    padding: 25px 0 1rem;
+
+    &.dragover {
+      border-color: #4cae4c;
+    }
+    .font-icon-trash:before {
+      content: "\24";
+    }
+
+    .font-icon-star:before {
+      content: "\76";
+    }
+
+  }
+
+  .uploading-list-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .uploading-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    .uploading-list-item:first-child {
+      border-top: none;
+    }
+
+    .uploading-list-item {
+      zoom: 1;
+      padding: .9rem 0;
+      border-top: solid 1px #d8e2e7;
+    }
+    .uploading-list-item-wrapper {
+      position: relative;
+      padding: 0 20px 0 0;
+      margin: 0 0 6px;
+    }
+
+    .uploading-list-item-name,
+    .uploading-list-item-size {
+      display: inline-block;
+      vertical-align: top;
+      white-space: nowrap;
+      line-height: 1.2em;
+    }
+
+    .uploading-list-item-name {
+      padding-right: 15px;
+      overflow: hidden;
+      max-width: 100%;
+      text-overflow: ellipsis;
+    }
+
+    .uploading-list-item-size {
+      color: #919fa9;
+    }
+
+    .uploading-list-item-close {
+      border: none;
+      background: 0 0;
+      color: #dbe4ea;
+      font-size: .75rem;
+      position: absolute;
+      right: 0;
+      top: 2px;
+      cursor: pointer;
+
+      .font-icon-close-2:before {
+        content: "\4f";
+      }
+    }
+
+    .progress {
+      margin-bottom: .4rem;
+      background-color: #f6f8fa;
+      height: 5px;
+      -webkit-border-radius: 0;
+      border-radius: 0;
+      color: #00a8ff;
+    }
+
+    .progress[value],
+    .uploading-list-item-close:hover {
+      color: #00a8ff;
+    }
+
+  }
+}

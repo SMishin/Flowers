@@ -1,18 +1,22 @@
 import HttpClient from '../core/http-client';
-
+import ProductsFilter from './products-filter';
 class ProductsService {
 
 	constructor(http) {
 		this._http = http;
-		this._url = '/api/products/flower';
+		this._url = '/api/product';
 	}
 
 	get(filter) {
 
 		if (filter.id) {
-			return this._http.get(this._url + '/' + id);
+			return this._http.get(this._url + '/' + filter.id);
 		}
 
+		return this._http.get(this._url + 's/' + (filter instanceof ProductsFilter ? filter.toQueryString() : new ProductsFilter(filter).toQueryString()));
+	}
+
+	getPublished(filter) {
 		return this._http.get(this._url + 's/published' + filter.toQueryString());
 	}
 

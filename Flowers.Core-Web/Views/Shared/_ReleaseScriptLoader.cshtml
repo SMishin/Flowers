@@ -1,0 +1,30 @@
+﻿@model IEnumerable<string>
+
+<script>
+	!function(a) {
+		"use strict";
+
+		function loadJS(b, c) {
+			var d = a.document.createElement("script");
+			d.src = b, @*+ '?ver=@(Html.GetStaticVersion())',*@
+				d.async = c || !1,
+				a.document.body.appendChild(d);
+		}
+
+		function loadOnloadJS(b, c) {
+			a.addEventListener("load",
+				function() {
+					loadJS(b, c);
+				},
+				!1);
+		}
+
+		@foreach (var item in Model)
+		{
+			<text>loadOnloadJS('@item', 1)</text>
+		}
+
+
+	}(window);
+
+</script>

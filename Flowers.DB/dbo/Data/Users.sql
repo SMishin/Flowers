@@ -14,7 +14,8 @@ begin
 			   ,[LockoutEndDateUtc]
 			   ,[LockoutEnabled]
 			   ,[AccessFailedCount]
-			   ,[UserName])
+			   ,[UserName]
+			   ,[NormalizedUserName])
 		 VALUES
 			   ('21302f78-721f-428d-bd9b-e26f7fcc3f79'
 			   ,'admin@admin.ru'
@@ -27,9 +28,28 @@ begin
 			   ,null
 			   ,1
 			   ,0
-			   ,'admin@admin.ru'
+			   ,'admin@admin.ru',
+			   'ADMIN@ADMIN.RU'
 			   )
-
+end
+else
+	begin
+		update [dbo].[Users]
+			   set
+			   [Email] = 'admin@admin.ru'
+			   ,[EmailConfirmed] = 0
+			   ,[PasswordHash] = 'AMQNEBRox6n8M1pwlBYaHZfKbrSDrIg/H+dzdOOJ8wcISwQc2ibsokq+VHCMauicDg=='
+			   ,[SecurityStamp] = '40a9ecc9-9934-46af-b4c4-413776c0c2f2'
+			   ,[PhoneNumber] = null
+			   ,[PhoneNumberConfirmed] = 0
+			   ,[TwoFactorEnabled]=0
+			   ,[LockoutEndDateUtc]=null
+			   ,[LockoutEnabled]=1
+			   ,[AccessFailedCount] =0 
+			   ,[UserName] = 'admin@admin.ru'
+			   ,[NormalizedUserName] ='ADMIN@ADMIN.RU'
+	
+			   where id= '21302f78-721f-428d-bd9b-e26f7fcc3f79'
 end
 
 

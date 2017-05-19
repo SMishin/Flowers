@@ -1,0 +1,52 @@
+﻿@model Flowers.Products.Product[]
+
+@if (Model.Any())
+{
+	<ul class="product_list grid row c-count-3">
+
+		@foreach (var item in Model)
+		{
+			<li class="ajax_block_product col-xs-12 col-sm-6 col-md-4">
+				<div class="product-container"
+					 itemscope=""
+					 itemtype="https://schema.org/Product">
+					<div class="left-block">
+						<div class="product-image-container">
+							<a class="product_img_link"
+							   href="/@item.Type.ToString().ToLower()/@item.Id"
+							   title="@item.Name"
+							   itemprop="url">
+								<img class="replace-2x img-responsive"
+									 src="@(!string.IsNullOrEmpty(item.ImageUrl) ? item.ImageUrl : "/app/img/no_photo.jpg")"
+									 alt="@item.Name"
+									 title="@item.Name"
+									 itemprop="image" />
+							</a>
+						</div>
+					</div>
+					<div class="right-block">
+						<h5 itemprop="name">
+							<a class="product-name"
+							   href="/@item.Type.ToString().ToLower()/@item.Id"
+							   title="@item.Name"
+							   itemprop="url">
+								<span class="grid-name">
+									@item.Name
+								</span>
+							</a>
+						</h5>
+
+						<div class="content_price">
+							<span class="price product-price product-price-new">
+								@item.FormatedPrice
+							</span>
+
+						</div>
+
+					</div>
+				</div>
+			</li>
+		}
+
+	</ul>
+}

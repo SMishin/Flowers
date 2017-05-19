@@ -1,9 +1,9 @@
 import createStore from '../createStore';
-import ProductsService from '../../common/products-service';
+import FlowersService from '../../common/flowers-service';
 import HttpClient from '../../core/http-client';
-import FlowersFilter from './flowersFilter';
+import FlowersFilter from '../../common/flowers-filter';
 
-let productsService = new ProductsService(new HttpClient());
+let flowersService = new FlowersService(new HttpClient());
 
 function updateFilter(prevState, filter, updateStore) {
 
@@ -12,7 +12,7 @@ function updateFilter(prevState, filter, updateStore) {
 
 	let newFilter = new FlowersFilter(filter);
 
-	productsService.get(newFilter).then(function (data) {
+	flowersService.getPublished(newFilter).then(function (data) {
 
 		setTimeout(function () {
 			updateStore({

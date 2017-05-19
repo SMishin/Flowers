@@ -46,8 +46,9 @@
     <Compile Include="Colors\IColorsReadOnlyStore.cs" />
     <Compile Include="Colors\Product.cs" />
     <Compile Include="PageResult.cs" />
+    <Compile Include="PagedResultsFactory.cs" />
     <Compile Include="Products\Flowers\Flower.cs" />
-    <Compile Include="Products\Flowers\FlowersFilter.cs" />
+    <Compile Include="Products\Flowers\FlowersTypesFilter.cs" />
     <Compile Include="Products\Flowers\FlowersManager.cs" />
     <Compile Include="Products\Flowers\FlowerType.cs" />
     <Compile Include="Products\Flowers\FlowerVariant.cs" />
@@ -60,8 +61,8 @@
     <Compile Include="Products\Product.cs" />
     <Compile Include="Products\ProductImage.cs" />
     <Compile Include="Products\ProductsManager.cs" />
-    <Compile Include="Products\ProductType\ProductType.cs" />
-    <Compile Include="Products\ProductType\ProductTypeHelper.cs" />
+    <Compile Include="Products\ProductTypes\ProductType.cs" />
+    <Compile Include="Products\ProductTypes\ProductTypeHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

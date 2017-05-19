@@ -1,0 +1,110 @@
+﻿@{
+	Layout = "_ProductListLayout";
+}
+
+@using System.Linq
+@using Flowers.Products.Flowers
+@using Flowers.Products.ProductTypes
+@using Microsoft.AspNetCore.Mvc.ViewFeatures
+
+@model Flowers.CoreWeb.Models.Flowers.FlowersIndexViewModel
+
+
+<div id="center_column" class="center_column col-xs-12 col-sm-9 accordionBox">
+	<h1 class="page-heading product-listing">
+		<span class="cat-name">
+			@ProductType.Flowers.ToFriendlyString()
+		</span>
+		<span id="items-counter" class="heading-counter">
+			<span>
+				@{
+					Html.RenderPartial("_ItemsCount", Model.Data.TotalCount);
+				}
+			</span>
+		</span>
+	</h1>
+
+	<div id="product_list_container">
+		@*@{
+				Html.RenderPartial("__ListFilter");
+			}*@
+
+		<div id="product_list_items_container">
+			@{ Html.RenderPartial(@"~/Views/Produtcs/_List.cshtml", Model.Data.Items); }
+
+			@if (Model.Data.TotalCount > Model.Data.Items.Length)
+			{
+				@Html.Partial("_Paging", new PagingModel
+				{
+					TotalCount = Model.Data.TotalCount,
+					ItemsCount = Model.Data.Items.Length,
+					Page = Model.Data.Page,
+					PageSize = Model.Data.PageSize
+				},
+					new ViewDataDictionary(this.ViewData)
+					{
+						{ "BaseUrl", ProductType.Flowers.ToString().ToLower()}
+					})
+
+			}
+		</div>
+	</div>
+</div>
+
+<div id="left_column" class="column col-xs-12 col-sm-3">
+	<section id="layered_block_left" class="block">
+		<h4 class="title_block">
+			Каталог
+		</h4>
+		<div class="block_content">
+			<form action="#" id="layered_form">
+				<div class="layered_filter">
+					<ul id="ul_layered_manufacturer_0" class="col-lg-12 layered_filter_ul">
+						<li class="nomargin hiddable col-lg-12">
+							<a href="/flowers">
+								<b>
+									Цветы
+								</b>
+							</a>
+							<div id="flower-types-filter">
+								<ul class="col-lg-12 layered_filter_ul">
+
+									@{			foreach (var item in Enum.GetValues(typeof(FlowerType)).Cast<FlowerType>().Where(t => t != FlowerType.Undefined))
+														{
+													<li class="nomargin hiddable col-lg-12">
+														<input type="checkbox" class="checkbox" name="layered_quantity_@item" id="layered_quantity_@item"
+															   checked="@Model.Filter.Types.Contains(item)"
+															   value="@item">
+														<label for="layered_quantity_0">
+															<strong>
+																@item.ToFriendlyString()
+															</strong>
+															@*<span>
+																	count
+																</span>*@
+
+														</label>
+													</li>		}
+									}
+
+								</ul>
+							</div>
+						</li>
+
+						<li class="nomargin hiddable col-lg-12">
+
+							<label for="layered_manufacturer_4">
+								<a href="/bouquets">
+									<b>
+										@ProductType.Bouquets.ToFriendlyString()
+									</b>
+								</a>
+							</label>
+						</li>
+					</ul>
+				</div>
+			</form>
+		</div>
+	</section>
+</div>
+

@@ -7,7 +7,7 @@ using Flowers.Web.Models.Flowers;
 
 namespace Flowers.Web.Controllers
 {
-    //[RoutePrefix("flowers")]
+    [RoutePrefix("flowers")]
     public class FlowersController : Controller
     {
         private readonly IFlowersReadOnlyStore _flowersReadOnlyStore;
@@ -30,18 +30,19 @@ namespace Flowers.Web.Controllers
         //}
 
         [HttpGet]
-        public async Task<ActionResult> Index([ModelBinder(typeof(FlowersFilterModelBinder))] FlowersFilter filter, int page = 1)
+		[Route("")]
+		public async Task<ActionResult> Index([ModelBinder(typeof(FlowersFilterModelBinder))] FlowersTypesFilter filter, int page = 1)
         {
             var products = await _flowersManager.GetPublishedWithMainImageAsync(filter, page);
             return View(new FlowersIndexViewModel
             {
                 Flowers = products,
-                Filter = filter ?? new FlowersFilter()
+                Filter = filter ?? new FlowersTypesFilter()
             });
         }
 
 
-        //[Route("{id:int}")]
+        [Route("{id:int}")]
         [HttpGet]
         public async Task<ActionResult> Details(int id)
         {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Flowers.Products.ProductTypes;
 
 namespace Flowers.Products
 {
@@ -10,6 +11,7 @@ namespace Flowers.Products
 	{
 		private readonly IProductsStore _productsStore;
 		private readonly string _imagesRootPath;
+		private readonly string _productImagesDirectory = "products";
 
 		private readonly Dictionary<string, string> _extensionLookup = new Dictionary<string, string>
 		{
@@ -19,11 +21,33 @@ namespace Flowers.Products
 		public ProductsManager(IProductsStore productsStore, string imagesRootPath)
 		{
 			_productsStore = productsStore;
-			_imagesRootPath = imagesRootPath;
+			_imagesRootPath = Path.Combine(imagesRootPath, _productImagesDirectory);
 		}
-		public Task<int> SaveAsync(Product product)
+
+		public async Task<PagedResult<Product>> GetPublishedWithMainImageAsync(ProductType type, int page = 1)
 		{
-			return _productsStore.SaveAsync(product);
+			PagedResultsFactory factory = new PagedResultsFactory();
+
+			var result = await factory.Create(
+				(skip, take) => _productsStore.GetPublishedWithMainImageAsync(type, skip, take),
+				() => _productsStore.CountPublishedAsync(type),
+				page);
+
+			return result;
+		}
+
+		public async Task<int> SaveAsync(Product product)
+		{
+			int id = await _productsStore.SaveAsync(product);
+
+			if (id == 0)
+			{
+				id = product.Id;
+			}
+
+			await SetColorsAsync(id, product.Colors);
+
+			return id;
 		}
 
 		public async Task RemoveAsync(int id)
@@ -37,6 +61,14 @@ namespace Flowers.Products
 
 			await _productsStore.RemoveImagesAsync(id);
 			await _productsStore.RemoveAsync(id);
+		}
+
+		public async Task<ProductImage> UploadImage(Stream stream, string contentType, int productId)
+		{
+			byte[] bytesInStream = new byte[stream.Length];
+			stream.Position = 0;
+			await stream.ReadAsync(bytesInStream, 0, bytesInStream.Length);
+			return await UploadImage(bytesInStream, contentType, productId);
 		}
 
 		public async Task<ProductImage> UploadImage(byte[] content, string contentType, int productId)
@@ -57,7 +89,7 @@ namespace Flowers.Products
 
 			File.WriteAllBytes(filePath, content);
 
-			var imgUrl = filePath.Replace(AppDomain.CurrentDomain.BaseDirectory, "").Replace("\\", "/");
+			var imgUrl = _productImagesDirectory + filePath.Replace(_imagesRootPath, "").Replace("\\", "/");
 
 			var imageId = await _productsStore.AddImageAsync(productId, imgUrl);
 
@@ -111,5 +143,6 @@ namespace Flowers.Products
 		{
 			return _productsStore.SetColorsAsync(productId, colorIds);
 		}
+
 	}
 }
