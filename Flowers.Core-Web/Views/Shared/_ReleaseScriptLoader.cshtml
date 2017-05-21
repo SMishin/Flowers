@@ -6,7 +6,7 @@
 
 		function loadJS(b, c) {
 			var d = a.document.createElement("script");
-			d.src = b, @*+ '?ver=@(Html.GetStaticVersion())',*@
+			d.src = b+ '?v=@Appversion.Value',
 				d.async = c || !1,
 				a.document.body.appendChild(d);
 		}

@@ -1,3 +1,7 @@
+param(
+  [string]$version = '1.0.0'
+)
+
 $projectName = 'Flowers'
 $distPath = '..\_dist';
 
@@ -24,7 +28,7 @@ Push-Location
 	}
 	
 	msbuild "$projectName.Core-Web.csproj" /t:restore #restore packages
-	msbuild "$projectName.Core-Web.csproj" /p:DeployOnBuild=true /p:Configuration=Release /p:AutoParameterizationWebConfigConnectionStrings=false
+	msbuild "$projectName.Core-Web.csproj" /p:DeployOnBuild=true /p:Configuration=Release /p:AutoParameterizationWebConfigConnectionStrings=false /p:AssemblyVersion=$version /p:FileVersion=$version /p:Version=$version
 	
 	Push-Location	
 		cd .\bin\Release\net462\win7-x86

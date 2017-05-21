@@ -37,7 +37,14 @@
 	</environment>
 
 	<environment names="Production">
-		<script src="/app/public/app.js"></script>
+		
+		@{
+			Html.RenderPartial("_ReleaseScriptLoader", new[]
+			{
+					"/app/public/app.js"
+			});
+		};
+
 	</environment>
 
 

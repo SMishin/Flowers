@@ -1,0 +1,32 @@
+﻿@{
+	Layout = "_Layout";
+}
+
+
+@section head {
+	<link href="/_libs/fotorama-4.6.4/fotorama.css" rel="stylesheet" />
+}
+
+<div class="columns-container">
+	<div id="columns" class="container">
+
+		<div class="row">
+			<div class="large-left col-sm-12">
+				<div class="row">
+					<div id="center_column" class="center_column col-xs-12 col-sm-12 accordionBox">
+						@RenderBody()
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section scripts{
+
+	<script src="/_libs/jquery-1.11.0.min.js"></script>
+	<script async src="/_libs/fotorama-4.6.4/fotorama.js"></script>
+
+	<script async src="/_libs/product.js"></script>
+}
