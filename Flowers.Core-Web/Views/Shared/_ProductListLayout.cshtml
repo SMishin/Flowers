@@ -3,6 +3,7 @@
 }
 
 @using Flowers.CoreWeb.Api.Config
+@using Newtonsoft.Json
 
 <div id="columns" class="container">
 	<div class="row">
@@ -16,10 +17,14 @@
 
 @section scripts{
 
-
 	<script>
 		@*window.__INITIAL_STATE__ = JSON.parse('@Html.Raw(HttpUtility.JavaScriptStringEncode(Newtonsoft.Json.JsonConvert.SerializeObject(Model, JsonConfiguration.SerializerSettings)))');*@
-		window.__INITIAL_STATE__ = JSON.parse('@Html.Raw(Json.Serialize(Model, JsonConfiguration.SerializerSettings))');
+
+		@{
+			var ssettings = JsonConfiguration.SerializerSettings;
+			ssettings.StringEscapeHandling = StringEscapeHandling.EscapeHtml;
+		}
+		window.__INITIAL_STATE__ = JSON.parse('@(Json.Serialize(Model, ssettings))');
 	</script>
 
 	<environment names="Development">
@@ -37,7 +42,7 @@
 	</environment>
 
 	<environment names="Production">
-		
+
 		@{
 			Html.RenderPartial("_ReleaseScriptLoader", new[]
 			{
