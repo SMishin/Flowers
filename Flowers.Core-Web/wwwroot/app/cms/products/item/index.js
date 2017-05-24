@@ -8,7 +8,7 @@ import template from './product-template.html'
 })
 class ProductComponent {
 	constructor(route, productsService) {
-		this._productsService = productsService;
+		this._bouquetsService = productsService;
 		this.model = {
 			id : route.firstChild && route.firstChild.params.value.id
 		};

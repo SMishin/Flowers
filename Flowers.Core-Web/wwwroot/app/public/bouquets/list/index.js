@@ -9,7 +9,7 @@ class BouquetsList extends React.Component {
 
 	constructor() {
 		super();
-		this._productsService = new ProductsService();
+		this._bouquetsService = new ProductsService();
 
 		let state = store.getState();
 		this.state = {
@@ -26,7 +26,7 @@ class BouquetsList extends React.Component {
 		store.fetchData(() => {
 			let state = filterStore.getState().clone();
 			state.applyFilter(ProductTypeFilter._name, new ProductTypeFilter({type: 1}));
-			return this._productsService.getPublished(state);
+			return this._bouquetsService.getPublished(state);
 		});
 	}
 

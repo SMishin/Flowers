@@ -48,10 +48,13 @@
     <Compile Include="Colors\ColorsReadOnlyStore.cs" />
     <Compile Include="Colors\ColorsStore.cs" />
     <Compile Include="ISqlConnectionHelper.cs" />
+    <Compile Include="Products\Bouquets\BouquetsReadOnlyStore.cs" />
+    <Compile Include="Products\Bouquets\BouquetsStore.cs" />
     <Compile Include="Products\Flowers\FlowersReadOnlyStore.cs" />
     <Compile Include="Products\Flowers\FlowersStore.cs" />
     <Compile Include="Products\ProductsReadOnlyStore.cs" />
     <Compile Include="Products\ProductsStore.cs" />
+    <Compile Include="Products\TypesFilterExtentions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlConnectionHelper.cs" />
   </ItemGroup>

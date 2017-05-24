@@ -47,6 +47,14 @@
     <Compile Include="Colors\Product.cs" />
     <Compile Include="PageResult.cs" />
     <Compile Include="PagedResultsFactory.cs" />
+    <Compile Include="Products\Bouquets\BouquetsManager.cs" />
+    <Compile Include="Products\Bouquets\BouquetType.cs" />
+    <Compile Include="Products\Bouquets\Bouquet.cs" />
+    <Compile Include="Products\Bouquets\BouquetsTypesFilter.cs" />
+    <Compile Include="Products\Bouquets\IBouquetsManager.cs" />
+    <Compile Include="Products\Bouquets\IBouquetsReadOnlyStore.cs" />
+    <Compile Include="Products\Bouquets\IBouquetsStore.cs" />
+    <Compile Include="Products\TypesFilter.cs" />
     <Compile Include="Products\Flowers\Flower.cs" />
     <Compile Include="Products\Flowers\FlowersTypesFilter.cs" />
     <Compile Include="Products\Flowers\FlowersManager.cs" />

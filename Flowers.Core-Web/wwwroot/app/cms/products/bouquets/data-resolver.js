@@ -4,11 +4,11 @@ let type = 1;
 @Injectable()
 class BouquetsDataResolver {
 	constructor(productsService) {
-		this._productsService = productsService;
+		this._bouquetsService = productsService;
 	}
 
 	resolve(activatedRouteSnapshot, routerStateSnapshot) {
-		return this._productsService
+		return this._bouquetsService
 			.get({
 				type
 			})

@@ -17,8 +17,7 @@ AS
 		left join [dbo].[ProductImages] pi on p.Id = pi.[ProductId] and pi.IsMain = 1
 		left join [dbo].[FlowerVariants] fv on fv.[FlowerId] = p.Id
 	where 
-		p.Type = 0 
-		and p.Published = 1
+		p.Published = 1
 		and f.[Type] in (select Id from  @Types)
 	group by p.Id, f.Type, p.name, p.Summary, p.Description, p.Published, pi.[Url] 
 	ORDER BY p.[Id]

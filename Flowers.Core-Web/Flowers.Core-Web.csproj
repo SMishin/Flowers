@@ -63,6 +63,9 @@
     <Content Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Update="Views\Bouquets\Index.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Update="Views\Flowers\Details.cshtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

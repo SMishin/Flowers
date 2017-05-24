@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import ProductsService from '../../../common/products-service';
+import BouquetsService from '../../../../common/bouquets-service';
 import {Router, ActivatedRoute} from '@angular/router';
 import template from './template.html'
 
@@ -7,9 +7,9 @@ import template from './template.html'
 	template: template,
 	providers: []
 })
-class NewProductComponent {
-	constructor(productsService, router, route) {
-		this._bouquetsService = productsService;
+class NewBouquetComponent {
+	constructor(bouquetsService, router, route) {
+		this._bouquetsService = bouquetsService;
 		this._router = router;
 		this._route = route;
 	}
@@ -29,10 +29,10 @@ class NewProductComponent {
 
 }
 
-NewProductComponent.parameters = [
-	ProductsService,
+NewBouquetComponent.parameters = [
+	BouquetsService,
 	Router,
 	ActivatedRoute
 ];
 
-export default NewProductComponent;
+export default NewBouquetComponent;

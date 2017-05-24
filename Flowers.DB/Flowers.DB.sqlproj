@@ -64,6 +64,7 @@
     <Folder Include="dbo\Types" />
     <Folder Include="dbo\Data" />
     <Folder Include="dbo\Colors" />
+    <Folder Include="dbo\Products\Bouquets" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\DeliveryTypes.sql" />
@@ -101,6 +102,10 @@
     <Build Include="dbo\Colors\RemoveColor.sql" />
     <Build Include="dbo\Products\SetProductColors.sql" />
     <Build Include="dbo\Types\VarcharArray.sql" />
+    <Build Include="dbo\Tables\Bouquets.sql" />
+    <Build Include="dbo\Products\Bouquets\SelectPublishedBouquetsWithMainImage.sql" />
+    <Build Include="dbo\Products\Bouquets\SaveBouquet.sql" />
+    <Build Include="dbo\Products\Bouquets\GetBouquet.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Flowers.DB.local.publish.xml" />

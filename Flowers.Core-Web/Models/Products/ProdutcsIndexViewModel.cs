@@ -1,5 +1,4 @@
-﻿using Flowers.CoreWeb.Models.Flowers;
-using Flowers.Products;
+﻿using Flowers.Products;
 using Flowers.Products.ProductTypes;
 
 namespace Flowers.CoreWeb.Models.Products

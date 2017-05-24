@@ -1,15 +1,15 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import ProductsService from '../../../common/products-service';
+import BouquetsService from '../../../../common/bouquets-service';
 import template from './template.html'
 
 @Component({
 	template: template,
 	providers: []
 })
-class ProductInfoComponent {
-	constructor(route, router, productsService) {
-		this._bouquetsService = productsService;
+class BouquetInfoComponent {
+	constructor(route, router, bouquetsService) {
+		this._bouquetsService = bouquetsService;
 		this._router = router;
 		this._route = route;
 		this.model = {
@@ -21,9 +21,7 @@ class ProductInfoComponent {
 
 			if (id) {
 				this._bouquetsService
-					.get({
-						id: +id
-					})
+					.get(+id)
 					.then(data => {
 						this.model = data;
 					})
@@ -61,10 +59,10 @@ class ProductInfoComponent {
 
 }
 
-ProductInfoComponent.parameters = [
+BouquetInfoComponent.parameters = [
 	ActivatedRoute,
 	Router,
-	ProductsService
+	BouquetsService
 ];
 
-export default ProductInfoComponent;
+export default BouquetInfoComponent;

@@ -10,8 +10,10 @@ using Flowers.CoreWeb.Services;
 using Flowers.Data;
 using Flowers.Data.Colors;
 using Flowers.Data.Products;
+using Flowers.Data.Products.Bouquets;
 using Flowers.Data.Products.Flowers;
 using Flowers.Products;
+using Flowers.Products.Bouquets;
 using Flowers.Products.Flowers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -93,6 +95,10 @@ namespace Flowers.CoreWeb
 			services.AddTransient<IColorsReadOnlyStore, ColorsReadOnlyStore>();
 			services.AddTransient<IColorsManager, ColorsManager>();
 			services.AddTransient<IColorsStore, ColorsStore>();
+
+			services.AddTransient<IBouquetsReadOnlyStore, BouquetsReadOnlyStore>();
+			services.AddTransient<IBouquetsManager, BouquetsManager>();
+			services.AddTransient<IBouquetsStore, BouquetsStore>();
 
 		}
 

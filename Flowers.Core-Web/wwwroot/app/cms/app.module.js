@@ -27,10 +27,16 @@ import FileBrowserDirective from './products/product-images/file-browser/index'
 import FlowersService from '../common/flowers-service';
 import FlowersDataResolver from './products/flowers/data-resolver';
 
+import BouquetsService from '../common/bouquets-service';
 import BouquetsDataResolver from './products/bouquets/data-resolver';
+import NewBouquetComponent from './products/bouquets/new-bouquet/index';
+import BouquetInfoComponent from './products/bouquets/info/index';
+import BouquetsInfoEditFormComponent from './products/bouquets/edit-form/index';
 
 import ColorsComponent from './colors/index';
 import ColorsService from './colors/colors-service';
+
+
 
 @NgModule({
     imports: [
@@ -54,6 +60,10 @@ import ColorsService from './colors/colors-service';
 	    FlowerInfoEditFormComponent,
 	    FlowerPrices,
 
+	    NewBouquetComponent,
+	    BouquetInfoComponent,
+	    BouquetsInfoEditFormComponent,
+
 	    UploadImagesComponent,
 	    DropZoneDirective,
 	    FileBrowserDirective,
@@ -66,6 +76,7 @@ import ColorsService from './colors/colors-service';
 	    FlowersService,
 	    FlowersDataResolver,
 	    BouquetsDataResolver,
+	    BouquetsService,
 	    ColorsService
     ],
     bootstrap: [AppComponent]
