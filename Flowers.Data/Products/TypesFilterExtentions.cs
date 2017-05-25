@@ -25,7 +25,7 @@ namespace Flowers.Data.Products
 			return types;
 		}
 
-		public static DataTable TypesToDataTable<TType>(IEnumerable<TType> types)
+		public static DataTable TypesToDataTable<TType>(this IEnumerable<TType> types)
 		{
 			var table = new DataTable();
 			table.Columns.Add("Id", typeof(int));

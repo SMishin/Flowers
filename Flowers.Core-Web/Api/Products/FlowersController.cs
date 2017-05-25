@@ -1,9 +1,10 @@
 ﻿using System.Threading.Tasks;
+using Flowers.Products;
 using Flowers.Products.Flowers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Flowers.CoreWeb.Api.Products.Flowers
+namespace Flowers.CoreWeb.Api.Products
 {
     [Microsoft.AspNetCore.Mvc.Route("api/products")]
     public class FlowersController : Controller
@@ -17,8 +18,8 @@ namespace Flowers.CoreWeb.Api.Products.Flowers
             _flowersStore = flowersStore;
         }
 
-        [Microsoft.AspNetCore.Mvc.HttpGet]
-        [Microsoft.AspNetCore.Mvc.Route("flowers")]
+        [HttpGet]
+        [Route("flowers")]
         public async Task<IActionResult> Get()
         {
             var data = await _flowersStore.GetAsync();
@@ -27,7 +28,7 @@ namespace Flowers.CoreWeb.Api.Products.Flowers
 
         [HttpGet]
         [Route("flowers/published")]
-        public async Task<IActionResult> GetPublishedWithMainImageAsync([ModelBinder(BinderType = typeof(FlowersFilterModelBinder), Name = "ft")] FlowersTypesFilter filter, int page = 1)
+        public async Task<IActionResult> GetPublishedWithMainImageAsync([ModelBinder(BinderType = typeof(FilterModelBinder<TypesFilter<FlowerType>>), Name = "ft")] TypesFilter<FlowerType> filter, int page = 1)
         {
             var data = await _flowersManager.GetPublishedWithMainImageAsync(filter, page);
             return Ok(data);
