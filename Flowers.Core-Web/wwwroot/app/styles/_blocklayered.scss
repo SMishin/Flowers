@@ -11,13 +11,15 @@
   font-weight: 700;
 }
 
-#layered_block_left #layered_form > div > div {
+#layered_block_left #layered_form > div {
   padding-top: 20px;
 }
 
-#layered_block_left #layered_form > div > div + div {
-  border-top: 1px solid #f0f0f0;
-  margin-top: 20px;
+#layered_block_left #layered_form {
+  > div + div {
+    border-top: 1px solid #f0f0f0;
+    margin-top: 20px;
+  }
 }
 
 #layered_block_left #layered_form #enabled_filters {
@@ -189,11 +191,6 @@
 #layered_block_left #layered_form ul li {
   padding: 0;
   list-style-type: none;
-}
-
-#layered_block_left #layered_form ul li a {
-  display: block;
-  font: bold 18px/22px "Merriweather", sans-serif;
 }
 
 #layered_block_left #layered_form ul li a span {
