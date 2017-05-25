@@ -1,4 +1,5 @@
-﻿using Flowers.Products.Bouquets;
+﻿using Flowers.Products;
+using Flowers.Products.Bouquets;
 
 namespace Flowers.CoreWeb.Models.Bouquets
 {
@@ -6,9 +7,9 @@ namespace Flowers.CoreWeb.Models.Bouquets
 	{
 		public BouquetsIndexViewModel()
 		{
-			Filter = new BouquetsTypesFilter();
+			BouquetsTypesFilter = new TypesFilter<BouquetType>();
 		}
 	
-		public BouquetsTypesFilter Filter { get; set; }
+		public TypesFilter<BouquetType> BouquetsTypesFilter { get; set; }
 	}
 }

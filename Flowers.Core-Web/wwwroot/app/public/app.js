@@ -3,9 +3,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Router, Route, browserHistory} from 'react-router';
 import TotalCounter from './total-counter/index';
+
 import FlowersList from './flowers/list/index';
-import BouquetsList from './bouquets/list/index';
 import FlowerTypesFilter from './flowers/filter/index';
+
+import BouquetsList from './bouquets/list/index';
+import BouquetsTypesFilterView from './bouquets/filter/index';
+
 import flowerStore from './products/store';
 
 blankshield(document.querySelectorAll('a[target=_blank]'));
@@ -17,6 +21,9 @@ ReactDOM.render(<TotalCounter totalCount={flowerStoreState.data.totalCount}/>,
 
 let flowerTypesFilter = document.getElementById('flower-types-filter');
 flowerTypesFilter && ReactDOM.render(<FlowerTypesFilter />, flowerTypesFilter);
+
+let bouquetsTypesFilter = document.getElementById('bouquets-types-filter');
+bouquetsTypesFilter && ReactDOM.render(<BouquetsTypesFilterView />, bouquetsTypesFilter);
 
 ReactDOM.render(
 	<Router history={browserHistory}>

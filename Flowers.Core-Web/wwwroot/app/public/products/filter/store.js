@@ -2,20 +2,20 @@ import createStore from '../../createStore';
 import {browserHistory} from 'react-router'
 import FilterSet from './filter-set';
 import FlowersTypesFilter from '../../../common/filters/flowers-types';
-//import ProductTypeFilter from '../../../common/filters/product-type';
+import BouquetsTypesFilter from '../../../common/filters/bouquets-types';
 import PageFilter from '../../../common/filters/page';
 
 let filter = new FilterSet();
 
 if (window.__INITIAL_STATE__ !== void 0) {
 
-	if (window.__INITIAL_STATE__.filter !== void 0) {
-		filter.applyFilter(FlowersTypesFilter._name, new FlowersTypesFilter(window.__INITIAL_STATE__.filter));
+	if (window.__INITIAL_STATE__.flowersTypesFilter !== void 0) {
+		filter.applyFilter(FlowersTypesFilter._name, new FlowersTypesFilter(window.__INITIAL_STATE__.flowersTypesFilter));
 	}
 
-	// if (window.__INITIAL_STATE__.productType !== void 0) {
-	// 	filter.applyFilter(ProductTypeFilter._name, new ProductTypeFilter({type: window.__INITIAL_STATE__.productType}));
-	// }
+	if (window.__INITIAL_STATE__.bouquetsTypesFilter !== void 0) {
+		filter.applyFilter(BouquetsTypesFilter._name, new BouquetsTypesFilter(window.__INITIAL_STATE__.bouquetsTypesFilter));
+	}
 
 	if (window.__INITIAL_STATE__.data.totalCount > window.__INITIAL_STATE__.data.pageSize) {
 		filter.applyFilter(PageFilter._name, new PageFilter({page: window.__INITIAL_STATE__.data.page}));

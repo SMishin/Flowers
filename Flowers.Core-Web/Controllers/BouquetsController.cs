@@ -31,6 +31,7 @@ namespace Flowers.CoreWeb.Controllers
 			var data = new BouquetsIndexViewModel
 			{
 				Data = bouquets.Result,
+				BouquetsTypesFilter = filter
 			};
 
 			return View(data);

@@ -54,7 +54,7 @@
 				<div class="layered_filter">
 					<ul id="ul_layered_manufacturer_0" class="col-lg-12 layered_filter_ul">
 						<li class="nomargin hiddable col-lg-12">
-							<a href="/@ProductType.Bouquets.ToString().ToLower()}">
+							<a href="/@ProductType.Flowers.ToString().ToLower()}">
 								<b>
 									Цветы
 								</b>
@@ -68,13 +68,13 @@
 									@ProductType.Bouquets.ToFriendlyString()
 								</b>
 							</a>
-							<div id="bouquet-types-filter">
+							<div id="bouquets-types-filter">
 								<ul class="col-lg-12 layered_filter_ul">
 									@{			foreach (var item in Enum.GetValues(typeof(BouquetType)).Cast<BouquetType>().Where(t => t != BouquetType.Undefined))
 										{
 											<li class="nomargin hiddable col-lg-12">
 												<input type="checkbox" class="checkbox" name="layered_quantity_@item" id="layered_quantity_@item"
-													   checked="@Model.Filter.Types.Contains(item)"
+													   checked="@Model.BouquetsTypesFilter.Types.Contains(item)"
 													   value="@item">
 												<label for="layered_quantity_0">
 													<strong>

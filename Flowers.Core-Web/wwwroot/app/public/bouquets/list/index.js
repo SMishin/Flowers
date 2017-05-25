@@ -2,14 +2,14 @@ import React from 'react'
 import template from './template.jsx'
 import filterStore from '../../products/filter/store'
 import store from '../../products/store'
-import ProductsService from '../../../common/products-service';
-import ProductTypeFilter from '../../../common/filters/product-type';
+import BouquetsService from '../../../common/bouquets-service';
+
 
 class BouquetsList extends React.Component {
 
 	constructor() {
 		super();
-		this._bouquetsService = new ProductsService();
+		this._bouquetsService = new BouquetsService();
 
 		let state = store.getState();
 		this.state = {
@@ -24,9 +24,7 @@ class BouquetsList extends React.Component {
 
 	filterListener() {
 		store.fetchData(() => {
-			let state = filterStore.getState().clone();
-			state.applyFilter(ProductTypeFilter._name, new ProductTypeFilter({type: 1}));
-			return this._bouquetsService.getPublished(state);
+			return this._bouquetsService.getPublished(filterStore.getState());
 		});
 	}
 
