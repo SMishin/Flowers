@@ -45,11 +45,12 @@ namespace Flowers.Products.Bouquets
 			return id;
 		}
 
-		public Task RemoveAsync(int id)
+		public async Task RemoveAsync(int id)
 		{
-			return _bouquetsStore.RemoveAsync(id);
-		}
+			await _bouquetsStore.RemoveAsync(id);
+			await _productsManager.RemoveAsync(id);
 
+		}
 		
 	}
 }
