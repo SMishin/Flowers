@@ -26,9 +26,12 @@ namespace Flowers.Data.Products.Bouquets
 			}
 		}
 
-		public Task RemoveAsync(int id)
+		public async Task RemoveAsync(int id)
 		{
-			throw new System.NotImplementedException();
+			using (var conntection = await SqlConnectionHelper.CreateConnection())
+			{
+				await conntection.ExecuteAsync(@"delete [dbo].[Bouquets] where Id = @Id", new { Id = id });
+			}
 		}
 	}
 }
