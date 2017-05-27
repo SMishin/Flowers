@@ -66,33 +66,10 @@
 									Цветы
 								</b>
 							</a>
-							<div id="flower-types-filter">
-								<ul class="col-lg-12 layered_filter_ul">
-
-									@{			foreach (var item in Enum.GetValues(typeof(FlowerType)).Cast<FlowerType>().Where(t => t != FlowerType.Undefined))
-														{
-													<li class="nomargin hiddable col-lg-12">
-														<input type="checkbox" class="checkbox" name="layered_quantity_@item" id="layered_quantity_@item"
-															   checked="@Model.Filter.Types.Contains(item)"
-															   value="@item">
-														<label for="layered_quantity_0">
-															<strong>
-																@item.ToFriendlyString()
-															</strong>
-															@*<span>
-																	count
-																</span>*@
-
-														</label>
-													</li>		}
-									}
-
-								</ul>
-							</div>
+							
 						</li>
 
 						<li class="nomargin hiddable col-lg-12">
-
 							<label for="layered_manufacturer_4">
 								<a href="/bouquets">
 									<b>
@@ -102,6 +79,39 @@
 							</label>
 						</li>
 					</ul>
+				</div>
+				<div class="layered_filter">
+					<div class="layered_subtitle_heading">
+						<span class="layered_subtitle">
+							Типы цветов
+						</span>
+					</div>
+					<div id="flower-types-filter">
+						<ul class="col-lg-12 layered_filter_ul">
+
+							@{
+								foreach (var item in Enum.GetValues(typeof(FlowerType)).Cast<FlowerType>().Where(t => t != FlowerType.Undefined))
+								{
+									<li class="nomargin hiddable col-lg-12">
+										<input type="checkbox" class="checkbox" name="layered_quantity_@item" id="layered_quantity_@item"
+											   checked="@Model.FlowersTypesFilter.Types.Contains(item)"
+											   value="@item">
+										<label for="layered_quantity_0">
+											<strong>
+												@item.ToFriendlyString()
+											</strong>
+											@*<span>
+									count
+								</span>*@
+
+										</label>
+									</li>
+								}
+							}
+
+						</ul>
+					</div>
+
 				</div>
 			</form>
 		</div>

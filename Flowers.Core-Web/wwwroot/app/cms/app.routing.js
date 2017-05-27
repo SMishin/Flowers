@@ -1,13 +1,13 @@
 import {RouterModule} from '@angular/router';
 import ProductListComponent from './products/list/index'
-import NewProductComponent from './products/new-product/index'
 import NewFlowerComponent from './products/flowers/new-flower/index'
 import ProductComponent from './products/item/index'
 import ProductImagesComponent from './products/product-images/index'
 import FlowerInfoComponent from './products/flowers/info/index'
-import ProductInfoComponent from './products/info/index'
 import FlowersDataResolver from './products/flowers/data-resolver';
 import BouquetsDataResolver from './products/bouquets/data-resolver';
+import NewBouquetComponent from './products/bouquets/new-bouquet/index';
+import BouquetInfoComponent from './products/bouquets/info/index';
 
 import ColorsComponent from './colors/index'
 
@@ -64,12 +64,12 @@ const appRoutes = [
 			},
 			{
 				path: 'products/bouquets/new',
-				component: NewProductComponent
+				component: NewBouquetComponent
 			},
 			{
 				path: 'products/bouquets/:id',
 				component: ProductComponent,
-				children: productChildrenRoutes(ProductInfoComponent)
+				children: productChildrenRoutes(BouquetInfoComponent)
 			},
 
 			{

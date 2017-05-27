@@ -8,8 +8,8 @@ import template from './template.html'
 	providers: []
 })
 class FlowerInfoComponent {
-	constructor(route, router, productsService) {
-		this._productsService = productsService;
+	constructor(route, router, flowersService) {
+		this._bouquetsService = flowersService;
 		this._router = router;
 		this.model = {
 			id: route.parent.params && route.parent.params.value.id
@@ -19,7 +19,7 @@ class FlowerInfoComponent {
 			let id = params['id'];
 
 			if (id) {
-				this._productsService.get(+id)
+				this._bouquetsService.get(+id)
 					.then(data => {
 						this.model = data;
 					})
@@ -30,7 +30,7 @@ class FlowerInfoComponent {
 
 	onSubmit(form) {
 		console.log(form);
-		this._productsService.save(this.model);
+		this._bouquetsService.save(this.model);
 	}
 
 	remove() {
@@ -39,7 +39,7 @@ class FlowerInfoComponent {
 			return;
 		}
 
-		this._productsService
+		this._bouquetsService
 			.remove(this.model.id)
 			.then(() => {
 				this._router.navigate(['../_cms/products']);

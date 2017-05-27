@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
+using Flowers.Products;
 using Flowers.Products.Flowers;
 
 namespace Flowers.Data.Products.Flowers
@@ -49,7 +48,7 @@ namespace Flowers.Data.Products.Flowers
 			}
 		}
 
-		public async Task<Flower[]> GetPublishedWithMainImageAsync(FlowersTypesFilter filters, int skip, int take)
+		public async Task<Flower[]> GetPublishedWithMainImageAsync(TypesFilter<FlowerType> filters, int skip, int take)
 		{
 			DataTable flowerTypess = GetflowerTypesFromFilter(filters);
 
@@ -81,7 +80,7 @@ namespace Flowers.Data.Products.Flowers
 			}
 		}
 
-		public async Task<int> CountPublishedAsync(FlowersTypesFilter filter)
+		public async Task<int> CountPublishedAsync(TypesFilter<FlowerType> filter)
 		{
 			FlowerType[] flowerTypess = filter.Types; //(filter?.Types ?? Enum.GetValues(typeof(FlowerType)).Cast<FlowerType>()).ToArray();
 
@@ -102,38 +101,21 @@ namespace Flowers.Data.Products.Flowers
 			}
 		}
 
-		private DataTable GetflowerTypesFromFilter(FlowersTypesFilter filters)
+		private DataTable GetflowerTypesFromFilter(TypesFilter<FlowerType> filters)
 		{
 			DataTable flowerTypes;
 
 			if (filters?.Types == null || filters.Types.Length == 0)
 			{
-				flowerTypes = FlowerTypessToDataTable(Enum.GetValues(typeof(FlowerType)).Cast<FlowerType>());
+				flowerTypes = filters.GetTypesFromFilter();
+				
 			}
 			else
 			{
-				flowerTypes = FlowerTypessToDataTable(filters?.Types);
+				flowerTypes = filters.Types.TypesToDataTable();
 			}
 
 			return flowerTypes;
-		}
-
-		private DataTable FlowerTypessToDataTable(IEnumerable<FlowerType> flowerTypess)
-		{
-			var table = new DataTable();
-			table.Columns.Add("Id", typeof(int));
-
-			if (flowerTypess == null)
-			{
-				return table;
-			}
-
-			foreach (var item in flowerTypess)
-			{
-				table.Rows.Add(item);
-			}
-
-			return table;
 		}
 	}
 }

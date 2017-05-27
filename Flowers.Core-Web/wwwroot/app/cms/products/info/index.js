@@ -9,7 +9,7 @@ import template from './template.html'
 })
 class ProductInfoComponent {
 	constructor(route, router, productsService) {
-		this._productsService = productsService;
+		this._bouquetsService = productsService;
 		this._router = router;
 		this._route = route;
 		this.model = {
@@ -20,7 +20,7 @@ class ProductInfoComponent {
 			let id = params['id'];
 
 			if (id) {
-				this._productsService
+				this._bouquetsService
 					.get({
 						id: +id
 					})
@@ -34,7 +34,7 @@ class ProductInfoComponent {
 
 	onSubmit(form) {
 		console.log(form);
-		this._productsService.save(this.model);
+		this._bouquetsService.save(this.model);
 	}
 
 	remove() {
@@ -43,7 +43,7 @@ class ProductInfoComponent {
 			return;
 		}
 
-		this._productsService
+		this._bouquetsService
 			.remove(this.model.id)
 			.then(() => {
 				this._router.navigate(['../../'],{ relativeTo: this._route });

@@ -30,13 +30,13 @@ namespace Flowers.CoreWeb.Controllers
 
 		[HttpGet]
 		[Route("")]
-		public async Task<IActionResult> Index([ModelBinder(BinderType = typeof(FlowersFilterModelBinder), Name = "ft")] FlowersTypesFilter filter, int page = 1)
+		public async Task<IActionResult> Index([ModelBinder(BinderType = typeof(FilterModelBinder<TypesFilter<FlowerType>>), Name = "ft")] TypesFilter<FlowerType> filter, int page = 1)
 		{
 			var products = await _flowersManager.GetPublishedWithMainImageAsync(filter, page);
 			return View(new FlowersIndexViewModel
 			{
 				Data = products,
-				Filter = filter ?? new FlowersTypesFilter()
+				FlowersTypesFilter = filter ?? new TypesFilter<FlowerType>()
 			});
 		}
 

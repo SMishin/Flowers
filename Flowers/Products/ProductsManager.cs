@@ -50,7 +50,7 @@ namespace Flowers.Products
 			return id;
 		}
 
-		public async Task RemoveAsync(int id)
+		public virtual async Task RemoveAsync(int id)
 		{
 			var images = await _productsStore.GetImagesAsync(id);
 

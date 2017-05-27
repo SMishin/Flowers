@@ -22,9 +22,8 @@ namespace Flowers.CoreWeb.Controllers
 		protected async Task<IActionResult> Index(ProductType type, int page = 1)
 		{
 			var products = _productsManager.GetPublishedWithMainImageAsync(type, page);
-			var count = _productsReadOnlyStore.CountPublishedAsync(type);
 
-			await Task.WhenAll(products, count);
+			await products;
 
 			var data = new ProdutcsIndexViewModel
 			{

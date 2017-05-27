@@ -37,7 +37,7 @@ namespace Flowers.Products.Flowers
 			await _productsManager.RemoveAsync(id);
 		}
 
-		public async Task<PagedResult<Flower>> GetPublishedWithMainImageAsync(FlowersTypesFilter filter, int page = 1)
+		public async Task<PagedResult<Flower>> GetPublishedWithMainImageAsync(TypesFilter<FlowerType> filter, int page = 1)
 		{
 			PagedResultsFactory factory = new PagedResultsFactory();
 
