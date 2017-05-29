@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Flowers.Colors;
 
 namespace Flowers.Products.Flowers
 {
@@ -37,13 +38,13 @@ namespace Flowers.Products.Flowers
 			await _productsManager.RemoveAsync(id);
 		}
 
-		public async Task<PagedResult<Flower>> GetPublishedWithMainImageAsync(TypesFilter<FlowerType> filter, int page = 1)
+		public async Task<PagedResult<Flower>> GetPublishedWithMainImageAsync(int page = 1, TypesFilter<FlowerType> flowerTypeFilter = null, ColorFilter colorsFilter = null)
 		{
 			PagedResultsFactory factory = new PagedResultsFactory();
 
 			var result = await factory.Create(
-				(skip, take) => _flowersStore.GetPublishedWithMainImageAsync(filter, skip, take),
-				() => _flowersStore.CountPublishedAsync(filter), 
+				(skip, take) => _flowersStore.GetPublishedWithMainImageAsync(skip, take, flowerTypeFilter, colorsFilter),
+				() => _flowersStore.CountPublishedAsync(flowerTypeFilter, colorsFilter), 
 				page);
 
 			return result;

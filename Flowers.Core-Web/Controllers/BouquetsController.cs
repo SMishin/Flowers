@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Flowers.Colors;
 using Flowers.CoreWeb.Models.Bouquets;
 using Flowers.CoreWeb.Models.Products;
 using Flowers.Products;
@@ -13,25 +14,35 @@ namespace Flowers.CoreWeb.Controllers
 	{
 		private readonly IProductsReadOnlyStore _productsReadOnlyStore;
 		private readonly IBouquetsManager _bouquetsManager;
+		private readonly IColorsReadOnlyStore _colorsReadOnlyStore;
 
-		public BouquetsController(IProductsReadOnlyStore productsReadOnlyStore, IBouquetsManager bouquetsManager)
+		public BouquetsController(IProductsReadOnlyStore productsReadOnlyStore, IBouquetsManager bouquetsManager, IColorsReadOnlyStore colorsReadOnlyStore)
 		{
 			_productsReadOnlyStore = productsReadOnlyStore;
 			_bouquetsManager = bouquetsManager;
+			_colorsReadOnlyStore = colorsReadOnlyStore;
 		}
 
 		[Route("")]
 		[HttpGet]
-		public async Task<IActionResult> Index([ModelBinder(BinderType = typeof(FilterModelBinder<TypesFilter<BouquetType>>), Name = "bt")] TypesFilter<BouquetType> filter, int page = 1)
+		public async Task<IActionResult> Index(
+			[ModelBinder(BinderType = typeof(FilterModelBinder<TypesFilter<BouquetType>>), Name = "bt")] TypesFilter<BouquetType> bouquetsTypesFilter,
+			[ModelBinder(BinderType = typeof(FilterModelBinder<ColorFilter>), Name = "c")] ColorFilter colorsFilter, int page = 1)
 		{
-			var bouquets = _bouquetsManager.GetPublishedWithMainImageAsync(filter, page);
+			var bouquets = _bouquetsManager.GetPublishedWithMainImageAsync(page, bouquetsTypesFilter, colorsFilter);
+			var colors = _colorsReadOnlyStore.GetAsync();
 
-			await bouquets;
+			await Task.WhenAll(bouquets, colors);
 
 			var data = new BouquetsIndexViewModel
 			{
 				Data = bouquets.Result,
-				BouquetsTypesFilter = filter
+				BouquetsTypesFilter = bouquetsTypesFilter,
+				ColorsFilterModel = new Models.ColorsFilterModel
+				{
+					Colors = colors.Result,
+					ColorFilter = colorsFilter
+				}
 			};
 
 			return View(data);

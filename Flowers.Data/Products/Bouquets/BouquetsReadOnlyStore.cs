@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
+using Flowers.Colors;
+using Flowers.Data.Colors;
 using Flowers.Products;
 using Flowers.Products.Bouquets;
 
@@ -16,40 +18,35 @@ namespace Flowers.Data.Products.Bouquets
 			SqlConnectionHelper = sqlConnectionHelper;
 		}
 
-		public async Task<Bouquet[]> GetPublishedWithMainImageAsync(TypesFilter<BouquetType> filter, int skip, int take)
+		public async Task<Bouquet[]> GetPublishedWithMainImageAsync(int skip, int take, TypesFilter<BouquetType> bouquetTypeFilter = null, ColorFilter colorsFilter = null)
 		{
-			DataTable bouquetTypes = filter.GetTypesFromFilter();
 
 			using (var conntection = await SqlConnectionHelper.CreateConnection())
 			{
 				return (await conntection.QueryAsync<Bouquet>("SelectPublishedBouquetsWithMainImage",
 				new
 				{
-					Types = bouquetTypes,
+					Types = bouquetTypeFilter.GetTypesFromFilter(),
+					Colors = colorsFilter.ToDataTable(),
 					Skip = skip,
 					Take = take
 				},
 				commandType: CommandType.StoredProcedure)).ToArray();
 			}
+
 		}
 
-		public async Task<int> CountPublishedAsync(TypesFilter<BouquetType> filter)
+		public async Task<int> CountPublishedAsync(TypesFilter<BouquetType> bouquetTypeFilter = null, ColorFilter colorsFilter = null)
 		{
-			BouquetType[] bouquetTypes = filter.Types;
-
-			string query = @" select 
-                        count(*) from dbo.[Bouquets] b
-                    join dbo.[Products] p on b.Id = p.Id
-                    where p.[Published] = 1";
-
-			if (bouquetTypes != null && bouquetTypes.Length > 0)
-			{
-				query += " and b.[Type] in @Types";
-			}
-
 			using (var conntection = await SqlConnectionHelper.CreateConnection())
 			{
-				return (await conntection.QueryAsync<int>(query, new { Types = bouquetTypes }))
+				return (await conntection.QueryAsync<int>("GetBouquetsCount",
+					new
+					{
+						Published = true,
+						Colors = colorsFilter.ToDataTable(),
+						Types = bouquetTypeFilter.GetTypesFromFilter()
+					}, commandType: CommandType.StoredProcedure))
 					.First();
 			}
 		}

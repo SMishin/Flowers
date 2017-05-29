@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Flowers.Colors;
 
 namespace Flowers.Products.Bouquets
 {
@@ -6,7 +7,7 @@ namespace Flowers.Products.Bouquets
 	{
 		Task<Bouquet[]> GetAsync();
 		Task<Bouquet> GetAsync(int id);
-		Task<Bouquet[]> GetPublishedWithMainImageAsync(TypesFilter<BouquetType> filter, int skip, int take);
-		Task<int> CountPublishedAsync(TypesFilter<BouquetType> filter);
+		Task<Bouquet[]> GetPublishedWithMainImageAsync(int skip, int take, TypesFilter<BouquetType> filter = null, ColorFilter colorsFilter = null);
+		Task<int> CountPublishedAsync(TypesFilter<BouquetType> filter = null, ColorFilter colorsFilter = null);
 	}
 }

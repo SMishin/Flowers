@@ -1,11 +1,12 @@
 ﻿using System.Threading.Tasks;
+using Flowers.Colors;
 
 namespace Flowers.Products.Bouquets
 {
-    public interface IBouquetsManager 
+	public interface IBouquetsManager
 	{
-        Task<PagedResult<Bouquet>> GetPublishedWithMainImageAsync(TypesFilter<BouquetType> filter, int page = 1);
-        Task<int> SaveAsync(Bouquet bouquet);
-        Task RemoveAsync(int id);
-    }
+		Task<int> SaveAsync(Bouquet bouquet);
+		Task RemoveAsync(int id);
+		Task<PagedResult<Bouquet>> GetPublishedWithMainImageAsync(int page, TypesFilter<BouquetType> bouquetsTypesFilter = null, ColorFilter colorsFilter = null);
+	}
 }

@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Colors\ColorsReadOnlyStore.cs" />
     <Compile Include="Colors\ColorsStore.cs" />
+    <Compile Include="Colors\ColorsFilterExtentions.cs" />
     <Compile Include="ISqlConnectionHelper.cs" />
     <Compile Include="Products\Bouquets\BouquetsReadOnlyStore.cs" />
     <Compile Include="Products\Bouquets\BouquetsStore.cs" />

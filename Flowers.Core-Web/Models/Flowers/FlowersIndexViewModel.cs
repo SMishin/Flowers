@@ -3,7 +3,7 @@ using Flowers.Products.Flowers;
 
 namespace Flowers.CoreWeb.Models.Flowers
 {
-	public class FlowersIndexViewModel: ProductListMode<Flower>
+	public class FlowersIndexViewModel: ProductListModel<Flower>
 	{
 		public FlowersIndexViewModel()
 		{

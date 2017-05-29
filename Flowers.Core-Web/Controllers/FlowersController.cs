@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Flowers.Colors;
 using Flowers.CoreWeb.Models.Flowers;
 using Flowers.Products;
 using Flowers.Products.Flowers;
@@ -12,31 +13,44 @@ namespace Flowers.CoreWeb.Controllers
 		private readonly IFlowersReadOnlyStore _flowersReadOnlyStore;
 		private readonly IProductsReadOnlyStore _productsReadOnlyStore;
 		private readonly IFlowersManager _flowersManager;
+		private readonly IColorsReadOnlyStore _colorsReadOnlyStore;
 
-		public FlowersController(IFlowersReadOnlyStore flowersReadOnlyStore, IProductsReadOnlyStore productsReadOnlyStore, IFlowersManager flowersManager)
+		public FlowersController(
+			IFlowersReadOnlyStore flowersReadOnlyStore,
+			IProductsReadOnlyStore productsReadOnlyStore,
+			IFlowersManager flowersManager,
+			IColorsReadOnlyStore colorsReadOnlyStore
+			)
 		{
 			_flowersReadOnlyStore = flowersReadOnlyStore;
 			_productsReadOnlyStore = productsReadOnlyStore;
 			_flowersManager = flowersManager;
+			_colorsReadOnlyStore = colorsReadOnlyStore;
 		}
-
-
-		//[HttpGet]
-		//public async Task<ActionResult> Index(int page = 1)
-		//{
-		//    var products = await _flowersManager.GetPublishedWithMainImageAsync(page);
-		//    return View(products);
-		//}
 
 		[HttpGet]
 		[Route("")]
-		public async Task<IActionResult> Index([ModelBinder(BinderType = typeof(FilterModelBinder<TypesFilter<FlowerType>>), Name = "ft")] TypesFilter<FlowerType> filter, int page = 1)
+		public async Task<IActionResult> Index(
+			[ModelBinder(BinderType = typeof(FilterModelBinder<TypesFilter<FlowerType>>), Name = "ft")] TypesFilter<FlowerType> flowersTypeFilter,
+			[ModelBinder(BinderType = typeof(FilterModelBinder<ColorFilter>), Name = "c")] ColorFilter colorsFilter,
+			int page = 1)
 		{
-			var products = await _flowersManager.GetPublishedWithMainImageAsync(filter, page);
+			var flowers = _flowersManager.GetPublishedWithMainImageAsync(page, flowersTypeFilter, colorsFilter);
+			var colors = _colorsReadOnlyStore.GetAsync();
+
+			await Task.WhenAll(flowers, colors);
+
 			return View(new FlowersIndexViewModel
 			{
-				Data = products,
-				FlowersTypesFilter = filter ?? new TypesFilter<FlowerType>()
+				Data = flowers.Result,
+
+				FlowersTypesFilter = flowersTypeFilter ?? new TypesFilter<FlowerType>(),
+				ColorsFilterModel = new Models.ColorsFilterModel
+				{
+					Colors = colors.Result,
+					ColorFilter = colorsFilter
+				}
+
 			});
 		}
 

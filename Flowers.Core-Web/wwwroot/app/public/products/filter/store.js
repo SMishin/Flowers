@@ -3,6 +3,7 @@ import {browserHistory} from 'react-router'
 import FilterSet from './filter-set';
 import FlowersTypesFilter from '../../../common/filters/flowers-types';
 import BouquetsTypesFilter from '../../../common/filters/bouquets-types';
+import ColorsFilter from '../../../common/filters/colors';
 import PageFilter from '../../../common/filters/page';
 
 let filter = new FilterSet();
@@ -15,6 +16,11 @@ if (window.__INITIAL_STATE__ !== void 0) {
 
 	if (window.__INITIAL_STATE__.bouquetsTypesFilter !== void 0) {
 		filter.applyFilter(BouquetsTypesFilter._name, new BouquetsTypesFilter(window.__INITIAL_STATE__.bouquetsTypesFilter));
+	}
+
+	if (window.__INITIAL_STATE__.colorsFilterModel !== void 0
+		&& window.__INITIAL_STATE__.colorsFilterModel.colorFilter !== void 0 ) {
+		filter.applyFilter(ColorsFilter._name, new ColorsFilter(window.__INITIAL_STATE__.colorsFilterModel.colorFilter));
 	}
 
 	if (window.__INITIAL_STATE__.data.totalCount > window.__INITIAL_STATE__.data.pageSize) {

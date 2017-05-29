@@ -1,26 +1,27 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Flowers.Colors;
 
 namespace Flowers.Products.Bouquets
 {
-	public class BouquetsManager :  IBouquetsManager
+	public class BouquetsManager : IBouquetsManager
 	{
 		private readonly IProductsManager _productsManager;
 		private readonly IBouquetsStore _bouquetsStore;
 
-		public BouquetsManager(IProductsManager productsManager,  IBouquetsStore bouquetsStore)
+		public BouquetsManager(IProductsManager productsManager, IBouquetsStore bouquetsStore)
 		{
 			_productsManager = productsManager;
 			_bouquetsStore = bouquetsStore;
 		}
 
-		public async Task<PagedResult<Bouquet>> GetPublishedWithMainImageAsync(TypesFilter<BouquetType> filter, int page = 1)
+		public async Task<PagedResult<Bouquet>> GetPublishedWithMainImageAsync(int page, TypesFilter<BouquetType> bouquetsTypesFilter = null, ColorFilter colorsFilter = null)
 		{
 			PagedResultsFactory factory = new PagedResultsFactory();
 
 			var result = await factory.Create(
-				(skip, take) => _bouquetsStore.GetPublishedWithMainImageAsync(filter, skip, take),
-				() => _bouquetsStore.CountPublishedAsync(filter),
+				(skip, take) => _bouquetsStore.GetPublishedWithMainImageAsync(skip, take, bouquetsTypesFilter, colorsFilter),
+				() => _bouquetsStore.CountPublishedAsync(bouquetsTypesFilter, colorsFilter),
 				page);
 
 			return result;
@@ -51,6 +52,5 @@ namespace Flowers.Products.Bouquets
 			await _productsManager.RemoveAsync(id);
 
 		}
-		
 	}
 }
