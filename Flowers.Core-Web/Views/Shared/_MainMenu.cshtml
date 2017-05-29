@@ -1,0 +1,36 @@
+﻿@using Flowers.Products.ProductTypes
+@{
+	var path = Html.ViewContext.HttpContext.Request.Path.Value;
+	var activeCalssName = "sfHoverForce";
+
+	var menuItems = new[]
+	{
+		new MenuItemModel{Href= $"/{ProductType.Flowers.ToString().ToLower()}", Name = ProductType.Flowers.ToFriendlyString()},
+		new MenuItemModel{Href= $"/{ProductType.Bouquets.ToString().ToLower()}", Name = ProductType.Bouquets.ToFriendlyString()},
+		new MenuItemModel{Href= "/delivery", Name = "Доставка"},
+		new MenuItemModel{Href= "/contacts", Name = "Контакты"}
+	};
+}
+
+<div class="top_menu top-level tmmegamenu_item">
+
+
+	<div class="menu-title tmmegamenu_item">
+		Меню
+	</div>
+	<ul class="menu clearfix top-level-menu tmmegamenu_item sf-js-enabled sf-arrows">
+
+		@foreach (var menuItem in menuItems)
+		{
+			<li class="@(path != "/" && menuItem.Href.IndexOf(path, StringComparison.Ordinal)!= -1?activeCalssName:"") top-level-menu-li tmmegamenu_item">
+				<a class="top-level-menu-li-a tmmegamenu_item"
+				   href="@menuItem.Href">
+					@menuItem.Name
+				</a>
+			</li>
+		}
+
+	</ul>
+
+
+</div>

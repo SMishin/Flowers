@@ -1,16 +1,15 @@
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack  = require('webpack');
+const BabiliPlugin = require("babili-webpack-plugin");
+
 const path = require('path'),
 	babelConfig = require('./package.json').babel;
 
 //process.traceDeprecation = true
 
-let plg = new ExtractTextPlugin({ // define where to save the file
-	filename: '[name]/bundle.css',
-	allChunks: true,
-});
 
 module.exports = {
 	entry: {
+		'public/global': './app/public/global/app.js',
 		public: './app/public/app.js',
 		cms: './app/cms/main.js'
 	},
@@ -34,14 +33,15 @@ module.exports = {
 			{
 				test: /\.(jpe?g|png|gif|svg|woff2?)$/,
 				loader: "file-loader"
-			},
-			{ // sass / scss loader for webpack
-				test: /\.(sass|scss)$/,
-				loader: plg.extract(['css-loader', 'sass-loader'])
 			}
 		]
 	},
 	plugins: [
-		plg
+		new webpack.DefinePlugin({
+			'process.env': {
+				NODE_ENV: JSON.stringify('production')
+			}
+		}),
+		new BabiliPlugin({keepFnName:true})
 	]
 };

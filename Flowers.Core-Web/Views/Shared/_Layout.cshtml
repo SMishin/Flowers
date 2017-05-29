@@ -1,7 +1,4 @@
-﻿@using System
-@using Flowers.Products.ProductTypes
-<!DOCTYPE HTML>
-
+﻿<!DOCTYPE HTML>
 <html>
 <head>
 	<meta charset="utf-8" />
@@ -28,46 +25,10 @@
 				<div>
 					<div class="container">
 						<div class="row">
-							<div class="top_menu top-level tmmegamenu_item">
-								<div class="stickUpTop" style="position: relative; top: 0;">
-									<div class="stickUpHolder container">
+							@{
+								Html.RenderPartial("_MainMenu");
+							}
 
-										<ul class="menu clearfix top-level-menu tmmegamenu_item sf-js-enabled sf-arrows">
-											<li class="top-level-menu-li tmmegamenu_item">
-												<a class="it_10125401 top-level-menu-li-a tmmegamenu_item"
-												   href="/@ProductType.Flowers.ToString().ToLower()">
-													@ProductType.Flowers.ToFriendlyString()
-												</a>
-											</li>
-											<li class="top-level-menu-li tmmegamenu_item">
-												<a class="it_10125401 top-level-menu-li-a tmmegamenu_item"
-												   href="/@ProductType.Bouquets.ToString().ToLower()">
-													@ProductType.Bouquets.ToFriendlyString()
-												</a>
-											</li>
-											@*<li class="top-level-menu-li tmmegamenu_item it_06201771">
-													<a class="it_06201771 top-level-menu-li-a tmmegamenu_item"
-													   href="/@ProductType.Toys.ToString().ToLower()">
-														@ProductType.Toys.ToFriendlyString()
-													</a>
-												</li>*@
-
-											<li class="top-level-menu-li tmmegamenu_item">
-												<a class="it_10125401 top-level-menu-li-a tmmegamenu_item"
-												   href="/delivery">
-													Доставка
-												</a>
-											</li>
-											<li class="top-level-menu-li tmmegamenu_item">
-												<a class="it_10125401 top-level-menu-li-a tmmegamenu_item"
-												   href="/contacts">
-													Контакты
-												</a>
-											</li>
-										</ul>
-									</div>
-								</div><div class="pseudoStickyBlock" style="position: relative; display: block; height: 0px;"></div>
-							</div>
 							<div id="header_logo">
 								<a href="/" title="With Love">
 									<img class="logo img-responsive"
@@ -99,16 +60,17 @@
 						<li class="tmhtmlcontent-item-1 ">
 							<a href="/" title="With Love">
 								<img class="logo img-responsive"
-								     width="130"
-								     src="/app/img/logo2.jpg"
-								     alt="With Love" />
-							</a></li>
+									 width="130"
+									 src="/app/img/logo2.jpg"
+									 alt="With Love" />
+							</a>
+						</li>
 						<li>
 							<a class="_blank" href="/">
 								© @DateTime.Now.Year - С любовью
 							</a>
 						</li>
-							
+
 					</ul>
 
 				</div>
@@ -116,10 +78,30 @@
 		</footer>
 	</div>
 
-	<script src="/_libs/jquery-1.11.0.min.js"></script>
-	<script defer src="/_libs/19-TweenMax.min.js"></script>
-	<script defer src="/_libs/global.js"></script>
-	<script defer src="/_libs/16-jquery.scrollmagic.min.js"></script>
+	<environment names="Development">
+
+		<script src="/node_modules/systemjs/dist/system.src.js"></script>
+		<script src="/app/public/systemjs.config.js"></script>
+		<script>
+			(function () {
+				System.import('app/public/global/app')
+					.then(null, console.error.bind(console));
+			}());
+
+		</script>
+
+	</environment>
+
+	<environment names="Production">
+
+		@{
+			Html.RenderPartial("_ReleaseScriptLoader", new[]
+			{
+				"/app/public/global/app.js"
+			});
+		};
+
+	</environment>
 
 	@RenderSection("Scripts", required: false)
 </body>

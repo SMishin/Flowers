@@ -22,6 +22,9 @@
 			},
 			node_modules: {
 				defaultExtension: 'js'
+			},
+			'_libs':{
+				defaultExtension: 'js'
 			}
 		},
 		map: {
@@ -30,6 +33,7 @@
 			"react-dom": 'npm:react-dom/dist/react-dom',
 			"react-router": 'npm:react-router/umd/ReactRouter',
 			"blankshield": 'npm:blankshield/blankshield',
+			"jquery-1.11.0.min": baseUrl + '_libs/jquery-1.11.0.min',
 		}
 	});
 
