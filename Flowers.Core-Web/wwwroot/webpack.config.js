@@ -11,6 +11,7 @@ let plg = new ExtractTextPlugin({ // define where to save the file
 
 module.exports = {
 	entry: {
+		'public/global': './app/public/global/app.js',
 		public: './app/public/app.js',
 		cms: './app/cms/main.js'
 	},
