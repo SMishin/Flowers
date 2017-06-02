@@ -1,3 +1,4 @@
+import  initialState from '../../initial-state';
 import createStore from '../../createStore';
 import {browserHistory} from 'react-router'
 import FilterSet from './filter-set';
@@ -8,23 +9,23 @@ import PageFilter from '../../../common/filters/page';
 
 let filter = new FilterSet();
 
-if (window.__INITIAL_STATE__ !== void 0) {
+if (initialState !== void 0) {
 
-	if (window.__INITIAL_STATE__.flowersTypesFilter !== void 0) {
-		filter.applyFilter(FlowersTypesFilter._name, new FlowersTypesFilter(window.__INITIAL_STATE__.flowersTypesFilter));
+	if (initialState.flowersTypesFilter !== void 0) {
+		filter.applyFilter(FlowersTypesFilter._name, new FlowersTypesFilter(initialState.flowersTypesFilter));
 	}
 
-	if (window.__INITIAL_STATE__.bouquetsTypesFilter !== void 0) {
-		filter.applyFilter(BouquetsTypesFilter._name, new BouquetsTypesFilter(window.__INITIAL_STATE__.bouquetsTypesFilter));
+	if (initialState.bouquetsTypesFilter !== void 0) {
+		filter.applyFilter(BouquetsTypesFilter._name, new BouquetsTypesFilter(initialState.bouquetsTypesFilter));
 	}
 
-	if (window.__INITIAL_STATE__.colorsFilterModel !== void 0
-		&& window.__INITIAL_STATE__.colorsFilterModel.colorFilter !== void 0 ) {
-		filter.applyFilter(ColorsFilter._name, new ColorsFilter(window.__INITIAL_STATE__.colorsFilterModel.colorFilter));
+	if (initialState.colorsFilterModel !== void 0
+		&& initialState.colorsFilterModel.colorFilter !== void 0 ) {
+		filter.applyFilter(ColorsFilter._name, new ColorsFilter(initialState.colorsFilterModel.colorFilter));
 	}
 
-	if (window.__INITIAL_STATE__.data.totalCount > window.__INITIAL_STATE__.data.pageSize) {
-		filter.applyFilter(PageFilter._name, new PageFilter({page: window.__INITIAL_STATE__.data.page}));
+	if (initialState.data.totalCount > initialState.data.pageSize) {
+		filter.applyFilter(PageFilter._name, new PageFilter({page: initialState.data.page}));
 	}
 }
 

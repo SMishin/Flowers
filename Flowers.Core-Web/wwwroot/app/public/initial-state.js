@@ -1,0 +1,1 @@
+export default  window.__INITIAL_STATE__ !== void 0 ? window.__INITIAL_STATE__ : {};
