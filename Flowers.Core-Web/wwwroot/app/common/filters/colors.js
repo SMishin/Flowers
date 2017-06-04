@@ -6,6 +6,10 @@ export default class ColorsFilter extends Filter {
 		this.colors = this.colors === void 0 ? [] : this.colors;
 	}
 
+	get _name() {
+		return ColorsFilter._name;
+	}
+
 	static get _name() {
 		return "colors";
 	}

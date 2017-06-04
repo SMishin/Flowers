@@ -9,7 +9,7 @@ import template from './template.html'
 })
 class BouquetInfoComponent {
 	constructor(route, router, bouquetsService) {
-		this._bouquetsService = bouquetsService;
+		this._flowersService = bouquetsService;
 		this._router = router;
 		this._route = route;
 		this.model = {
@@ -20,8 +20,8 @@ class BouquetInfoComponent {
 			let id = params['id'];
 
 			if (id) {
-				this._bouquetsService
-					.get(+id)
+				this._flowersService
+					.get({id: +id})
 					.then(data => {
 						this.model = data;
 					})
@@ -32,7 +32,7 @@ class BouquetInfoComponent {
 
 	onSubmit(form) {
 		console.log(form);
-		this._bouquetsService.save(this.model);
+		this._flowersService.save(this.model);
 	}
 
 	remove() {
@@ -41,10 +41,10 @@ class BouquetInfoComponent {
 			return;
 		}
 
-		this._bouquetsService
+		this._flowersService
 			.remove(this.model.id)
 			.then(() => {
-				this._router.navigate(['../../'],{ relativeTo: this._route });
+				this._router.navigate(['../../'], {relativeTo: this._route});
 			})
 		;
 	}

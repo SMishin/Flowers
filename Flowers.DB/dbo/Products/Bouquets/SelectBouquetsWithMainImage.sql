@@ -1,6 +1,7 @@
-﻿CREATE PROCEDURE [dbo].[SelectPublishedBouquetsWithMainImage]
+﻿CREATE PROCEDURE [dbo].[SelectBouquetsWithMainImage]
 	@Skip			int = 0
 ,	@Take			int = null
+,	@Published		bit = null
 ,	@Types			[IntArray] readonly
 ,	@Colors			[VarcharArray] readonly
 AS
@@ -32,11 +33,17 @@ AS
 	begin
 		
 		set @sqlJoin = @sqlJoin + N'
-			join [dbo].[ProductsColors] pc on p.Id = pc.ProductId'
+			left join [dbo].[ProductsColors] pc on pc.ProductId = p.Id'
 
 		set @sqlWhere = @sqlWhere + N'
-			and pc.ColorId in (select Value from @Colors)'
+			and (pc.ColorId in (select Value from @Colors) or pc.ColorId is null)'
 
+	end
+
+	if (@Published is not null)
+	begin
+		set @sqlWhere += N'
+			and p.Published = 1'
 	end
 
 	set @sqlCommand = @sqlCommand + @sqlJoin + @sqlWhere + 

@@ -1,11 +1,14 @@
 import {RouterModule} from '@angular/router';
-import ProductListComponent from './products/list/index'
+
+import FlowersListComponent from './products/flowers/list/index'
 import NewFlowerComponent from './products/flowers/new-flower/index'
 import ProductComponent from './products/item/index'
 import ProductImagesComponent from './products/product-images/index'
 import FlowerInfoComponent from './products/flowers/info/index'
 import FlowersDataResolver from './products/flowers/data-resolver';
+
 import BouquetsDataResolver from './products/bouquets/data-resolver';
+import BouquetsListComponent from './products/bouquets/list/index';
 import NewBouquetComponent from './products/bouquets/new-bouquet/index';
 import BouquetInfoComponent from './products/bouquets/info/index';
 
@@ -40,7 +43,7 @@ const appRoutes = [
 			},
 			{
 				path: 'products/flowers',
-				component: ProductListComponent,
+				component: FlowersListComponent,
 				useAsDefault: true,
 				resolve: {
 					data: FlowersDataResolver
@@ -57,7 +60,7 @@ const appRoutes = [
 			},
 			{
 				path: 'products/bouquets',
-				component: ProductListComponent,
+				component: BouquetsListComponent,
 				resolve: {
 					data: BouquetsDataResolver
 				}

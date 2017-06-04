@@ -1,4 +1,4 @@
-import {Component, NgZone} from '@angular/core';
+import {Component} from '@angular/core';
 import ColorsService from './colors-service';
 import template from './template.html'
 
@@ -14,8 +14,7 @@ function newItem() {
 })
 class ColorsComponent {
 
-	constructor(ngZone, colorsService) {
-		this._ngZone = ngZone;
+	constructor(colorsService) {
 		this._colorsService = colorsService;
 		this.items = [];
 		this.newItem = newItem();
@@ -61,7 +60,6 @@ class ColorsComponent {
 }
 
 ColorsComponent.parameters = [
-	NgZone,
 	ColorsService
 ];
 

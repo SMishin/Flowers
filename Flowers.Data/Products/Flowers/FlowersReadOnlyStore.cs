@@ -19,11 +19,19 @@ namespace Flowers.Data.Products.Flowers
 			SqlConnectionHelper = sqlConnectionHelper;
 		}
 
-		public async Task<Flower[]> GetAsync()
+		public async Task<Flower[]> GetAsync(ColorFilter colorsFilter = null)
 		{
 			using (var conntection = await SqlConnectionHelper.CreateConnection())
 			{
-				return (await conntection.QueryAsync<Flower>("SelectFlowersWithMainImage", commandType: System.Data.CommandType.StoredProcedure)).ToArray();
+				return (await conntection.QueryAsync<Flower>("SelectFlowersWithMainImage",
+				new
+				{
+					Types = new TypesFilter<FlowerType>().GetTypesFromFilter(),
+					Colors = colorsFilter.ToDataTable(),
+					Skip = 0,
+					Take = int.MaxValue
+				},
+				commandType: CommandType.StoredProcedure)).ToArray();
 			}
 		}
 
@@ -55,11 +63,12 @@ namespace Flowers.Data.Products.Flowers
 		{
 			using (var conntection = await SqlConnectionHelper.CreateConnection())
 			{
-				return (await conntection.QueryAsync<Flower>("SelectPublishedFlowersWithMainImage",
+				return (await conntection.QueryAsync<Flower>("SelectFlowersWithMainImage",
 				new
 				{
 					Types = flowersTypesFilter.GetTypesFromFilter(),
 					Colors = colorFilter.ToDataTable(),
+					Published = true,
 					Skip = skip,
 					Take = take
 				},

@@ -21,9 +21,9 @@ namespace Flowers.CoreWeb.Api.Products
 
 		[HttpGet]
 		[Route("flowers")]
-		public async Task<IActionResult> Get()
+		public async Task<IActionResult> Get([ModelBinder(BinderType = typeof(FilterModelBinder<ColorFilter>), Name = "c")] ColorFilter colorsFilter)
 		{
-			var data = await _flowersStore.GetAsync();
+			var data = await _flowersStore.GetAsync(colorsFilter);
 			return Ok(data);
 		}
 

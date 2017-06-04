@@ -23,9 +23,10 @@ namespace Flowers.Data.Products.Bouquets
 
 			using (var conntection = await SqlConnectionHelper.CreateConnection())
 			{
-				return (await conntection.QueryAsync<Bouquet>("SelectPublishedBouquetsWithMainImage",
+				return (await conntection.QueryAsync<Bouquet>("SelectBouquetsWithMainImage",
 				new
 				{
+					Published = true,
 					Types = bouquetTypeFilter.GetTypesFromFilter(),
 					Colors = colorsFilter.ToDataTable(),
 					Skip = skip,
@@ -51,9 +52,20 @@ namespace Flowers.Data.Products.Bouquets
 			}
 		}
 
-		public Task<Bouquet[]> GetAsync()
+		public async Task<Bouquet[]> GetAsync(ColorFilter colorsFilter = null)
 		{
-			throw new System.NotImplementedException();
+			using (var conntection = await SqlConnectionHelper.CreateConnection())
+			{
+				return (await conntection.QueryAsync<Bouquet>("SelectBouquetsWithMainImage",
+				new
+				{
+					Types = new TypesFilter<BouquetType>().GetTypesFromFilter(),
+					Colors = colorsFilter.ToDataTable(),
+					Skip = 0,
+					Take = int.MaxValue
+				},
+				commandType: CommandType.StoredProcedure)).ToArray();
+			}
 		}
 
 		public async Task<Bouquet> GetAsync(int id)

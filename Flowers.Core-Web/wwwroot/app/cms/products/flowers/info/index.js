@@ -9,7 +9,7 @@ import template from './template.html'
 })
 class FlowerInfoComponent {
 	constructor(route, router, flowersService) {
-		this._bouquetsService = flowersService;
+		this._flowersService = flowersService;
 		this._router = router;
 		this.model = {
 			id: route.parent.params && route.parent.params.value.id
@@ -19,7 +19,7 @@ class FlowerInfoComponent {
 			let id = params['id'];
 
 			if (id) {
-				this._bouquetsService.get(+id)
+				this._flowersService.get({id:+id})
 					.then(data => {
 						this.model = data;
 					})
@@ -30,7 +30,7 @@ class FlowerInfoComponent {
 
 	onSubmit(form) {
 		console.log(form);
-		this._bouquetsService.save(this.model);
+		this._flowersService.save(this.model);
 	}
 
 	remove() {
@@ -39,7 +39,7 @@ class FlowerInfoComponent {
 			return;
 		}
 
-		this._bouquetsService
+		this._flowersService
 			.remove(this.model.id)
 			.then(() => {
 				this._router.navigate(['../_cms/products']);
