@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Flowers.Colors;
 using Flowers.Products;
 using Flowers.Products.Bouquets;
 using Microsoft.AspNetCore.Authorization;
@@ -20,17 +21,20 @@ namespace Flowers.CoreWeb.Api.Products
 
         [HttpGet]
         [Route("bouquets")]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([ModelBinder(BinderType = typeof(FilterModelBinder<ColorFilter>), Name = "c")] ColorFilter colorsFilter)
         {
-            var data = await _bouquetsStore.GetAsync();
+            var data = await _bouquetsStore.GetAsync(colorsFilter);
             return Ok(data);
         }
 
         [HttpGet]
         [Route("bouquets/published")]
-        public async Task<IActionResult> GetPublishedWithMainImageAsync([ModelBinder(BinderType = typeof(FilterModelBinder<TypesFilter<BouquetType>>), Name = "bt")] TypesFilter<BouquetType> filter, int page = 1)
+        public async Task<IActionResult> GetPublishedWithMainImageAsync(
+			[ModelBinder(BinderType = typeof(FilterModelBinder<TypesFilter<BouquetType>>), Name = "bt")] TypesFilter<BouquetType> bouquetsTypesFilter,
+			[ModelBinder(BinderType = typeof(FilterModelBinder<ColorFilter>), Name = "c")] ColorFilter colorsFilter,
+			int page = 1)
         {
-            var data = await _bouquetsManager.GetPublishedWithMainImageAsync(filter, page);
+            var data = await _bouquetsManager.GetPublishedWithMainImageAsync(page,bouquetsTypesFilter, colorsFilter);
             return Ok(data);
         }
 

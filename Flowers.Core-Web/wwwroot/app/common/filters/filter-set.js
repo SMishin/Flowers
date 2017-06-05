@@ -1,5 +1,6 @@
-import  Filter from '../../../common/filters/filter'
-import  PageFilter from '../../../common/filters/page';
+import  Filter from './filter'
+import  PageFilter from './page';
+
 function concatQueryStrings(str1, str2) {
 
 	if (str2 !== '') {
@@ -33,6 +34,24 @@ export default class FilterSet extends Filter {
 
 	clone() {
 		return new FilterSet(this);
+	}
+
+	toObject() {
+		let queryString = this.toQueryString();
+
+		if (queryString.indexOf('?') > -1) {
+			queryString = queryString.split('?')[1];
+		}
+
+		let pairs = queryString.split('&'),
+			result = {};
+
+		pairs.forEach(function (pair) {
+			pair = pair.split('=');
+			result[pair[0]] = decodeURIComponent(pair[1] || '');
+		});
+
+		return result;
 	}
 
 	toQueryString() {

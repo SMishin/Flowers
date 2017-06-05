@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom';
 import template from './template.jsx'
 
 class ProductList extends React.Component {
@@ -19,7 +18,7 @@ class ProductList extends React.Component {
 	}
 
 	componentDidUpdate() {
-		ReactDOM.findDOMNode(this).scrollIntoView();
+		
 	}
 
 	componentWillUnmount() {

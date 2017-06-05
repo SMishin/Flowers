@@ -9,14 +9,14 @@ import template from './template.html'
 })
 class NewBouquetComponent {
 	constructor(bouquetsService, router, route) {
-		this._bouquetsService = bouquetsService;
+		this._flowersService = bouquetsService;
 		this._router = router;
 		this._route = route;
 	}
 
 	onSubmit(form) {
 		console.log(form);
-		this._bouquetsService.save(form).then(res => {
+		this._flowersService.save(form).then(res => {
 			this._router.navigate(['../', res], {relativeTo: this._route})
 		});
 	}

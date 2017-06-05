@@ -1,10 +1,11 @@
 ﻿using System.Threading.Tasks;
+using Flowers.Colors;
 
 namespace Flowers.Products.Flowers
 {
     public interface IFlowersManager
     {
-        Task<PagedResult<Flower>> GetPublishedWithMainImageAsync(TypesFilter<FlowerType> filter, int page = 1);
+        Task<PagedResult<Flower>> GetPublishedWithMainImageAsync(int page = 1, TypesFilter<FlowerType> flowerTypeFilter = null, ColorFilter colorsFilter = null);
         Task<int> SaveAsync(Flower product);
         Task RemoveAsync(int id);
     }

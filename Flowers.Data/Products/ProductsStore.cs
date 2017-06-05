@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
+using Flowers.Data.Colors;
 using Flowers.Products;
 
 namespace Flowers.Data.Products
@@ -78,26 +79,9 @@ namespace Flowers.Data.Products
 		{
 			using (var conntection = await SqlConnectionHelper.CreateConnection())
 			{
-				await conntection.ExecuteAsync("SetProductsColors", new { ProductId = productId, Colors = ProductColorsToDataTable(colorIds) }, commandType: CommandType.StoredProcedure);
+				await conntection.ExecuteAsync("SetProductsColors", new { ProductId = productId, Colors = ColorsFilterExtentions.ColorsIdArrayToDataTable(colorIds) }, commandType: CommandType.StoredProcedure);
 			}
 		}
 
-		private DataTable ProductColorsToDataTable(string[] colorIds)
-		{
-			var table = new DataTable();
-			table.Columns.Add("Value", typeof(string));
-
-			if (colorIds == null)
-			{
-				return table;
-			}
-
-			foreach (var item in colorIds)
-			{
-				table.Rows.Add(item);
-			}
-
-			return table;
-		}
 	}
 }

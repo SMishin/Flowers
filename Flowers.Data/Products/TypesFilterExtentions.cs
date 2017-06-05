@@ -19,7 +19,7 @@ namespace Flowers.Data.Products
 			}
 			else
 			{
-				types = TypesToDataTable(filters?.Types);
+				types = TypesToDataTable(filters.Types);
 			}
 
 			return types;

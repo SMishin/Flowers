@@ -85,7 +85,6 @@
     <Build Include="dbo\Products\Flowers\SaveFlowerVariants.sql" />
     <Build Include="dbo\Products\Flowers\FlowerPrices.sql" />
     <Build Include="dbo\Products\Flowers\GetFlower.sql" />
-    <Build Include="dbo\Products\Flowers\SelectPublishedFlowersWithMainImage.sql" />
     <Build Include="dbo\Products\Flowers\SelectFlowersWithMainImage.sql" />
     <Build Include="dbo\Products\Flowers\SelectRandomPublishedFlowersWithMainImage.sql" />
     <Build Include="dbo\Types\IntArray.sql" />
@@ -103,9 +102,11 @@
     <Build Include="dbo\Products\SetProductColors.sql" />
     <Build Include="dbo\Types\VarcharArray.sql" />
     <Build Include="dbo\Tables\Bouquets.sql" />
-    <Build Include="dbo\Products\Bouquets\SelectPublishedBouquetsWithMainImage.sql" />
+    <Build Include="dbo\Products\Bouquets\SelectBouquetsWithMainImage.sql" />
     <Build Include="dbo\Products\Bouquets\SaveBouquet.sql" />
     <Build Include="dbo\Products\Bouquets\GetBouquet.sql" />
+    <Build Include="dbo\Products\Flowers\GetFlowersCount.sql" />
+    <Build Include="dbo\Products\Bouquets\GetBouquetsCount.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Flowers.DB.local.publish.xml" />

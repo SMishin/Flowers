@@ -1,10 +1,34 @@
 import './16-jquery.scrollmagic'
 import $ from '../../../_libs/jquery-1.11.0.min';
+import scrollTo from './scroll-to'
 
 let jQuery = $;
 
 var responsiveflag = false;
 var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent);
+
+function initScrollToTop() {
+	$('body').append('<a id="toTop" class="toTop fl-bigmug-line-up107" href="#"></a>');
+	$('#toTop').click(function (e) {
+		e.preventDefault();
+		//$('html, body').stop().animate({scrollTop: 0}, 500)
+
+		scrollTo(document.body, 0, 200);
+	});
+
+	$(window).scroll(function () {
+		let $this = $(this),
+			top = $('#toTop'),
+			st = $this.scrollTop()
+		;
+
+		if (st < 500) {
+			top.fadeOut();
+		} else {
+			top.stop(true, true).fadeIn();
+		}
+	});
+}
 
 $(document).ready(function () {
 	new ScrollMagic();
@@ -48,24 +72,8 @@ $(document).ready(function () {
 	});
 	$('.socialfeedblock').prependTo($('#social_block .toggle-footer'));
 
-	$('body').append('<a id="toTop" class="toTop fl-bigmug-line-up107" href="#"></a>');
-	$('#toTop').click(function (e) {
-		e.preventDefault();
-		$('html, body').stop().animate({scrollTop: 0}, 500)
-	});
+	initScrollToTop();
 
-	$(window).scroll(function () {
-		let $this = $(this),
-			top = $('#toTop'),
-			st = $this.scrollTop()
-		;
-
-		if (st < 500) {
-			top.fadeOut();
-		} else {
-			top.stop(true, true).fadeIn();
-		}
-	});
 });
 
 function scrollCompensate() {

@@ -9,7 +9,7 @@ class BouquetsList extends React.Component {
 
 	constructor() {
 		super();
-		this._bouquetsService = new BouquetsService();
+		this._flowersService = new BouquetsService();
 
 		let state = store.getState();
 		this.state = {
@@ -24,7 +24,7 @@ class BouquetsList extends React.Component {
 
 	filterListener() {
 		store.fetchData(() => {
-			return this._bouquetsService.getPublished(filterStore.getState());
+			return this._flowersService.getPublished(filterStore.getState());
 		});
 	}
 

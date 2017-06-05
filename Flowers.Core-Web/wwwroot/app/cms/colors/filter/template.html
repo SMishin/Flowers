@@ -1,0 +1,10 @@
+<h5>Цветовая гамма</h5>
+
+<ul class="color-list"
+    *ngIf="items.length > 0">
+	<li *ngFor="let item of items"
+		(click)="onClick($event, item)"
+	>
+		<input type="color" disabled="disabled" [value]="item.id"/>
+	</li>
+</ul>

@@ -1,0 +1,23 @@
+﻿
+@model ColorsFilterModel
+
+<div class="layered_subtitle_heading">
+	<span class="layered_subtitle">
+		Палитра
+	</span>
+</div>
+<div id="color-filter">
+	<ul class="col-lg-12 layered_filter_ul color-group">
+
+		@foreach (var item in Model.Colors)
+		{
+			<li class="nomargin hiddable col-lg-12">
+				<input class="color-option @(Array.IndexOf(Model.ColorFilter.Colors, item.Id) != -1 ? "active" : "")"
+					   type="button"
+					   style="background: @item.Id;">
+
+			</li>
+		}
+
+	</ul>
+</div>

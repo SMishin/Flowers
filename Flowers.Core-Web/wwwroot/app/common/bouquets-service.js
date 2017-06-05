@@ -7,13 +7,13 @@ class BouquetsService {
 		this._url = '/api/products/bouquet';
 	}
 
-	get(id) {
+	get(filter) {
 
-		if (id !== void 0) {
-			return this._http.get(this._url + '/' + id);
+		if (filter && filter.id !== void 0) {
+			return this._http.get(this._url + '/' + filter.id);
 		}
 
-		return this._http.get(this._url + 's/');
+		return this._http.get(this._url + 's' + (filter !== void 0 && filter !== null ? filter.toQueryString() : ''));
 	}
 
 	getPublished(filter) {

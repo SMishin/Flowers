@@ -10,6 +10,8 @@ import FlowerTypesFilter from './flowers/filter/index';
 import BouquetsList from './bouquets/list/index';
 import BouquetsTypesFilterView from './bouquets/filter/index';
 
+import ColorsFilterView from './products/filter/color/index';
+
 import flowerStore from './products/store';
 
 blankshield(document.querySelectorAll('a[target=_blank]'));
@@ -20,10 +22,13 @@ ReactDOM.render(<TotalCounter totalCount={flowerStoreState.data.totalCount}/>,
 	document.getElementById('items-counter'));
 
 let flowerTypesFilter = document.getElementById('flower-types-filter');
-flowerTypesFilter && ReactDOM.render(<FlowerTypesFilter />, flowerTypesFilter);
+flowerTypesFilter !== null && ReactDOM.render(<FlowerTypesFilter />, flowerTypesFilter);
 
 let bouquetsTypesFilter = document.getElementById('bouquets-types-filter');
-bouquetsTypesFilter && ReactDOM.render(<BouquetsTypesFilterView />, bouquetsTypesFilter);
+bouquetsTypesFilter !== null && ReactDOM.render(<BouquetsTypesFilterView />, bouquetsTypesFilter);
+
+let colorFilter = document.getElementById('color-filter');
+colorFilter !== null && ReactDOM.render(<ColorsFilterView />, colorFilter);
 
 ReactDOM.render(
 	<Router history={browserHistory}>
