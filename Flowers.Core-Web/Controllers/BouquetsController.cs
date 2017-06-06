@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Flowers.Colors;
 using Flowers.CoreWeb.Models.Bouquets;
 using Flowers.CoreWeb.Models.Products;
@@ -30,7 +31,7 @@ namespace Flowers.CoreWeb.Controllers
 			[ModelBinder(BinderType = typeof(FilterModelBinder<ColorFilter>), Name = "c")] ColorFilter colorsFilter, int page = 1)
 		{
 			var bouquets = _bouquetsManager.GetPublishedWithMainImageAsync(page, bouquetsTypesFilter, colorsFilter);
-			var colors = _colorsReadOnlyStore.GetAsync();
+			var colors = _colorsReadOnlyStore.GetCodesAsync(ProductType.Bouquets);
 
 			await Task.WhenAll(bouquets, colors);
 
@@ -40,7 +41,7 @@ namespace Flowers.CoreWeb.Controllers
 				BouquetsTypesFilter = bouquetsTypesFilter,
 				ColorsFilterModel = new Models.ColorsFilterModel
 				{
-					Colors = colors.Result,
+					Colors = colors.Result.Select(t => new Color { Id = t }).ToArray(),
 					ColorFilter = colorsFilter
 				}
 			};
