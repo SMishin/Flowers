@@ -80,11 +80,11 @@
 					}
 					<fieldset class="attribute_fieldset">
 						<label class="attribute_label">
-							Размеры:
+							Цены:
 						</label>
 						<div class="attribute_list">
 							<ul>
-								@foreach (var item in Model.Flower.FlowerVariants.OrderBy(t => t.Size))
+								@foreach (var item in Model.Flower.FlowerVariants.OrderBy(t => t.Price))
 								{
 									<li>
 										@(item.Size.HasValue ? item.Size.Value + " см" : "") - @item.Price.ToString("C")
