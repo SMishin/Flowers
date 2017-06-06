@@ -107,6 +107,7 @@
     <Build Include="dbo\Products\Bouquets\GetBouquet.sql" />
     <Build Include="dbo\Products\Flowers\GetFlowersCount.sql" />
     <Build Include="dbo\Products\Bouquets\GetBouquetsCount.sql" />
+    <Build Include="dbo\Products\SelectProductsColors.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Flowers.DB.local.publish.xml" />

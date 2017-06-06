@@ -4,6 +4,7 @@ using Flowers.CoreWeb.Models.Flowers;
 using Flowers.Products;
 using Flowers.Products.Flowers;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace Flowers.CoreWeb.Controllers
 {
@@ -36,7 +37,7 @@ namespace Flowers.CoreWeb.Controllers
 			int page = 1)
 		{
 			var flowers = _flowersManager.GetPublishedWithMainImageAsync(page, flowersTypeFilter, colorsFilter);
-			var colors = _colorsReadOnlyStore.GetAsync();
+			var colors = _colorsReadOnlyStore.GetCodesAsync(Products.ProductTypes.ProductType.Flowers);
 
 			await Task.WhenAll(flowers, colors);
 
@@ -47,7 +48,7 @@ namespace Flowers.CoreWeb.Controllers
 				FlowersTypesFilter = flowersTypeFilter ?? new TypesFilter<FlowerType>(),
 				ColorsFilterModel = new Models.ColorsFilterModel
 				{
-					Colors = colors.Result,
+					Colors = colors.Result.Select(t => new Color { Id = t }).ToArray(),
 					ColorFilter = colorsFilter
 				}
 
