@@ -60,7 +60,7 @@ namespace Flowers.Products
 				RemoveImageFile(item);
 			}
 
-			await _productsStore.RemoveImagesAsync(id);
+			await Task.WhenAll(_productsStore.RemoveImagesAsync(id), _productsStore.RemoveColorsAsync(id));
 			await _productsStore.RemoveAsync(id);
 		}
 

@@ -83,5 +83,12 @@ namespace Flowers.Data.Products
 			}
 		}
 
+		public async Task RemoveColorsAsync(int productId)
+		{
+			using (var conntection = await SqlConnectionHelper.CreateConnection())
+			{
+				await conntection.ExecuteAsync("delete dbo.[ProductsColors] where ProductId = @Id", new { id = productId });
+			}
+		}
 	}
 }
