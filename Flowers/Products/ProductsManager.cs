@@ -16,6 +16,7 @@ namespace Flowers.Products
 		private readonly Dictionary<string, string> _extensionLookup = new Dictionary<string, string>
 		{
 			{"image/jpeg", ".jpg"},
+			{"image/png", ".png"}
 		};
 
 		public ProductsManager(IProductsStore productsStore, string imagesRootPath)
