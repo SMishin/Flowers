@@ -4,7 +4,6 @@ export default   {
 	alstroemeria: {name: "Альстромерия", value: 2},
 	carnation: {name: "Гвоздика", value: 3},
 	iris: {name: "Ирис", value: 4},
-	hermini: {name: "Гермини", value: 5},
 	gerbera: {name: "Гербера", value: 6},
 	lily: {name: "Лилия", value: 7},
 	sunflower: {name: "Подсолнух", value: 8},
