@@ -1,0 +1,12 @@
+
+#layered_block_left #layered_form .layered_filter {
+  overflow: hidden;
+
+  strong {
+    font-weight: 400;
+  }
+
+}
+
+@import "filters/color";
+@import "filters/price";

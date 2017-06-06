@@ -1,0 +1,116 @@
+
+#layered_block_left #layered_form .layered_filter {
+
+  .price-filter {
+
+    margin-top: 10px;
+
+    .n-filter-block__range {
+      z-index: 1;
+      user-select: none;
+
+      .input {
+        display: inline-block;
+        font-size: 13px;
+        line-height: 28px;
+        width: 46%;
+        position: relative;
+
+        &:before {
+          line-height: 24px;
+          position: absolute;
+          z-index: 1;
+          top: 2px;
+          left: 2px;
+          width: 24px;
+          content: attr(sign-title);
+          text-align: center;
+          color: #666;
+          background: #fff;
+        }
+
+        &:first-child {
+          margin-left: 0;
+        }
+
+        .input__box {
+          position: relative;
+          display: block;
+          box-sizing: border-box;
+          cursor: text;
+
+          &:before {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            padding: 0;
+            content: '';
+            border: 1px solid rgba(0, 0, 0, .2);
+            background-color: #fff;
+            background-clip: padding-box;
+            transition: .1s ease-out;
+            transition-property: border-color, border-width;
+          }
+
+          .input__control {
+            color: #000;
+            padding-right: 22px;
+            padding-left: 26px;
+            line-height: 28px;
+            height: 28px;
+
+            position: relative;
+
+            box-sizing: border-box;
+            width: 100%;
+            margin: 0;
+
+            vertical-align: top;
+            font-size: 100%;
+
+            outline: 0;
+            background: 0 0;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-appearance: none;
+
+          }
+          input.input__control {
+            border: none;
+          }
+
+          .input__clear {
+            width: 27px;
+            height: 28px;
+            position: absolute;
+            z-index: 5;
+            top: 0;
+            right: 0;
+            visibility: hidden;
+            margin: 0;
+            padding: 0;
+            pointer-events: none;
+            opacity: 0;
+            transition: visibility 0s linear .1s, opacity .1s ease-out;
+            background-size: 10px;
+            background: url(/app/img/B8eOwa4HB-JnzSOAZiWnu0hWGAk.svg) no-repeat 50% 50%;
+
+            &.input__clear_visibility_visible {
+              visibility: visible;
+              cursor: pointer;
+              pointer-events: auto;
+              opacity: .3;
+              transition: opacity .1s ease-out;
+
+              &:hover {
+                opacity: .8;
+              }
+            }
+
+          }
+        }
+      }
+    }
+  }
+}

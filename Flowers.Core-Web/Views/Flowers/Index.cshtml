@@ -82,6 +82,36 @@
 				</div>
 
 				<div class="layered_filter">
+					<div class="layered_subtitle_heading">
+						<span class="layered_subtitle">
+							Цена
+						</span>
+					</div>
+					<div id="price-filter" class="price-filter">
+						
+						<div class="n-filter-block__range">
+
+							<span class="input input_size_s input_type_range input_price_from"  sign-title="от">
+								<span class="input__box">
+									<input class="input__control">
+									<span class="input__clear" unselectable="on"></span>
+								</span>
+							</span>
+
+							<span class="input input_size_s input_type_range input_price_to" sign-title="до">
+								<span class="input__box">
+									<input class="input__control">
+									<span class="input__clear input__clear_visibility_visible" unselectable="on"></span>
+								</span>
+							</span>
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<div class="layered_filter">
 					@{
 						Html.RenderPartial("~/Views/Produtcs/_ColorsFilter.cshtml", Model.ColorsFilterModel);
 					}
