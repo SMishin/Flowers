@@ -18,7 +18,7 @@ namespace Flowers.Data.Products.Bouquets
 			SqlConnectionHelper = sqlConnectionHelper;
 		}
 
-		public async Task<Bouquet[]> GetPublishedWithMainImageAsync(int skip, int take, TypesFilter<BouquetType> bouquetTypeFilter = null, ColorFilter colorsFilter = null)
+		public async Task<Bouquet[]> GetPublishedWithMainImageAsync(int skip, int take, TypesFilter<BouquetType> bouquetTypeFilter = null, ColorFilter colorsFilter = null, PriceFilter priceFilter = null)
 		{
 
 			using (var conntection = await SqlConnectionHelper.CreateConnection())
@@ -37,7 +37,7 @@ namespace Flowers.Data.Products.Bouquets
 
 		}
 
-		public async Task<int> CountPublishedAsync(TypesFilter<BouquetType> bouquetTypeFilter = null, ColorFilter colorsFilter = null)
+		public async Task<int> CountPublishedAsync(TypesFilter<BouquetType> bouquetTypeFilter = null, ColorFilter colorsFilter = null, PriceFilter priceFilter = null)
 		{
 			using (var conntection = await SqlConnectionHelper.CreateConnection())
 			{

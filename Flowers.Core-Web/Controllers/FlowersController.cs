@@ -34,9 +34,10 @@ namespace Flowers.CoreWeb.Controllers
 		public async Task<IActionResult> Index(
 			[ModelBinder(BinderType = typeof(FilterModelBinder<TypesFilter<FlowerType>>), Name = "ft")] TypesFilter<FlowerType> flowersTypeFilter,
 			[ModelBinder(BinderType = typeof(FilterModelBinder<ColorFilter>), Name = "c")] ColorFilter colorsFilter,
+			[ModelBinder(BinderType = typeof(FilterModelBinder<PriceFilter>), Name = "p")] PriceFilter priceFilter,
 			int page = 1)
 		{
-			var flowers = _flowersManager.GetPublishedWithMainImageAsync(page, flowersTypeFilter, colorsFilter);
+			var flowers = _flowersManager.GetPublishedWithMainImageAsync(page, flowersTypeFilter, colorsFilter, priceFilter);
 			var colors = _colorsReadOnlyStore.GetCodesAsync(Products.ProductTypes.ProductType.Flowers);
 
 			await Task.WhenAll(flowers, colors);
@@ -50,7 +51,8 @@ namespace Flowers.CoreWeb.Controllers
 				{
 					Colors = colors.Result.Select(t => new Color { Id = t }).ToArray(),
 					ColorFilter = colorsFilter
-				}
+				},
+				PriceFilter = priceFilter
 
 			});
 		}

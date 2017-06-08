@@ -15,7 +15,7 @@ namespace Flowers.Products.Bouquets
 			_bouquetsStore = bouquetsStore;
 		}
 
-		public async Task<PagedResult<Bouquet>> GetPublishedWithMainImageAsync(int page, TypesFilter<BouquetType> bouquetsTypesFilter = null, ColorFilter colorsFilter = null)
+		public async Task<PagedResult<Bouquet>> GetPublishedWithMainImageAsync(int page, TypesFilter<BouquetType> bouquetsTypesFilter = null, ColorFilter colorsFilter = null, PriceFilter priceFilter = null)
 		{
 			PagedResultsFactory factory = new PagedResultsFactory();
 

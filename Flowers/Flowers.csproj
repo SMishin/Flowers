@@ -54,6 +54,7 @@
     <Compile Include="Products\Bouquets\IBouquetsReadOnlyStore.cs" />
     <Compile Include="Products\Bouquets\IBouquetsStore.cs" />
     <Compile Include="Colors\ColorFilter.cs" />
+    <Compile Include="Products\PriceFilter.cs" />
     <Compile Include="Products\TypesFilter.cs" />
     <Compile Include="Products\Flowers\Flower.cs" />
     <Compile Include="Products\Flowers\FlowersManager.cs" />

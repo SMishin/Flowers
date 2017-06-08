@@ -5,6 +5,7 @@ import FilterSet from '../../../common/filters/filter-set';
 import FlowersTypesFilter from '../../../common/filters/flowers-types';
 import BouquetsTypesFilter from '../../../common/filters/bouquets-types';
 import ColorsFilter from '../../../common/filters/colors';
+import PriceFilter from '../../../common/filters/price';
 import PageFilter from '../../../common/filters/page';
 
 let filter = new FilterSet();
@@ -22,6 +23,10 @@ if (initialState !== void 0) {
 	if (initialState.colorsFilterModel !== void 0
 		&& initialState.colorsFilterModel.colorFilter !== void 0 ) {
 		filter.applyFilter(ColorsFilter._name, new ColorsFilter(initialState.colorsFilterModel.colorFilter));
+	}
+
+	if (initialState.priceFilter !== void 0) {
+		filter.applyFilter(PriceFilter._name, new PriceFilter(initialState.priceFilter));
 	}
 
 	if (initialState.data.totalCount > initialState.data.pageSize) {

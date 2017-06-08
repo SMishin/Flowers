@@ -1,4 +1,10 @@
-
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
 #layered_block_left #layered_form .layered_filter {
 
   .price-filter {
@@ -9,12 +15,14 @@
       z-index: 1;
       user-select: none;
 
+
       .input {
         display: inline-block;
         font-size: 13px;
         line-height: 28px;
         width: 46%;
         position: relative;
+        margin-left: 3%;
 
         &:before {
           line-height: 24px;

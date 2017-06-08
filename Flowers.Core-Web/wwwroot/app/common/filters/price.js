@@ -3,7 +3,8 @@ import  Filter from './filter'
 export default class PriceFilter extends Filter {
 	constructor(data) {
 		super(data);
-		this.colors = this.colors === void 0 ? [] : this.colors;
+		this.from = (this.from === void 0 || this.from === null) ? '' : this.from;
+		this.to = (this.to === void 0 || this.to === null) ? '' : this.to;
 	}
 
 	get _name() {
@@ -17,12 +18,10 @@ export default class PriceFilter extends Filter {
 	toQueryString() {
 		let qString = '';
 
-		if (this.colors !== void 0 && this.colors.length > 0) {
-			qString += 'p=' + this.colors.reduce(function (prev, current) {
-					return `${prev},${current}`;
-				})
+		if (this.from || this.to) {
+			qString += 'p=' + (this.from || 0) + (this.to ? (',' + this.to) : '');
 		}
 
-		return qString.replace(/#/g, '');
+		return qString;
 	}
 }

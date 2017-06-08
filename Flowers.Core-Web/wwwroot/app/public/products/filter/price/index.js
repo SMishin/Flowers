@@ -13,22 +13,34 @@ class PriceFilterView extends React.Component {
 			this.state = {from: '', to: ''};
 		}
 
+		this.filter = new PriceFilter(this.state);
+
 		this.filterOnChanged = this.filterOnChanged.bind(this);
 	}
 
 	filterOnChanged(event) {
 
 		console.log(event.target.value);
-		console.log(event.target.checked);
 
-		let newState = {};
-		newState[event.target.name] = +event.target.value;
-		this.setState(newState);
+		let value = event.target.value;
 
-		let filter = new PriceFilter(this.state);
+		if (value !== '' && !value.match(/\d+/)) {
+			return;
+		}
 
-		store.applyFilter({name: PriceFilter._name, value: filter});
-		//this.setState(filter);
+		this.filter[event.target.name] = value;
+
+		store.applyFilter({name: PriceFilter._name, value: this.filter});
+
+		this.setState(this.filter);
+	}
+
+	clearField(name) {
+		this.filter[name] = '';
+
+		store.applyFilter({name: PriceFilter._name, value: this.filter});
+
+		this.setState(this.filter);
 	}
 
 	componentWillUnmount() {

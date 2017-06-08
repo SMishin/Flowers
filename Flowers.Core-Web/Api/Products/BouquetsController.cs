@@ -32,9 +32,10 @@ namespace Flowers.CoreWeb.Api.Products
         public async Task<IActionResult> GetPublishedWithMainImageAsync(
 			[ModelBinder(BinderType = typeof(FilterModelBinder<TypesFilter<BouquetType>>), Name = "bt")] TypesFilter<BouquetType> bouquetsTypesFilter,
 			[ModelBinder(BinderType = typeof(FilterModelBinder<ColorFilter>), Name = "c")] ColorFilter colorsFilter,
+			[ModelBinder(BinderType = typeof(FilterModelBinder<PriceFilter>), Name = "p")] PriceFilter priceFilter,
 			int page = 1)
         {
-            var data = await _bouquetsManager.GetPublishedWithMainImageAsync(page,bouquetsTypesFilter, colorsFilter);
+            var data = await _bouquetsManager.GetPublishedWithMainImageAsync(page,bouquetsTypesFilter, colorsFilter, priceFilter);
             return Ok(data);
         }
 

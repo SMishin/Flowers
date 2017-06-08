@@ -1,0 +1,27 @@
+﻿@using Flowers.Products
+@model PriceFilter
+
+<div class="layered_subtitle_heading">
+	<span class="layered_subtitle">
+		Цена
+	</span>
+</div>
+<div id="price-filter" class="price-filter">
+
+	<div class="n-filter-block__range">
+
+		<span class="input" data-sign-title="от">
+			<span class="input__box">
+				<input type="number" min="0" name="from" class="input__control" value="@Model.From">
+				<span class="input__clear @(Model.From.HasValue? "input__clear_visibility_visible" : "")" unselectable="on"></span>
+			</span>
+		</span><!--
+	 --><span class="input" data-sign-title="до">
+			<span class="input__box">
+				<input type="number" min="0" name="to" class="input__control" value="@Model.To">
+				<span class="input__clear @(Model.To.HasValue? "input__clear_visibility_visible" : "")" unselectable="on"></span>
+			</span>
+		</span>
+
+	</div>
+</div>
