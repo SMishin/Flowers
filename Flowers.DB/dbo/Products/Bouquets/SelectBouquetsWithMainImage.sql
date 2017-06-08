@@ -4,7 +4,9 @@
 ,	@Published		bit = null
 ,	@Types			[IntArray] readonly
 ,	@Colors			[VarcharArray] readonly
-AS
+,	@MinPrice		money = null
+,	@MaxPrice		money = null
+AS	
 	declare @sqlCommand nvarchar (1000);
 	declare @sqlJoin nvarchar (1000);
 	declare @sqlWhere nvarchar (1000);
@@ -45,6 +47,18 @@ AS
 		set @sqlWhere += N'
 			and p.Published = 1'
 	end
+	
+	if (@MinPrice is not null)
+	begin
+		set @sqlWhere += N'
+			and p.[Price] >= @MinPrice'
+	end
+
+	if (@MaxPrice is not null)
+	begin
+		set @sqlWhere += N'
+			and p.[Price] <= @MaxPrice'
+	end
 
 	set @sqlCommand = @sqlCommand + @sqlJoin + @sqlWhere + 
 		N' 
@@ -54,10 +68,12 @@ AS
 		FETCH NEXT @Take ROWS ONLY; -- take  rows'
 	
 	EXEC sp_executesql @sqlCommand
-		,	N'@Skip int, @Take int, @Types [IntArray] readonly, @Colors [VarcharArray] readonly'
+		,	N'@Skip int, @Take int, @Types [IntArray] readonly, @Colors [VarcharArray] readonly, @MinPrice money, @MaxPrice money'
 		,	@Skip 
 		,	@Take 
 		,	@Types 
 		,	@Colors
+		,	@MinPrice
+		,	@MaxPrice
 
 RETURN 0

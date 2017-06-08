@@ -18,7 +18,10 @@ namespace Flowers.Data.Products.Bouquets
 			SqlConnectionHelper = sqlConnectionHelper;
 		}
 
-		public async Task<Bouquet[]> GetPublishedWithMainImageAsync(int skip, int take, TypesFilter<BouquetType> bouquetTypeFilter = null, ColorFilter colorsFilter = null, PriceFilter priceFilter = null)
+		public async Task<Bouquet[]> GetPublishedWithMainImageAsync(int skip, int take, 
+			TypesFilter<BouquetType> bouquetTypeFilter = null, 
+			ColorFilter colorsFilter = null, 
+			PriceFilter priceFilter = null)
 		{
 
 			using (var conntection = await SqlConnectionHelper.CreateConnection())
@@ -29,6 +32,8 @@ namespace Flowers.Data.Products.Bouquets
 					Published = true,
 					Types = bouquetTypeFilter.GetTypesFromFilter(),
 					Colors = colorsFilter.ToDataTable(),
+					MinPrice = priceFilter?.From,
+					MaxPrice = priceFilter?.To,
 					Skip = skip,
 					Take = take
 				},
@@ -46,7 +51,9 @@ namespace Flowers.Data.Products.Bouquets
 					{
 						Published = true,
 						Colors = colorsFilter.ToDataTable(),
-						Types = bouquetTypeFilter.GetTypesFromFilter()
+						Types = bouquetTypeFilter.GetTypesFromFilter(),
+						MinPrice = priceFilter?.From,
+						MaxPrice = priceFilter?.To,
 					}, commandType: CommandType.StoredProcedure))
 					.First();
 			}

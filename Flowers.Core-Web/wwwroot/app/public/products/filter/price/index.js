@@ -20,19 +20,25 @@ class PriceFilterView extends React.Component {
 
 	filterOnChanged(event) {
 
-		console.log(event.target.value);
+		//console.log(event.target.value);
 
 		let value = event.target.value;
 
-		if (value !== '' && !value.match(/\d+/)) {
+		if (value !== '' && !value.match(/\d+$/)) {
 			return;
 		}
 
 		this.filter[event.target.name] = value;
 
-		store.applyFilter({name: PriceFilter._name, value: this.filter});
-
 		this.setState(this.filter);
+
+		if(this.timeOutId)
+		{
+			clearTimeout(this.timeOutId);
+		}
+		
+		this.timeOutId = setTimeout(() => store.applyFilter({name: PriceFilter._name, value: this.filter}), 1000);
+
 	}
 
 	clearField(name) {
