@@ -28,9 +28,12 @@ namespace Flowers.CoreWeb.Controllers
 		[HttpGet]
 		public async Task<IActionResult> Index(
 			[ModelBinder(BinderType = typeof(FilterModelBinder<TypesFilter<BouquetType>>), Name = "bt")] TypesFilter<BouquetType> bouquetsTypesFilter,
-			[ModelBinder(BinderType = typeof(FilterModelBinder<ColorFilter>), Name = "c")] ColorFilter colorsFilter, int page = 1)
+			[ModelBinder(BinderType = typeof(FilterModelBinder<ColorFilter>), Name = "c")] ColorFilter colorsFilter,
+			[ModelBinder(BinderType = typeof(FilterModelBinder<PriceFilter>), Name = "p")] PriceFilter priceFilter,
+			int page = 1
+			)
 		{
-			var bouquets = _bouquetsManager.GetPublishedWithMainImageAsync(page, bouquetsTypesFilter, colorsFilter);
+			var bouquets = _bouquetsManager.GetPublishedWithMainImageAsync(page, bouquetsTypesFilter, colorsFilter, priceFilter);
 			var colors = _colorsReadOnlyStore.GetCodesAsync(ProductType.Bouquets);
 
 			await Task.WhenAll(bouquets, colors);
@@ -43,7 +46,8 @@ namespace Flowers.CoreWeb.Controllers
 				{
 					Colors = colors.Result.Select(t => new Color { Id = t }).ToArray(),
 					ColorFilter = colorsFilter
-				}
+				},
+				PriceFilter = priceFilter
 			};
 
 			return View(data);

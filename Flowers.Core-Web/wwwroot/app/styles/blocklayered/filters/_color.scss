@@ -1,0 +1,42 @@
+
+#layered_block_left #layered_form .layered_filter {
+
+  .layered_filter_ul {
+    &.color-group {
+      list-style-type: none;
+      margin: 0 -2px;
+
+      li {
+        display: inline-block;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        margin: 3px;
+
+        > input {
+          display: inline-block;
+          cursor: pointer;
+          height: 26px;
+          width: 26px;
+          margin: 4px;
+          border: 1px solid #4b5257;
+          border-radius: 13px;
+          transition: 0.3s;
+
+          &:focus {
+            outline: none;
+          }
+
+          &.active,
+          &:hover {
+            height: 28px;
+            width: 28px;
+            border-radius: 15px;
+            border: 3px solid #fff;
+            box-shadow: 0 0 4px #04C392;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,7 +1,9 @@
 ﻿CREATE PROCEDURE [dbo].[GetBouquetsCount]
-	@Published	bit = null
-,	@Types		[IntArray] readonly
-,	@Colors		[VarcharArray] readonly
+	@Published		bit = null
+,	@Types			[IntArray] readonly
+,	@Colors			[VarcharArray] readonly
+,	@MinPrice		money = null
+,	@MaxPrice		money = null
 AS
 	declare @sqlCommand nvarchar (1000);
 	declare @sqlJoin nvarchar (1000);
@@ -41,12 +43,26 @@ AS
 			and pc.ColorId in (select Value from @Colors)'
 
 	end
+
+	if (@MinPrice is not null)
+	begin
+		set @sqlWhere += N'
+			and p.[Price] >= @MinPrice'
+	end
+
+	if (@MaxPrice is not null)
+	begin
+		set @sqlWhere += N'
+			and p.[Price] <= @MaxPrice'
+	end
 	
 	set @sqlCommand = @sqlCommand + @sqlJoin + @sqlWhere;
 
 	EXEC sp_executesql @sqlCommand
-		,	N'@Types [IntArray] readonly, @Colors [VarcharArray] readonly'
+		,	N'@Types [IntArray] readonly, @Colors [VarcharArray] readonly, @MinPrice money, @MaxPrice money'
 		,	@Types 
 		,	@Colors
+		,	@MinPrice
+		,	@MaxPrice
 
 RETURN 0

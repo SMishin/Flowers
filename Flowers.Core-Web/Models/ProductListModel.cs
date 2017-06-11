@@ -1,4 +1,4 @@
-﻿using Flowers.Colors;
+﻿using Flowers.Products;
 
 namespace Flowers.CoreWeb.Models
 {
@@ -9,9 +9,11 @@ namespace Flowers.CoreWeb.Models
 			Data = new PagedResult<T>();
 			
 			ColorsFilterModel = new ColorsFilterModel();
+			PriceFilter = new PriceFilter();
 		}
 
 		public PagedResult<T> Data { get; set; }
 		public ColorsFilterModel ColorsFilterModel { get; set; }
+		public PriceFilter PriceFilter{ get; set; }
 	}
 }

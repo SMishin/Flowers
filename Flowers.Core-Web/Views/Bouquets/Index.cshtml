@@ -74,6 +74,14 @@
 				</div>
 				
 				<div class="layered_filter">
+
+					@{
+						Html.RenderPartial("~/Views/Produtcs/_PriceFilter.cshtml", Model.PriceFilter);
+					}
+
+				</div>
+
+				<div class="layered_filter">
 					@{
 						Html.RenderPartial("~/Views/Produtcs/_ColorsFilter.cshtml", Model.ColorsFilterModel);
 					}

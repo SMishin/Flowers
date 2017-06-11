@@ -38,13 +38,17 @@ namespace Flowers.Products.Flowers
 			await _productsManager.RemoveAsync(id);
 		}
 
-		public async Task<PagedResult<Flower>> GetPublishedWithMainImageAsync(int page = 1, TypesFilter<FlowerType> flowerTypeFilter = null, ColorFilter colorsFilter = null)
+		public async Task<PagedResult<Flower>> GetPublishedWithMainImageAsync(int page = 1, 
+			TypesFilter<FlowerType> flowerTypeFilter = null, 
+			ColorFilter colorsFilter = null, 
+			PriceFilter priceFilter = null
+			)
 		{
 			PagedResultsFactory factory = new PagedResultsFactory();
 
 			var result = await factory.Create(
-				(skip, take) => _flowersStore.GetPublishedWithMainImageAsync(skip, take, flowerTypeFilter, colorsFilter),
-				() => _flowersStore.CountPublishedAsync(flowerTypeFilter, colorsFilter), 
+				(skip, take) => _flowersStore.GetPublishedWithMainImageAsync(skip, take, flowerTypeFilter, colorsFilter, priceFilter),
+				() => _flowersStore.CountPublishedAsync(flowerTypeFilter, colorsFilter, priceFilter), 
 				page);
 
 			return result;

@@ -11,6 +11,7 @@ import BouquetsList from './bouquets/list/index';
 import BouquetsTypesFilterView from './bouquets/filter/index';
 
 import ColorsFilterView from './products/filter/color/index';
+import PriceFilterView from './products/filter/price/index';
 
 import flowerStore from './products/store';
 
@@ -29,6 +30,9 @@ bouquetsTypesFilter !== null && ReactDOM.render(<BouquetsTypesFilterView />, bou
 
 let colorFilter = document.getElementById('color-filter');
 colorFilter !== null && ReactDOM.render(<ColorsFilterView />, colorFilter);
+
+let priceFilter = document.getElementById('price-filter');
+priceFilter !== null && ReactDOM.render(<PriceFilterView />, priceFilter);
 
 ReactDOM.render(
 	<Router history={browserHistory}>

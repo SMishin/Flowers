@@ -7,6 +7,6 @@ namespace Flowers.Products.Bouquets
 	{
 		Task<int> SaveAsync(Bouquet bouquet);
 		Task RemoveAsync(int id);
-		Task<PagedResult<Bouquet>> GetPublishedWithMainImageAsync(int page, TypesFilter<BouquetType> bouquetsTypesFilter = null, ColorFilter colorsFilter = null);
+		Task<PagedResult<Bouquet>> GetPublishedWithMainImageAsync(int page, TypesFilter<BouquetType> bouquetsTypesFilter = null, ColorFilter colorsFilter = null, PriceFilter priceFilter = null);
 	}
 }
