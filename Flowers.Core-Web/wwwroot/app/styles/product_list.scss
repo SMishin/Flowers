@@ -219,7 +219,6 @@ ul.product_list.grid > li .product-container .product-image-container {
 
 ul.product_list.grid > li .product-container .product-image-container .product_img_link {
   display: block;
-  display: block;
   position: relative;
   background: white;
 }
@@ -371,8 +370,6 @@ ul.product_list.list > li .product-container {
 }
 
 ul.product_list.list > li .product-image-container .product_img_link {
-  display: block;
-  position: relative;
   display: block;
   position: relative;
   background: white;
@@ -580,5 +577,12 @@ ul.product_list.list > li .right-block .right-block-content .functional-buttons 
   }
   body.three-columns ul.product_list.list > li .comments_note {
     text-align: center;
+  }
+}
+
+#product_list_items_container {
+  .empty-results {
+    text-align: center;
+    margin-top: 5%;
   }
 }
