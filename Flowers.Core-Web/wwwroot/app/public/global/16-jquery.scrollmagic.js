@@ -1,5 +1,6 @@
 /* ScrollMagic v1.1.2 | (c) 2014 Jan Paepke (@janpaepke) | license & info: http://janpaepke.github.io/ScrollMagic */
 import jQuery from '../../../_libs/jquery-1.11.0.min';
+import './19-TweenMax.min'
 
 !function (e, t) {
     "use strict";

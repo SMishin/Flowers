@@ -1,109 +1,214 @@
 ﻿@using Flowers.Products.ProductTypes
-@model Dictionary<Flowers.Products.ProductTypes.ProductType, Flowers.Products.Flowers.Flower[]>
+@model Dictionary<ProductType, Flowers.Products.Flowers.Flower[]>
 
 <div id="columns" class="container">
-    <div id="slider_row" class="row">
-        <div id="top_column" class="center_column col-xs-12 col-sm-12">
-            <div id="htmlcontent_top">
-                <ul class="htmlcontent-home clearfix row">
-                    <li class="htmlcontent-item-1 col-xs-12">
-                        <div class="item-html">
-                            <div class="cnt">
-                                <h4>
-                                    с 8<sup>00</sup> до 21<sup>00</sup>
-                                </h4>
-                                <p class="color-primary">без выходных и обеда</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="htmlcontent-item-2 col-xs-12">
-                        <div class="item-html">
-                            <div class="cnt">
-                                <h3 class="color-primary">
-                                    <span class="title">
-                                        Салон цветов <br /> «С Любовью»
-                                    </span>
+	<div id="slider_row" class="row">
+		<div id="top_column" class="center_column col-xs-12 col-sm-12">
 
-                                </h3>
-                                <p>
-                                    ул. Юбилейная, д. 28, корп. 1 (у дороги, отдельный вход)
-                                </p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="htmlcontent-item-3 col-xs-12">
-                        <div class="item-html">
-                            <div class="cnt">
-                                <h4>
-                                    Доставка заказа
-                                </h4>
-                                <p class="color-primary">
-                                    8 916 857 78 80 (Светлана)
-                                </p>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
+
+			<div id="homepage-slider">
+				<div class="bx-wrapper">
+					<div class="bx-viewport">
+						<ul id="homeslider">
+							<li class="homeslider-container">
+								<a href="/bouquets?bt=2" title="Цветы в коробке">
+									<img src="/app/img/slider1.png" 
+									     width="1171"
+										 height="715"
+										 alt="Valentine`s day ideas">
+								</a>
+								<div class="homeslider-description">
+									<div class="circle-wrap-1">
+										<h2>Цветы</h2>
+									</div>
+									<div class="circle-wrap-2">
+										<h2><br />в коробке</h2>
+									</div>
+									<div class="line-wrap"></div>
+									<p class="btn-wrap">
+										<a href="/bouquets?bt=2" title="Цветы в коробке" class="btn btn-primary-1">
+											<i class="fl-bigmug-line-right154"></i> подробнее
+										</a>
+									</p>
+								</div>
+							</li>
+							<li class="homeslider-container" >
+								<a href="/bouquets?bt=1" title="Новые идеи букетов">
+									<img src="/app/img/slider2.png" 
+										  width="1171"
+										 height="715"
+									     alt="Over 15 colorsof fresh tulips">
+								</a>
+								<div class="homeslider-description">
+									<div class="circle-wrap-1">
+										<h2>
+											Новые <br />идеи
+										</h2>
+									</div>
+									<div class="circle-wrap-2">
+										<h2>
+											<span><br />авторские</span><br>букеты
+										</h2>
+									</div>
+									<div class="line-wrap"></div>
+									<p class="btn-wrap">
+										<a href="/bouquets?bt=1" title="Новые идеи букетов" class="btn btn-primary-1">
+											 <i class="fl-bigmug-line-right154"></i> подробнее
+										</a>
+									</p>
+								</div>
+							</li>
+							<li class="homeslider-container" >
+								<a href="/flowers/45" title="цветы в ассортименте тюльпаны">
+									<img src="/app/img/slider3.jpg" 
+									     width="1171"
+									     height="715"
+									     alt="New ideas for wedding bouquets">
+								</a>
+								<div class="homeslider-description">
+									<div class="circle-wrap-1">
+										<h2>Свежие <br /> цветы </h2>
+									</div>
+									<div class="circle-wrap-2">
+										<h2>тюльпаны</h2>
+									</div>
+									<div class="line-wrap"></div>
+									<p class="btn-wrap">
+										<a href="/flowers/45" title="цветы в ассортименте тюльпаны" class="btn btn-primary-1">
+											<i class="fl-bigmug-line-right154"></i>подробнее
+										</a>
+									</p>
+								</div>
+							</li>
+							<li class="homeslider-container">
+								<a href="/flowers/46" title="цветы в ассортименте фрезия">
+									<img src="/app/img/slider4.png"
+										 width="1171"
+										 height="715"
+										 alt="New ideas for wedding bouquets">
+								</a>
+								<div class="homeslider-description">
+									<div class="circle-wrap-1">
+										<h2>Свежие <br /> цветы </h2>
+									</div>
+									<div class="circle-wrap-2">
+										<h2>фрезия</h2>
+									</div>
+									<div class="line-wrap"></div>
+									<p class="btn-wrap">
+										<a href="/flowers/46" title="цветы в ассортименте фрезия" class="btn btn-primary-1">
+											 <i class="fl-bigmug-line-right154"></i> подробнее
+										</a>
+									</p>
+								</div>
+							</li>
+						</ul>
+					</div>
+					
+				</div>
+
+			</div>
+
+			<div id="htmlcontent_top">
+				<ul class="htmlcontent-home clearfix row">
+					<li class="htmlcontent-item-1 col-xs-12">
+						<div class="item-html">
+							<div class="cnt">
+								<h4>
+									с 8<sup>00</sup> до 21<sup>00</sup>
+								</h4>
+								<p class="color-primary">без выходных и обеда</p>
+							</div>
+						</div>
+					</li>
+					<li class="htmlcontent-item-2 col-xs-12">
+						<div class="item-html">
+							<div class="cnt">
+								<h3 class="color-primary">
+									<span class="title">
+										Салон цветов <br /> «С Любовью»
+									</span>
+
+								</h3>
+								<p>
+									ул. Юбилейная, д. 28, корп. 1 (у дороги, отдельный вход)
+								</p>
+							</div>
+						</div>
+					</li>
+					<li class="htmlcontent-item-3 col-xs-12">
+						<div class="item-html">
+							<div class="cnt">
+								<h4>
+									Доставка заказа
+								</h4>
+								<p class="color-primary">
+									8 916 857 78 80 (Светлана)
+								</p>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 </div>
 
 <div class="home-column">
-    <div class="container">
+	<div class="container">
 
-        @{
-            Html.RenderPartial("_ProductList", Model[ProductType.Flowers]);
-            //Html.RenderPartial("_ProductList", Model[ProductType.Toys]);
-        }
+		@{
+			Html.RenderPartial("_ProductList", Model[ProductType.Flowers]);
+			//Html.RenderPartial("_ProductList", Model[ProductType.Toys]);
+		}
 
 
-        <div id="htmlcontent_home">
-            <div class="htmlcontent-home clearfix row">
-                <div class="htmlcontent-item-1 col-xs-12">
-                    <img src="/app/img/10.2.png"
-                         class="item-img" title="" alt="" width="100%" height="100%" />
-                    <div class="item-html">
-                        <h2>
-                            Цветы Ваших Желаний.
-                        </h2>
+		<div id="htmlcontent_home">
+			<div class="htmlcontent-home clearfix row">
+				<div class="htmlcontent-item-1 col-xs-12">
+					<img src="/app/img/10.2.png"
+						 class="item-img" title="" alt="" width="100%" height="100%" />
+					<div class="item-html">
+						<h2>
+							Цветы Ваших Желаний.
+						</h2>
 
-                        <p>
-                            В подарок карта со скидкой 10%
-                        </p>
+						<p>
+							В подарок карта со скидкой 10%
+						</p>
 
-                    </div>
-                </div>
-            </div>
+					</div>
+				</div>
+			</div>
 
-            <div class="list col-xs-12">
-                <ol>
-                    <li>
-                        цветы
-                    </li>
-                    <li>
-                        композиции
-                    </li>
-                    <li>
-                        игрушки из живых цветов
-                    </li>
-                    <li>
-                        свадебная флористика
-                    </li>
-                    <li>
-                        комнатные растения
-                    </li>
-                    <li>
-                        сувениры
-                    </li>
-                    <li>
-                        игрушки
-                    </li>
-                </ol>
-            </div>
-        </div>
+			<div class="list col-xs-12">
+				<ol>
+					<li>
+						цветы
+					</li>
+					<li>
+						композиции
+					</li>
+					<li>
+						игрушки из живых цветов
+					</li>
+					<li>
+						свадебная флористика
+					</li>
+					<li>
+						комнатные растения
+					</li>
+					<li>
+						сувениры
+					</li>
+					<li>
+						игрушки
+					</li>
+				</ol>
+			</div>
+		</div>
 
-    </div>
+	</div>
 
 
 </div>
