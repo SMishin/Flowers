@@ -1,11 +1,10 @@
-import './16-jquery.scrollmagic'
+
 import $ from '../../../_libs/jquery-1.11.0.min';
 import scrollTo from './scroll-to'
 
-let jQuery = $;
-
-var responsiveflag = false;
-var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent);
+let jQuery = $,
+	responsiveflag = false,
+	isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent);
 
 function initScrollToTop() {
 	$('body').append('<a id="toTop" class="toTop fl-bigmug-line-up107" href="#"></a>');
@@ -31,7 +30,6 @@ function initScrollToTop() {
 }
 
 $(document).ready(function () {
-	new ScrollMagic();
 	// highdpiInit();
 	responsiveResize();
 	$(window).resize(responsiveResize);
