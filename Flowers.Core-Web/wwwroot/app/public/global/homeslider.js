@@ -1,5 +1,6 @@
-import '../../../_libs/jquery.bxslider/jquery.bxslider'
+import './jquery.bxslider/jquery.bxslider'
 import './19-TweenMax.min'
+import $ from '../../../_libs/jquery-1.11.0.min';
 
 (function () {
 	let homeslider_pause = 3000,
@@ -35,8 +36,8 @@ import './19-TweenMax.min'
 				}
 			});
 		}
-		// $('.homeslider-description').click(function () {
-		// 	window.location.href = $(this).prev('a').prop('href');
-		// });
+		$('.homeslider-description').click(function () {
+		 	window.location.href = $(this).prev('a').prop('href');
+		 });
 	});
 }());

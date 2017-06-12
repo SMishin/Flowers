@@ -11,9 +11,9 @@
     ]
   },
   "scripts": {
-    "prebuild-css": "mkdirp dist/app/styles && mkdirp dist/app/cms/styles",
+    "prebuild-css": "mkdirp dist/app/styles && mkdirp dist/app/cms/styles && mkdirp dist/app/styles/images" ,
     "build-css": "sass app/styles/main.scss:dist/app/styles/main.css && sass app/cms/styles/main.scss:dist/app/cms/styles/main.css",
-    "copy": "cp -R _libs dist/_libs && cp -R app/fonts dist/app/fonts && cp -R app/img dist/app/img && cp -R app/cms/styles/fonts dist/app/cms/styles/fonts",
+    "copy": "cp -R _libs dist/_libs && cp -R app/fonts dist/app/fonts && cp -R app/img dist/app/img && cp -R app/styles/images dist/app/styles && cp -R app/cms/styles/fonts dist/app/cms/styles/fonts",
     "build": "npm run build-css && npm run copy && .\\node_modules\\.bin\\webpack"
   },
   "dependencies": {

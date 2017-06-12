@@ -1,4 +1,4 @@
-import './global'
+import './homeslider'
 import './superfish'
 import './mobile-menu'
-import './homeslider'
+import './global'
