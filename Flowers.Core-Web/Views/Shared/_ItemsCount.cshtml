@@ -1,26 +1,32 @@
 ﻿@model int
 
-Всего @Model
-@{
-	var lastNumber = Model % 10;
+@if (Model > 0)
+{
+	<text>
+		Всего @Model
+	</text>
 
-	if (lastNumber == 1)
 	{
-		<text>
-		наименование
-		</text>
-	}
-	else if (lastNumber > 1 && lastNumber < 5)
-	{
-		<text>
-		наименования
-		</text>
-	}
-	else if (lastNumber == 0 || lastNumber >= 5)
-	{
-		<text>
-		наименований
-		</text>
-	}
+		var lastNumber = Model % 10;
 
+		if (lastNumber == 1)
+		{
+			<text>
+				наименование
+			</text>
+		}
+		else if (lastNumber > 1 && lastNumber < 5)
+		{
+			<text>
+				наименования
+			</text>
+		}
+		else if (lastNumber == 0 || lastNumber >= 5)
+		{
+			<text>
+				наименований
+			</text>
+		}
+
+	}
 }

@@ -64,6 +64,16 @@ export default function template() {
 				</div>
 			</div>
 		}
+		{
+			this.state.data.items.length === 0 && <div className="empty-results">
+				<h3>
+					Нет подходящих товаров
+				</h3>
+				<p>
+					попробуйте смягчить условия поиска
+				</p>
+			</div>
+		}
 	</div>
 		;
 }

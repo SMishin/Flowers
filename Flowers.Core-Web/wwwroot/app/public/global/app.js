@@ -1,4 +1,5 @@
-import './19-TweenMax.min'
-import './global'
+import './homeslider'
 import './superfish'
 import './mobile-menu'
+import './global'
+
