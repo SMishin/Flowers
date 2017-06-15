@@ -1,86 +1,45 @@
 
+import BouquetsDataResolver from './data-resolver';
+import BouquetsListComponent from './list/index';
+import NewBouquetComponent from './new-bouquet/index';
+import BouquetInfoComponent from './info/index';
+import ProductComponent  from '../common/item/index'
+import ProductImagesComponent from '../common/product-images/index'
 
-import BouquetsDataResolver from './products/bouquets/data-resolver';
-import BouquetsListComponent from './products/bouquets/list/index';
-import NewBouquetComponent from './products/bouquets/new-bouquet/index';
-import BouquetInfoComponent from './products/bouquets/info/index';
-
-
-function productChildrenRoutes(infoComponent) {
-	return [
-		{
-			path: '',
-			redirectTo: 'info',
-			pathMatch: 'full'
-		},
-		{
-			path: 'info',
-			component: infoComponent
-		},
-		{
-			path: 'images',
-			component: ProductImagesComponent
-		}
-	];
-}
-
-export const appRoutes = [
+export const routes = [
 	{
-		path: '_cms',
+		path: '',
 		children: [
 			{
 				path: '',
-				redirectTo: 'products/flowers',
-				pathMatch: 'full'
-			},
-			{
-				path: 'products/flowers',
-				component: FlowersListComponent,
-				useAsDefault: true,
-				resolve: {
-					data: FlowersDataResolver
-				}
-			},
-			{
-				path: 'products/flowers/new',
-				component: NewFlowerComponent
-			},
-			{
-				path: 'products/flowers/:id',
-				component: ProductComponent,
-				children: productChildrenRoutes(FlowerInfoComponent)
-			},
-			{
-				path: 'products/bouquets',
 				component: BouquetsListComponent,
 				resolve: {
 					data: BouquetsDataResolver
 				}
 			},
 			{
-				path: 'products/bouquets/new',
+				path: 'new',
 				component: NewBouquetComponent
 			},
 			{
-				path: 'products/bouquets/:id',
+				path: ':id',
 				component: ProductComponent,
-				children: productChildrenRoutes(BouquetInfoComponent)
+				children:	[
+					{
+						path: '',
+						redirectTo: 'info',
+						pathMatch: 'full'
+					},
+					{
+						path: 'info',
+						component: BouquetInfoComponent
+					},
+					{
+						path: 'images',
+						component: ProductImagesComponent
+					}
+				]
 			},
-
-			{
-				path: 'colors',
-				component: ColorsComponent
-			},
-			{
-				path: '**',
-				redirectTo: 'products/flowers'
-			}
 		]
-	},
-	{
-		path: '**',
-		redirectTo: 'products',
-		//component: PageNotFoundComponent
 	}
-
 ];

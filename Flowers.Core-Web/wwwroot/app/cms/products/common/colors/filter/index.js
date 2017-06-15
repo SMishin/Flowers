@@ -1,6 +1,6 @@
 import {Component, EventEmitter} from '@angular/core';
-import ColorsService from '../colors-service';
-import ColorsFilter from '../../../common/filters/colors';
+import ColorsService from '../../../../colors/colors-service';
+import ColorsFilter from '../../../../../common/filters/colors';
 import template from './template.html'
 
 @Component({

@@ -1,15 +1,11 @@
-
 import FlowersListComponent from './products/flowers/list/index'
 import NewFlowerComponent from './products/flowers/new-flower/index'
-import ProductComponent from './products/item/index'
-import ProductImagesComponent from './products/product-images/index'
+import ProductComponent from './products/common/item/index'
+import ProductImagesComponent from './products/common/product-images/index'
 import FlowerInfoComponent from './products/flowers/info/index'
 import FlowersDataResolver from './products/flowers/data-resolver';
-
-import BouquetsDataResolver from './products/bouquets/data-resolver';
-import BouquetsListComponent from './products/bouquets/list/index';
-import NewBouquetComponent from './products/bouquets/new-bouquet/index';
-import BouquetInfoComponent from './products/bouquets/info/index';
+//
+import {BouquetsModule} from './products/bouquets/module'
 
 import ColorsComponent from './colors/index'
 
@@ -59,21 +55,26 @@ export const appRoutes = [
 			},
 			{
 				path: 'products/bouquets',
-				component: BouquetsListComponent,
-				resolve: {
-					data: BouquetsDataResolver
-				}
+				loadChildren: () => BouquetsModule,
+				// children:[
+				// 	{
+				// 		path: '',
+				// 		component: BouquetsListComponent,
+				// 		resolve: {
+				// 			data: BouquetsDataResolver
+				// 		}
+				// 	},
+				// 	{
+				// 		path: 'new',
+				// 		component: NewBouquetComponent
+				// 	},
+				// 	{
+				// 		path: ':id',
+				// 		component: ProductComponent,
+				// 		children: productChildrenRoutes(BouquetInfoComponent)
+				// 	},
+				// ],
 			},
-			{
-				path: 'products/bouquets/new',
-				component: NewBouquetComponent
-			},
-			{
-				path: 'products/bouquets/:id',
-				component: ProductComponent,
-				children: productChildrenRoutes(BouquetInfoComponent)
-			},
-
 			{
 				path: 'colors',
 				component: ColorsComponent

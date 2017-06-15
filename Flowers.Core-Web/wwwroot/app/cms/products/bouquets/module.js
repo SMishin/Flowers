@@ -1,37 +1,32 @@
 import {NgModule}      from '@angular/core';
 import {RouterModule} from '@angular/router';
-
-import {BrowserModule} from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule}   from '@angular/forms';
 
-import {appRoutes} from './app.routing';
+import {CommonModule} from '../common/module'
+import {routes} from './routing';
 
-import BouquetsService from '../common/bouquets-service';
-import BouquetsDataResolver from './products/bouquets/data-resolver';
-import BouquetsListComponent from './products/bouquets/list/index';
-import NewBouquetComponent from './products/bouquets/new-bouquet/index';
-import BouquetInfoComponent from './products/bouquets/info/index';
-import BouquetsInfoEditFormComponent from './products/bouquets/edit-form/index';
+import BouquetsDataResolver from './data-resolver';
+import BouquetsListComponent from './list/index';
+import NewBouquetComponent from './new-bouquet/index';
+import BouquetInfoComponent from './info/index';
+import BouquetsInfoEditFormComponent from './edit-form/index';
 
 @NgModule({
     imports: [
-        BrowserModule,
         FormsModule,
         ReactiveFormsModule,
-		RouterModule.forRoot(appRoutes)
+		RouterModule.forChild(routes),
+		CommonModule
     ],
     declarations: [
 
 	    BouquetsListComponent,
 	    NewBouquetComponent,
 	    BouquetInfoComponent,
-	    BouquetsInfoEditFormComponent,
-
-
+	    BouquetsInfoEditFormComponent
     ],
     providers: [
-	    BouquetsDataResolver,
-	    BouquetsService,
+	    BouquetsDataResolver
     ]
 })
 export class BouquetsModule {

@@ -1,5 +1,5 @@
 import {EventEmitter, Component} from '@angular/core';
-import ColorsService from '../../colors/colors-service';
+import ColorsService from '../../../colors/colors-service';
 import template from './template.html'
 
 @Component({
@@ -8,7 +8,7 @@ import template from './template.html'
 	inputs: ['model'],
 	outputs: ['onChange']
 })
-class ProductColors {
+class ProductColorsComponent {
 	constructor(colorsService) {
 		this.onChange = new EventEmitter();
 		this._colorsService = colorsService;
@@ -57,8 +57,8 @@ class ProductColors {
 
 }
 
-ProductColors.parameters = [
+ProductColorsComponent.parameters = [
 	ColorsService
 ];
 
-export default ProductColors;
+export default ProductColorsComponent;
