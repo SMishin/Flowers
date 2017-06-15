@@ -1,8 +1,10 @@
 import {NgModule}      from '@angular/core';
+import {RouterModule} from '@angular/router';
+
 import {BrowserModule} from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule}   from '@angular/forms';
 
-import {routing} from './app.routing';
+import {appRoutes} from './app.routing';
 
 import HttpClient from '../core/http-client';
 import AppComponent from './app.component';
@@ -43,7 +45,7 @@ import ColorsService from './colors/colors-service';
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
-	    routing
+		RouterModule.forRoot(appRoutes)
     ],
     declarations: [
         AppComponent,

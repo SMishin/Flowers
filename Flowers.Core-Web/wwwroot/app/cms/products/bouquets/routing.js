@@ -1,17 +1,10 @@
 
-import FlowersListComponent from './products/flowers/list/index'
-import NewFlowerComponent from './products/flowers/new-flower/index'
-import ProductComponent from './products/item/index'
-import ProductImagesComponent from './products/product-images/index'
-import FlowerInfoComponent from './products/flowers/info/index'
-import FlowersDataResolver from './products/flowers/data-resolver';
 
 import BouquetsDataResolver from './products/bouquets/data-resolver';
 import BouquetsListComponent from './products/bouquets/list/index';
 import NewBouquetComponent from './products/bouquets/new-bouquet/index';
 import BouquetInfoComponent from './products/bouquets/info/index';
 
-import ColorsComponent from './colors/index'
 
 function productChildrenRoutes(infoComponent) {
 	return [
