@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import BouquetsService from '../../../../common/bouquets-service';
+import BouquetsService from '../../../../../common/bouquets-service';
 import template from './template.html'
 
 @Component({

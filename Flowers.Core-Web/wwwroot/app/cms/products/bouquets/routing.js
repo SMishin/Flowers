@@ -2,8 +2,9 @@
 import BouquetsDataResolver from './data-resolver';
 import BouquetsListComponent from './list/index';
 import NewBouquetComponent from './new-bouquet/index';
-import BouquetInfoComponent from './info/index';
-import ProductComponent  from '../common/item/index'
+import BouquetCompositionComponent from './item/composition/index';
+import BouquetInfoComponent from './item/info/index';
+import BouquetComponent  from './item/index'
 import ProductImagesComponent from '../common/product-images/index'
 
 export const routes = [
@@ -23,7 +24,7 @@ export const routes = [
 			},
 			{
 				path: ':id',
-				component: ProductComponent,
+				component: BouquetComponent,
 				children:	[
 					{
 						path: '',
@@ -37,6 +38,10 @@ export const routes = [
 					{
 						path: 'images',
 						component: ProductImagesComponent
+					},
+					{
+						path: 'composition',
+						component: BouquetCompositionComponent
 					}
 				]
 			},
