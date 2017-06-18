@@ -15,9 +15,9 @@ namespace Flowers.Products.Bouquets
 			_bouquetsStore = bouquetsStore;
 		}
 
-		public async Task<PagedResult<Bouquet>> GetPublishedWithMainImageAsync(int page, 
-			TypesFilter<BouquetType> bouquetsTypesFilter = null, 
-			ColorFilter colorsFilter = null, 
+		public async Task<PagedResult<Bouquet>> GetPublishedWithMainImageAsync(int page,
+			TypesFilter<BouquetType> bouquetsTypesFilter = null,
+			ColorFilter colorsFilter = null,
 			PriceFilter priceFilter = null)
 		{
 			PagedResultsFactory factory = new PagedResultsFactory();
@@ -54,6 +54,21 @@ namespace Flowers.Products.Bouquets
 			await _bouquetsStore.RemoveAsync(id);
 			await _productsManager.RemoveAsync(id);
 
+		}
+
+		public Task AddFlower(int id, int flowerId)
+		{
+			return _bouquetsStore.AddFlower(id, flowerId);
+		}
+
+		public Task<int[]> GetFlowers(int id)
+		{
+			return _bouquetsStore.GetFlowers(id);
+		}
+
+		public Task RemoveFlower(int id, int flowerId)
+		{
+			return _bouquetsStore.RemoveFlower(id, flowerId);
 		}
 	}
 }

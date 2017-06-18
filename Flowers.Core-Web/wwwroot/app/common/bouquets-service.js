@@ -29,6 +29,18 @@ class BouquetsService {
 		return this._http.post(this._url, data, options);
 	}
 
+	async addFlower(data, options) {
+		 return await this._http.put(`${this._url}/${data.id}/flowers?flowerId=${data.flowerId}`, options);
+	}
+
+	async removeFlower(data, options) {
+		return await this._http.delete(`${this._url}/${data.id}/flowers?flowerId=${data.flowerId}`, options);
+	}
+
+	async getFlowers(id, options){
+		return await this._http.get(`${this._url}/${id}/flowers`, options);
+	}
+
 	remove(id, options) {
 		return this._http.delete(this._url + '?id=' + id, options);
 	}

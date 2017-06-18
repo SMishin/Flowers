@@ -94,5 +94,15 @@ namespace Flowers.Data.Products.Bouquets
 				return bouquet;
 			}
 		}
+
+		public async Task<int[]> GetFlowers(int id)
+		{
+			using (var conntection = await SqlConnectionHelper.CreateConnection())
+			{
+				return (await conntection.QueryAsync<int>("select [FlowerId] from [dbo].[BouquetsFlowers] where [BouquetId] = @Id",
+					new {Id = id})).ToArray();
+					;
+			}
+		}
 	}
 }

@@ -1,1 +1,17 @@
 
+<h1>
+Состав букета
+</h1>
+<p>
+	Начните вводить название цветка
+</p>
+
+<select flowers-selector
+		(onSelect)="onSelect($event)"
+		(onUnselect)="onUnselect($event)"
+		[data]="flowerList"
+		[selectedData]="selectedFlowers"
+		class="flowers-selector"
+		multiple="multiple">
+
+</select>

@@ -51,6 +51,8 @@
 			'core-js': 'npm:core-js/client/shim.min',
 			'zone.js': 'npm:zone.js/dist/zone',
 			'reflect-metadata': 'npm:reflect-metadata/Reflect',
+			'jquery':'npm:jquery/dist/jquery',
+			'select2':'npm:select2/dist/js/select2'
 
 		},
 		meta: {

@@ -6,5 +6,7 @@ namespace Flowers.Products.Bouquets
 	{
 		Task SaveAsync(Bouquet product);
 		Task RemoveAsync(int id);
-    }
+		Task AddFlower(int id, int flowerId);
+		Task RemoveFlower(int id, int flowerId);
+	}
 }

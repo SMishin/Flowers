@@ -7,13 +7,13 @@ class FlowersService {
 		this._url = '/api/products/flower';
 	}
 
-	get(filter) {
+	async get(filter) {
 
 		if (filter && filter.id !== void 0) {
-			return this._http.get(this._url + '/' + filter.id);
+			return await this._http.get(this._url + '/' + filter.id);
 		}
 
-		return this._http.get(this._url + 's' + (filter !== void 0 && filter !== null ? filter.toQueryString() : ''));
+		return await this._http.get(this._url + 's' + (filter !== void 0 && filter !== null ? filter.toQueryString() : ''));
 	}
 
 	getPublished(filter) {

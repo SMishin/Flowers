@@ -12,6 +12,7 @@ import NewBouquetComponent from './new-bouquet/index';
 import BouquetCompositionComponent from './item/composition/index';
 import BouquetInfoComponent from './item/info/index';
 import BouquetsInfoEditFormComponent from './item/edit-form/index';
+import FlowersSelectorDirective from  './item/composition/flowers-selector';
 
 @NgModule({
     imports: [
@@ -21,13 +22,13 @@ import BouquetsInfoEditFormComponent from './item/edit-form/index';
 		CommonModule
     ],
     declarations: [
-
 		BouquetComponent,
 	    BouquetsListComponent,
 	    NewBouquetComponent,
 		BouquetCompositionComponent,
 	    BouquetInfoComponent,
-	    BouquetsInfoEditFormComponent
+	    BouquetsInfoEditFormComponent,
+		FlowersSelectorDirective
     ],
     providers: [
 	    BouquetsDataResolver
