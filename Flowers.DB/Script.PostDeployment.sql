@@ -18,3 +18,4 @@ Post-Deployment Script Template
 
 
  :r .\dbo\Data\Users.sql	
+ :r .\dbo\Data\FlowersTypes.sql	
