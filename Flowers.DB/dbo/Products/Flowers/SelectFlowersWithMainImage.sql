@@ -17,7 +17,7 @@ AS
 			,p.Name
 			,p.Summary
 			,p.Description
-			,f.Type as FlowerType
+			,f.[FlowersTypeId] as FlowerType
 			,pi.Url as [ImageUrl]
 			,[range].MinPrice
 			,[range].MaxPrice
@@ -34,8 +34,13 @@ AS
 				 group by fv.FlowerId) [range] on f.Id = [range].FlowerId'
 
 	set @sqlWhere = N'
-			where 
-			f.[Type] in (select Id from  @Types)'
+					where 1 = 1'
+
+	if(exists (select null from @Types))
+	begin
+		set @sqlWhere += N'
+			and f.[FlowersTypeId] in (select Id from  @Types)'
+	end
 
 	if (exists (select null from  @Colors)) 
 	begin

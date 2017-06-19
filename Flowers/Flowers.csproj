@@ -54,11 +54,16 @@
     <Compile Include="Products\Bouquets\IBouquetsReadOnlyStore.cs" />
     <Compile Include="Products\Bouquets\IBouquetsStore.cs" />
     <Compile Include="Colors\ColorFilter.cs" />
+    <Compile Include="Products\Flowers\FlowersTypeManager.cs" />
+    <Compile Include="Products\Flowers\FlowerType.cs" />
+    <Compile Include="Products\Flowers\IFlowersTypesReadOnlyStore.cs" />
+    <Compile Include="Products\Flowers\IFlowersTypeManager.cs" />
+    <Compile Include="Products\Flowers\IFlowersTypesStore.cs" />
     <Compile Include="Products\PriceFilter.cs" />
     <Compile Include="Products\TypesFilter.cs" />
     <Compile Include="Products\Flowers\Flower.cs" />
     <Compile Include="Products\Flowers\FlowersManager.cs" />
-    <Compile Include="Products\Flowers\FlowerType.cs" />
+    <Compile Include="Products\Flowers\FlowersTypes.cs" />
     <Compile Include="Products\Flowers\FlowerVariant.cs" />
     <Compile Include="Products\Flowers\IFlowersManager.cs" />
     <Compile Include="Products\Flowers\IFlowersReadOnlyStore.cs" />

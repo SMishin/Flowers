@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using Flowers.Products;
 
 namespace Flowers.Data.Products
@@ -11,18 +9,7 @@ namespace Flowers.Data.Products
 		public static DataTable GetTypesFromFilter<TType>(this TypesFilter<TType> filters)
 			where TType : struct
 		{
-			DataTable types;
-
-			if (filters?.Types == null || filters.Types.Length == 0)
-			{
-				types = TypesToDataTable(Enum.GetValues(typeof(TType)).Cast<TType>());
-			}
-			else
-			{
-				types = TypesToDataTable(filters.Types);
-			}
-
-			return types;
+			return TypesToDataTable(filters.Types);
 		}
 
 		public static DataTable TypesToDataTable<TType>(this IEnumerable<TType> types)

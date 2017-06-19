@@ -1,0 +1,35 @@
+<h1>Виды цветов</h1>
+
+<form #form="ngForm"
+      (ngSubmit)="onSubmit(form)">
+	<div class="form-group">
+		<label for="name">
+			Название
+		</label>
+		<input type="text"
+		       id="name"
+		       name="name"
+		       [(ngModel)]="newItem.name"
+		       class="form-control"
+		       placeholder="название"/>
+	</div>
+	<button type="submit">
+		Сохранить
+	</button>
+</form>
+
+<ul class="color-list"
+    *ngIf="items.length > 0">
+	<li *ngFor="let item of items">
+
+		<span>
+			{{ item.name }}
+		</span>
+		<span>
+			<button (click)="remove(item.id)"
+			        type="button">
+				Удалить
+			</button>
+		</span>
+	</li>
+</ul>

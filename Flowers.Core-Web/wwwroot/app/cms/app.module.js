@@ -24,6 +24,10 @@ import FlowerPrices from './products/flowers/info/edit-form/prices/index';
 import ColorsComponent from './colors/index';
 import ColorsService from './colors/colors-service';
 
+import FlowersTypesComponent from './flowers-type/index';
+import FlowersTypesService from './flowers-type/flowers-types-service';
+
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -41,7 +45,8 @@ import ColorsService from './colors/colors-service';
 	    FlowerInfoComponent,
 	    FlowerInfoEditFormComponent,
 	    FlowerPrices,
-		ColorsComponent
+		ColorsComponent,
+		FlowersTypesComponent
     ],
     providers: [
 	    HttpClient,
@@ -49,7 +54,8 @@ import ColorsService from './colors/colors-service';
 	    FlowersService,
 	    FlowersDataResolver,
 	    BouquetsService,
-	    ColorsService
+	    ColorsService,
+		FlowersTypesService
     ],
     bootstrap: [AppComponent]
 })

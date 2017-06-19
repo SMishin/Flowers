@@ -26,7 +26,7 @@ namespace Flowers.Data.Products.Flowers
 				return (await conntection.QueryAsync<Flower>("SelectFlowersWithMainImage",
 				new
 				{
-					Types = new TypesFilter<FlowerType>().GetTypesFromFilter(),
+					Types = new TypesFilter<FlowersTypes>().GetTypesFromFilter(),
 					Colors = colorsFilter.ToDataTable(),
 					Skip = 0,
 					Take = int.MaxValue
@@ -60,7 +60,7 @@ namespace Flowers.Data.Products.Flowers
 		}
 
 		public async Task<Flower[]> GetPublishedWithMainImageAsync(int skip, int take, 
-			TypesFilter<FlowerType> flowersTypesFilter = null, 
+			TypesFilter<FlowersTypes> flowersTypesFilter = null, 
 			ColorFilter colorFilter = null, 
 			PriceFilter priceFilter = null
 			)
@@ -95,7 +95,7 @@ namespace Flowers.Data.Products.Flowers
 			}
 		}
 
-		public async Task<int> CountPublishedAsync(TypesFilter<FlowerType> flowersTypesFilter = null, 
+		public async Task<int> CountPublishedAsync(TypesFilter<FlowersTypes> flowersTypesFilter = null, 
 			ColorFilter colorsFilter = null, 
 			PriceFilter priceFilter = null)
 		{

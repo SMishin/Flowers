@@ -32,7 +32,7 @@ namespace Flowers.CoreWeb.Controllers
 		[HttpGet]
 		[Route("")]
 		public async Task<IActionResult> Index(
-			[ModelBinder(BinderType = typeof(FilterModelBinder<TypesFilter<FlowerType>>), Name = "ft")] TypesFilter<FlowerType> flowersTypeFilter,
+			[ModelBinder(BinderType = typeof(FilterModelBinder<TypesFilter<FlowersTypes>>), Name = "ft")] TypesFilter<FlowersTypes> flowersTypeFilter,
 			[ModelBinder(BinderType = typeof(FilterModelBinder<ColorFilter>), Name = "c")] ColorFilter colorsFilter,
 			[ModelBinder(BinderType = typeof(FilterModelBinder<PriceFilter>), Name = "p")] PriceFilter priceFilter,
 			int page = 1)
@@ -46,7 +46,7 @@ namespace Flowers.CoreWeb.Controllers
 			{
 				Data = flowers.Result,
 
-				FlowersTypesFilter = flowersTypeFilter ?? new TypesFilter<FlowerType>(),
+				FlowersTypesFilter = flowersTypeFilter ?? new TypesFilter<FlowersTypes>(),
 				ColorsFilterModel = new Models.ColorsFilterModel
 				{
 					Colors = colors.Result.Select(t => new Color { Id = t }).ToArray(),

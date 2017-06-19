@@ -30,7 +30,7 @@ namespace Flowers.CoreWeb.Api.Products
 		[HttpGet]
 		[Route("flowers/published")]
 		public async Task<IActionResult> GetPublishedWithMainImageAsync(
-			[ModelBinder(BinderType = typeof(FilterModelBinder<TypesFilter<FlowerType>>), Name = "ft")] TypesFilter<FlowerType> flowerTypeFilter,
+			[ModelBinder(BinderType = typeof(FilterModelBinder<TypesFilter<FlowersTypes>>), Name = "ft")] TypesFilter<FlowersTypes> flowerTypeFilter,
 			[ModelBinder(BinderType = typeof(FilterModelBinder<ColorFilter>), Name = "c")] ColorFilter colorsFilter,
 			[ModelBinder(BinderType = typeof(FilterModelBinder<PriceFilter>), Name = "p")] PriceFilter priceFilter,
 			int page = 1)

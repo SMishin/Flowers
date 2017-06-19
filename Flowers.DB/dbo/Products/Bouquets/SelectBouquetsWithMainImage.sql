@@ -27,10 +27,14 @@ AS
 		left join [dbo].[ProductImages] pi on p.Id = pi.[ProductId] and pi.IsMain = 1'
 
 	set @sqlWhere = N'
-		where 
-		p.Published = 1
-		and b.[Type] in (select Id from  @Types)'
+		where 1=1'
 		
+	if (exists (select null from  @Types)) 
+	begin
+		set @sqlWhere += N'
+			and b.[Type] in (select Id from  @Types)'
+	end
+
 	if (exists (select null from  @Colors)) 
 	begin
 		

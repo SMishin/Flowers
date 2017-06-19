@@ -8,6 +8,7 @@ import FlowersDataResolver from './products/flowers/data-resolver';
 import {BouquetsModule} from './products/bouquets/module'
 
 import ColorsComponent from './colors/index'
+import FlowersTypesComponent from './flowers-type/index';
 
 function productChildrenRoutes(infoComponent) {
 	return [
@@ -55,29 +56,15 @@ export const appRoutes = [
 			},
 			{
 				path: 'products/bouquets',
-				loadChildren: () => BouquetsModule,
-				// children:[
-				// 	{
-				// 		path: '',
-				// 		component: BouquetsListComponent,
-				// 		resolve: {
-				// 			data: BouquetsDataResolver
-				// 		}
-				// 	},
-				// 	{
-				// 		path: 'new',
-				// 		component: NewBouquetComponent
-				// 	},
-				// 	{
-				// 		path: ':id',
-				// 		component: ProductComponent,
-				// 		children: productChildrenRoutes(BouquetInfoComponent)
-				// 	},
-				// ],
+				loadChildren: () => BouquetsModule
 			},
 			{
 				path: 'colors',
 				component: ColorsComponent
+			},
+			{
+				path: 'flowers-types',
+				component: FlowersTypesComponent
 			},
 			{
 				path: '**',

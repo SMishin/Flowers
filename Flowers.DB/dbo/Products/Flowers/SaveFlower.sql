@@ -4,11 +4,11 @@
 AS
 	if(exists (select null from [Flowers] where [Id] =  @Id))
 		update [Flowers]
-			set	[Type] = @Type
+			set	[FlowersTypeId] = @Type
 		where [Id] =  @Id
 	else
 		begin
-			insert into [Flowers] ([Id],[Type])
+			insert into [Flowers] ([Id], [FlowersTypeId])
 			values(@Id, @Type)	
 		end
 RETURN 0

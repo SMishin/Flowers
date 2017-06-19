@@ -1,4 +1,5 @@
 import {EventEmitter, Component} from '@angular/core';
+import  FlowersTypesService from '../../../../flowers-type/flowers-types-service';
 import template from './template.html'
 
 @Component({
@@ -9,12 +10,22 @@ import template from './template.html'
 	outputs: ['onChange']
 })
 class FlowerInfoEditFormComponent {
-	constructor() {
+	constructor(flowersTypesService) {
+		this._flowersTypesService = flowersTypesService;
+
 		this.onChange = new EventEmitter();
+		this.flowerTypes = [];
 		this.model = {
 			flowerVariants: [],
 			colors: []
 		};
+	}
+
+	ngOnInit() {
+		this._flowersTypesService.get().then(data => {
+			console.log(data);
+			this.flowerTypes = data;
+		});
 	}
 
 	onSubmit() {
@@ -23,7 +34,7 @@ class FlowerInfoEditFormComponent {
 		this.onChange.emit(this.model);
 	}
 
-	productColorsChanged($event){
+	productColorsChanged($event) {
 		this.model.colors = $event;
 	}
 
@@ -31,10 +42,6 @@ class FlowerInfoEditFormComponent {
 		this.model.flowerVariants = $event;
 	}
 
-	ngOnInit() {
-		console.log(this.model);
-		//this.model.prices = [];
-	}
 
 	ngOnDestroy() {
 
@@ -42,6 +49,8 @@ class FlowerInfoEditFormComponent {
 
 }
 
-FlowerInfoEditFormComponent.parameters = [];
+FlowerInfoEditFormComponent.parameters = [
+	FlowersTypesService
+];
 
 export default FlowerInfoEditFormComponent;

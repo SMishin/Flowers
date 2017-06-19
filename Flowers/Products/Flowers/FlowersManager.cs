@@ -28,7 +28,7 @@ namespace Flowers.Products.Flowers
 				flower.Id = id;
 			}
 
-			await Task.WhenAll(_flowersStore.SaveAsync(flower), _productsManager.SetColorsAsync(id, flower.Colors));
+			await _flowersStore.SaveAsync(flower);
 			return id;
 		}
 
@@ -39,7 +39,7 @@ namespace Flowers.Products.Flowers
 		}
 
 		public async Task<PagedResult<Flower>> GetPublishedWithMainImageAsync(int page = 1, 
-			TypesFilter<FlowerType> flowerTypeFilter = null, 
+			TypesFilter<FlowersTypes> flowerTypeFilter = null, 
 			ColorFilter colorsFilter = null, 
 			PriceFilter priceFilter = null
 			)

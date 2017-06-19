@@ -1,145 +1,107 @@
 <form #form="ngForm"
-      (ngSubmit)="onSubmit()">
+	  (ngSubmit)="onSubmit()">
 
-    <div class="row">
-        <div class="col-xs-12 col-sm-6">
-            <fieldset>
+	<div class="row">
+		<div class="col-xs-12 col-sm-6">
+			<fieldset>
 
-                <div class="form-group">
-                    <label for="name">
-                        Название
-                    </label>
-                    <input type="text"
-                           id="name"
-                           name="name"
-                           [(ngModel)]="model.name"
-                           class="form-control"
-                           placeholder="название">
-                </div>
+				<div class="form-group">
+					<label for="name">
+						Название
+					</label>
+					<input type="text"
+						   id="name"
+						   name="name"
+						   [(ngModel)]="model.name"
+						   class="form-control"
+						   placeholder="название">
+				</div>
 
-                <div class="form-group">
-                    <label for="type">
-                        Тип
-                    </label>
-                    <select id="type"
-                            name="type"
-                            [(ngModel)]="model.flowerType"
-                            class="form-control">
+				<div class="form-group">
+					<label for="type">
+						Тип
+					</label>
+					<select id="type"
+							name="type"
+							[(ngModel)]="model.flowerType"
+							class="form-control">
 
-                        <option disabled selected value="-1">
-                            ---
-                        </option>
-                        <option value="0">
-                            Розы
-                        </option>
-                        <option value="1">
-                            Хризантемы
-                        </option>
-                        <option value="2">
-                            Альстромерия
-                        </option>
-                        <option value="3">
-                            Гвоздика
-                        </option>
-                        <option value="4">
-                            Ирис
-                        </option>
-                        <option value="5">
-                            Гермини
-                        </option>
-                        <option value="6">
-                            Гербера
-                        </option>
-                        <option value="7">
-                            Лилия
-                        </option>
-                        <option value="8">
-                            Подсолнух
-                        </option>
-                        <option value="9">
-                            Тюльпан
-                        </option>
-                        <option value="10">
-                            Фрезия
-                        </option>
-                        <option value="11">
-                            Эустома
-                        </option>
-                        <option value="12">
-                            Пион
-                        </option>
-                        <option value="13">
-                            Калла
-                        </option>
-                    </select>
-                </div>
+						<option disabled selected value="-1">
+							---
+						</option>
+						<option *ngFor="let ftype of flowerTypes" [value]="ftype.id">
+							{{ftype.name}}
+						</option>
 
-                <fieldset>
-                    <flower-prices
-                            (onChange)="productPricesChanged($event)"
-                            [(model)]="model.flowerVariants"></flower-prices>
-                </fieldset>
+					</select>
+				</div>
 
-                <product-colors  (onChange)="productColorsChanged($event)"
-                                 [(model)]="model.colors">
-                </product-colors>
+				<fieldset>
+					<flower-prices
+							(onChange)="productPricesChanged($event)"
+							[(model)]="model.flowerVariants"></flower-prices>
+				</fieldset>
 
-                <!--<div class="form-group">-->
-                    <!--<label for="name">-->
-                        <!--Цена-->
-                    <!--</label>-->
-                    <!--<input type="number"-->
-                           <!--id="price"-->
-                           <!--step="1"-->
-                           <!--min="0"-->
-                           <!--name="price"-->
-                           <!--[(ngModel)]="model.price"-->
-                           <!--class="form-control"-->
-                           <!--placeholder="Цена">-->
-                <!--</div>-->
+				<product-colors (onChange)="productColorsChanged($event)"
+								[(model)]="model.colors">
+				</product-colors>
+
+				<!--<div class="form-group">-->
+				<!--<label for="name">-->
+				<!--Цена-->
+				<!--</label>-->
+				<!--<input type="number"-->
+				<!--id="price"-->
+				<!--step="1"-->
+				<!--min="0"-->
+				<!--name="price"-->
+				<!--[(ngModel)]="model.price"-->
+				<!--class="form-control"-->
+				<!--placeholder="Цена">-->
+				<!--</div>-->
 
 
-                <div class="form-group">
-                    <label for="name">
-                        Краткое описание
-                    </label>
-                    <textarea type="text"
-                              id="summary"
-                              name="summary"
-                              [(ngModel)]="model.summary"
-                              class="form-control"
-                              placeholder="название">
+				<div class="form-group">
+					<label for="name">
+						Краткое описание
+					</label>
+					<textarea type="text"
+							  id="summary"
+							  name="summary"
+							  [(ngModel)]="model.summary"
+							  class="form-control"
+							  placeholder="название">
                         </textarea>
-                </div>
+				</div>
 
-                <div class="form-group">
-                    <label for="name">
-                        Описание
-                    </label>
-                    <textarea id="description"
-                              name="description"
-                              [(ngModel)]="model.description"
-                              class="form-control"
-                              placeholder="Описание">
+				<div class="form-group">
+					<label for="name">
+						Описание
+					</label>
+					<textarea id="description"
+							  name="description"
+							  [(ngModel)]="model.description"
+							  class="form-control"
+							  placeholder="Описание">
                         </textarea>
-                </div>
+				</div>
 
-                <div class="form-group">
-                    <label for="published">
-                        Опубликован
-                    </label>
-                    <input type="checkbox"
-                              id="published"
-                              name="published"
-                              [(ngModel)]="model.published"
-                              class="form-control"/>
-                </div>
-            </fieldset>
-            <button type="submit" class="btn btn-primary">
-                Сохранить
-            </button>
-        </div>
-    </div>
+				<div class="form-group">
+					<label for="published">
+						Опубликован
+					</label>
+					<input type="checkbox"
+						   id="published"
+						   name="published"
+						   [(ngModel)]="model.published"
+						   class="form-control"/>
+				</div>
+			</fieldset>
+			<button type="submit" class="btn btn-primary">
+				Сохранить
+			</button>
+		</div>
+	</div>
 
 </form>
 

@@ -53,6 +53,8 @@
     <Compile Include="Products\Bouquets\BouquetsStore.cs" />
     <Compile Include="Products\Flowers\FlowersReadOnlyStore.cs" />
     <Compile Include="Products\Flowers\FlowersStore.cs" />
+    <Compile Include="Products\Flowers\FlowersTypesReadOnlyStore.cs" />
+    <Compile Include="Products\Flowers\FlowersTypesStore.cs" />
     <Compile Include="Products\ProductsReadOnlyStore.cs" />
     <Compile Include="Products\ProductsStore.cs" />
     <Compile Include="Products\TypesFilterExtentions.cs" />

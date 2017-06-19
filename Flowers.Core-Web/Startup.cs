@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
 using Flowers.Colors;
@@ -24,7 +23,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Serialization;
 
 namespace Flowers.CoreWeb
@@ -96,9 +94,13 @@ namespace Flowers.CoreWeb
 			services.AddTransient<IColorsManager, ColorsManager>();
 			services.AddTransient<IColorsStore, ColorsStore>();
 
-			services.AddTransient<IBouquetsReadOnlyStore, BouquetsReadOnlyStore>();
+			services.AddTransient<IFlowersTypesReadOnlyStore, FlowersTypesReadOnlyStore>();
 			services.AddTransient<IBouquetsManager, BouquetsManager>();
 			services.AddTransient<IBouquetsStore, BouquetsStore>();
+
+			services.AddTransient<IBouquetsReadOnlyStore, BouquetsReadOnlyStore>();
+			services.AddTransient<IFlowersTypeManager, FlowersTypeManager>();
+			services.AddTransient<IFlowersTypesStore, FlowersTypesStore>();
 
 		}
 

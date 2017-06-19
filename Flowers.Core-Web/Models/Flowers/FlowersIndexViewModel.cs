@@ -7,9 +7,9 @@ namespace Flowers.CoreWeb.Models.Flowers
 	{
 		public FlowersIndexViewModel()
 		{
-			FlowersTypesFilter = new TypesFilter<FlowerType>();
+			FlowersTypesFilter = new TypesFilter<FlowersTypes>();
 		}
 	
-		public TypesFilter<FlowerType> FlowersTypesFilter { get; set; }
+		public TypesFilter<FlowersTypes> FlowersTypesFilter { get; set; }
 	}
 }

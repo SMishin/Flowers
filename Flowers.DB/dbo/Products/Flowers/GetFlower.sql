@@ -3,7 +3,7 @@
 AS
 	select
 		p.*,
-		f.[Type] as 'FlowerType'
+		f.[FlowersTypeId] as 'FlowerType'
 		--,fv.*
 	from [Flowers] f
 		join [Products] p on f.[Id] = p.[Id]
