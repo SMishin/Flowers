@@ -6,6 +6,7 @@ using Flowers.Colors;
 using Flowers.Data.Colors;
 using Flowers.Products;
 using Flowers.Products.Bouquets;
+using Flowers.Products.Flowers;
 
 namespace Flowers.Data.Products.Bouquets
 {
@@ -95,13 +96,24 @@ namespace Flowers.Data.Products.Bouquets
 			}
 		}
 
-		public async Task<int[]> GetFlowers(int id)
+		public async Task<int[]> GetFlowersIds(int id)
 		{
 			using (var conntection = await SqlConnectionHelper.CreateConnection())
 			{
 				return (await conntection.QueryAsync<int>("select [FlowerId] from [dbo].[BouquetsFlowers] where [BouquetId] = @Id",
 					new {Id = id})).ToArray();
 					;
+			}
+		}
+
+		public async Task<Flower[]> GetFlowers(int id)
+		{
+			using (var conntection = await SqlConnectionHelper.CreateConnection())
+			{
+				return (await conntection.QueryAsync<Flower>("SelectFlowersFromBouquet",
+					new { Id = id }, 
+					commandType: CommandType.StoredProcedure)).ToArray();
+				;
 			}
 		}
 	}

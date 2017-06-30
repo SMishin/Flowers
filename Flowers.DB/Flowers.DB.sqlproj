@@ -112,6 +112,7 @@
     <Build Include="dbo\Tables\FlowersType.sql" />
     <None Include="dbo\Data\FlowersTypes.sql" />
     <Build Include="dbo\Products\Flowers\SaveFlowerType.sql" />
+    <Build Include="dbo\Products\Bouquets\SelectFlowersFromBouquet.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Flowers.DB.local.publish.xml" />

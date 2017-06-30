@@ -63,7 +63,7 @@ namespace Flowers.Products.Bouquets
 
 		public Task<int[]> GetFlowers(int id)
 		{
-			return _bouquetsStore.GetFlowers(id);
+			return _bouquetsStore.GetFlowersIds(id);
 		}
 
 		public Task RemoveFlower(int id, int flowerId)

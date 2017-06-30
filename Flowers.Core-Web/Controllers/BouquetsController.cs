@@ -14,12 +14,18 @@ namespace Flowers.CoreWeb.Controllers
 	public class BouquetsController : Controller
 	{
 		private readonly IProductsReadOnlyStore _productsReadOnlyStore;
+		private readonly IBouquetsReadOnlyStore _bouquetsReadOnlyStore;
 		private readonly IBouquetsManager _bouquetsManager;
 		private readonly IColorsReadOnlyStore _colorsReadOnlyStore;
 
-		public BouquetsController(IProductsReadOnlyStore productsReadOnlyStore, IBouquetsManager bouquetsManager, IColorsReadOnlyStore colorsReadOnlyStore)
+		public BouquetsController(
+			IProductsReadOnlyStore productsReadOnlyStore,
+			IBouquetsReadOnlyStore bouquetsReadOnlyStore,
+			IBouquetsManager bouquetsManager, 
+			IColorsReadOnlyStore colorsReadOnlyStore)
 		{
 			_productsReadOnlyStore = productsReadOnlyStore;
+			_bouquetsReadOnlyStore = bouquetsReadOnlyStore;
 			_bouquetsManager = bouquetsManager;
 			_colorsReadOnlyStore = colorsReadOnlyStore;
 		}
@@ -57,11 +63,12 @@ namespace Flowers.CoreWeb.Controllers
 		[HttpGet]
 		public async Task<IActionResult> Details(int id)
 		{
-			var product = _productsReadOnlyStore.GetAsync(id);
+			var product = _bouquetsReadOnlyStore.GetAsync(id);
 			var images = _productsReadOnlyStore.GetImagesAsync(id);
 			var otherProducts = _productsReadOnlyStore.GetPublishedWithMainImageAsync(ProductType.Bouquets, 0, 6);
+			var flowers = _bouquetsReadOnlyStore.GetFlowers(id);
 
-			await Task.WhenAll(product, images, otherProducts);
+			await Task.WhenAll(product, images, otherProducts, flowers);
 
 			if (product.Result == null)
 			{
@@ -71,7 +78,8 @@ namespace Flowers.CoreWeb.Controllers
 			{
 				Product = product.Result,
 				ProductImages = images.Result,
-				OtherProducts = otherProducts.Result
+				OtherProducts = otherProducts.Result,
+				Flowers = flowers.Result
 			};
 
 			return View(@"~/Views/Produtcs/Details.cshtml", data);
