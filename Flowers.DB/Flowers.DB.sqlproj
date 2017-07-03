@@ -65,6 +65,7 @@
     <Folder Include="dbo\Data" />
     <Folder Include="dbo\Colors" />
     <Folder Include="dbo\Products\Bouquets" />
+    <Folder Include="dbo\Products\ProductComposition" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\DeliveryTypes.sql" />
@@ -108,11 +109,12 @@
     <Build Include="dbo\Products\Flowers\GetFlowersCount.sql" />
     <Build Include="dbo\Products\Bouquets\GetBouquetsCount.sql" />
     <Build Include="dbo\Products\SelectProductsColors.sql" />
-    <Build Include="dbo\Tables\BouquetsFlowers.sql" />
+    <Build Include="dbo\Tables\ProductComposition.sql" />
     <Build Include="dbo\Tables\FlowersType.sql" />
     <None Include="dbo\Data\FlowersTypes.sql" />
     <Build Include="dbo\Products\Flowers\SaveFlowerType.sql" />
     <Build Include="dbo\Products\Bouquets\SelectFlowersFromBouquet.sql" />
+    <Build Include="dbo\Products\ProductComposition\SaveProductComposition.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Flowers.DB.local.publish.xml" />

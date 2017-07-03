@@ -74,16 +74,6 @@ namespace Flowers.CoreWeb.Api.Products
 			return Ok(await _bouquetsManager.GetFlowers(id));
 		}
 
-		[HttpPut]
-		[Route("bouquet/{id:int}/flowers")]
-		[Authorize]
-		public async Task<IActionResult> AddFlower(int id, int flowerId)
-		{
-			await _bouquetsManager.AddFlower(id, flowerId);
-			return Ok();
-		}
-
-
 		[HttpDelete]
 		[Route("bouquet/{id:int}/flowers")]
 		[Authorize]

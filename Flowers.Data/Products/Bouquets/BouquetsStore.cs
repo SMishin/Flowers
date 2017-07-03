@@ -34,15 +34,7 @@ namespace Flowers.Data.Products.Bouquets
 			}
 		}
 
-		public async Task AddFlower(int id, int flowerId)
-		{
-			using (var conntection = await SqlConnectionHelper.CreateConnection())
-			{
-				await conntection.ExecuteAsync(@"
-					if(not exists (select null from [dbo].[BouquetsFlowers] where [BouquetId] = @Id and [FlowerId] = @FlowerId))
-					insert into [dbo].[BouquetsFlowers] values (@Id, @FlowerId)", new { Id = id, FlowerId = flowerId });
-			}
-		}
+		
 
 		public async Task RemoveFlower(int id, int flowerId)
 		{

@@ -56,11 +56,6 @@ namespace Flowers.Products.Bouquets
 
 		}
 
-		public Task AddFlower(int id, int flowerId)
-		{
-			return _bouquetsStore.AddFlower(id, flowerId);
-		}
-
 		public Task<int[]> GetFlowers(int id)
 		{
 			return _bouquetsStore.GetFlowersIds(id);

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.4
+VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Flowers.DB", "Flowers.DB\Flowers.DB.sqlproj", "{3555FAEA-F880-4B58-9076-120AF719F2AE}"
 EndProject
@@ -9,7 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flowers.Data", "Flowers.Dat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flowers", "Flowers\Flowers.csproj", "{A65A1312-2529-4FC6-A1AC-F3E0C3157BE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flowers.Core-Web", "Flowers.Core-Web\Flowers.Core-Web.csproj", "{5765198B-00FE-4CA0-B891-656B92E8D39A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Flowers.Core-Web", "Flowers.Core-Web\Flowers.Core-Web.csproj", "{5765198B-00FE-4CA0-B891-656B92E8D39A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1CA6F803-D7D9-4C06-A056-8A00C95F653B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flowers.Data.IntergrationTests", "Flowers.Data\_Tests\Flowers.Data.IntergrationTests\Flowers.Data.IntergrationTests.csproj", "{134DD39A-F722-452C-86FF-C2573BFD1E88}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,8 +39,15 @@ Global
 		{5765198B-00FE-4CA0-B891-656B92E8D39A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5765198B-00FE-4CA0-B891-656B92E8D39A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5765198B-00FE-4CA0-B891-656B92E8D39A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{134DD39A-F722-452C-86FF-C2573BFD1E88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{134DD39A-F722-452C-86FF-C2573BFD1E88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{134DD39A-F722-452C-86FF-C2573BFD1E88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{134DD39A-F722-452C-86FF-C2573BFD1E88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{134DD39A-F722-452C-86FF-C2573BFD1E88} = {1CA6F803-D7D9-4C06-A056-8A00C95F653B}
 	EndGlobalSection
 EndGlobal

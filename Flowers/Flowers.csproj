@@ -60,6 +60,10 @@
     <Compile Include="Products\Flowers\IFlowersTypeManager.cs" />
     <Compile Include="Products\Flowers\IFlowersTypesStore.cs" />
     <Compile Include="Products\PriceFilter.cs" />
+    <Compile Include="Products\ProductComposition\IProductCompositionManager.cs" />
+    <Compile Include="Products\ProductComposition\IProductCompositionStore.cs" />
+    <Compile Include="Products\ProductComposition\IProductCompositionStoreReadOnlyStore.cs" />
+    <Compile Include="Products\ProductComposition\ProductCompositionManager.cs" />
     <Compile Include="Products\TypesFilter.cs" />
     <Compile Include="Products\Flowers\Flower.cs" />
     <Compile Include="Products\Flowers\FlowersManager.cs" />
